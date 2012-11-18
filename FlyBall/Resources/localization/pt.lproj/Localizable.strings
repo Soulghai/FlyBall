@@ -1,0 +1,123 @@
+/* 
+  Localizable.strings
+  Expand_It
+
+  Created by Mac Mini on 09.02.12.
+  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+*/
+
+/*
+ Rate Me Dialog
+ */
+"Please Rate 5 Stars" = "Gostas? Por favor classifica-o com 5 estrelas, para receberes actualizações grátis. Obrigado!";
+
+"Don't Ask Again" = "Não, obrigado!";
+
+"Yes Rate It" = "Classificar agora";
+
+"Remind Me Later" = "Lembrar-me mais tarde";
+
+/*
+ In App Purchase Dialog
+ */
+
+"iap_completed_title" = "Transacção Completa";
+"iap_completed_message" = "Compraste com sucesso pontos adicionais de resolução!";
+"iap_completed_cancel_button" = "OK";
+
+/*  */
+"Review request approved" = "Pedido de crítica aprovado";
+
+/*  */
+"You can use this feature for reviewing the app." = "Podes utilizar esta característica para criticar a aplicação.";
+
+/*  */
+"Dismiss" = "Recusar";
+
+/*  */
+"In-App Purchasing disabled" = "Compras integradas desactivadas";
+
+/*  */
+"Check your parental control settings and try again later" = "Verifica as tuas configurações de controlo parental e tenta novamente mais tarde";
+
+
+/*
+ In Game Button
+ */
+/* button "menu" on the level. */
+"btnGiftThisApp" = "Oferecer esta aplicação";
+
+/* button "menu" on the level. */
+"btnComingSoon" = "Brevemente";
+
+/* button "menu" on the level. */
+"btnRateMe" = "Classificar\n       jogo";
+
+/* button "menu" on the level. */
+"btnMoreGames" = "Mais jogos";
+
+/* button "menu" on the level. */
+"btnISLAND" = "ILHA";
+
+/* button "menu" on the level. */
+"btnVOLKANO" = "VULCÃO";
+
+/* button "menu" on the level. */
+"btnICEAGE" = "IDADE DO GELO";
+
+/* button "menu" on the level. */
+"btnCAVE" = "CAVERNA";
+
+/* button "menu" on the level. */
+"btnBOMB" = "FOGO-DE-ARTIFÍCIO";
+
+/* first level hint */
+"Tap to Expand" = "Toca no dinossauro\npara expandi-lo";
+
+/* 4 level multy hint */
+"Multi Tap to\nExpand" = "Podes tocar em dois dinossauros\nao mesmo tempo";
+
+/* 60 level multy hint */
+"Tap to Bomb" = "Toca na bomba\npara fazê-la explodir!";
+
+/* Add skips dialog box */
+"ADD SKIPS" = "COMPRAR SUPER ARCO-ÍRIS";
+
+/* Realy use dialog box */
+"REALLY USE\nLEVEL SKIP?" = "QUERES USAR UM\nSUPER ARCO-ÍRIS\nPARA SOLUCIONAR ESTE NÍVEL?";
+
+/* Restart Progress dialog box */
+"Restart Progress?" = "Reiniciar progresso?";
+
+/*  */
+"CLICK HERE TO RESTART" = "TOCA AQUI PARA REINICIAR";
+
+/*
+ Market Screen
+ */
+"get 5 skips" = "+5 super arco-íris";
+
+"get 15 skips" = "+15 super arco-íris";
+
+"GIFT THIS APP" = "OFERECER ESTA APLICAÇÃO";
+
+
+/* Recommend to Friend email */
+"recommend_email_subject" = "Acabei de descobrir um jogo excelente!";
+"recommend_email_app_title" = "Expand It";
+"recommend_email_app_title_hd" = "Expand It HD";
+"recommend_email_app_link" = "http://itunes.apple.com/app/id515220537";
+"recommend_email_app_link_hd" = "http://itunes.apple.com/app/id503835274";
+"recommend_email_app_icon" = "http://fdgsoft.de/EmailRecommendation/Expandit/icon.png";
+"recommend_email_app_icon_hd" = "http://fdgsoft.de/EmailRecommendation/Expandit/iconhd.png";
+"recommend_email_app_screenshot_01" = "http://fdgsoft.de/EmailRecommendation/Expandit/pt/iphone/01.jpg";
+"recommend_email_app_screenshot_02" = "http://fdgsoft.de/EmailRecommendation/Expandit/pt/iphone/02.jpg";
+"recommend_email_app_screenshot_03" = "http://fdgsoft.de/EmailRecommendation/Expandit/pt/iphone/03.jpg";
+"recommend_email_app_screenshot_04" = "http://fdgsoft.de/EmailRecommendation/Expandit/pt/iphone/04.jpg";
+"recommend_email_app_screenshot_05" = "http://fdgsoft.de/EmailRecommendation/Expandit/pt/iphone/05.jpg";
+"recommend_email_app_screenshot_01_hd" = "http://fdgsoft.de/EmailRecommendation/Expandit/pt/iphone/01.jpg";
+"recommend_email_app_screenshot_02_hd" = "http://fdgsoft.de/EmailRecommendation/Expandit/pt/iphone/02.jpg";
+"recommend_email_app_screenshot_03_hd" = "http://fdgsoft.de/EmailRecommendation/Expandit/pt/iphone/03.jpg";
+"recommend_email_app_screenshot_04_hd" = "http://fdgsoft.de/EmailRecommendation/Expandit/pt/iphone/04.jpg";
+"recommend_email_app_screenshot_05_hd" = "http://fdgsoft.de/EmailRecommendation/Expandit/pt/iphone/05.jpg";
+"recommend_email_message_text" = "Hoje descobri um jogo incrível na App Store. Chama-se <a href=\"%@\">%@</a>. É muito divertido, a minha pontuação actual é %d. Dá uma olhadela e tenta vencer-me :-)!";

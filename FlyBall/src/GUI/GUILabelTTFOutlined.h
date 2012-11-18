@@ -1,0 +1,40 @@
+//
+//  GUILabelTTFOutlined.h
+//  Expand_It
+//
+//  Created by Mac Mini on 21.02.12.
+//  Copyright 2012 __MyCompanyName__. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "cocos2d.h"
+#import "GUIItem.h"
+
+@interface GUILabelTTFOutlined : GUIItem {
+	CCSprite *spr;
+    NSString * text;
+    NSString* fontName;
+    float fontSize;
+    CGSize containerSize;
+    ccColor3B textColor;
+    ccColor3B outlineColor;
+    float outlineSize;
+    
+    CCLabelTTF* label; 
+    CCRenderTexture* stroke;
+}
+
+@property (nonatomic, retain) CCSprite *spr;
+@property (nonatomic,assign) NSString* fontName;
+@property (nonatomic,assign) NSString * text;
+@property (nonatomic,readwrite) float fontSize;
+@property (nonatomic,readwrite) CGSize containerSize;
+@property (nonatomic,readwrite) ccColor3B textColor;
+@property (nonatomic,readwrite) ccColor3B outlineColor;
+@property (nonatomic,readwrite) float outlineSize;
+
+- (id) init:(id)_def;
+- (void) setOpacity:(GLubyte)_opacity;
+- (void) show:(BOOL)_flag;
+- (void) setText:(NSString *)_text;
+@end

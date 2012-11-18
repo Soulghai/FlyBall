@@ -1,0 +1,122 @@
+/* 
+  Localizable.strings
+  Expand_It
+
+  Created by Mac Mini on 09.02.12.
+  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+*/
+
+/*
+Rate Me Dialog
+ */
+"Please Rate 5 Stars" = "Please rate Expand it! on iTunes to encourage us creating free updates";
+
+"Don't Ask Again" = "Don't Ask Again";
+
+"Yes Rate It" = "Yes Rate It";
+
+"Remind Me Later" = "Remind Me Later";
+
+/*
+In App Purchase Dialog
+ */
+
+"iap_completed_title" = "Transaction Completed";
+"iap_completed_message" = "You have sucessfully bought additional solve points!";
+"iap_completed_cancel_button" = "OK";
+
+/*  */
+"Review request approved" = "Review request approved";
+
+/*  */
+"You can use this feature for reviewing the app." = "You can use this feature for reviewing the app.";
+
+/*  */
+"Dismiss" = "Dismiss";
+
+/*  */
+"In-App Purchasing disabled" = "In-App Purchasing disabled";
+
+/*  */
+"Check your parental control settings and try again later" = "Check your parental control settings and try again later";
+
+
+/*
+ In Game Button
+ */
+/* button "menu" on the level. */
+"btnGiftThisApp" = "Gift This App";
+
+/* button "menu" on the level. */
+"btnComingSoon" = "Coming Soon";
+
+/* button "menu" on the level. */
+"btnRateMe" = "Rate Me";
+
+/* button "menu" on the level. */
+"btnMoreGames" = "More Games";
+
+/* button "menu" on the level. */
+"btnISLAND" = "ISLAND";
+
+/* button "menu" on the level. */
+"btnVOLKANO" = "VULCANO";
+
+/* button "menu" on the level. */
+"btnICEAGE" = "ICE AGE";
+
+/* button "menu" on the level. */
+"btnCAVE" = "CAVE";
+
+/* button "menu" on the level. */
+"btnBOMB" = "FIREWORKS";
+
+/* first level hint */
+"Tap to Expand" = "Tap the Dino\nto Expand it";
+
+/* 4 level multy hint */
+"Multi Tap to\nExpand" = "You can also tap two Dinos\nat the same time";
+
+/* 60 level multy hint */
+"Tap to Bomb" = "Tap the bomb\nto blow it up!";
+
+/* Add skips dialog box */
+"ADD SKIPS" = "BUY SUPER RAINBOWS";
+
+/* Realy use dialog box */
+"REALLY USE\nLEVEL SKIP?" = "DO YOU WANT TO USE\nA SUPER RAINBOW\nTO SOLVE THIS LEVEL?";
+
+/* Restart Progress dialog box */
+"Restart Progress?" = "Reset game?";
+
+/*  */
+"CLICK HERE TO RESTART" = "TAP HERE TO RESTART";
+
+/*
+ Market Screen
+ */
+"get 5 skips" = "+5 super rainbows";
+
+"get 15 skips" = "+15 super rainbows";
+
+"GIFT THIS APP" = "GIFT THIS APP";
+
+/* Recommend to Friend email */
+"recommend_email_subject" = "Just discovered this great game!";
+"recommend_email_app_title" = "Expand It";
+"recommend_email_app_title_hd" = "Expand It HD";
+"recommend_email_app_link" = "http://itunes.apple.com/app/id515220537";
+"recommend_email_app_link_hd" = "http://itunes.apple.com/app/id503835274";
+"recommend_email_app_icon" = "http://fdgsoft.de/EmailRecommendation/Expandit/icon.png";
+"recommend_email_app_icon_hd" = "http://fdgsoft.de/EmailRecommendation/Expandit/iconhd.png";
+"recommend_email_app_screenshot_01" = "http://fdgsoft.de/EmailRecommendation/Expandit/en/iphone/01.jpg";
+"recommend_email_app_screenshot_02" = "http://fdgsoft.de/EmailRecommendation/Expandit/en/iphone/02.jpg";
+"recommend_email_app_screenshot_03" = "http://fdgsoft.de/EmailRecommendation/Expandit/en/iphone/03.jpg";
+"recommend_email_app_screenshot_04" = "http://fdgsoft.de/EmailRecommendation/Expandit/en/iphone/04.jpg";
+"recommend_email_app_screenshot_05" = "http://fdgsoft.de/EmailRecommendation/Expandit/en/iphone/05.jpg";
+"recommend_email_app_screenshot_01_hd" = "http://fdgsoft.de/EmailRecommendation/Expandit/en/iphone/01.jpg";
+"recommend_email_app_screenshot_02_hd" = "http://fdgsoft.de/EmailRecommendation/Expandit/en/iphone/02.jpg";
+"recommend_email_app_screenshot_03_hd" = "http://fdgsoft.de/EmailRecommendation/Expandit/en/iphone/03.jpg";
+"recommend_email_app_screenshot_04_hd" = "http://fdgsoft.de/EmailRecommendation/Expandit/en/iphone/04.jpg";
+"recommend_email_app_screenshot_05_hd" = "http://fdgsoft.de/EmailRecommendation/Expandit/en/iphone/05.jpg";
+"recommend_email_message_text" = "I have found an awesome game called <a href=\"%@\">%@</a> on the App Store today. It's a lot of fun, my current score is %d. Check it out and try to beat me :-) !";

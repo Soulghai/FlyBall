@@ -1,0 +1,128 @@
+/* 
+  Localizable.strings
+  Expand_It
+
+  Created by Mac Mini on 09.02.12.
+  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+*/
+
+/*
+ Rate Me Dialog
+ */
+/* button "menu" on the level. */
+"Please Rate 5 Stars" = "Пожалуйста, оцените в 5 звезд. Мы продолжим радовать вас бесплатными обновлениями.";
+
+/* button "menu" on the level. */
+"Don't Ask Again" = "Не спрашивать больше";
+
+/* button "menu" on the level. */
+"Yes Rate It" = "Да, оценить";
+
+/* button "menu" on the level. */
+"Remind Me Later" = "Напомнить позже";
+
+
+/*
+ In App Purchase Dialog
+ */
+
+"iap_completed_title" = "Транзакция завершена";
+"iap_completed_message" = "Вы успешно купили дополнительные авторешения!";
+"iap_completed_cancel_button" = "Oк";
+
+/* button "menu" on the level. */
+"Review request approved" = "Рассмотрение запроса утвержденно";
+/* button "menu" on the level. */
+
+"You can use this feature for reviewing the app." = "You can use this feature for reviewing the app.";
+/* button "menu" on the level. */
+"Dismiss" = "Отклонить";
+
+/* button "menu" on the level. */
+"In-App Purchasing disabled" = "Внутри-игровые покупки отключены";
+
+/* button "menu" on the level. */
+"Check your parental control settings and try again later" = "Проверьте настройки родительского контроля и попробуйте еще раз позже";
+
+
+
+/* button "menu" on the level. */
+"btnGiftThisApp" = "Подарить игру";
+
+/* button "menu" on the level. */
+"btnComingSoon" = "Очень скоро";
+
+/* button "menu" on the level. */
+"btnRateMe" = "Оценить";
+
+/* button "menu" on the level. */
+"btnMoreGames" = "Еще игры";
+
+/* button "menu" on the level. */
+"btnISLAND" = "Остров";
+
+/* button "menu" on the level. */
+"btnVOLKANO" = "Вулкан";
+
+/* button "menu" on the level. */
+"btnICEAGE" = "Ледник";
+
+/* button "menu" on the level. */
+"btnCAVE" = "Пещера";
+
+/* button "menu" on the level. */
+"btnBOMB" = "ФЕЙЕРВЕРК";
+
+/* button "menu" on the level. */
+"Tap to Expand" = "Прикоснись к\nдинозавру,\nчтобы увеличить его";
+
+/* 4 level multy hint */
+"Multi Tap to\nExpand" = "Также одновременно\nможно прикоснуться\nк двум динозаврам";
+
+/* 60 level multy hint */
+"Tap to Bomb" = "Прикоснитесь к бомбе,\nчтобы взорвать ее!";
+
+/* button "menu" on the level. */
+"ADD SKIPS" = "КУПИ СУПЕРРАДУГИ";
+
+/* button "menu" on the level. */
+"REALLY USE\nLEVEL SKIP?" = "ХОЧЕШЬ ВОСПОЛЬЗОВАТЬСЯ\nСУПЕРРАДУГОЙ,\nЧТОБЫ ПРОЙТИ ЭТОТ УРОВЕНЬ?";
+
+/* button "menu" on the level. */
+"Restart Progress?" = "Стереть прогресс?";
+
+/* button "menu" on the level. */
+"CLICK HERE TO RESTART" = "Нажми чтобы переиграть";
+
+
+/*
+ Market Screen
+ */
+/* button "menu" on the level. */
+"get 5 skips" = "+5 суперрадуг";
+
+/* button "menu" on the level. */
+"get 15 skips" = "+15 суперрадуг";
+
+/* button "menu" on the level. */
+"GIFT THIS APP" = "Подарить игру";
+
+/* Recommend to Friend email */
+"recommend_email_subject" = "Посмотри какую игру я нашел!";
+"recommend_email_app_title" = "Expand It";
+"recommend_email_app_title_hd" = "Expand It HD";
+"recommend_email_app_link" = "http://itunes.apple.com/app/id515220537";
+"recommend_email_app_link_hd" = "http://itunes.apple.com/app/id503835274";
+"recommend_email_app_icon" = "http://fdgsoft.de/EmailRecommendation/Expandit/icon.png";
+"recommend_email_app_icon_hd" = "http://fdgsoft.de/EmailRecommendation/Expandit/iconhd.png";
+"recommend_email_app_screenshot_01" = "http://fdgsoft.de/EmailRecommendation/Expandit/ru/iphone/01.jpg";
+"recommend_email_app_screenshot_02" = "http://fdgsoft.de/EmailRecommendation/Expandit/ru/iphone/02.jpg";
+"recommend_email_app_screenshot_03" = "http://fdgsoft.de/EmailRecommendation/Expandit/ru/iphone/03.jpg";
+"recommend_email_app_screenshot_04" = "http://fdgsoft.de/EmailRecommendation/Expandit/ru/iphone/04.jpg";
+"recommend_email_app_screenshot_05" = "http://fdgsoft.de/EmailRecommendation/Expandit/ru/iphone/05.jpg";
+"recommend_email_app_screenshot_01_hd" = "http://fdgsoft.de/EmailRecommendation/Expandit/ru/iphone/01.jpg";
+"recommend_email_app_screenshot_02_hd" = "http://fdgsoft.de/EmailRecommendation/Expandit/ru/iphone/02.jpg";
+"recommend_email_app_screenshot_03_hd" = "http://fdgsoft.de/EmailRecommendation/Expandit/ru/iphone/03.jpg";
+"recommend_email_app_screenshot_04_hd" = "http://fdgsoft.de/EmailRecommendation/Expandit/ru/iphone/04.jpg";
+"recommend_email_app_screenshot_05_hd" = "http://fdgsoft.de/EmailRecommendation/Expandit/ru/iphone/05.jpg";
+"recommend_email_message_text" = "Я нашел отличную игру <a href=\"%@\">%@</a> на App Store! У меня сейчас %d очков. Советую оценить игру лично и попробовать побить мой рекорд :-) !";

@@ -1,0 +1,122 @@
+/* 
+  Localizable.strings
+  Expand_It
+
+  Created by Mac Mini on 09.02.12.
+  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+*/
+
+/*
+ Rate Me Dialog
+ */
+"Please Rate 5 Stars" = "Hat es dir gefallen? Deine 5 Sterne ermöglichen weitere kostenlose Updates!";
+
+"Don't Ask Again" = "Nein, danke";
+
+"Yes Rate It" = "Jetzt bewerten";
+
+"Remind Me Later" = "Später erinnern";
+
+/*
+ In App Purchase Dialog
+ */
+
+"iap_completed_title" = "Kauf erfolgreich";
+"iap_completed_message" = "Du hast erfolgreich Lösungen gekauft!";
+"iap_completed_cancel_button" = "OK";
+
+/*  */
+"Review request approved" = "Bewertungsanfrage zugelassen";
+
+/*  */
+"You can use this feature for reviewing the app." = "Mit diesem Feature kannst du die App bewerten";
+
+/*  */
+"Dismiss" = "Ablehnen";
+
+/*  */
+"In-App Purchasing disabled" = "In-App-Kauf deaktiviert";
+
+/*  */
+"Check your parental control settings and try again later" = "Elterliche Freigabe überprüfen und später nochmal versuchen";
+
+
+/*
+ In Game Button
+ */
+/* button "menu" on the level. */
+"btnGiftThisApp" = "App verschenken";
+
+/* button "menu" on the level. */
+"btnComingSoon" = "In Kürze erhältlich";
+
+/* button "menu" on the level. */
+"btnRateMe" = "     Spiel\nbewerten";
+
+/* button "menu" on the level. */
+"btnMoreGames" = "Mehr Spiele";
+
+/* button "menu" on the level. */
+"btnISLAND" = "INSEL";
+
+/* button "menu" on the level. */
+"btnVOLKANO" = "VULKAN";
+
+/* button "menu" on the level. */
+"btnICEAGE" = "EISZEIT";
+
+/* button "menu" on the level. */
+"btnCAVE" = "HÖHLE";
+
+/* button "menu" on the level. */
+"btnBOMB" = "FEUERWERK";
+
+/* first level hint */
+"Tap to Expand" = "Tippe den Dino\nzum Vergrößern an";
+
+/* 4 level multy hint */
+"Multi Tap to\nExpand" = "Du kannst auch zwei Dinos\ngleichzeitig antippen";
+
+/* 60 level multy hint */
+"Tap to Bomb" = "Tippe die Bombe an,\ndamit sie explodiert!";
+
+/* Add skips dialog box */
+"ADD SKIPS" = "KAUFE SUPER-REGENBOGEN";
+
+/* Realy use dialog box */
+"REALLY USE\nLEVEL SKIP?" = "ZUM LÖSEN DES\nLEVELS EINEN\nSUPER-REGENBOGEN BENUTZEN?";
+
+/* Restart Progress dialog box */
+"Restart Progress?" = "Spielstand löschen?";
+
+/*  */
+"CLICK HERE TO RESTART" = "FÜR NEUSTART HIER ANTIPPEN";
+
+/*
+ Market Screen
+ */
+"get 5 skips" = "+5 Super-Regenbogen";
+
+"get 15 skips" = "+15 Super-Regenbogen";
+
+"GIFT THIS APP" = "App verschenken";
+
+/* Recommend to Friend email */
+"recommend_email_subject" = "Cooles Spiel entdeckt!";
+"recommend_email_app_title" = "Expand It";
+"recommend_email_app_title_hd" = "Expand It HD";
+"recommend_email_app_link" = "http://itunes.apple.com/app/id515220537";
+"recommend_email_app_link_hd" = "http://itunes.apple.com/app/id503835274";
+"recommend_email_app_icon" = "http://fdgsoft.de/EmailRecommendation/Expandit/icon.png";
+"recommend_email_app_icon_hd" = "http://fdgsoft.de/EmailRecommendation/Expandit/iconhd.png";
+"recommend_email_app_screenshot_01" = "http://fdgsoft.de/EmailRecommendation/Expandit/de/iphone/01.jpg";
+"recommend_email_app_screenshot_02" = "http://fdgsoft.de/EmailRecommendation/Expandit/de/iphone/02.jpg";
+"recommend_email_app_screenshot_03" = "http://fdgsoft.de/EmailRecommendation/Expandit/de/iphone/03.jpg";
+"recommend_email_app_screenshot_04" = "http://fdgsoft.de/EmailRecommendation/Expandit/de/iphone/04.jpg";
+"recommend_email_app_screenshot_05" = "http://fdgsoft.de/EmailRecommendation/Expandit/de/iphone/05.jpg";
+"recommend_email_app_screenshot_01_hd" = "http://fdgsoft.de/EmailRecommendation/Expandit/de/iphone/01.jpg";
+"recommend_email_app_screenshot_02_hd" = "http://fdgsoft.de/EmailRecommendation/Expandit/de/iphone/02.jpg";
+"recommend_email_app_screenshot_03_hd" = "http://fdgsoft.de/EmailRecommendation/Expandit/de/iphone/03.jpg";
+"recommend_email_app_screenshot_04_hd" = "http://fdgsoft.de/EmailRecommendation/Expandit/de/iphone/04.jpg";
+"recommend_email_app_screenshot_05_hd" = "http://fdgsoft.de/EmailRecommendation/Expandit/de/iphone/05.jpg";
+"recommend_email_message_text" = "Ich habe heute ein tolles Spiel im App Store gefunden. Es heißt  <a href=\"%@\">%@</a> und macht total viel Spaß. Zur Zeit habe ich %d Punkte - versuch mich zu schlagen :) !";
