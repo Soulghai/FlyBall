@@ -332,6 +332,7 @@
 		2890F6811655C2C000B4031B /* gfx_cells-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2890F67D1655C2BF00B4031B /* gfx_cells-hd.plist */; };
 		2890F6821655C2C000B4031B /* gfx_cells.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2890F67E1655C2C000B4031B /* gfx_cells.jpg */; };
 		2890F6831655C2C000B4031B /* gfx_cells.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2890F67F1655C2C000B4031B /* gfx_cells.plist */; };
+		28BA4BAA1659C0EF00D2A2FA /* SpeedWall.mm in Sources */ = {isa = PBXBuildFile; fileRef = 28BA4BA91659C0EF00D2A2FA /* SpeedWall.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -858,6 +859,8 @@
 		2890F67D1655C2BF00B4031B /* gfx_cells-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "gfx_cells-hd.plist"; sourceTree = "<group>"; };
 		2890F67E1655C2C000B4031B /* gfx_cells.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = gfx_cells.jpg; sourceTree = "<group>"; };
 		2890F67F1655C2C000B4031B /* gfx_cells.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = gfx_cells.plist; sourceTree = "<group>"; };
+		28BA4BA81659C0EF00D2A2FA /* SpeedWall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeedWall.h; sourceTree = "<group>"; };
+		28BA4BA91659C0EF00D2A2FA /* SpeedWall.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SpeedWall.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1556,6 +1559,7 @@
 		284FBE1916530AF1003C16BE /* src */ = {
 			isa = PBXGroup;
 			children = (
+				28BA4BA71659C0EF00D2A2FA /* SpeedWall */,
 				288667391658728E0089DEB1 /* CellsBackground */,
 				284FBE1B16530AF1003C16BE /* Engine */,
 				284FBE2B16530AF1003C16BE /* Flurry iPhone SDK v3 */,
@@ -1790,6 +1794,15 @@
 				2886673B1658728E0089DEB1 /* CellsBackground.mm */,
 			);
 			path = CellsBackground;
+			sourceTree = "<group>";
+		};
+		28BA4BA71659C0EF00D2A2FA /* SpeedWall */ = {
+			isa = PBXGroup;
+			children = (
+				28BA4BA81659C0EF00D2A2FA /* SpeedWall.h */,
+				28BA4BA91659C0EF00D2A2FA /* SpeedWall.mm */,
+			);
+			path = SpeedWall;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2171,6 +2184,7 @@
 				284FBEF116530AF1003C16BE /* ZMenu.mm in Sources */,
 				288DF4B3165700B500595477 /* ActorCircleBonus.mm in Sources */,
 				2886673C1658728E0089DEB1 /* CellsBackground.mm in Sources */,
+				28BA4BAA1659C0EF00D2A2FA /* SpeedWall.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -62,6 +62,5 @@
 - (void) update;
 - (void) show:(BOOL)_flag;
 - (void) accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration;
-- (void) touchReaction:(CGPoint)_touchPos;
 - (void) dealloc;
 @end

@@ -37,7 +37,6 @@
 }
 
 - (void) buttonLevelRestartAction {
-	[levelFinishScreen show:NO];
 	[self levelRestart];
     
     [FlurryAnalytics logEvent:ANALYTICS_GAME_SCREEN_BUTTON_RESTART_LEVEL_CLICKED];
@@ -109,9 +108,6 @@
             [[SimpleAudioEngine sharedEngine] preloadEffect:@"rainbow_back.wav"];
             [[SimpleAudioEngine sharedEngine] preloadEffect:@"_3__Safe_Clicks_looped.mp3"];
         }
-		
-		levelFinishScreen = [LevelFinishScreen node];
-		[self addChild:levelFinishScreen];
             
 		GUIButtonDef *btnDef = [GUIButtonDef node];
 		btnDef.sprName = @"btnPause.png";
@@ -264,8 +260,6 @@
 - (void) levelStart{
 	GAME_STARTED = YES;
     isPause = NO;
-    
-	[levelFinishScreen show:NO];
 	
 	levelTime = 0;
 	
@@ -345,9 +339,7 @@
 	
     [self show:NO];
     
-	[levelFinishScreen setScore:scoreLevel];
-	[levelFinishScreen showStars:3];
-	[levelFinishScreen show:YES];
+    [[MainScene instance] showLevelDinishScreenAndSetScore:YES _score:scoreLevel _starCount:3];
     
     [MyData encodeDict:[MyData getDictForSaveData]];
 }
@@ -358,12 +350,12 @@
     [labelScoreStr3 setPosition:ccp(20, SCREEN_HEIGHT-(int)(player.costume.position.y + SCREEN_HEIGHT_HALF/1.5f) % SCREEN_HEIGHT)];
     
     NSString *_strScoreValue;
-    int _scoreValue = (int)(player.costume.position.y + (labelScoreStr1.spr.position.y - SCREEN_HEIGHT));
+    float _scoreValue = (int)(player.costume.position.y + (labelScoreStr1.spr.position.y - SCREEN_HEIGHT));
         if (_scoreValue < 0) _strScoreValue = @""; else {
-        if (_scoreValue > 10000) {
+        if (_scoreValue >= 10000) {
             _strScoreValue = [NSString stringWithFormat:@"%3iK", (int)(_scoreValue/1000)];
         } else
-            if (_scoreValue > 1000) {
+            if (_scoreValue >= 1000) {
                 _strScoreValue = [NSString stringWithFormat:@"%2.1fK", (float)(_scoreValue/1000)];
             } else {
                 _strScoreValue = [NSString stringWithFormat:@"%i",(int)(player.costume.position.y  + (labelScoreStr1.spr.position.y - SCREEN_HEIGHT))];
@@ -374,10 +366,10 @@
     
     _scoreValue = (int)(player.costume.position.y + (labelScoreStr2.spr.position.y - SCREEN_HEIGHT));
     if (_scoreValue < 0) _strScoreValue = @""; else {
-        if (_scoreValue > 10000) {
+        if (_scoreValue >= 10000) {
             _strScoreValue = [NSString stringWithFormat:@"%3iK", (int)(_scoreValue/1000)];
         } else
-            if (_scoreValue > 1000) {
+            if (_scoreValue >= 1000) {
                 _strScoreValue = [NSString stringWithFormat:@"%2.1fK", (float)(_scoreValue/1000)];
             } else {
                 _strScoreValue = [NSString stringWithFormat:@"%i",(int)(player.costume.position.y + (labelScoreStr2.spr.position.y - SCREEN_HEIGHT))];
@@ -387,10 +379,10 @@
     
     _scoreValue = (int)(player.costume.position.y + (labelScoreStr3.spr.position.y - SCREEN_HEIGHT));
     if (_scoreValue < 0) _strScoreValue = @""; else {
-        if (_scoreValue > 10000) {
+        if (_scoreValue >= 10000) {
             _strScoreValue = [NSString stringWithFormat:@"%3iK", (int)(_scoreValue/1000)];
         } else
-            if (_scoreValue > 1000) {
+            if (_scoreValue >= 1000) {
                 _strScoreValue = [NSString stringWithFormat:@"%2.1fK", (float)(_scoreValue/1000)];
             } else {
                 _strScoreValue = [NSString stringWithFormat:@"%i",(int)(player.costume.position.y + (labelScoreStr3.spr.position.y - SCREEN_HEIGHT))];
@@ -408,10 +400,9 @@
     
     float _power = (1 - _distance/SCREEN_HEIGHT_HALF)*10.0f;
     
-    CCLOG(@"_power = %f, _distance = %f", _power, _distance);
-    float _angle = [Utils GetAngleBetweenPt1:ccp(SCREEN_WIDTH_HALF, SCREEN_HEIGHT_HALF) andPt2:ccp(_tempActorX,_tempActorY)];
+    float _angle = CC_DEGREES_TO_RADIANS([Utils GetAngleBetweenPt1:ccp(SCREEN_WIDTH_HALF, SCREEN_HEIGHT_HALF) andPt2:ccp(_tempActorX,_tempActorY)]);
     
-    [player addVelocity:ccp(_power*cos(CC_DEGREES_TO_RADIANS(_angle)),_power*sin(CC_DEGREES_TO_RADIANS(_angle)))];
+    [player addVelocity:ccp(_power*cos(_angle),_power*sin(_angle))];
 }
 
 - (void) bonusTouchReaction:(int)_bonusID {
@@ -454,11 +445,13 @@
 
 - (void) update {
     if (state != GAME_STATE_LEVELFINISH) {
+        // Пока делаем затемнение или наоборот, ф-цию update не выполняем
     if (([Defs instance].closeAnimationPanel) && ([Defs instance].isOpenScreenAnimation)) {
         if ([Defs instance].closeAnimationPanel.spr.opacity >= 25) [Defs instance].closeAnimationPanel.spr.opacity -= 25; else {
             [[Defs instance].closeAnimationPanel.spr setOpacity:0];
             [[Defs instance].closeAnimationPanel show:NO];
             [Defs instance].isOpenScreenAnimation = NO;
+            return;
         }
     } else 
         if ([Defs instance].isCloseScreenAnimation) {
@@ -469,11 +462,9 @@
                     [self levelFinishAction];
                 }
             }
+            return;
         }
     }
-    
-    
-    if (state == GAME_STATE_LEVELFINISH) [levelFinishScreen update];
 	
 	if ((GAME_IS_PLAYING)&&((state & (GAME_STATE_GAMEPAUSE)) == 0)) {
 		
@@ -528,11 +519,13 @@
         timerAddBall += TIME_STEP;
         if (timerAddBall >= timerDelayAddBall - fabs(player.velocity.x/300)) {
             float _velocityXCoeff = 1 + fabs(player.velocity.x/10);
-            float _velocityYCoeff = (1 + fabs(player.velocity.y/30))*3 + CCRANDOM_0_1()*(fabs(player.velocity.y/30));
-            if (_velocityYCoeff < 4) _velocityYCoeff = 4;
+            float _velocityYCoeff = (1.1f + fabs(player.velocity.y/33))*3 + CCRANDOM_0_1()*(fabs(player.velocity.y/33));
+            if (_velocityYCoeff < 4.5f) {
+                _velocityYCoeff = 4.5f;
+            }
             int _ballCount = round(CCRANDOM_0_1()*2);
             for (int i = 0; i < _ballCount; i++) {
-                [self addBall:ccp(player.costume.position.x + player.velocity.x*5 + SCREEN_WIDTH_HALF*CCRANDOM_MINUS1_1(), player.costume.position.y - SCREEN_HEIGHT_HALF - elementRadius) _velocity:ccp(player.velocity.x + CCRANDOM_MINUS1_1()*_velocityXCoeff, player.velocity.y + _velocityYCoeff) _active:YES];
+                [self addBall:ccp(player.costume.position.x + player.velocity.x*5 + SCREEN_WIDTH_HALF*CCRANDOM_MINUS1_1(), player.costume.position.y - SCREEN_HEIGHT_HALF - elementRadius) _velocity:ccp(player.velocity.x + CCRANDOM_MINUS1_1()*_velocityXCoeff, player.velocity.y + _velocityYCoeff) _active:YES]; 
             }
             
             timerAddBall = 0;
@@ -613,27 +606,10 @@
                 
 			}
 
-		}else {
-			return [levelFinishScreen ccTouchBegan:_touchPos];
 		}
 	}
 	
 	return NO;
-}
-
--(void) ccTouchEnded:(CGPoint)_touchPos {
-	if (state == GAME_STATE_LEVELFINISH) {
-		[levelFinishScreen ccTouchEnded:_touchPos];
-	}
-}
-
--(void) ccTouchMoved:(CGPoint)_touchLocation
-	   _prevLocation:(CGPoint)_prevLocation 
-			   _diff:(CGPoint)_diff {	
-
-	if (state == GAME_STATE_LEVELFINISH) {
-		[levelFinishScreen ccTouchMoved:_touchLocation _prevLocation:_prevLocation _diff:_diff];
-	}
 }
 
 - (void) accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration {

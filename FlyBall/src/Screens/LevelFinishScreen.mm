@@ -107,7 +107,10 @@
 }
 
 - (void) buttonLevelRestartAction {
-    [[MainScene instance].game buttonLevelRestartAction];
+    [self show:NO];
+    [[MainScene instance].game levelRestart];
+        
+    [FlurryAnalytics logEvent:ANALYTICS_GAME_SCREEN_BUTTON_RESTART_LEVEL_CLICKED];
 }
 
 - (void) buttonLevelsClick {
@@ -419,20 +422,6 @@
             }
         }
     }
-}
-
-- (BOOL) ccTouchBegan:(CGPoint)_touchPos {	
-	return YES;
-}
-
--(void) ccTouchEnded:(CGPoint)_touchPos {
-
-}
-
--(void) ccTouchMoved:(CGPoint)_touchPos
-	   _prevLocation:(CGPoint)_prevLocation 
-			   _diff:(CGPoint)_diff {	
-
 }
 
 - (void) dealloc{

@@ -24,8 +24,6 @@
     
     GUILabelTTFOutlined *scoreStr;
     CGPoint scoreStrPos;
-	
-	LevelFinishScreen *levelFinishScreen;
     
     ActorCircle *player;
     float timerAddBall;
@@ -53,10 +51,6 @@
 - (void) prepareToHideGameScreen;
 - (void) bonusTouchReaction:(int)_bonusID;
 - (BOOL) ccTouchBegan:(CGPoint)_touchPos;
-- (void) ccTouchEnded:(CGPoint)_touchPos;
-- (void) ccTouchMoved:(CGPoint)_touchLocation
-	   _prevLocation:(CGPoint)_prevLocation 
-			   _diff:(CGPoint)_diff;
 - (void) accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration;
 - (void) show:(BOOL)_flag;
 - (void) dealloc;

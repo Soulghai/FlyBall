@@ -14,6 +14,7 @@
 #import "PauseScreen.h"
 #import "GUIInterface.h"
 #import "AboutScreen.h"
+#import "LevelFinishScreen.h"
 
 @interface MainScene : CCLayer <GKAchievementViewControllerDelegate, GKLeaderboardViewControllerDelegate>
 {
@@ -22,6 +23,7 @@
 	MarketScreen *marketScreen;
 	GUIInterface *gui;
 	AboutScreen *aboutScreen;
+    LevelFinishScreen *levelFinishScreen;
 }
 
 @property (nonatomic, assign) ZGame *game;
@@ -33,12 +35,15 @@
 // returns a Scene that contains the HelloWorld as the only child
 +(id) scene;
 
--(void) update:(ccTime)dt;
+- (void) gameLoaded;
+- (void) update:(ccTime)dt;
 - (void) showCredits;
 - (void) showMoreGamesScreen;
 - (void) showMenu;
 - (void) showMarketScreen:(int)_state;
 - (void) showGamePause;
-- (void) gameLoaded;
+- (void) showLevelDinishScreenAndSetScore:(BOOL)_flag
+                                   _score:(int)_score
+                               _starCount:(int)_starScore;
 
 @end

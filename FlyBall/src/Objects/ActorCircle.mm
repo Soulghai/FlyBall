@@ -78,7 +78,10 @@
 
 - (void) show:(BOOL)_flag {
     [super show:_flag];
-    [self showGodModeSprite:_flag];
+    if (_flag) {
+        if (isGodMode) [self showGodModeSprite:YES];
+    } else 
+        [self showGodModeSprite:NO];
 }
 
 - (void) deactivate {

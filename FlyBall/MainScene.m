@@ -161,6 +161,7 @@ static void MainScene_remover() {
 	marketScreen = [MarketScreen node];
 	game = [ZGame node];
 	pauseScreen = [PauseScreen node];
+    levelFinishScreen = [LevelFinishScreen node];
 	
 	[self addChild:aboutScreen];
 	[self addChild:menu];
@@ -170,6 +171,7 @@ static void MainScene_remover() {
     [game addChild:[Defs instance].objectFrontLayer];
     [[Defs instance].objectFrontLayer addChild:[Defs instance].spriteSheetCells z:0];
     [[Defs instance].objectFrontLayer addChild:[Defs instance].spriteSheetChars z:1];
+    [self addChild:levelFinishScreen];
 	[self addChild:pauseScreen];
 	[self addChild:gui];
     
@@ -200,7 +202,8 @@ static void MainScene_remover() {
     if ((game.state & (GAME_STATE_GAMEPAUSE))!= 0) {
         [pauseScreen update];
     }
-	//if ([PhysVals instance].worldActive) [[Defs instance].actorManager update:dt];
+    
+    if ((game.state & GAME_STATE_LEVELFINISH) != 0) [levelFinishScreen update];
 	
 	if (game.state == GAME_STATE_MENU) {
 		[menu update];
@@ -271,6 +274,14 @@ static void MainScene_remover() {
 	[pauseScreen show:YES];
 }
 
+- (void) showLevelDinishScreenAndSetScore:(BOOL)_flag
+                                   _score:(int)_score
+                               _starCount:(int)_starScore {
+    [levelFinishScreen setScore:_score];
+	[levelFinishScreen showStars:_starScore];
+	[levelFinishScreen show:_flag];
+}
+
 - (void) accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration {
 	if (game.state == GAME_STATE_MENU) {
 		[menu accelerometer:accelerometer didAccelerate:acceleration];
@@ -286,12 +297,9 @@ static void MainScene_remover() {
 	
 	if (![gui touchReaction:convertedLocation]) {
         
-        if ((game.state & (GAME_STATE_GAME|GAME_STATE_GAMEPAUSE|GAME_STATE_LEVELFINISH)) != 0) {
+        if ((game.state & (GAME_STATE_GAME|GAME_STATE_GAMEPAUSE)) != 0) {
             return [game ccTouchBegan:convertedLocation];
-        }else
-            if (game.state == GAME_STATE_MENU) {
-                [menu touchReaction:convertedLocation];
-            }
+        }
 	}
     
 	return YES;
@@ -303,38 +311,13 @@ static void MainScene_remover() {
 	CGPoint convertedLocation = [[CCDirector sharedDirector] convertToGL:location];
     
 	[gui ccTouchEnded:convertedLocation];
-	
-    if (game.state == GAME_STATE_MENU) {
-        //[menu ccTouchEnded:convertedLocation];
-    }else
-        if ((game.state & (GAME_STATE_GAME|GAME_STATE_GAMEPAUSE|GAME_STATE_LEVELFINISH)) != 0) {
-            [game ccTouchEnded:convertedLocation];
-        }
 }
 
 -(void) ccTouchCancelled:(UITouch *)touch withEvent:(UIEvent *)event
 {
-	//CGPoint location = [touch locationInView: [touch view]];
+    //CGPoint location = [touch locationInView: [touch view]];
 	//CGPoint convertedLocation = [[CCDirector sharedDirector] convertToGL:location];
-	
-	if (game.state == GAME_STATE_PACKAGESCREEN) {
-		//[packageScreen ccTouchCancelled:convertedLocation];
-	}/*else
-      if (game.state == GAME_STATE_LEVELSCREEN) {
-      [packageScreen.levelScreen ccTouchEnded:convertedLocation];
-      }else
-      if (game.state == GAME_STATE_MENU) {
-      //[menu ccTouchEnded:convertedLocation];
-      }else
-      if ((game.state & (GAME_STATE_GAME|GAME_STATE_GAMEPAUSE|GAME_STATE_LEVELFINISH)) != 0) {
-      [game ccTouchEnded:convertedLocation];
-      }*/
-    CGPoint location = [touch locationInView: [touch view]];
-	CGPoint convertedLocation = [[CCDirector sharedDirector] convertToGL:location];
-    if ((game.state & (GAME_STATE_GAME|GAME_STATE_GAMEPAUSE|GAME_STATE_LEVELFINISH)) != 0) {
-        [game ccTouchEnded:convertedLocation];
-    }
-}
+} 
 
 -(void) ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event
 {
@@ -350,10 +333,7 @@ static void MainScene_remover() {
     
     if (game.state == GAME_STATE_MENU) {
         //[menu ccTouchMoved:touchLocation _prevLocation:prevLocation _diff:diff];
-    }else
-        if ((game.state & (GAME_STATE_GAME|GAME_STATE_GAMEPAUSE|GAME_STATE_LEVELFINISH)) != 0) {
-            [game ccTouchMoved:touchLocation _prevLocation:prevLocation _diff:diff];
-        }
+    }
 }
 
 #pragma mark GameKit delegate

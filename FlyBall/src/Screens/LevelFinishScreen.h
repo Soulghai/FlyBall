@@ -62,10 +62,5 @@
 - (void) show:(BOOL)_flag;
 - (void) showStars:(unsigned int)_starCount;
 - (void) update;
-- (BOOL) ccTouchBegan:(CGPoint)_touchPos;
-- (void) ccTouchEnded:(CGPoint)_touchPos;
-- (void) ccTouchMoved:(CGPoint)_touchPos
-	   _prevLocation:(CGPoint)_prevLocation 
-			   _diff:(CGPoint)_diff;
 - (void) dealloc;
 @end

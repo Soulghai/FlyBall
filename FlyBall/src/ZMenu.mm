@@ -624,10 +624,6 @@
 	//logoSpr.position = ccp(logoSpr.position.x-acceleration.y,logoSpr.position.y);
 }
 
-- (void) touchReaction:(CGPoint)_touchPos {	
-	//[self sliderPanelsHide];
-}
-
 - (void) dealloc{
 	[backSpr release];
     backSpr = nil;
