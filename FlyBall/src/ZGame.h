@@ -12,6 +12,7 @@
 #import "GUILabelTTFOutlined.h"
 #import "ActorCircle.h"
 #import "CellsBackground.h"
+#import "SpeedWall.h"
 
 @interface ZGame : CCNode {	
 	BOOL isVisible;
@@ -25,7 +26,6 @@
     GUILabelTTFOutlined *scoreStr;
     CGPoint scoreStrPos;
     
-    ActorCircle *player;
     float timerAddBall;
     float timerDelayAddBall;
     
@@ -34,10 +34,12 @@
     GUILabelTTF *labelScoreStr3;
     
     CellsBackground *cells;
+    SpeedWall *speedWall;
 }
 
 @property (nonatomic, assign) int state;
 @property (nonatomic, assign) int oldState;
+@property (nonatomic, retain) ActorCircle *player;
 
 // button actions
 - (void) buttonPauseAction;

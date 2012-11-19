@@ -78,6 +78,8 @@
 @property (nonatomic, readwrite) float bonusGetChance;
 @property (nonatomic, readwrite) float bonusGodModeTime;
 @property (nonatomic, readwrite) float gravitation;
+@property (nonatomic, readwrite) float speedWallAccelerationCoeff;
+@property (nonatomic, readwrite) float speedWallDeccelerationCoeff;
 
 +(Defs*) instance;
 

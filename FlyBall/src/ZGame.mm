@@ -26,11 +26,13 @@
 #import "ActorCircleBomb.h"
 #import "ActorCircleBonus.h"
 #import "CellsBackground.h"
+#import "SpeedWall.h"
 
 @implementation ZGame
 
 @synthesize state;
 @synthesize oldState;
+@synthesize player;
 
 - (void) levelFinishCloseAnimationStart {
     [[GameStandartFunctions instance] playCloseScreenAnimation:0];
@@ -58,6 +60,8 @@
         [Defs instance].bonusGetChance = BONUS_GET_CHANCE_DEFAULT;
         [Defs instance].bonusGodModeTime = BONUS_GODMODE_TIME_DEFAULT;
         [Defs instance].gravitation = GRAVITATION_DEFAULT;
+        [Defs instance].speedWallAccelerationCoeff = SPEEDWALL_ACCELERATION_DEFAULT;
+        [Defs instance].speedWallDeccelerationCoeff = SPEEDWALL_DECCELERARION_DEFAULT;
         
 		[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];
         
@@ -172,6 +176,9 @@
         
         for (int i = 0; i < 10; i++)
             [[ActorCircleBonus alloc] init:[Defs instance].spriteSheetChars _location:CGPointZero];
+        
+        speedWall = [[SpeedWall alloc] init:[Defs instance].spriteSheetCells];
+        [speedWall retain];
 	}
 	return (self);
 }
@@ -279,7 +286,7 @@
     
     [self addBall:ccp(player.costume.position.x, player.costume.position.y - SCREEN_HEIGHT_HALF) _velocity:ccp(0,7) _active:YES];
     
-    timerAddBall = -1;
+    timerAddBall = -0.5f;
     timerDelayAddBall = 0.4f;
     
     [cells restartParameters];
@@ -539,6 +546,9 @@
         
         [cells update];
         
+        [speedWall update];
+        player.velocity = ccpAdd(player.velocity, [speedWall checkToCollide:player.costume.position]);
+        
         [[Defs instance].actorManager update];
         CGPoint centerOfScreen = ccp(player.costume.position.x, player.costume.position.y);
         [self setCenterOfTheScreen:centerOfScreen];
@@ -556,6 +566,7 @@
 		}else {
 		}
 	}
+    [speedWall show:NO];
     [cells show:_flag];
     [[Defs instance].actorManager show:_flag];
 }

@@ -80,6 +80,12 @@ extern int GLOBAL_LAYER_PASSIVEOBJECT_COUNTER;
 #define GRAVITATION_DEFAULT 0.07f
 #define GRAVITATION_MIN 0.04f
 
+#define SPEEDWALL_ACCELERATION_DEFAULT 0.1f
+#define SPEEDWALL_ACCELERATION_MAX 0.5f
+
+#define SPEEDWALL_DECCELERARION_DEFAULT -0.05f
+#define SPEEDWALL_DECCELERARION_MIN -0.01f
+
 //----------------------------------------------------------------
 // GAMEPLAY CONST
 //----------------------------------------------------------------

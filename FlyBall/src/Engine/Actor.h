@@ -37,7 +37,6 @@
 - (BOOL) getOutOfArea;
 - (void) prepareToRemove;
 - (void) update;
-- (void) childSpecUpdate;
 - (void) activate;
 - (void) deactivate;
 - (void) outOfArea;

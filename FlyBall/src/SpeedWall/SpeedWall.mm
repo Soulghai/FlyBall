@@ -5,108 +5,132 @@
 //  Created by Mac Mini on 23.11.10.
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
-#import "Actor.h"
+#import "SpeedWall.h"
 #import "globalParam.h"
 #import "Defs.h"
+#import "MainScene.h"
 
-@implementation Actor
+@implementation SpeedWall
 
-@synthesize itemID;
-@synthesize isActive;
-@synthesize isOutOfArea;
-@synthesize isWaitRemove;
-@synthesize costume;
-
-- (id) init{
+- (id) init:(CCNode*)_parentFrame {
 	if ((self = [super init])) {		
-		[[Defs instance].actorManager add:self];
 		costume = nil;
-		parentFrame = nil;
-		
-		isWaitRemove = NO;
+		parentFrame = _parentFrame;
 		
 		isOutOfArea = NO;
 		isVisible = NO;
         
-        isActive = NO;
-		
-		zCoord = -1; // -1 означает, что Z координата задается автоматчески
+        isShowing = NO;
+        isHiding = NO;
+        
+        timeWaiting = 0;
+        delayWaiting = 5;
+        timeShowing = 0;
+        delayShowing = 2;
+        
+        costume = [CCSprite spriteWithSpriteFrameName:@"cell_0.jpg"];
+        [costume retain];
+        [costume setScaleY:3.75f];
+        [costume setScaleX:10];
+        [costume setOpacity:150];
+        
+        showingSpeed = -30;
+        addSpeedCoeff = [Defs instance].speedWallAccelerationCoeff;
+        
+        positionChangeCoeff = CGPointZero;
 	}
 	return self;
 }
 
-- (void) dealloc {
-	[super dealloc];
-}
-
-- (int) getID{
-	return itemID;
-}
-
-- (void) setID:(int)_value{
-	itemID = _value;
-}
-
-- (void) createStuff{
+- (void) setPosition:(CGPoint)_position {
+    [costume setPosition:_position];
 }
 
 - (BOOL) getOutOfArea{
 	return isOutOfArea;
 }
 
-- (void) prepareToRemove{
-	isWaitRemove = YES;
-}
-
 - (void) update {
-	if (isWaitRemove) return;
-	[self childSpecUpdate];
-}
-
-- (void) activate {
-    isActive = YES;
+	if (isVisible) {
+        if ((!isHiding)&&(!isShowing)) {
+            timeShowing += TIME_STEP;
+            if (timeShowing > delayShowing) {
+                isShowing = NO;
+                isHiding = YES;
+            }
+        }
+        
+        if (isShowing||isHiding) {
+            positionChangeCoeff = ccpAdd(positionChangeCoeff, ccp(-[MainScene instance].game.player.velocity.x,showingSpeed));
+            costume.position = ccpAdd([MainScene instance].game.player.costume.position, positionChangeCoeff);
+            if ((isShowing)&&(positionChangeCoeff.y <= 0)) {
+                costume.position = ccp(costume.position.x, [MainScene instance].game.player.costume.position.y);
+                positionChangeCoeff = ccp(positionChangeCoeff.x, 0);
+                isShowing = NO;
+            } else
+                if ((isHiding)&&(positionChangeCoeff.y <= -SCREEN_HEIGHT)) {
+                    costume.position = ccp(costume.position.x, [MainScene instance].game.player.costume.position.y);
+                    positionChangeCoeff = ccp(positionChangeCoeff.x, -SCREEN_HEIGHT);
+                    isHiding = NO;
+                    [self deactivate];
+                }
+        } else {
+            positionChangeCoeff = ccpAdd(positionChangeCoeff, ccp(-[MainScene instance].game.player.velocity.x, 0));
+            costume.position = ccpAdd([MainScene instance].game.player.costume.position, positionChangeCoeff);
+        }
+    } else {
+        timeWaiting += TIME_STEP;
+        if (timeWaiting > delayWaiting) {
+            timeWaiting = 0;
+            isShowing = YES;
+            float _ran = CCRANDOM_MINUS1_1();
+            if (_ran >= 0) {
+                addSpeedCoeff = [Defs instance].speedWallAccelerationCoeff;
+                [costume setColor:ccc3(0, 255, 0)];
+            } else {
+                addSpeedCoeff = [Defs instance].speedWallDeccelerationCoeff;
+                [costume setColor:ccc3(255, 0, 0)];
+            }
+            positionChangeCoeff = ccp(0, SCREEN_HEIGHT);
+            costume.position = ccp(costume.position.x, [MainScene instance].game.player.costume.position.y-SCREEN_HEIGHT);
+            [self show:YES];
+        }
+    }
 }
 
 - (void) deactivate {
-    isActive = NO;
+    timeShowing = 0;
+    isShowing = NO;
+    isHiding = NO;
+    [self show:NO];
 }
 
 - (void) outOfArea {
 	isOutOfArea = YES;
-
-}
-- (void) removeActor {
-	[self removeCostume];
 }
 
-- (void) removeCostume {
-	if (costume != nil) {
-		if (costume.parent != nil) [costume removeFromParentAndCleanup:YES];
-		[costume release];
-		costume = nil;
-	}
-}
-
-- (void) childSpecUpdate {
-    
+- (CGPoint) checkToCollide:(CGPoint)_position {
+    if (isVisible) {
+        if ((_position.x + elementRadius > costume.position.x - SCREEN_WIDTH)
+            &&(_position.x - elementRadius < costume.position.x + SCREEN_WIDTH)
+            &&(_position.y + elementRadius > costume.position.y - SCREEN_HEIGHT_HALF)
+            &&(_position.y - elementRadius < costume.position.y + SCREEN_HEIGHT_HALF)) {
+                return ccp(0, addSpeedCoeff);
+        }
+    }
+    return CGPointZero;
 }
 
 - (void) show:(BOOL)_flag {
-	if ((isVisible == _flag)||(costume == nil)) return;
+	if (isVisible == _flag) return;
 	
 	if (_flag) {
-		if ((isActive)&&(!isWaitRemove) && (!costume.parent)) {
-            if (zCoord != -1) [parentFrame addChild:costume z:zCoord]; else [parentFrame addChild:costume];
-        } else return;
+		if (!costume.parent) [parentFrame addChild:costume];
 	}
 	else
 		if (costume.parent) [costume removeFromParentAndCleanup:YES];
 	
 	isVisible = _flag;
-}
-
-- (void) touch {
-    
 }
 
 @end

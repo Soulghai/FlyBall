@@ -28,14 +28,14 @@
 	return self;
 }
 
-- (void) childSpecUpdate {
+- (void) update {
     if (!isActive) return;
     
     [costume setRotation:costume.rotation + rotationSpeed];
     if (costume.rotation > 360) costume.rotation -= 360; else
         if (costume.rotation < 0) costume.rotation += 360;
     
-    [super childSpecUpdate];
+    [super update];
 }
 
 - (void) loadCostume {

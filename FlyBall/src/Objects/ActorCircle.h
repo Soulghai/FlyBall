@@ -17,6 +17,8 @@
     float delayGodMode;
     BOOL isGodMode;
     CCSprite *sprGodMode;
+    
+    CCParticleSystemQuad *emitterEngineFire;
 }
 -(id) init:(CCNode*)_parent
    _location:(CGPoint)_location;

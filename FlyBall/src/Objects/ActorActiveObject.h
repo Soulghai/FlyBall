@@ -40,7 +40,6 @@
 - (void) eraserCollide;
 - (void) outOfArea;
 - (void) addVelocity:(CGPoint)_value;
-- (void) childSpecUpdate;
 - (void) removeCostume;
 - (void) getAchievement;
 - (void) touch;

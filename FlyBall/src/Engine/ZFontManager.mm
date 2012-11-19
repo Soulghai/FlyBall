@@ -62,33 +62,12 @@ static void instance_remover() {
  
 - (CCLabelBMFont *) textOut:(CGPoint)_pos
 				  _str:(NSString *)_str{
-	/*int i;
- 
- var bitmap:Bitmap = new Bitmap(new BitmapData(text.length*(kerning)+32-kerning,32,true, 0x00000000));
- var letterId:int;
- text = text.toUpperCase();
- trace(text,_x,_y);
- for (i = 0; i < text.length; i++) {
- if (text.charAt(i) == ' ') continue;
- letterId = font_text.indexOf(text.charAt(i));
- if (letterId > -1){
- bitmap.bitmapData.copyPixels(Bitmap(texture[letterId]).bitmapData, new Rectangle(0, 0, 32, 32), new Point((kerning) * i, 0),null,null,true);
- }
- }
- 
- bitmap.position = ccp(_x,_y);
- bitmap.visible = false;*/
 	
 	CCLabelBMFont *font = [CCLabelBMFont labelWithString:_str fntFile:@"fntNumber.fnt"];
 	font.position = ccp(_pos.x, _pos.y);
 	[font setAnchorPoint:ccp(0.5f,0.5f)];
 	[font retain];
-    
-    /*CCLabelTTF *font = [CCLabelTTF labelWithString:_str fontName:@"Baveuse.ttf" fontSize:30];
-    font.position = ccp(_pos.x, _pos.y);
-	//[font setAnchorPoint:ccp(0.5f,0.5f)];
-	[font retain];*/
-	
+
 	return font;
  }
 
@@ -151,24 +130,5 @@ static void instance_remover() {
 	
 	return fontOutlined;
 }
- 
-/* - (void) textOutBitmap:(Bitmap)_bitmap
- _x:(float)_x
- _y:(float)_y
- text:(NSString *){
- int i;
- 
- _bitmap.bitmapData.fillRect(new Rectangle(0, 0, _bitmap.width, _bitmap.height), 0x00000000);
- int letterId;
- text = text.toUpperCase();
- trace(text,_x,_y);
- for (i = 0; i < text.length; i++) {
- if (text.charAt(i) == ' ') continue;
- letterId = font_text.indexOf(text.charAt(i));
- if (letterId > -1){
- _bitmap.bitmapData.copyPixels(Bitmap(texture[letterId]).bitmapData, new Rectangle(0, 0, 32, 32), new Point((kerning) * i, 0),null,null,true);
- }
- }
- _bitmap.position = ccp(_x,_y);
- }*/
+
 @end

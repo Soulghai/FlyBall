@@ -58,6 +58,8 @@
 @synthesize bonusGetChance;
 @synthesize bonusGodModeTime;
 @synthesize gravitation;
+@synthesize speedWallAccelerationCoeff;
+@synthesize speedWallDeccelerationCoeff;
 
 
 static Defs *instance_;

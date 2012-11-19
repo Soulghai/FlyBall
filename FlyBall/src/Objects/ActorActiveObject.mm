@@ -143,7 +143,7 @@
     //velocity = ccp(MAX(velocity.x, _value.x), MAX(velocity.y, _value.y));
 }
 
-- (void) childSpecUpdate {
+- (void) update {
     if (!isActive) return;
     
 	isPlayingSndHit = NO;
@@ -167,7 +167,7 @@
 		}
 	}
 	
-	[super childSpecUpdate];
+	[super update];
 }
 
 - (void) removeCostume {

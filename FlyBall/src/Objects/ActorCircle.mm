@@ -84,9 +84,25 @@
         [self showGodModeSprite:NO];
 }
 
+- (void) activate {
+    [super activate];
+    
+    emitterEngineFire = [CCParticleSystemQuad particleWithFile:@"shipFire.plist"];
+    emitterEngineFire.positionType = kCCPositionTypeRelative;
+    emitterEngineFire.position = costume.position;
+    if ((emitterEngineFire)&&(emitterEngineFire.parent == nil))
+        [[Defs instance].objectFrontLayer addChild:emitterEngineFire];
+}
+
 - (void) deactivate {
     [self showGodModeSprite:NO];
     
+    if (emitterEngineFire) {
+        [emitterEngineFire resetSystem];
+        [emitterEngineFire stopSystem];
+        [emitterEngineFire removeFromParentAndCleanup:YES];
+        emitterEngineFire = nil;
+    }
     [super deactivate];
 }
 
@@ -101,8 +117,10 @@
     [super eraserCollide];
 }
 
-- (void) childSpecUpdate {
-    [super childSpecUpdate];
+- (void) update {
+    [super update];
+    
+    if (emitterEngineFire) emitterEngineFire.position = costume.position;
     
     if (isGodMode) {
         [sprGodMode setPosition:costume.position];

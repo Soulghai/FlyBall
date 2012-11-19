@@ -60,7 +60,6 @@
 
 - (void) update {
 	if (isWaitRemove) return;
-	[self childSpecUpdate];
 }
 
 - (void) activate {
@@ -85,10 +84,6 @@
 		[costume release];
 		costume = nil;
 	}
-}
-
-- (void) childSpecUpdate {
-    
 }
 
 - (void) show:(BOOL)_flag {

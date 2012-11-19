@@ -9,41 +9,31 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
-@interface Actor : NSObject {
-	int itemID;
+@interface SpeedWall : NSObject {
 	CCSprite *costume;
 	CCNode *parentFrame;
-	BOOL isWaitRemove;
 	
-    BOOL isActive;
+    BOOL isShowing;
+    BOOL isHiding;
 	BOOL isVisible;
 	BOOL isOutOfArea;
-	int spriteWidth;
-	int spriteHeight;
-	int zCoord;
+    
+    float timeWaiting;
+    float delayWaiting;
+    float timeShowing;
+    float delayShowing;
+    
+    float showingSpeed;
+    float addSpeedCoeff;
+    CGPoint positionChangeCoeff;
 }
 
-@property (nonatomic, assign) int itemID;
-@property (nonatomic, assign) BOOL isActive;
-@property (nonatomic, assign) BOOL isOutOfArea;
-@property (nonatomic, assign) BOOL isWaitRemove;
-@property (nonatomic, assign) CCSprite *costume;
-
-- (id) init;
-- (void) dealloc;
-- (int) getID;
-- (void) setID:(int)_value;
-- (void) createStuff;
-- (BOOL) getOutOfArea;
-- (void) prepareToRemove;
+- (id) init:(CCNode*)_parentFrame;
+- (void) setPosition:(CGPoint)_position;
 - (void) update;
-- (void) childSpecUpdate;
-- (void) activate;
 - (void) deactivate;
 - (void) outOfArea;
-- (void) removeActor;
-- (void) removeCostume;
+- (CGPoint) checkToCollide:(CGPoint)_position;
 - (void) show:(BOOL)_flag;
-- (void) touch;
 
 @end
