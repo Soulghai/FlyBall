@@ -63,6 +63,8 @@
         [Defs instance].speedWallAccelerationCoeff = SPEEDWALL_ACCELERATION_DEFAULT;
         [Defs instance].speedWallDeccelerationCoeff = SPEEDWALL_DECCELERARION_DEFAULT;
         [Defs instance].speedWallDelayShowingCoeff = SPEEDWALL_DELAYSHOWINGCOEFF_DEFAULT;
+        [Defs instance].playerMagnetDistance = PLAYER_MAGNET_DISTANDE_DEFAULT;
+        [Defs instance].playerMagnetPower = PLAYER_MAGNET_POWER_DEFAULT;
         
 		[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];
         
@@ -137,7 +139,7 @@
 		
 		btnDef.sprName = @"btnRestart.png";
 		btnDef.sprDownName = @"btnRestartDown.png";
-		btnDef.group = GAME_STATE_GAME|GAME_STATE_GAMEPAUSE;
+		btnDef.group = GAME_STATE_GAMEPAUSE;
 		btnDef.func = @selector(buttonLevelRestartAction);
         btnDef.isManyTouches = YES;
 		if ([Defs instance].iPhone5) {
@@ -523,12 +525,21 @@
             }
         }
         
+        // действуем магнитом на бонусы
+        for (int i = 0; i < _count; i++) {
+            _tempActor = [[Defs instance].actorManager.actorsAll objectAtIndex:i];
+            if ((_tempActor.isActive)&&([_tempActor isMemberOfClass:[ActorCircleBonus class]])
+                /*&&(![self checkIsOutOfScreen:_tempActor])*/) {
+                _tempActor.costume.position = ccpAdd(_tempActor.costume.position, [player magnetReaction:_tempActor.costume.position]);
+            }
+        }
+        
         [self labelScoreBarUpdate];
         
         timerAddBall += TIME_STEP;
         if (timerAddBall >= timerDelayAddBall - fabs(player.velocity.x/300)) {
             float _velocityXCoeff = 1 + fabs(player.velocity.x/10);
-            float _velocityYCoeff = (1.1f + fabs(player.velocity.y/33))*3 + CCRANDOM_0_1()*(fabs(player.velocity.y/33));
+            float _velocityYCoeff = (1.f + fabs(player.velocity.y/40))*3 + CCRANDOM_0_1()*(fabs(player.velocity.y/40));
             if (_velocityYCoeff < 4.5f) {
                 _velocityYCoeff = 4.5f;
             }
@@ -546,13 +557,12 @@
             [scoreStr setText:[NSString stringWithFormat:@"%i",scoreLevel]];
         }
         
-        [cells update];
-        
         [[Defs instance].actorManager update];
         CGPoint centerOfScreen = ccp(player.costume.position.x, player.costume.position.y);
         [self setCenterOfTheScreen:centerOfScreen];
         
-        
+        // делаем апдейт относительно текущей позиции игрока
+        [cells update];
         // стена скорости, которая действует на персонажа
         [speedWall update];
         player.velocity = ccpAdd(player.velocity, [speedWall checkToCollide:player.costume.position]);

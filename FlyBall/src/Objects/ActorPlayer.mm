@@ -28,6 +28,10 @@
         delayGodMode = 0;
         armored = 0;
         isGodMode = 0;
+        timeGodModeAfterCrash = 1.5f;
+        
+        magnetDistance = [Defs instance].playerMagnetDistance;
+        magnetPower = [Defs instance].playerMagnetPower;
 	}
 	return self;
 }
@@ -62,13 +66,13 @@
     delayGodMode += _godModeTime;
     [self showGodModeSprite:YES];
     [sprGodMode setColor:ccc3(255, 180, 0)];
-    [sprGodMode setScale:1.5f];
+    [sprGodMode setScale:0.1f];
     CCLOG(@"[GOD MODE:ON]");
 }
 
 - (void) showGodModeSprite:(BOOL)_flag {
     if (_flag) {
-        if (!sprGodMode.parent) [parentFrame addChild:sprGodMode z:costume.zOrder];
+        if (!sprGodMode.parent) [parentFrame addChild:sprGodMode z:costume.zOrder-1];
     } else {
         if (sprGodMode.parent) [sprGodMode removeFromParent];
     }
@@ -94,6 +98,8 @@
 
 - (void) deactivate {
     [self showGodModeSprite:NO];
+    armored = 0;
+    [self setArmorSprite];
     
     if (emitterEngineFire) {
         [emitterEngineFire resetSystem];
@@ -109,6 +115,7 @@
     if (armored > 0) {
         --armored;
         [self setArmorSprite];
+        [self setGodMode:timeGodModeAfterCrash];
         return;
     }
     
@@ -121,6 +128,10 @@
     if (emitterEngineFire) emitterEngineFire.position = costume.position;
     
     if (isGodMode) {
+        if (sprGodMode.scale < 1.2f) {
+            sprGodMode.scale += 0.1f;
+        }
+        
         [sprGodMode setPosition:costume.position];
         sprGodMode.rotation += 5;
         if (sprGodMode.rotation > 360) sprGodMode.rotation -= 360;
@@ -134,6 +145,15 @@
             CCLOG(@"[GOD MODE:OFF]");
         }
     }
+}
+
+- (CGPoint) magnetReaction:(CGPoint)_point {
+    float _dist = [[Utils instance] distance:costume.position.x _y1:costume.position.y _x2:_point.x _y2:_point.y];
+    if (_dist < magnetDistance) {
+        float _angle = CC_DEGREES_TO_RADIANS([Utils GetAngleBetweenPt1:costume.position andPt2:_point]);
+        return _point = ccp(magnetPower*cos(_angle), magnetPower*sin(_angle));
+    }
+    return CGPointZero;
 }
 
 @end

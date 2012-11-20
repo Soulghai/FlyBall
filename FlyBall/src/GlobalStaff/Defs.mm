@@ -61,6 +61,8 @@
 @synthesize speedWallAccelerationCoeff;
 @synthesize speedWallDeccelerationCoeff;
 @synthesize speedWallDelayShowingCoeff;
+@synthesize playerMagnetDistance;
+@synthesize playerMagnetPower;
 
 
 static Defs *instance_;

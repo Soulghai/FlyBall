@@ -17,12 +17,17 @@
     float delayGodMode;
     BOOL isGodMode;
     CCSprite *sprGodMode;
+    float timeGodModeAfterCrash;
     
     CCParticleSystemQuad *emitterEngineFire;
+    
+    float magnetDistance;
+    float magnetPower;
 }
 -(id) init:(CCNode*)_parent
    _location:(CGPoint)_location;
 - (void) loadCostume;
 - (void) addArmor;
 - (void) setGodMode:(float)_godModeTime;
+- (CGPoint) magnetReaction:(CGPoint)_point;
 @end

@@ -23,10 +23,10 @@
         isShowing = NO;
         isHiding = NO;
         
-        delayWarning = 2;
+        delayWarning = 3;
         timeWaiting = 0;
-        delayWaitingDefault = 4;
-        delayWaiting = delayWaitingDefault + CCRANDOM_0_1()*0;
+        delayWaitingDefault = 10;
+        delayWaiting = delayWaitingDefault + CCRANDOM_0_1()*5;
         timeShowing = 0;
         delayShowing = [Defs instance].speedWallDelayShowingCoeff;
         
@@ -34,7 +34,7 @@
         [costume retain];
         [costume setScaleY:3.75f];
         [costume setScaleX:10];
-        [costume setOpacity:50];
+        [costume setOpacity:100];
         
         showingSpeed = -30;
         addSpeedCoeff = [Defs instance].speedWallAccelerationCoeff;
@@ -109,10 +109,16 @@
     } else {
         timeWaiting += TIME_STEP;
         if ((timeWaiting >= delayWaiting - delayWarning)&&(emitterWarning == nil)) {
-            if (addSpeedCoeff >= 0)
+            float _ran = CCRANDOM_MINUS1_1();
+            if (_ran >= 0) {
+                addSpeedCoeff = [Defs instance].speedWallAccelerationCoeff;
                 emitterWarning = [CCParticleSystemQuad particleWithFile:@"speedWallPrepareAcc.plist"];
-            else
+            } else {
+                addSpeedCoeff = [Defs instance].speedWallDeccelerationCoeff;
                 emitterWarning = [CCParticleSystemQuad particleWithFile:@"speedWallPrepareDecc.plist"];
+            }
+            
+                
             emitterWarning.positionType = kCCPositionTypeGrouped;
             emitterWarning.position = ccpAdd(costume.position, ccp(0, SCREEN_HEIGHT_HALF));
             if ((emitterWarning)&&(emitterStars.parent == nil))
@@ -128,15 +134,11 @@
             delayWaiting = delayWaitingDefault + CCRANDOM_0_1()*5;
             isShowing = YES;
             [self deleteEmitter];
-            
-            float _ran = CCRANDOM_MINUS1_1();
-            if (_ran >= 0) {
-                addSpeedCoeff = [Defs instance].speedWallAccelerationCoeff;
+
+            if (addSpeedCoeff >= 0) {
                 [costume setColor:ccc3(0, 255, 0)];
-                emitterStars = [CCParticleSystemQuad particleWithFile:@"speedWallAcceleration.plist"];
-                
+                emitterStars = [CCParticleSystemQuad particleWithFile:@"speedWallAcceleration.plist"]; 
             } else {
-                addSpeedCoeff = [Defs instance].speedWallDeccelerationCoeff;
                 [costume setColor:ccc3(255, 0, 0)];
                 emitterStars = [CCParticleSystemQuad particleWithFile:@"speedWallDecceleration.plist"];
             }
