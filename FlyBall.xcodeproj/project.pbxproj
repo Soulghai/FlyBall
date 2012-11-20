@@ -316,7 +316,7 @@
 		284FBEDE16530AF1003C16BE /* verifyProduct.php in Resources */ = {isa = PBXBuildFile; fileRef = 284FBE7F16530AF1003C16BE /* verifyProduct.php */; };
 		284FBEDF16530AF1003C16BE /* ActorActiveBombObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = 284FBE8316530AF1003C16BE /* ActorActiveBombObject.mm */; };
 		284FBEE016530AF1003C16BE /* ActorActiveObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = 284FBE8516530AF1003C16BE /* ActorActiveObject.mm */; };
-		284FBEE116530AF1003C16BE /* ActorCircle.mm in Sources */ = {isa = PBXBuildFile; fileRef = 284FBE8716530AF1003C16BE /* ActorCircle.mm */; };
+		284FBEE116530AF1003C16BE /* ActorPlayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 284FBE8716530AF1003C16BE /* ActorPlayer.mm */; };
 		284FBEE216530AF1003C16BE /* ActorCircleBomb.mm in Sources */ = {isa = PBXBuildFile; fileRef = 284FBE8916530AF1003C16BE /* ActorCircleBomb.mm */; };
 		284FBEEA16530AF1003C16BE /* AboutScreen.mm in Sources */ = {isa = PBXBuildFile; fileRef = 284FBE9C16530AF1003C16BE /* AboutScreen.mm */; };
 		284FBEEB16530AF1003C16BE /* LevelFinishScreen.mm in Sources */ = {isa = PBXBuildFile; fileRef = 284FBE9E16530AF1003C16BE /* LevelFinishScreen.mm */; };
@@ -329,6 +329,14 @@
 		2886673C1658728E0089DEB1 /* CellsBackground.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2886673B1658728E0089DEB1 /* CellsBackground.mm */; };
 		288CD63B165A865E0095637F /* shipFire.plist in Resources */ = {isa = PBXBuildFile; fileRef = 288CD63A165A865E0095637F /* shipFire.plist */; };
 		288CD646165A8A510095637F /* particleTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = 288CD645165A8A510095637F /* particleTexture.png */; };
+		288CD64C165AEDD80095637F /* speedWallAcceleration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 288CD64B165AEDD80095637F /* speedWallAcceleration.plist */; };
+		288CD64F165AF2F20095637F /* speedWallDecceleration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 288CD64E165AF2F20095637F /* speedWallDecceleration.plist */; };
+		288CD651165AFFEF0095637F /* speedWallPrepareAcc.plist in Resources */ = {isa = PBXBuildFile; fileRef = 288CD650165AFFEF0095637F /* speedWallPrepareAcc.plist */; };
+		288CD653165B05D60095637F /* speedWallPrepareDecc.plist in Resources */ = {isa = PBXBuildFile; fileRef = 288CD652165B05D60095637F /* speedWallPrepareDecc.plist */; };
+		288CD660165B1BF70095637F /* bonus_acceleration_get.plist in Resources */ = {isa = PBXBuildFile; fileRef = 288CD65C165B1BF70095637F /* bonus_acceleration_get.plist */; };
+		288CD661165B1BF70095637F /* bonus_apocalypse_get.plist in Resources */ = {isa = PBXBuildFile; fileRef = 288CD65D165B1BF70095637F /* bonus_apocalypse_get.plist */; };
+		288CD662165B1BF70095637F /* bonus_armor_get.plist in Resources */ = {isa = PBXBuildFile; fileRef = 288CD65E165B1BF70095637F /* bonus_armor_get.plist */; };
+		288CD663165B1BF70095637F /* bonus_godmode_get.plist in Resources */ = {isa = PBXBuildFile; fileRef = 288CD65F165B1BF70095637F /* bonus_godmode_get.plist */; };
 		288DF4B3165700B500595477 /* ActorCircleBonus.mm in Sources */ = {isa = PBXBuildFile; fileRef = 288DF4B2165700B500595477 /* ActorCircleBonus.mm */; };
 		2890F6801655C2C000B4031B /* gfx_cells-hd.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2890F67C1655C2BF00B4031B /* gfx_cells-hd.jpg */; };
 		2890F6811655C2C000B4031B /* gfx_cells-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2890F67D1655C2BF00B4031B /* gfx_cells-hd.plist */; };
@@ -835,8 +843,8 @@
 		284FBE8316530AF1003C16BE /* ActorActiveBombObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ActorActiveBombObject.mm; sourceTree = "<group>"; };
 		284FBE8416530AF1003C16BE /* ActorActiveObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActorActiveObject.h; sourceTree = "<group>"; };
 		284FBE8516530AF1003C16BE /* ActorActiveObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ActorActiveObject.mm; sourceTree = "<group>"; };
-		284FBE8616530AF1003C16BE /* ActorCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActorCircle.h; sourceTree = "<group>"; };
-		284FBE8716530AF1003C16BE /* ActorCircle.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ActorCircle.mm; sourceTree = "<group>"; };
+		284FBE8616530AF1003C16BE /* ActorPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActorPlayer.h; sourceTree = "<group>"; };
+		284FBE8716530AF1003C16BE /* ActorPlayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ActorPlayer.mm; sourceTree = "<group>"; };
 		284FBE8816530AF1003C16BE /* ActorCircleBomb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActorCircleBomb.h; sourceTree = "<group>"; };
 		284FBE8916530AF1003C16BE /* ActorCircleBomb.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ActorCircleBomb.mm; sourceTree = "<group>"; };
 		284FBE9B16530AF1003C16BE /* AboutScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutScreen.h; sourceTree = "<group>"; };
@@ -857,6 +865,14 @@
 		2886673B1658728E0089DEB1 /* CellsBackground.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CellsBackground.mm; sourceTree = "<group>"; };
 		288CD63A165A865E0095637F /* shipFire.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = shipFire.plist; sourceTree = "<group>"; };
 		288CD645165A8A510095637F /* particleTexture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = particleTexture.png; sourceTree = "<group>"; };
+		288CD64B165AEDD80095637F /* speedWallAcceleration.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = speedWallAcceleration.plist; sourceTree = "<group>"; };
+		288CD64E165AF2F20095637F /* speedWallDecceleration.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = speedWallDecceleration.plist; sourceTree = "<group>"; };
+		288CD650165AFFEF0095637F /* speedWallPrepareAcc.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = speedWallPrepareAcc.plist; sourceTree = "<group>"; };
+		288CD652165B05D60095637F /* speedWallPrepareDecc.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = speedWallPrepareDecc.plist; sourceTree = "<group>"; };
+		288CD65C165B1BF70095637F /* bonus_acceleration_get.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = bonus_acceleration_get.plist; sourceTree = "<group>"; };
+		288CD65D165B1BF70095637F /* bonus_apocalypse_get.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = bonus_apocalypse_get.plist; sourceTree = "<group>"; };
+		288CD65E165B1BF70095637F /* bonus_armor_get.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = bonus_armor_get.plist; sourceTree = "<group>"; };
+		288CD65F165B1BF70095637F /* bonus_godmode_get.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = bonus_godmode_get.plist; sourceTree = "<group>"; };
 		288DF4B1165700B500595477 /* ActorCircleBonus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActorCircleBonus.h; sourceTree = "<group>"; };
 		288DF4B2165700B500595477 /* ActorCircleBonus.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ActorCircleBonus.mm; sourceTree = "<group>"; };
 		2890F67C1655C2BF00B4031B /* gfx_cells-hd.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "gfx_cells-hd.jpg"; sourceTree = "<group>"; };
@@ -1426,6 +1442,14 @@
 		284FBAA416530AD8003C16BE /* particles */ = {
 			isa = PBXGroup;
 			children = (
+				288CD65C165B1BF70095637F /* bonus_acceleration_get.plist */,
+				288CD65D165B1BF70095637F /* bonus_apocalypse_get.plist */,
+				288CD65E165B1BF70095637F /* bonus_armor_get.plist */,
+				288CD65F165B1BF70095637F /* bonus_godmode_get.plist */,
+				288CD652165B05D60095637F /* speedWallPrepareDecc.plist */,
+				288CD650165AFFEF0095637F /* speedWallPrepareAcc.plist */,
+				288CD64B165AEDD80095637F /* speedWallAcceleration.plist */,
+				288CD64E165AF2F20095637F /* speedWallDecceleration.plist */,
 				288CD645165A8A510095637F /* particleTexture.png */,
 				288CD63A165A865E0095637F /* shipFire.plist */,
 				284FBAA516530AD8003C16BE /* bomb_explosion.plist */,
@@ -1768,8 +1792,8 @@
 				284FBE8316530AF1003C16BE /* ActorActiveBombObject.mm */,
 				284FBE8416530AF1003C16BE /* ActorActiveObject.h */,
 				284FBE8516530AF1003C16BE /* ActorActiveObject.mm */,
-				284FBE8616530AF1003C16BE /* ActorCircle.h */,
-				284FBE8716530AF1003C16BE /* ActorCircle.mm */,
+				284FBE8616530AF1003C16BE /* ActorPlayer.h */,
+				284FBE8716530AF1003C16BE /* ActorPlayer.mm */,
 				284FBE8816530AF1003C16BE /* ActorCircleBomb.h */,
 				284FBE8916530AF1003C16BE /* ActorCircleBomb.mm */,
 				288DF4B1165700B500595477 /* ActorCircleBonus.h */,
@@ -2030,6 +2054,14 @@
 				2890F6831655C2C000B4031B /* gfx_cells.plist in Resources */,
 				288CD63B165A865E0095637F /* shipFire.plist in Resources */,
 				288CD646165A8A510095637F /* particleTexture.png in Resources */,
+				288CD64C165AEDD80095637F /* speedWallAcceleration.plist in Resources */,
+				288CD64F165AF2F20095637F /* speedWallDecceleration.plist in Resources */,
+				288CD651165AFFEF0095637F /* speedWallPrepareAcc.plist in Resources */,
+				288CD653165B05D60095637F /* speedWallPrepareDecc.plist in Resources */,
+				288CD660165B1BF70095637F /* bonus_acceleration_get.plist in Resources */,
+				288CD661165B1BF70095637F /* bonus_apocalypse_get.plist in Resources */,
+				288CD662165B1BF70095637F /* bonus_armor_get.plist in Resources */,
+				288CD663165B1BF70095637F /* bonus_godmode_get.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2181,7 +2213,7 @@
 				284FBED916530AF1003C16BE /* MKStoreObserver.mm in Sources */,
 				284FBEDF16530AF1003C16BE /* ActorActiveBombObject.mm in Sources */,
 				284FBEE016530AF1003C16BE /* ActorActiveObject.mm in Sources */,
-				284FBEE116530AF1003C16BE /* ActorCircle.mm in Sources */,
+				284FBEE116530AF1003C16BE /* ActorPlayer.mm in Sources */,
 				284FBEE216530AF1003C16BE /* ActorCircleBomb.mm in Sources */,
 				284FBEEA16530AF1003C16BE /* AboutScreen.mm in Sources */,
 				284FBEEB16530AF1003C16BE /* LevelFinishScreen.mm in Sources */,

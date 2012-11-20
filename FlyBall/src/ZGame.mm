@@ -13,7 +13,7 @@
 #import "Utils.h"
 #import "ZFontManager.h"
 #import "SimpleAudioEngine.h"
-#import "ActorCircle.h"
+#import "ActorPlayer.h"
 #import "MKStoreManager.h"
 #import "GUIPanelDef.h"
 #import "GameStandartFunctions.h"
@@ -62,6 +62,7 @@
         [Defs instance].gravitation = GRAVITATION_DEFAULT;
         [Defs instance].speedWallAccelerationCoeff = SPEEDWALL_ACCELERATION_DEFAULT;
         [Defs instance].speedWallDeccelerationCoeff = SPEEDWALL_DECCELERARION_DEFAULT;
+        [Defs instance].speedWallDelayShowingCoeff = SPEEDWALL_DELAYSHOWINGCOEFF_DEFAULT;
         
 		[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];
         
@@ -169,7 +170,7 @@
         cells = [[CellsBackground alloc] init];
         [cells retain];
         
-        player = [[ActorCircle alloc] init:[Defs instance].spriteSheetChars _location:ccp(SCREEN_WIDTH_HALF, SCREEN_HEIGHT_HALF)];
+        player = [[ActorPlayer alloc] init:[Defs instance].spriteSheetChars _location:ccp(SCREEN_WIDTH_HALF, SCREEN_HEIGHT_HALF)];
         
         for (int i = 0; i < 15; i++)
         [[ActorCircleBomb alloc] init:[Defs instance].spriteSheetChars _location:CGPointZero];
@@ -290,6 +291,7 @@
     timerDelayAddBall = 0.4f;
     
     [cells restartParameters];
+    [speedWall deactivate];
     
     [self show:YES];
     
@@ -310,7 +312,7 @@
         [FlurryAnalytics logEvent:ANALYTICS_GAME_SCREEN_BUTTON_PAUSE_ON_CLICKED];
 	} else {
 		state = GAME_STATE_GAME;
-        [FlurryAnalytics logEvent:ANALYTICS_GAME_SCREEN_BUTTON_PAUSE_ON_CLICKED];
+        [FlurryAnalytics logEvent:ANALYTICS_GAME_SCREEN_BUTTON_PAUSE_OFF_CLICKED];
 	}
 	
 	[[MainScene instance].gui show:state];
@@ -546,12 +548,14 @@
         
         [cells update];
         
-        [speedWall update];
-        player.velocity = ccpAdd(player.velocity, [speedWall checkToCollide:player.costume.position]);
-        
         [[Defs instance].actorManager update];
         CGPoint centerOfScreen = ccp(player.costume.position.x, player.costume.position.y);
         [self setCenterOfTheScreen:centerOfScreen];
+        
+        
+        // стена скорости, которая действует на персонажа
+        [speedWall update];
+        player.velocity = ccpAdd(player.velocity, [speedWall checkToCollide:player.costume.position]);
     }
 
 }

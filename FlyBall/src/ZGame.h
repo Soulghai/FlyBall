@@ -10,7 +10,7 @@
 #import "LevelFinishScreen.h"
 #import "GUILabelTTF.h"
 #import "GUILabelTTFOutlined.h"
-#import "ActorCircle.h"
+#import "ActorPlayer.h"
 #import "CellsBackground.h"
 #import "SpeedWall.h"
 
@@ -39,7 +39,7 @@
 
 @property (nonatomic, assign) int state;
 @property (nonatomic, assign) int oldState;
-@property (nonatomic, retain) ActorCircle *player;
+@property (nonatomic, retain) ActorPlayer *player;
 
 // button actions
 - (void) buttonPauseAction;

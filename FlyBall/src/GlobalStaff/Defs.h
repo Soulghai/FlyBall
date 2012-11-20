@@ -80,6 +80,7 @@
 @property (nonatomic, readwrite) float gravitation;
 @property (nonatomic, readwrite) float speedWallAccelerationCoeff;
 @property (nonatomic, readwrite) float speedWallDeccelerationCoeff;
+@property (nonatomic, readwrite) float speedWallDelayShowingCoeff;
 
 +(Defs*) instance;
 

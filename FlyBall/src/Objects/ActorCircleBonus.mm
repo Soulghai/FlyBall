@@ -59,9 +59,63 @@
     [costume setDisplayFrame:frame];
 }
 
+- (void) eraserCollide {
+	if ((!isEraserCollide)&&(!isOutOfArea)&&(!isDying)){
+        isEraserCollide = YES;
+        ++[Defs instance].totalDeadBloxCounter;
+        [self getAchievement];
+		// play sound
+        
+        if (![Defs instance].isSoundMute) {
+            switch ((int)round(CCRANDOM_0_1()*2)) {
+                case 0:
+                    [[SimpleAudioEngine sharedEngine] playEffect:@"round_bomb_1.wav"];
+                    break;
+                case 1:
+                    [[SimpleAudioEngine sharedEngine] playEffect:@"round_bomb_1.wav"];
+                    break;
+                    
+                default:
+                    [[SimpleAudioEngine sharedEngine] playEffect:@"round_bomb_3.wav"];
+                    break;
+            }
+        }
+        
+        switch (bonusID) {
+            case BONUS_ARMOR:
+                emitterBoom = [CCParticleSystemQuad particleWithFile:@"bonus_armor_get.plist"];
+                break;
+                
+            case BONUS_ACCELERATION:
+                emitterBoom = [CCParticleSystemQuad particleWithFile:@"bonus_acceleration_get.plist"];
+                break;
+                
+            case BONUS_APOCALYPSE:
+                emitterBoom = [CCParticleSystemQuad particleWithFile:@"bonus_apocalypse_get.plist"];
+                break;
+                
+            case BONUS_GODMODE:
+                emitterBoom = [CCParticleSystemQuad particleWithFile:@"bonus_godmode_get.plist"];
+                break;
+        }
+        
+        emitterBoom.position = costume.position;
+        if ((emitterBoom)&&(emitterBoom.parent == nil))
+            [[Defs instance].objectFrontLayer addChild:emitterBoom];
+        
+        [self deactivate];
+	}
+}
+
 - (void) touch {
     [[MainScene instance].game bonusTouchReaction:bonusID];
-    [self deactivate];
+    if (emitterBoom) {
+        [emitterBoom resetSystem];
+        [emitterBoom stopSystem];
+        if (emitterBoom.parent) [emitterBoom removeFromParentAndCleanup:YES];
+        emitterBoom = nil;
+    }
+    [self eraserCollide];
 }
 
 @end

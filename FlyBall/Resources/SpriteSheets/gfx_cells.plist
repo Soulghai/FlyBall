@@ -21,9 +21,28 @@
                 <key>x</key>
                 <integer>2</integer>
                 <key>y</key>
-                <integer>132</integer>
+                <integer>262</integer>
             </dict>
             <key>cell_1.jpg</key>
+            <dict>
+                <key>height</key>
+                <integer>128</integer>
+                <key>offsetX</key>
+                <real>0</real>
+                <key>offsetY</key>
+                <real>0</real>
+                <key>originalHeight</key>
+                <integer>128</integer>
+                <key>originalWidth</key>
+                <integer>64</integer>
+                <key>width</key>
+                <integer>64</integer>
+                <key>x</key>
+                <integer>2</integer>
+                <key>y</key>
+                <integer>132</integer>
+            </dict>
+            <key>cell_2.jpg</key>
             <dict>
                 <key>height</key>
                 <integer>128</integer>
@@ -42,7 +61,7 @@
                 <key>y</key>
                 <integer>2</integer>
             </dict>
-            <key>cell_2.jpg</key>
+            <key>cell_3.jpg</key>
             <dict>
                 <key>height</key>
                 <integer>128</integer>
@@ -61,7 +80,7 @@
                 <key>y</key>
                 <integer>2</integer>
             </dict>
-            <key>cell_3.jpg</key>
+            <key>speedWallBackground.jpg</key>
             <dict>
                 <key>height</key>
                 <integer>128</integer>
@@ -90,7 +109,7 @@
             <key>size</key>
             <string>{256,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:47f37892740b22fc8e674082e66be7e6$</string>
+            <string>$TexturePacker:SmartUpdate:e6d7d8d332d139d47fccc432cd23f0ba$</string>
             <key>textureFileName</key>
             <string>gfx_cells.jpg</string>
         </dict>

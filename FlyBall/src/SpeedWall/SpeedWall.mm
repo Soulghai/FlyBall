@@ -23,16 +23,18 @@
         isShowing = NO;
         isHiding = NO;
         
+        delayWarning = 2;
         timeWaiting = 0;
-        delayWaiting = 5;
+        delayWaitingDefault = 4;
+        delayWaiting = delayWaitingDefault + CCRANDOM_0_1()*0;
         timeShowing = 0;
-        delayShowing = 2;
+        delayShowing = [Defs instance].speedWallDelayShowingCoeff;
         
-        costume = [CCSprite spriteWithSpriteFrameName:@"cell_0.jpg"];
+        costume = [CCSprite spriteWithSpriteFrameName:@"speedWallBackground.jpg"];
         [costume retain];
         [costume setScaleY:3.75f];
         [costume setScaleX:10];
-        [costume setOpacity:150];
+        [costume setOpacity:50];
         
         showingSpeed = -30;
         addSpeedCoeff = [Defs instance].speedWallAccelerationCoeff;
@@ -50,22 +52,41 @@
 	return isOutOfArea;
 }
 
+- (void) deleteEmitter {
+    if (emitterStars) {
+        [emitterStars resetSystem];
+        [emitterStars stopSystem];
+        [emitterStars removeFromParentAndCleanup:YES];
+        emitterStars = nil;
+    }
+}
+
+- (void) deleteEmitterWarning {
+    if (emitterWarning) {
+        [emitterWarning resetSystem];
+        [emitterWarning stopSystem];
+        [emitterWarning removeFromParentAndCleanup:YES];
+        emitterWarning = nil;
+    }
+}
+
 - (void) update {
 	if (isVisible) {
         if ((!isHiding)&&(!isShowing)) {
             timeShowing += TIME_STEP;
-            if (timeShowing > delayShowing) {
+            if (timeShowing >= delayShowing) {
                 isShowing = NO;
                 isHiding = YES;
             }
         }
         
         if (isShowing||isHiding) {
-            positionChangeCoeff = ccpAdd(positionChangeCoeff, ccp(-[MainScene instance].game.player.velocity.x,showingSpeed));
+            positionChangeCoeff = ccpAdd(positionChangeCoeff, ccp(-[MainScene instance].game.player.velocity.x, showingSpeed));
             costume.position = ccpAdd([MainScene instance].game.player.costume.position, positionChangeCoeff);
             if ((isShowing)&&(positionChangeCoeff.y <= 0)) {
                 costume.position = ccp(costume.position.x, [MainScene instance].game.player.costume.position.y);
                 positionChangeCoeff = ccp(positionChangeCoeff.x, 0);
+                [self deleteEmitterWarning];
                 isShowing = NO;
             } else
                 if ((isHiding)&&(positionChangeCoeff.y <= -SCREEN_HEIGHT)) {
@@ -78,21 +99,53 @@
             positionChangeCoeff = ccpAdd(positionChangeCoeff, ccp(-[MainScene instance].game.player.velocity.x, 0));
             costume.position = ccpAdd([MainScene instance].game.player.costume.position, positionChangeCoeff);
         }
+        
+        if (emitterStars)
+            emitterStars.position = ccpAdd(costume.position, ccp(0, SCREEN_HEIGHT_HALF));
+        
+        if (emitterWarning)
+            emitterWarning.position = ccpAdd(costume.position, ccp(0, -SCREEN_HEIGHT_HALF));
+        
     } else {
         timeWaiting += TIME_STEP;
-        if (timeWaiting > delayWaiting) {
+        if ((timeWaiting >= delayWaiting - delayWarning)&&(emitterWarning == nil)) {
+            if (addSpeedCoeff >= 0)
+                emitterWarning = [CCParticleSystemQuad particleWithFile:@"speedWallPrepareAcc.plist"];
+            else
+                emitterWarning = [CCParticleSystemQuad particleWithFile:@"speedWallPrepareDecc.plist"];
+            emitterWarning.positionType = kCCPositionTypeGrouped;
+            emitterWarning.position = ccpAdd(costume.position, ccp(0, SCREEN_HEIGHT_HALF));
+            if ((emitterWarning)&&(emitterStars.parent == nil))
+                [[Defs instance].objectFrontLayer addChild:emitterWarning];
+        }
+        
+        if (emitterWarning)
+            emitterWarning.position = ccp([MainScene instance].game.player.costume.position.x, [MainScene instance].game.player.costume.position.y +SCREEN_HEIGHT_HALF);
+        
+        timeWaiting += TIME_STEP;
+        if (timeWaiting >= delayWaiting) {
             timeWaiting = 0;
+            delayWaiting = delayWaitingDefault + CCRANDOM_0_1()*5;
             isShowing = YES;
+            [self deleteEmitter];
+            
             float _ran = CCRANDOM_MINUS1_1();
             if (_ran >= 0) {
                 addSpeedCoeff = [Defs instance].speedWallAccelerationCoeff;
                 [costume setColor:ccc3(0, 255, 0)];
+                emitterStars = [CCParticleSystemQuad particleWithFile:@"speedWallAcceleration.plist"];
+                
             } else {
                 addSpeedCoeff = [Defs instance].speedWallDeccelerationCoeff;
                 [costume setColor:ccc3(255, 0, 0)];
+                emitterStars = [CCParticleSystemQuad particleWithFile:@"speedWallDecceleration.plist"];
             }
             positionChangeCoeff = ccp(0, SCREEN_HEIGHT);
             costume.position = ccp(costume.position.x, [MainScene instance].game.player.costume.position.y-SCREEN_HEIGHT);
+            emitterStars.positionType = kCCPositionTypeGrouped;
+            emitterStars.position = ccpAdd(costume.position, ccp(0, SCREEN_HEIGHT_HALF));
+            if ((emitterStars)&&(emitterStars.parent == nil))
+                [[Defs instance].objectFrontLayer addChild:emitterStars];
             [self show:YES];
         }
     }
@@ -100,8 +153,11 @@
 
 - (void) deactivate {
     timeShowing = 0;
+    timeWaiting = 0;
     isShowing = NO;
     isHiding = NO;
+    [self deleteEmitter];
+    [self deleteEmitterWarning];
     [self show:NO];
 }
 

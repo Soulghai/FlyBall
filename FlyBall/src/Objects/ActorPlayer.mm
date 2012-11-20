@@ -7,21 +7,19 @@
 //
 
 #import "cocos2d.h"
-#import "ActorCircle.h"
+#import "ActorPlayer.h"
 #import "Utils.h"
 #import "Defs.h"
 #import "globalParam.h"
 #import "MainScene.h"
 #import "SimpleAudioEngine.h"
 
-@implementation ActorCircle
+@implementation ActorPlayer
 
 -(id) init:(CCNode*)_parent
  _location:(CGPoint)_location {
 	
 	if ((self = [super init:_parent _location:_location])) {
-	
-
         [self loadCostume];
         
         costume.position = _location;

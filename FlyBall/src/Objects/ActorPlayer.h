@@ -10,7 +10,7 @@
 #import "cocos2d.h"
 #import "ActorActiveObject.h"
 
-@interface ActorCircle : ActorActiveObject {
+@interface ActorPlayer : ActorActiveObject {
     int armored;
     
     float timeGodMode;

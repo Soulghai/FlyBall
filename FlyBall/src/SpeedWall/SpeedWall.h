@@ -18,7 +18,9 @@
 	BOOL isVisible;
 	BOOL isOutOfArea;
     
+    float delayWarning;
     float timeWaiting;
+    float delayWaitingDefault;
     float delayWaiting;
     float timeShowing;
     float delayShowing;
@@ -26,6 +28,9 @@
     float showingSpeed;
     float addSpeedCoeff;
     CGPoint positionChangeCoeff;
+    
+    CCParticleSystemQuad *emitterStars;
+    CCParticleSystemQuad *emitterWarning;
 }
 
 - (id) init:(CCNode*)_parentFrame;

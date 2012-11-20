@@ -96,28 +96,6 @@
         if (![Defs instance].isSoundMute) {
             switch ((int)round(CCRANDOM_0_1()*2)) {
                 case 0:
-                    [[SimpleAudioEngine sharedEngine] playEffect:@"round_bomb_1.wav"];
-                    break;
-                case 1:
-                    [[SimpleAudioEngine sharedEngine] playEffect:@"round_bomb_1.wav"];
-                    break;
-                    
-                default:
-                    [[SimpleAudioEngine sharedEngine] playEffect:@"round_bomb_3.wav"];
-                    break;
-            }
-        }
-        
-        if (emitterBoom) {
-            [emitterBoom resetSystem];
-            [emitterBoom stopSystem];
-            if (emitterBoom.parent) [emitterBoom removeFromParentAndCleanup:YES];
-            emitterBoom = nil;
-        }
-        
-        if (![Defs instance].isSoundMute) {
-            switch ((int)round(CCRANDOM_0_1()*2)) {
-                case 0:
                     [[SimpleAudioEngine sharedEngine] playEffect:@"triangle_bomb_1.wav"];
                     break;
                 case 1:
@@ -129,7 +107,7 @@
                     break;
             }
         }
-    
+        emitterBoom = [CCParticleSystemQuad particleWithFile:@"bomb_explosion_yellow.plist"];
         emitterBoom.position = costume.position;
         if ((emitterBoom)&&(emitterBoom.parent == nil))
             [[Defs instance].objectFrontLayer addChild:emitterBoom];

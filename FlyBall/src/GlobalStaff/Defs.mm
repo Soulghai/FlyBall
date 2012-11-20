@@ -60,6 +60,7 @@
 @synthesize gravitation;
 @synthesize speedWallAccelerationCoeff;
 @synthesize speedWallDeccelerationCoeff;
+@synthesize speedWallDelayShowingCoeff;
 
 
 static Defs *instance_;
