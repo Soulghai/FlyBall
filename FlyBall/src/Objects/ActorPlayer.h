@@ -19,6 +19,9 @@
     CCSprite *sprGodMode;
     float timeGodModeAfterCrash;
     
+    CCSprite *bonusCell;
+    NSMutableArray* bonusCellItemIDs;
+    
     CCParticleSystemQuad *emitterEngineFire;
     
     float magnetDistance;
@@ -29,5 +32,6 @@
 - (void) loadCostume;
 - (void) addArmor;
 - (void) setGodMode:(float)_godModeTime;
+- (void) setBonusCell:(int)_bonusID;
 - (CGPoint) magnetReaction:(CGPoint)_point;
 @end

@@ -109,6 +109,7 @@
         }
         emitterBoom = [CCParticleSystemQuad particleWithFile:@"bomb_explosion_yellow.plist"];
         emitterBoom.position = costume.position;
+        //emitterBoom.autoRemoveOnFinish = YES;
         if ((emitterBoom)&&(emitterBoom.parent == nil))
             [[Defs instance].objectFrontLayer addChild:emitterBoom];
         

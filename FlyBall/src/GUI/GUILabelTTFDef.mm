@@ -17,6 +17,7 @@
 @synthesize fontSize;
 @synthesize containerSize;
 @synthesize textColor;
+@synthesize alignement;
 
 - (id) init{
 	if ((self = [super init])) {		
@@ -26,6 +27,7 @@
         parentFrame = [MainScene instance];
         containerSize = CGSizeMake(0,0);
         textColor = ccc3(0, 0, 0);
+        alignement = kCCTextAlignmentCenter;
 	}
 	return self;
 }

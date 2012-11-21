@@ -15,6 +15,7 @@
 @synthesize fontName;
 @synthesize fontSize;
 @synthesize containerSize;
+@synthesize alignement;
 
 - (id) init:(id)_def{
 	if ((self = [super init])) {		
@@ -24,21 +25,25 @@
         fontSize = _tmpDef.fontSize;
         text = _tmpDef.text;
         containerSize = _tmpDef.containerSize;
+        alignement = _tmpDef.alignement;
+        textColor = _tmpDef.textColor;
         
         //fontName = @"cour.ttf";
         
         //CGSize actualSize = [text sizeWithFont:[UIFont fontWithName:@"cour.ttf" size:fontSize] constrainedToSize:maxSize lineBreakMode:UILineBreakModeWordWrap];
         
         //CGSize containerSize = {actualSize.width, actualSize.height};
-        if (containerSize.width == 0)
+        if (containerSize.width == 0) {
             spr = [CCLabelTTF labelWithString:text fontName:fontName fontSize:fontSize];
-        else
-            spr = [CCLabelTTF labelWithString:text fontName:fontName fontSize:fontSize dimensions:containerSize hAlignment:kCCTextAlignmentCenter];
+            if (alignement == kCCTextAlignmentLeft) [spr setAnchorPoint:ccp(0, 0.5f)];
+            else if (alignement == kCCTextAlignmentRight) [spr setAnchorPoint:ccp(1, 0.5f)];
+        } else
+            spr = [CCLabelTTF labelWithString:text fontName:fontName fontSize:fontSize dimensions:containerSize hAlignment:alignement];
         
         //[font setAnchorPoint:ccp(0.5f,0.5f)];
         [spr retain];
         
-        [spr setColor:_tmpDef.textColor];
+        [spr setColor:textColor];
         
 		parentFrame = _tmpDef.parentFrame;
 		group = _tmpDef.group;
@@ -50,6 +55,11 @@
 
 - (void) setPosition:(CGPoint)_newPosition {
     spr.position = ccp(_newPosition.x,_newPosition.y);
+}
+
+- (void) setColor:(ccColor3B)_cc3 {
+    textColor = _cc3;
+    [spr setColor:textColor];
 }
 
 - (void) setText:(NSString *)_text {

@@ -17,7 +17,6 @@
 #import "MKStoreManager.h"
 #import "GUIPanelDef.h"
 #import "GameStandartFunctions.h"
-#import "Statistics.h"
 #import "GUILabelTTFDef.h"
 #import "GUILabelTTFOutlinedDef.h"
 #import "FlurryAnalytics.h"
@@ -70,32 +69,32 @@
         
         //[Defs instance].startGameNotFirstTime = NO;
         
-        if (![Defs instance].startGameNotFirstTime) {            
-            [Statistics instance].totalLevelsComplite = 0;
-            //[[Defs instance].userSettings setInteger:0 forKey:@"totalLevelsComplite"];
-            [MyData setStoreValue:@"totalLevelsComplite" value:@"0"];
-            [Statistics instance].totalLevelsStart = 0;
-            //[[Defs instance].userSettings setInteger:0 forKey:@"totalLevelsStart"];
-            [MyData setStoreValue:@"totalLevelsStart" value:@"0"];
-            [Statistics instance].rateMeWindowShowValue = 0;
+        if (![Defs instance].startGameNotFirstTime) {
+            [Defs instance].rateMeWindowShowValue = 0;
             //[[Defs instance].userSettings setInteger:0 forKey:@"rateMeWindowShowValue"];
             [MyData setStoreValue:@"rateMeWindowShowValue" value:@"0"];
+            
+            
+            [MyData setStoreValue:@"coinsCount" value:@"0"];
 
             //[[Defs instance].userSettings setInteger:0 forKey:@"totalTouchBloxCounter"];
             [MyData setStoreValue:@"totalTouchBloxCounter" value:@"0"];
             //[[Defs instance].userSettings setInteger:0 forKey:@"totalDeadBloxCounter"];
             [MyData setStoreValue:@"totalDeadBloxCounter" value:@"0"];
-            [MyData setStoreValue:@"totalBombCounter" value:@"0"];;
+            [MyData setStoreValue:@"totalBombCounter" value:@"0"];
+            [MyData setStoreValue:@"bestScore" value:@"0"];
             
+            [Defs instance].bestScore = 0;
             [Defs instance].totalTouchBloxCounter = 0;
             [Defs instance].totalDeadBloxCounter = 0;
             [Defs instance].totalBombCounter = 0;
+            [Defs instance].coinsCount = 0;
             
         } else {
-            [Statistics instance].totalLevelsComplite = [[MyData getStoreValue:@"totalLevelsComplite"] intValue];
-            [Statistics instance].totalLevelsStart = [[MyData getStoreValue:@"totalLevelsStart"] intValue];
-            [Statistics instance].rateMeWindowShowValue = [[MyData getStoreValue:@"rateMeWindowShowValue"] intValue];
+            [Defs instance].rateMeWindowShowValue = [[MyData getStoreValue:@"rateMeWindowShowValue"] intValue];
             
+            [Defs instance].coinsCount = [[MyData getStoreValue:@"coinsCount"] intValue];
+            [Defs instance].bestScore = [[MyData getStoreValue:@"bestScore"] intValue];
             [Defs instance].totalTouchBloxCounter = [[MyData getStoreValue:@"totalTouchBloxCounter"] intValue];
             [Defs instance].totalDeadBloxCounter = [[MyData getStoreValue:@"totalDeadBloxCounter"] intValue];
             [Defs instance].totalBombCounter = [[MyData getStoreValue:@"totalDeadBloxCounter"] intValue];
@@ -160,14 +159,15 @@
         _labelTTFDef.textColor = ccc3(255, 255, 255);
         scoreStr =[[MainScene instance].gui addItem:(id)_labelTTFDef _pos:scoreStrPos];
         
+        _labelTTFDef.alignement = kCCTextAlignmentLeft;
         _labelTTFDef.textColor = ccc3(255, 255, 255);
-        labelScoreStr1 =[[MainScene instance].gui addItem:(id)_labelTTFDef _pos:ccp(20, SCREEN_HEIGHT_HALF - SCREEN_HEIGHT_HALF/1.5f)];
+        labelScoreStr1 =[[MainScene instance].gui addItem:(id)_labelTTFDef _pos:ccp(1, SCREEN_HEIGHT_HALF - SCREEN_HEIGHT_HALF/1.5f)];
         
         _labelTTFDef.textColor = ccc3(255, 255, 255);
-        labelScoreStr2 =[[MainScene instance].gui addItem:(id)_labelTTFDef _pos:ccp(20, SCREEN_HEIGHT_HALF)];
+        labelScoreStr2 =[[MainScene instance].gui addItem:(id)_labelTTFDef _pos:ccp(1, SCREEN_HEIGHT_HALF)];
         
         _labelTTFDef.textColor = ccc3(255, 255, 255);
-        labelScoreStr3 =[[MainScene instance].gui addItem:(id)_labelTTFDef _pos:ccp(20,SCREEN_HEIGHT_HALF + SCREEN_HEIGHT_HALF/1.5f)];
+        labelScoreStr3 =[[MainScene instance].gui addItem:(id)_labelTTFDef _pos:ccp(1,SCREEN_HEIGHT_HALF + SCREEN_HEIGHT_HALF/1.5f)];
         
         cells = [[CellsBackground alloc] init];
         [cells retain];
@@ -274,12 +274,12 @@
 	levelTime = 0;
 	
 	scoreLevel = 0;
+    [scoreStr setColor:ccc3(255, 255, 255)];
+    isNewScoreSound = NO;
     
     GAME_IS_PLAYING = YES;
     state = GAME_STATE_GAME;
     [[MainScene instance].gui show:state];
-    
-    ++[Statistics instance].totalLevelsStart;
     
     [self deactivateAllActors];
     
@@ -329,10 +329,6 @@
 	state = GAME_STATE_LEVELFINISH;
     [[MainScene instance].gui show:state];
     
-    ++[Statistics instance].totalLevelsComplite;
-    //[[Defs instance].userSettings setInteger:[Statistics instance].totalLevelsComplite forKey:@"totalLevelsComplite"];
-	[MyData setStoreValue:@"totalLevelsComplite" value:[NSString stringWithFormat:@"%i",[Statistics instance].totalLevelsComplite]];
-    
     [FlurryAnalytics logEvent:ANALYTICS_GAME_LEVEL_FINISH];
     
     [self deactivateAllActors];
@@ -346,8 +342,6 @@
     
 	[self prepareToHideGameScreen];
 	
-	if (scoreLevel < 0) scoreLevel = 0;
-	
     [self show:NO];
     
     [[MainScene instance] showLevelDinishScreenAndSetScore:YES _score:scoreLevel _starCount:3];
@@ -356,9 +350,9 @@
 }
 
 - (void) labelScoreBarUpdate {
-    [labelScoreStr1 setPosition:ccp(20, SCREEN_HEIGHT-(int)(player.costume.position.y - SCREEN_HEIGHT_HALF/1.5f) % SCREEN_HEIGHT)];
-    [labelScoreStr2 setPosition:ccp(20, SCREEN_HEIGHT-(int)(player.costume.position.y) % SCREEN_HEIGHT)];
-    [labelScoreStr3 setPosition:ccp(20, SCREEN_HEIGHT-(int)(player.costume.position.y + SCREEN_HEIGHT_HALF/1.5f) % SCREEN_HEIGHT)];
+    [labelScoreStr1 setPosition:ccp(1, SCREEN_HEIGHT-(int)(player.costume.position.y - SCREEN_HEIGHT_HALF/1.5f) % SCREEN_HEIGHT)];
+    [labelScoreStr2 setPosition:ccp(1, SCREEN_HEIGHT-(int)(player.costume.position.y) % SCREEN_HEIGHT)];
+    [labelScoreStr3 setPosition:ccp(1, SCREEN_HEIGHT-(int)(player.costume.position.y + SCREEN_HEIGHT_HALF/1.5f) % SCREEN_HEIGHT)];
     
     NSString *_strScoreValue;
     float _scoreValue = (int)(player.costume.position.y + (labelScoreStr1.spr.position.y - SCREEN_HEIGHT));
@@ -416,6 +410,38 @@
     [player addVelocity:ccp(_power*cos(_angle),_power*sin(_angle))];
 }
 
+- (void) doBonusEffect:(int)_bonusID {
+    switch (_bonusID) {
+        case BONUS_ARMOR:
+
+            break;
+            
+        case BONUS_ACCELERATION:
+
+            break;
+            
+        case BONUS_APOCALYPSE: {
+            Actor* _tempActor;
+            int _count = [[Defs instance].actorManager.actorsAll count];
+            for (int i = 0; i < _count; i++) {
+                _tempActor = [[Defs instance].actorManager.actorsAll objectAtIndex:i];
+                if ((_tempActor.isActive)&&(player.itemID != _tempActor.itemID)) {
+                    if (([_tempActor isKindOfClass:[ActorActiveBombObject class]])
+                        &&(![self checkIsOutOfScreen:_tempActor])){
+                        [self bombExplosion:(ActorActiveBombObject*)_tempActor];
+                        [_tempActor touch];
+                    }
+                }
+            }
+        }
+            break;
+            
+        case BONUS_GODMODE:
+
+            break;
+    }
+}
+
 - (void) bonusTouchReaction:(int)_bonusID {
     if (_bonusID <= BONUS_ARMOR) {
         // Включаем броню
@@ -427,18 +453,7 @@
         } else
             if (_bonusID <= BONUS_APOCALYPSE) {
                 // Апокалипсис
-                Actor* _tempActor;
-                int _count = [[Defs instance].actorManager.actorsAll count];
-                for (int i = 0; i < _count; i++) {
-                    _tempActor = [[Defs instance].actorManager.actorsAll objectAtIndex:i];
-                    if ((_tempActor.isActive)&&(player.itemID != _tempActor.itemID)) {
-                        if (([_tempActor isKindOfClass:[ActorActiveBombObject class]])
-                            &&(![self checkIsOutOfScreen:_tempActor])){
-                            [self bombExplosion:(ActorActiveBombObject*)_tempActor];
-                            [_tempActor touch];
-                        }
-                    }
-                }
+                [player setBonusCell:BONUS_APOCALYPSE];
             } else
                 if (_bonusID <= BONUS_GODMODE) {
                     // устанавливаем режим бога
@@ -554,7 +569,15 @@
         if (scoreLevel < (int)(player.costume.position.y - SCREEN_HEIGHT_HALF)) {
             scoreLevel = (int)(player.costume.position.y - SCREEN_HEIGHT_HALF);
             [scoreStr setPosition:ccp(scoreStrPos.x + [[Utils instance] myRandom2F]*2, scoreStrPos.y + [[Utils instance] myRandom2F]*2)];
-            [scoreStr setText:[NSString stringWithFormat:@"%i",scoreLevel]];
+            
+            if (scoreLevel > [Defs instance].bestScore) {
+                [scoreStr setColor:ccc3(50, 150, 255)];
+                [scoreStr setText:[NSString stringWithFormat:@"Wooow %i !!!",scoreLevel]];
+                if (!isNewScoreSound) {
+                    if (![Defs instance].isSoundMute) [[SimpleAudioEngine sharedEngine] playEffect:@"round_bomb_3.wav"];
+                    isNewScoreSound = YES;
+                }
+            } else [scoreStr setText:[NSString stringWithFormat:@"%i",scoreLevel]];
         }
         
         [[Defs instance].actorManager update];
@@ -599,17 +622,17 @@
                 int _count = [[Defs instance].actorManager.actorsAll count];
                 for (int i = 0; i < _count; i++) {
                     _tempActor = [[Defs instance].actorManager.actorsAll objectAtIndex:i];
-                    if ((_tempActor.isActive)&&(player.itemID != _tempActor.itemID)
+                    if ((_tempActor.isActive)
                         &&([_tempActor isKindOfClass:[ActorActiveObject class]])
                         &&(![self checkIsOutOfScreen:_tempActor])) {
-                            _distanceToActor = [[Utils instance] distance:_tempActor.costume.position.x + [Defs instance].objectFrontLayer.position.x _y1:_tempActor.costume.position.y+ [Defs instance].objectFrontLayer.position.y _x2:_touchPos.x _y2:_touchPos.y];
-                            if (_distanceToActor < elementSize) {
-                                if (_minDistance > _distanceToActor) {
-                                    _minDistance = _distanceToActor;
-                                    _actorWithMinDistanceID = i;
-                                }
+                        _distanceToActor = [[Utils instance] distance:_tempActor.costume.position.x + [Defs instance].objectFrontLayer.position.x _y1:_tempActor.costume.position.y+ [Defs instance].objectFrontLayer.position.y _x2:_touchPos.x _y2:_touchPos.y];
+                        if (_distanceToActor < elementSize) {
+                            if (_minDistance > _distanceToActor) {
+                                _minDistance = _distanceToActor;
+                                _actorWithMinDistanceID = i;
                             }
                         }
+                    }
                 }
                 
                 if (_actorWithMinDistanceID != -1) {

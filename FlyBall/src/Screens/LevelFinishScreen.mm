@@ -17,87 +17,7 @@
 #import "GameStandartFunctions.h"
 #import "FlurryAnalytics.h"
 #import "AnalyticsData.h"
-
-//
-// ParticleExplosion
-//
-@implementation CCParticleExplosion2
--(id) init
-{
-	return [self initWithTotalParticles:700];
-}
-
--(id) initWithTotalParticles:(NSUInteger)p
-{
-	if( (self=[super initWithTotalParticles:p]) ) {
-        
-		// duration
-		duration = 0.1f;
-		
-		self.emitterMode = kCCParticleModeGravity;
-        
-		// Gravity Mode: gravity
-		self.gravity = ccp(0,0);
-		
-		// Gravity Mode: speed of particles
-		self.speed = 150;
-		self.speedVar = 40;
-		
-		// Gravity Mode: radial
-		self.radialAccel = 0;
-		self.radialAccelVar = 0;
-		
-		// Gravity Mode: tagential
-		self.tangentialAccel = 0;
-		self.tangentialAccelVar = 0;
-		
-		// angle
-		angle = 0;
-		angleVar = 360;
-        
-		// emitter position
-		self.position = CGPointZero;
-		posVar = CGPointZero;
-		
-		// life of particles
-		life = 0.25f;
-		lifeVar = 0.05f;
-		
-		// size, in pixels
-		startSize = 5.0f;
-		startSizeVar = 3.0f;
-		endSize = 12;
-        
-		// emits per second
-		emissionRate = totalParticles/duration;
-		
-		// color of particles
-		startColor.r = 0.7f;
-		startColor.g = 0.7f;
-		startColor.b = 0.0f;
-		startColor.a = 1.0f;
-		startColorVar.r = 0.3f;
-		startColorVar.g = 0.3f;
-		startColorVar.b = 0.0f;
-		startColorVar.a = 0.0f;
-		endColor.r = 1.0f;
-		endColor.g = 1.0f;
-		endColor.b = 0.0f;
-		endColor.a = 1.0f;
-		endColorVar.r = 0.0f;
-		endColorVar.g = 0.0f;
-		endColorVar.b = 0.0f;
-		endColorVar.a = 0.0f;
-		
-		self.texture = [[CCTextureCache sharedTextureCache] addImage: @"bomb_particle.png"];
-        
-		// additive
-		self.blendAdditive = YES;
-	}
-	
-	return self;
-}
-@end
+#import "MyData.h"
 
 @implementation LevelFinishScreen
 
@@ -130,12 +50,14 @@
         
         GUILabelTTFOutlinedDef *_labelTTFOutlinedDef = [GUILabelTTFOutlinedDef node];
         _labelTTFOutlinedDef.group = GAME_STATE_LEVELFINISH;
-        _labelTTFOutlinedDef.text = @"AAAAhhhhaaAAaaha..";
+        _labelTTFOutlinedDef.text = [NSString stringWithFormat:@"coins %i", [Defs instance].coinsCount];
         
-        levelNumber =[[MainScene instance].gui addItem:(id)_labelTTFOutlinedDef _pos:ccp(SCREEN_WIDTH_HALF, 320)];
+        _labelTTFOutlinedDef.textColor = ccc3(255, 255, 0);
+        scoreTotalStrPos = ccp(SCREEN_WIDTH_HALF, 320);
+        levelNumber =[[MainScene instance].gui addItem:(id)_labelTTFOutlinedDef _pos:scoreTotalStrPos];
         
         scoreStrPos = ccp(SCREEN_WIDTH_HALF, 244);
-        _labelTTFOutlinedDef.textColor = ccc3(255, 255, 0);
+        _labelTTFOutlinedDef.textColor = ccc3(255, 255, 255);
         scoreStr =[[MainScene instance].gui addItem:(id)_labelTTFOutlinedDef _pos:scoreStrPos];
 		
 		GUIButtonDef *btnDef = [GUIButtonDef node];
@@ -171,11 +93,11 @@
         panelDef.zIndex = 12;
         panelDef.sprName = @"improved_score.png";
         if ([Defs instance].iPhone5)
-            panelImproved = [[MainScene instance].gui addItem:(id)panelDef _pos:ccp(170, 235)];
+            panelImproved = [[MainScene instance].gui addItem:(id)panelDef _pos:ccp(170, 400)];
         else
-            panelImproved = [[MainScene instance].gui addItem:(id)panelDef _pos:ccp(150, 235)];
+            panelImproved = [[MainScene instance].gui addItem:(id)panelDef _pos:ccp(150, 400)];
 		
-        panelImprovedGrowSpeedAcc = 0.02;
+        panelImprovedGrowSpeedAcc = 0.01f;
         
         panelDef.group = GAME_STATE_LEVELFINISH;
         
@@ -202,52 +124,15 @@
 		panelBushLeft = [[MainScene instance].gui addItem:(id)panelDef _pos:ccp(0,-10)];
         [panelBushLeft.spr setAnchorPoint:CGPointMake(0.1f,0.0f)];
         isBushLeftGoUp = NO;
-        
-        panelDef.sprName = @"star_1.png";
-        panelDef.zIndex = 18;
-        panelDef.group = GAME_STATE_NONE;
-		starArr = [NSArray arrayWithObjects:
-				   [[MainScene instance].gui addItem:(id)panelDef _pos:CGPointZero],
-				   [[MainScene instance].gui addItem:(id)panelDef _pos:CGPointZero],
-				   [[MainScene instance].gui addItem:(id)panelDef _pos:CGPointZero],
-				   nil];
-		[starArr retain];
-		
-		for (unsigned int i = 0; i < 3; i++) {
-			GUIPanel *_spr = [starArr objectAtIndex:i];
-			[_spr setPosition:ccp(SCREEN_WIDTH_HALF - 7 - _spr.spr.contentSize.width + i * (_spr.spr.contentSize.width+5), (int)(SCREEN_HEIGHT_HALF*0.78f))];
-		}
-		
-		NSArray *starAnimFrames = [NSArray arrayWithObjects:
-                                   [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"star_1.png"],
-                                   [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"star_2.png"],
-                                   [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"star_3.png"],
-                                   [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"star_4.png"],
-                                   [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"star_5.png"],
-                                   [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"star_6.png"],
-						  nil];
-		
-		CCAnimation *starAnimation= [CCAnimation animationWithSpriteFrames:starAnimFrames delay:0.08f];
-		starAction = [NSArray arrayWithObjects:
-					  [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:starAnimation]],
-					  [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:starAnimation]],
-					  [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:starAnimation]],
-					  nil];
-		[starAction retain];
-		
-		starsToShowCount = 0;
-        starsToShowCurrent = 0;
-        starsToShowTimer = 0;
-        starsToShowDelta = 0.34f;
-        soundScoreDelay = 0.5f;  
+            
+        soundScoreDelay = 0.5f;
+        timeCoinsAdd = 0;
+        delayCoinsAdd = 0.5f;
         
         waitAddScoreTime = 0;
         waitAddScoreDelay = 1.3f;
         
         scoreCurrValueAddDelay = FRAME_RATE*0.8f;
-        
-        emitter = [NSMutableArray arrayWithCapacity:3];
-        [emitter retain];
 	}
 	return self;
 }
@@ -257,6 +142,23 @@
     scoreCurrValue = 0;
     scoreCurrValueKoeff = scoreValue/scoreCurrValueAddDelay;
     soundScoreTime = soundScoreDelay;
+    
+    if (_value > [Defs instance].bestScore) {
+        [Defs instance].bestScore = _value;
+        [MyData setStoreValue:@"bestScore" value:[NSString stringWithFormat:@"%i",[Defs instance].bestScore]];
+        [self showPanelImproved:YES];
+    }
+
+    int _newCoinsCount = int(scoreValue/10000);
+    CCLOG(@"_newCoinsCount = %i",_newCoinsCount);
+    
+    timeCoinsAdd = 0;
+    scoreTotalCurrValue = [Defs instance].coinsCount;
+    delayCoinsAdd = 0.3f;
+    
+    [Defs instance].coinsCount += _newCoinsCount;
+    //[[Defs instance].userSettings setInteger:[Statistics instance].totalLevelsComplite forKey:@"totalLevelsComplite"];
+    [MyData setStoreValue:@"coinsCount" value:[NSString stringWithFormat:@"%i",[Defs instance].coinsCount]];
 }
 
 - (void) showPanelImproved:(BOOL)_flag {
@@ -279,49 +181,10 @@
         [[GameStandartFunctions instance] playOpenScreenAnimation];
         
         waitAddScoreTime = 0;
-
         [scoreStr setText:@"0"];
 	} else { 
-		if (levelNumber.parent != nil) [levelNumber removeFromParentAndCleanup:YES];
-		for (unsigned int i = 0; i < 3; i++) {
-			GUIPanel *_spr = [starArr objectAtIndex:i];
-			if (_spr.isVisible) {
-				id _actionID = [starAction objectAtIndex:i];
-				[_spr.spr stopAction:_actionID];
-				//[_spr removeFromParentAndCleanup:YES];
-			}
-		}
-		if (scoreStr.parent != nil) [scoreStr removeFromParentAndCleanup:YES];
         
-        for(unsigned int i = 0; i < [emitter count]; i++) {
-            CCParticleSystem *_part = [emitter objectAtIndex:i];
-            if ((_part)&&(_part.parent)) [_part removeFromParentAndCleanup:YES];
-            [_part release];
-            _part = nil;
-        }
-        [emitter removeAllObjects];
 	}
-}
-
-- (void) showStarAtID:(unsigned int) _id {
-    GUIPanel *_spr = [starArr objectAtIndex:_id];
-    [_spr show:YES];
-    id _actionID = [starAction objectAtIndex:_id];
-    [_spr.spr runAction:_actionID];
-    if (![Defs instance].isSoundMute) [[SimpleAudioEngine sharedEngine] playEffect:@"star.wav"];
-    
-    CCParticleSystem *_part = [[CCParticleExplosion2 alloc] initWithTotalParticles:100];
-    
-    [emitter addObject:_part];
-    [_part setPosition:ccp(_spr.spr.position.x,_spr.spr.position.y)];
-    [[MainScene instance] addChild:_part];
-}
-
-- (void) showStars:(unsigned int)_starCount {
-	starsToShowCount = _starCount;
-    starsToShowCurrent = 0;
-    starsToShowTimer = - 0.7f;
-    //[self showStarAtID:starsToShowCurrent];
 }
 
 - (void) update {
@@ -379,29 +242,29 @@
             if (panelPalmLeft.spr.rotation > -1) panelPalmLeft.spr.rotation -= 0.03f; else isPalmLeftGoUp = YES;
         }
         
-        if (starsToShowCurrent < starsToShowCount) {
-            starsToShowTimer += TIME_STEP;
-            if (starsToShowTimer >= starsToShowDelta ){
-                starsToShowTimer = 0;
-                [self showStarAtID:starsToShowCurrent];
-                ++starsToShowCurrent;
-            }
-        }
-        
-        
-        //waitAddScoreTime += TIME_STEP;
-        //if (waitAddScoreTime >= waitAddScoreDelay) {
         if (scoreCurrValue < scoreValue) {
             scoreCurrValue += scoreCurrValueKoeff;
             [scoreStr setPosition:ccp(scoreStrPos.x + [[Utils instance] myRandom2F]*2, scoreStrPos.y + [[Utils instance] myRandom2F]*2)];
             if (scoreCurrValue > scoreValue) {
-                [scoreStr setText:[NSString stringWithFormat:@"%d",scoreValue]];
+                [scoreStr setText:[NSString stringWithFormat:@"%i",scoreValue]];
             } else {
                 [scoreStr setText:[NSString stringWithFormat:@"%d",(int)round(scoreCurrValue)]];
                 soundScoreTime += TIME_STEP;
                 if (soundScoreTime >= soundScoreDelay) {
                     if (![Defs instance].isSoundMute) [[SimpleAudioEngine sharedEngine] playEffect:@"points_count.wav"];  
                     soundScoreTime = 0;
+                }
+            }
+        } else
+        {
+            if (scoreTotalCurrValue < [Defs instance].coinsCount) {
+                timeCoinsAdd += TIME_STEP;
+                if (timeCoinsAdd >= delayCoinsAdd) {
+                    scoreTotalCurrValue += 1;
+                    [levelNumber setPosition:ccp(scoreTotalStrPos.x + [[Utils instance] myRandom2F]*2, scoreTotalStrPos.y + [[Utils instance] myRandom2F]*2)];
+                    [levelNumber setText:[NSString stringWithFormat:@"coins %i",scoreTotalCurrValue]];
+                    if (![Defs instance].isSoundMute) [[SimpleAudioEngine sharedEngine] playEffect:@"star.wav"];
+                    timeCoinsAdd = 0;
                 }
             }
         }

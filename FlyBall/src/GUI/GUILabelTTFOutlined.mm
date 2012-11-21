@@ -74,6 +74,11 @@
     [spr addChild:label];
 }
 
+- (void) setColor:(ccColor3B)_cc3 {
+    textColor = _cc3;
+    [label setColor:textColor];
+}
+
 - (void) setOpacity:(GLubyte)_opacity {
     [label setOpacity:_opacity];
     [stroke.sprite setOpacity:_opacity];

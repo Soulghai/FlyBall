@@ -90,7 +90,7 @@ extern int GLOBAL_LAYER_PASSIVEOBJECT_COUNTER;
 #define PLAYER_MAGNET_DISTANDE_DEFAULT 88  //прибавляется по 88 за апдейт. Всего три апдейта
 #define PLAYER_MAGNET_DISTANDE_MAX 264
 #define PLAYER_MAGNET_POWER_DEFAULT 1
-#define PLAYER_MAGNET_POWER_MAX 10
+#define PLAYER_MAGNET_POWER_MAX 8
 
 
 //----------------------------------------------------------------

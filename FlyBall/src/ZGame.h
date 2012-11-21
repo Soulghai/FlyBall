@@ -9,7 +9,6 @@
 #import "cocos2d.h"
 #import "LevelFinishScreen.h"
 #import "GUILabelTTF.h"
-#import "GUILabelTTFOutlined.h"
 #import "ActorPlayer.h"
 #import "CellsBackground.h"
 #import "SpeedWall.h"
@@ -23,8 +22,9 @@
 	
 	float levelTime;
     
-    GUILabelTTFOutlined *scoreStr;
+    GUILabelTTF *scoreStr;
     CGPoint scoreStrPos;
+    BOOL isNewScoreSound;
     
     float timerAddBall;
     float timerDelayAddBall;
@@ -51,6 +51,7 @@
 - (void) levelStart;
 - (void) levelRestart;
 - (void) prepareToHideGameScreen;
+- (void) doBonusEffect:(int)_bonusID;
 - (void) bonusTouchReaction:(int)_bonusID;
 - (BOOL) ccTouchBegan:(CGPoint)_touchPos;
 - (void) accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration;

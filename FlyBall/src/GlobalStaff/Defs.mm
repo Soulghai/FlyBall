@@ -54,6 +54,10 @@
 @synthesize achievement_Highscore_5_5;
 @synthesize achievement_Highscore_5_10;
 
+@synthesize rateMeWindowShowValue;
+@synthesize coinsCount;
+@synthesize bestScore;
+
 @synthesize bonusAccelerationValue;
 @synthesize bonusGetChance;
 @synthesize bonusGodModeTime;

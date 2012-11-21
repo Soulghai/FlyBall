@@ -322,7 +322,6 @@
 		284FBEEB16530AF1003C16BE /* LevelFinishScreen.mm in Sources */ = {isa = PBXBuildFile; fileRef = 284FBE9E16530AF1003C16BE /* LevelFinishScreen.mm */; };
 		284FBEEC16530AF1003C16BE /* MarketScreen.mm in Sources */ = {isa = PBXBuildFile; fileRef = 284FBEA016530AF1003C16BE /* MarketScreen.mm */; };
 		284FBEEE16530AF1003C16BE /* PauseScreen.mm in Sources */ = {isa = PBXBuildFile; fileRef = 284FBEA416530AF1003C16BE /* PauseScreen.mm */; };
-		284FBEEF16530AF1003C16BE /* Statistics.mm in Sources */ = {isa = PBXBuildFile; fileRef = 284FBEA716530AF1003C16BE /* Statistics.mm */; };
 		284FBEF016530AF1003C16BE /* ZGame.mm in Sources */ = {isa = PBXBuildFile; fileRef = 284FBEA916530AF1003C16BE /* ZGame.mm */; };
 		284FBEF116530AF1003C16BE /* ZMenu.mm in Sources */ = {isa = PBXBuildFile; fileRef = 284FBEAB16530AF1003C16BE /* ZMenu.mm */; };
 		284FBEF616530F46003C16BE /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 283E04F716530A9F00D8A53B /* StoreKit.framework */; };
@@ -855,8 +854,6 @@
 		284FBEA016530AF1003C16BE /* MarketScreen.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MarketScreen.mm; sourceTree = "<group>"; };
 		284FBEA316530AF1003C16BE /* PauseScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PauseScreen.h; sourceTree = "<group>"; };
 		284FBEA416530AF1003C16BE /* PauseScreen.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PauseScreen.mm; sourceTree = "<group>"; };
-		284FBEA616530AF1003C16BE /* Statistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Statistics.h; sourceTree = "<group>"; };
-		284FBEA716530AF1003C16BE /* Statistics.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Statistics.mm; sourceTree = "<group>"; };
 		284FBEA816530AF1003C16BE /* ZGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGame.h; sourceTree = "<group>"; };
 		284FBEA916530AF1003C16BE /* ZGame.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ZGame.mm; sourceTree = "<group>"; };
 		284FBEAA16530AF1003C16BE /* ZMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZMenu.h; sourceTree = "<group>"; };
@@ -1600,8 +1597,6 @@
 				284FBE7316530AF1003C16BE /* MKStoreKit */,
 				284FBE8116530AF1003C16BE /* Objects */,
 				284FBE9A16530AF1003C16BE /* Screens */,
-				284FBEA616530AF1003C16BE /* Statistics.h */,
-				284FBEA716530AF1003C16BE /* Statistics.mm */,
 				284FBE3F16530AF1003C16BE /* GameStandartFunctions.h */,
 				284FBE4016530AF1003C16BE /* GameStandartFunctions.mm */,
 				284FBEA816530AF1003C16BE /* ZGame.h */,
@@ -2219,7 +2214,6 @@
 				284FBEEB16530AF1003C16BE /* LevelFinishScreen.mm in Sources */,
 				284FBEEC16530AF1003C16BE /* MarketScreen.mm in Sources */,
 				284FBEEE16530AF1003C16BE /* PauseScreen.mm in Sources */,
-				284FBEEF16530AF1003C16BE /* Statistics.mm in Sources */,
 				284FBEF016530AF1003C16BE /* ZGame.mm in Sources */,
 				284FBEF116530AF1003C16BE /* ZMenu.mm in Sources */,
 				288DF4B3165700B500595477 /* ActorCircleBonus.mm in Sources */,

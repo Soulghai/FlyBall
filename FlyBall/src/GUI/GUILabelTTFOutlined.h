@@ -37,4 +37,5 @@
 - (void) setOpacity:(GLubyte)_opacity;
 - (void) show:(BOOL)_flag;
 - (void) setText:(NSString *)_text;
+- (void) setColor:(ccColor3B)_cc3;
 @end

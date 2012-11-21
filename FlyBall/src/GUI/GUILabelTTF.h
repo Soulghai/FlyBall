@@ -16,15 +16,18 @@
     NSString* fontName;
     float fontSize;
     CGSize containerSize;
+    CCTextAlignment alignement;
+    ccColor3B textColor;
 }
 
 @property (nonatomic, retain) CCLabelTTF *spr;
 @property (nonatomic,assign) NSString* fontName;
 @property (nonatomic,readwrite) float fontSize;
 @property (nonatomic,readwrite) CGSize containerSize;
+@property (nonatomic,readwrite) CCTextAlignment alignement;
 
 - (id) init:(id)_def;
 - (void) setText:(NSString *)_text;
 - (void) show:(BOOL)_flag;
-
+- (void) setColor:(ccColor3B)_cc3;
 @end

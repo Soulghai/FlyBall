@@ -32,6 +32,9 @@
         
         magnetDistance = [Defs instance].playerMagnetDistance;
         magnetPower = [Defs instance].playerMagnetPower;
+        
+        bonusCellItemIDs = [NSMutableArray arrayWithCapacity:5];
+        [bonusCellItemIDs retain];
 	}
 	return self;
 }
@@ -42,6 +45,10 @@
     
     sprGodMode = [CCSprite spriteWithSpriteFrameName:@"playerglow.png"];
     [sprGodMode retain];
+    
+    bonusCell = [CCSprite spriteWithSpriteFrameName:@"bonus_apocalypse.png"];
+    [bonusCell retain];
+    [bonusCell setPosition:ccp(elementRadius, 15)];
 }
 
 - (void) setArmorSprite {
@@ -70,9 +77,22 @@
     CCLOG(@"[GOD MODE:ON]");
 }
 
+- (void) setBonusCell:(int)_bonusID {
+    [bonusCellItemIDs addObject:[NSNumber numberWithInteger:_bonusID]];
+    [self showBonusCell:YES];
+}
+
+- (void) showBonusCell:(BOOL)_flag {
+    if (_flag) {
+        if (([bonusCellItemIDs count] > 0)&&(!bonusCell.parent)) [costume addChild:bonusCell z:costume.zOrder];
+    } else {
+        if (bonusCell.parent) [bonusCell removeFromParent];
+    }
+}
+
 - (void) showGodModeSprite:(BOOL)_flag {
     if (_flag) {
-        if (!sprGodMode.parent) [parentFrame addChild:sprGodMode z:costume.zOrder-1];
+        if ((isGodMode)&&(!sprGodMode.parent)) [parentFrame addChild:sprGodMode z:costume.zOrder-1];
     } else {
         if (sprGodMode.parent) [sprGodMode removeFromParent];
     }
@@ -80,17 +100,15 @@
 
 - (void) show:(BOOL)_flag {
     [super show:_flag];
-    if (_flag) {
-        if (isGodMode) [self showGodModeSprite:YES];
-    } else 
-        [self showGodModeSprite:NO];
+    [self showGodModeSprite:_flag];
+    [self showBonusCell:_flag];
 }
 
 - (void) activate {
     [super activate];
     
     emitterEngineFire = [CCParticleSystemQuad particleWithFile:@"shipFire.plist"];
-    emitterEngineFire.positionType = kCCPositionTypeRelative;
+    emitterEngineFire.positionType = kCCPositionTypeFree;
     emitterEngineFire.position = costume.position;
     if ((emitterEngineFire)&&(emitterEngineFire.parent == nil))
         [[Defs instance].objectFrontLayer addChild:emitterEngineFire];
@@ -98,6 +116,8 @@
 
 - (void) deactivate {
     [self showGodModeSprite:NO];
+    [self showBonusCell:NO];
+    [bonusCellItemIDs removeAllObjects];
     armored = 0;
     [self setArmorSprite];
     
@@ -123,9 +143,14 @@
 }
 
 - (void) update {
+    CGPoint _oldPosition = costume.position;
     [super update];
     
-    if (emitterEngineFire) emitterEngineFire.position = costume.position;
+    if (emitterEngineFire) {
+        emitterEngineFire.position = costume.position;
+        emitterEngineFire.speed = 30*[[Utils instance] distance:costume.position.x _y1:costume.position.y _x2:_oldPosition.x _y2:_oldPosition.y];
+        emitterEngineFire.angle = [Utils GetAngleBetweenPt1:_oldPosition andPt2:costume.position];
+    }
     
     if (isGodMode) {
         if (sprGodMode.scale < 1.2f) {
@@ -154,6 +179,14 @@
         return _point = ccp(magnetPower*cos(_angle), magnetPower*sin(_angle));
     }
     return CGPointZero;
+}
+
+- (void) touch {
+    if ([bonusCellItemIDs count] > 0) {
+        [[MainScene instance].game doBonusEffect:[[bonusCellItemIDs objectAtIndex:0] integerValue]];
+        [bonusCellItemIDs removeObjectAtIndex:0];
+        if ([bonusCellItemIDs count] == 0) [self showBonusCell:NO];
+    }
 }
 
 @end

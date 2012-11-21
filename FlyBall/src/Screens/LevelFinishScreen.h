@@ -11,19 +11,8 @@
 #import "GUIPanel.h"
 #import "GUILabelTTFOutlined.h"
 
-//! An explosion particle system
-@interface CCParticleExplosion2 : CCParticleSystemQuad {
-}
-@end
-
 @interface LevelFinishScreen : CCNode {
 	BOOL isVisible;
-	NSArray *starArr;
-	NSArray *starAction;
-    unsigned int starsToShowCount;
-	unsigned int starsToShowCurrent;
-    float starsToShowTimer;
-    float starsToShowDelta;
     
 	GUILabelTTFOutlined* levelNumber;
 	GUILabelTTFOutlined* scoreStr;
@@ -36,8 +25,11 @@
     float waitAddScoreDelay;    
     float soundScoreDelay;
     float soundScoreTime;
+    float timeCoinsAdd;
+    float delayCoinsAdd;
     
-    NSMutableArray *emitter;   
+    CGPoint scoreTotalStrPos;
+    int scoreTotalCurrValue;
     
     GUIPanel *panelImproved;
     BOOL isPanelImprovedShowing;
@@ -60,7 +52,6 @@
 - (void) setScore:(int) _value;
 - (void) showPanelImproved:(BOOL)_flag;
 - (void) show:(BOOL)_flag;
-- (void) showStars:(unsigned int)_starCount;
 - (void) update;
 - (void) dealloc;
 @end

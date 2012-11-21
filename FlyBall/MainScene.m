@@ -20,7 +20,6 @@
 #import	"ZMenu.h"
 #import "ZGame.h"
 #import "AboutScreen.h"
-#import "Statistics.h"
 #import "GameStandartFunctions.h"
 #import "AnalyticsData.h"
 #import "FlurryAnalytics.h"
@@ -277,8 +276,8 @@ static void MainScene_remover() {
 - (void) showLevelDinishScreenAndSetScore:(BOOL)_flag
                                    _score:(int)_score
                                _starCount:(int)_starScore {
+    if (_score < 0) _score = 0;
     [levelFinishScreen setScore:_score];
-	[levelFinishScreen showStars:_starScore];
 	[levelFinishScreen show:_flag];
 }
 
