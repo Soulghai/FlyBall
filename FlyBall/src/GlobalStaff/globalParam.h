@@ -92,6 +92,9 @@ extern int GLOBAL_LAYER_PASSIVEOBJECT_COUNTER;
 #define PLAYER_MAGNET_POWER_DEFAULT 1
 #define PLAYER_MAGNET_POWER_MAX 8
 
+#define BONUS_GODMODE_AFTERCRASH_TIME_DEFAULT 0.5f
+#define BONUS_GODMODE_AFTERCRASH_TIME_MAX 3.0f
+
 
 //----------------------------------------------------------------
 // GAMEPLAY CONST

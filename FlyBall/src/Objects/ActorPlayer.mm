@@ -28,7 +28,6 @@
         delayGodMode = 0;
         armored = 0;
         isGodMode = 0;
-        timeGodModeAfterCrash = 1.5f;
         
         magnetDistance = [Defs instance].playerMagnetDistance;
         magnetPower = [Defs instance].playerMagnetPower;
@@ -135,7 +134,7 @@
     if (armored > 0) {
         --armored;
         [self setArmorSprite];
-        [self setGodMode:timeGodModeAfterCrash];
+        [self setGodMode:[Defs instance].playerGodModeAfterCrashTime];
         return;
     }
     

@@ -158,17 +158,12 @@
         [pauseHeroZZZ.spr setOpacity:5];
         [pauseZZZSpr.spr setOpacity:5];
         [levelNumber setOpacity:5];
-		/*if (backgroundSpr.parent == nil) 
-			[[Defs instance].objectFrontLayer addChild:backgroundSpr z:Z_INTERFACE_BACKGROUND];*/
 		if (levelNumber.parent == nil) [[MainScene instance] addChild:levelNumber];
-		//if (pauseZZZSpr.parent == nil) [[Defs instance].objectFrontLayer addChild:pauseZZZSpr z:100];
 		[pauseZZZSpr.spr runAction:pauseAction];
 		[btnSound setChecked:[Defs instance].isSoundMute];
         [btnMusic setChecked:[Defs instance].isMusicMute];
 	} else { 
-		//if (backgroundSpr.parent != nil) [backgroundSpr removeFromParentAndCleanup:YES];
 		if (levelNumber.parent != nil) [levelNumber removeFromParentAndCleanup:YES];
-		//if (pauseZZZSpr.parent != nil) [pauseZZZSpr removeFromParentAndCleanup:YES];
 		[pauseZZZSpr.spr stopAction:pauseAction];
 	}
 }

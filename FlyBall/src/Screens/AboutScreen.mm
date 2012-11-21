@@ -275,7 +275,7 @@
             
             if (i == 0) _oldPosition -= 70;
             
-            if (!font.parent) [[Defs instance].objectFrontLayer addChild:font];
+            if (!font.parent) [self addChild:font];
         }
         
 	} else { 

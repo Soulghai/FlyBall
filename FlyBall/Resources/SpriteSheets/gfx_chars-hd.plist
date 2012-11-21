@@ -21,7 +21,7 @@
                 <key>x</key>
                 <integer>2</integer>
                 <key>y</key>
-                <integer>356</integer>
+                <integer>224</integer>
             </dict>
             <key>bonus_apocalypse.png</key>
             <dict>
@@ -38,9 +38,9 @@
                 <key>width</key>
                 <integer>64</integer>
                 <key>x</key>
-                <integer>160</integer>
+                <integer>2</integer>
                 <key>y</key>
-                <integer>344</integer>
+                <integer>316</integer>
             </dict>
             <key>bonus_armor.png</key>
             <dict>
@@ -59,7 +59,7 @@
                 <key>x</key>
                 <integer>94</integer>
                 <key>y</key>
-                <integer>344</integer>
+                <integer>278</integer>
             </dict>
             <key>bonus_fire.png</key>
             <dict>
@@ -76,9 +76,9 @@
                 <key>width</key>
                 <integer>64</integer>
                 <key>x</key>
-                <integer>160</integer>
+                <integer>186</integer>
                 <key>y</key>
-                <integer>278</integer>
+                <integer>252</integer>
             </dict>
             <key>bonus_speed.png</key>
             <dict>
@@ -95,28 +95,9 @@
                 <key>width</key>
                 <integer>64</integer>
                 <key>x</key>
-                <integer>94</integer>
+                <integer>186</integer>
                 <key>y</key>
-                <integer>278</integer>
-            </dict>
-            <key>cell.jpg</key>
-            <dict>
-                <key>height</key>
-                <integer>130</integer>
-                <key>offsetX</key>
-                <real>0</real>
-                <key>offsetY</key>
-                <real>0</real>
-                <key>originalHeight</key>
-                <integer>130</integer>
-                <key>originalWidth</key>
-                <integer>130</integer>
-                <key>width</key>
-                <integer>130</integer>
-                <key>x</key>
-                <integer>2</integer>
-                <key>y</key>
-                <integer>2</integer>
+                <integer>186</integer>
             </dict>
             <key>player.png</key>
             <dict>
@@ -133,9 +114,9 @@
                 <key>width</key>
                 <integer>90</integer>
                 <key>x</key>
-                <integer>2</integer>
+                <integer>94</integer>
                 <key>y</key>
-                <integer>264</integer>
+                <integer>186</integer>
             </dict>
             <key>player_armor_1.png</key>
             <dict>
@@ -152,9 +133,9 @@
                 <key>width</key>
                 <integer>90</integer>
                 <key>x</key>
-                <integer>132</integer>
+                <integer>2</integer>
                 <key>y</key>
-                <integer>186</integer>
+                <integer>132</integer>
             </dict>
             <key>player_armor_2.png</key>
             <dict>
@@ -171,7 +152,7 @@
                 <key>width</key>
                 <integer>90</integer>
                 <key>x</key>
-                <integer>134</integer>
+                <integer>132</integer>
                 <key>y</key>
                 <integer>94</integer>
             </dict>
@@ -190,7 +171,7 @@
                 <key>width</key>
                 <integer>90</integer>
                 <key>x</key>
-                <integer>134</integer>
+                <integer>132</integer>
                 <key>y</key>
                 <integer>2</integer>
             </dict>
@@ -211,7 +192,7 @@
                 <key>x</key>
                 <integer>2</integer>
                 <key>y</key>
-                <integer>134</integer>
+                <integer>2</integer>
             </dict>
         </dict>
         <key>metadata</key>
@@ -223,7 +204,7 @@
             <key>size</key>
             <string>{256,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:5ed1df0ca1a6b92136ded690ea7ca127$</string>
+            <string>$TexturePacker:SmartUpdate:f88a1eb133427149ef70c5d346f6f9ce$</string>
             <key>textureFileName</key>
             <string>gfx_chars-hd.pvr.ccz</string>
         </dict>

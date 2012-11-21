@@ -87,6 +87,7 @@
 @property (nonatomic, readwrite) float speedWallDelayShowingCoeff;
 @property (nonatomic, readwrite) float playerMagnetDistance;
 @property (nonatomic, readwrite) float playerMagnetPower;
+@property (nonatomic, readwrite) float playerGodModeAfterCrashTime;
 
 +(Defs*) instance;
 

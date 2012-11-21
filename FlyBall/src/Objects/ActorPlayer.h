@@ -17,7 +17,6 @@
     float delayGodMode;
     BOOL isGodMode;
     CCSprite *sprGodMode;
-    float timeGodModeAfterCrash;
     
     CCSprite *bonusCell;
     NSMutableArray* bonusCellItemIDs;

@@ -13,11 +13,6 @@
 	BOOL isVisible;
 	
 	CCSprite *backSpr;
-	
-	CCLabelBMFont* marketItem1Text;
-	CCLabelBMFont* marketItem2Text;
-	CCLabelBMFont* marketItem3Text;
-	CCLabelBMFont* marketItem4Text;
 }
 
 - (id) init;

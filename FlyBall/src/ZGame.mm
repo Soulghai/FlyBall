@@ -64,6 +64,7 @@
         [Defs instance].speedWallDelayShowingCoeff = SPEEDWALL_DELAYSHOWINGCOEFF_DEFAULT;
         [Defs instance].playerMagnetDistance = PLAYER_MAGNET_DISTANDE_DEFAULT;
         [Defs instance].playerMagnetPower = PLAYER_MAGNET_POWER_DEFAULT;
+        [Defs instance].playerGodModeAfterCrashTime = BONUS_GODMODE_AFTERCRASH_TIME_DEFAULT;
         
 		[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];
         
@@ -203,13 +204,12 @@
     y = MIN(y, INTMAX_MAX);
     
     [Defs instance].objectFrontLayer.position = ccpSub(ccp(SCREEN_WIDTH_HALF, SCREEN_HEIGHT_HALF), ccp(x,y));
-    //[Defs instance].objectBackLayer.position = ccp([Defs instance].objectFrontLayer.position.x/10, [Defs instance].objectFrontLayer.position.y/10);
 }
 
 - (void) prepareToHideGameScreen {
     [self setCenterOfTheScreen:ccp(SCREEN_WIDTH_HALF, 0)];
 	[self show:NO];
-	[self deactivateAllActors];
+	//[self deactivateAllActors];
 	GAME_IS_PLAYING = NO;
 }
 

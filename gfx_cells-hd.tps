@@ -153,8 +153,8 @@
         </struct>
         <key>fileList</key>
         <array>
-            <filename>FlyBall/Resources/Content/Background_cells</filename>
-            <filename>FlyBall/Resources/Content/SpeedWall</filename>
+            <filename>FlyBall/Resources/gfx/Background_cells</filename>
+            <filename>FlyBall/Resources/gfx/SpeedWall</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

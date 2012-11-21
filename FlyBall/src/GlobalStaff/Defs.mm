@@ -67,6 +67,7 @@
 @synthesize speedWallDelayShowingCoeff;
 @synthesize playerMagnetDistance;
 @synthesize playerMagnetPower;
+@synthesize playerGodModeAfterCrashTime;
 
 
 static Defs *instance_;

@@ -153,8 +153,8 @@
         </struct>
         <key>fileList</key>
         <array>
-            <filename>FlyBall/Resources/Content/Objects</filename>
-            <filename>FlyBall/Resources/Content/Bonuses</filename>
+            <filename>FlyBall/Resources/gfx/Bonuses</filename>
+            <filename>FlyBall/Resources/gfx/Objects</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

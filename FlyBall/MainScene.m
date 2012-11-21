@@ -100,7 +100,6 @@ static void MainScene_remover() {
 
 - (void) gameLoaded {
 	
-	//[Defs instance].objectBackLayer = [CCNode node];
 	[Defs instance].objectFrontLayer = [CCNode node];
 	
     [CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA4444];
@@ -164,7 +163,6 @@ static void MainScene_remover() {
 	
 	[self addChild:aboutScreen];
 	[self addChild:menu];
-	[self addChild:marketScreen];
 	[self addChild:game];
     //[game addChild:[Defs instance].objectBackLayer];
     [game addChild:[Defs instance].objectFrontLayer];
@@ -172,6 +170,7 @@ static void MainScene_remover() {
     [[Defs instance].objectFrontLayer addChild:[Defs instance].spriteSheetChars z:1];
     [self addChild:levelFinishScreen];
 	[self addChild:pauseScreen];
+    [self addChild:marketScreen];
 	[self addChild:gui];
     
     // load area
