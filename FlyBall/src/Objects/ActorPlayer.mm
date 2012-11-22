@@ -22,6 +22,8 @@
 	if ((self = [super init:_parent _location:_location])) {
         [self loadCostume];
         
+        zCoord = ZCOORD_OBJECTS;
+        
         costume.position = _location;
         
         timeGodMode = 0;
@@ -34,6 +36,18 @@
         
         bonusCellItemIDs = [NSMutableArray arrayWithCapacity:5];
         [bonusCellItemIDs retain];
+        
+        emitterEngineFire = [CCParticleSystemQuad particleWithFile:@"shipFire.plist"];
+        emitterEngineFire.positionType = kCCPositionTypeFree;
+        emitterEngineFire.position = costume.position;
+        [emitterEngineFire retain];
+        [emitterEngineFire unscheduleUpdate];
+        
+        emitterBonusSpeedFire = [CCParticleSystemQuad particleWithFile:@"shipBonusSpeed.plist"];
+        emitterBonusSpeedFire.positionType = kCCPositionTypeFree;
+        emitterBonusSpeedFire.position = costume.position;
+        [emitterBonusSpeedFire retain];
+        [emitterBonusSpeedFire unscheduleUpdate];
 	}
 	return self;
 }
@@ -76,6 +90,17 @@
     CCLOG(@"[GOD MODE:ON]");
 }
 
+- (void) setSpeedBonus {
+    isBonusSpeed = YES;
+    timeBonusSpeed = 0;
+    if (emitterBonusSpeedFire) {
+        [emitterBonusSpeedFire scheduleUpdate];
+        if (emitterBonusSpeedFire.parent == nil) {
+            [[Defs instance].objectFrontLayer addChild:emitterBonusSpeedFire z:50];
+        }
+    }
+}
+
 - (void) setBonusCell:(int)_bonusID {
     [bonusCellItemIDs addObject:[NSNumber numberWithInteger:_bonusID]];
     [self showBonusCell:YES];
@@ -99,6 +124,26 @@
 
 - (void) show:(BOOL)_flag {
     [super show:_flag];
+    
+    if (_flag) {
+        if (emitterEngineFire) {
+            [emitterEngineFire scheduleUpdate];
+            if (emitterEngineFire.parent == nil) {
+                [[Defs instance].objectFrontLayer addChild:emitterEngineFire z:50];
+            }
+        }
+    } else {
+        if (emitterEngineFire) {
+            [emitterEngineFire unscheduleUpdate];
+            if (emitterEngineFire.parent) [emitterEngineFire removeFromParentAndCleanup:NO];
+        }
+        
+        if (emitterBonusSpeedFire) {
+            [emitterBonusSpeedFire unscheduleUpdate];
+            if (emitterBonusSpeedFire.parent) [emitterBonusSpeedFire removeFromParentAndCleanup:NO];
+        }
+    }
+    
     [self showGodModeSprite:_flag];
     [self showBonusCell:_flag];
 }
@@ -106,11 +151,8 @@
 - (void) activate {
     [super activate];
     
-    emitterEngineFire = [CCParticleSystemQuad particleWithFile:@"shipFire.plist"];
-    emitterEngineFire.positionType = kCCPositionTypeFree;
-    emitterEngineFire.position = costume.position;
-    if ((emitterEngineFire)&&(emitterEngineFire.parent == nil))
-        [[Defs instance].objectFrontLayer addChild:emitterEngineFire];
+    isBonusSpeed = NO;
+    timeBonusSpeed = 0;
 }
 
 - (void) deactivate {
@@ -120,12 +162,6 @@
     armored = 0;
     [self setArmorSprite];
     
-    if (emitterEngineFire) {
-        [emitterEngineFire resetSystem];
-        [emitterEngineFire stopSystem];
-        [emitterEngineFire removeFromParentAndCleanup:YES];
-        emitterEngineFire = nil;
-    }
     [super deactivate];
 }
 
@@ -169,6 +205,29 @@
             CCLOG(@"[GOD MODE:OFF]");
         }
     }
+    
+    if (isBonusSpeed) {
+        [self addVelocity:ccp(0, [Defs instance].bonusAccelerationValue)];
+        
+        if (emitterBonusSpeedFire) {
+            if (emitterEngineFire) {
+                emitterBonusSpeedFire.position = costume.position;
+                emitterBonusSpeedFire.speed = emitterEngineFire.speed;
+                emitterBonusSpeedFire.angle = emitterEngineFire.angle;
+            }
+        }
+        
+        timeBonusSpeed += TIME_STEP;
+        if (timeBonusSpeed >= [Defs instance].bonusAccelerationDelay) {
+            isBonusSpeed = NO;
+            timeBonusSpeed = 0;
+            if (emitterBonusSpeedFire) {
+                [emitterBonusSpeedFire unscheduleUpdate];
+                if (emitterBonusSpeedFire.parent) [emitterBonusSpeedFire removeFromParentAndCleanup:NO];
+            }
+        }
+    }
+
 }
 
 - (CGPoint) magnetReaction:(CGPoint)_point {

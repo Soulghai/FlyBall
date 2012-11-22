@@ -22,14 +22,9 @@
 	if ((self = [super init:_parent _location:_location])) {
 		parentFrame = _parent;
 		
-		sndHitTime = 0;
-		sndHitDelay = 0.3f;
-		
 		isDying = NO;
 		
 		touchCounter = 0;
-	
-		isPlayingSndHit = NO;
         
         isEraserCollide = NO;
 	}

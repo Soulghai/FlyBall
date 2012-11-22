@@ -18,10 +18,14 @@
     BOOL isGodMode;
     CCSprite *sprGodMode;
     
+    BOOL isBonusSpeed;
+    float timeBonusSpeed;
+    
     CCSprite *bonusCell;
     NSMutableArray* bonusCellItemIDs;
     
     CCParticleSystemQuad *emitterEngineFire;
+    CCParticleSystemQuad *emitterBonusSpeedFire;
     
     float magnetDistance;
     float magnetPower;
@@ -31,6 +35,7 @@
 - (void) loadCostume;
 - (void) addArmor;
 - (void) setGodMode:(float)_godModeTime;
+- (void) setSpeedBonus;
 - (void) setBonusCell:(int)_bonusID;
 - (CGPoint) magnetReaction:(CGPoint)_point;
 @end

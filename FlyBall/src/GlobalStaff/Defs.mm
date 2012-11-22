@@ -59,6 +59,7 @@
 @synthesize bestScore;
 
 @synthesize bonusAccelerationValue;
+@synthesize bonusAccelerationDelay;
 @synthesize bonusGetChance;
 @synthesize bonusGodModeTime;
 @synthesize gravitation;

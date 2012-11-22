@@ -18,6 +18,7 @@
 #import "FlurryAnalytics.h"
 #import "AnalyticsData.h"
 #import "MyData.h"
+#import "GameCenter.h"
 
 @implementation LevelFinishScreen
 
@@ -146,6 +147,7 @@
     if (_value > [Defs instance].bestScore) {
         [Defs instance].bestScore = _value;
         [MyData setStoreValue:@"bestScore" value:[NSString stringWithFormat:@"%i",[Defs instance].bestScore]];
+        [[GameCenter instance] reportScore:[Defs instance].bestScore forCategory:@"ExpandIt_TotalLeaderboard"];
         [self showPanelImproved:YES];
     }
 

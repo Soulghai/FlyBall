@@ -25,14 +25,9 @@
 	if ((self = [super init])) {
 		parentFrame = _parent;
 		
-		sndHitTime = 0;
-		sndHitDelay = 0.3f;
-		
 		isDying = NO;
 		
 		touchCounter = 0;
-	
-		isPlayingSndHit = NO;
         
         isEraserCollide = NO;
         
@@ -125,26 +120,10 @@
 - (void) update {
     if (!isActive) return;
     
-	isPlayingSndHit = NO;
-    
     costume.position = ccp(costume.position.x+velocity.x, costume.position.y+velocity.y);
-    
-    // Тормозим шарик трением
-    /*if (fabs(fabs(velocity.x) - fabs(friction)) < friction) velocity.x = 0;
-    else
-    if (velocity.x > 0) velocity.x -= friction;
-    else if (velocity.x < 0) velocity.x += friction;*/
     
     //Действуем на шарик гравитацией
     velocity.y -= gravitation;
-	
-	if (isPlayingSndHit) {
-		sndHitTime += TIME_STEP;
-		if (sndHitTime >= sndHitDelay) {
-			isPlayingSndHit = NO;
-			sndHitTime = 0;
-		}
-	}
 	
 	[super update];
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2804CB21165E567500DE9E0B /* shipBonusSpeed.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2804CB20165E567500DE9E0B /* shipBonusSpeed.plist */; };
 		283E034C16530A5700D8A53B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 283E034B16530A5700D8A53B /* QuartzCore.framework */; };
 		283E034E16530A5700D8A53B /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 283E034D16530A5700D8A53B /* OpenGLES.framework */; };
 		283E035016530A5700D8A53B /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 283E034F16530A5700D8A53B /* OpenAL.framework */; };
@@ -350,6 +351,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2804CB20165E567500DE9E0B /* shipBonusSpeed.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = shipBonusSpeed.plist; sourceTree = "<group>"; };
 		283E034716530A5700D8A53B /* It's Donut.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "It's Donut.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		283E034B16530A5700D8A53B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		283E034D16530A5700D8A53B /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -1447,6 +1449,7 @@
 		284FBAA416530AD8003C16BE /* particles */ = {
 			isa = PBXGroup;
 			children = (
+				2804CB20165E567500DE9E0B /* shipBonusSpeed.plist */,
 				288CD65C165B1BF70095637F /* bonus_acceleration_get.plist */,
 				288CD65D165B1BF70095637F /* bonus_apocalypse_get.plist */,
 				288CD65E165B1BF70095637F /* bonus_armor_get.plist */,
@@ -2094,6 +2097,7 @@
 				28F0CF35165D63E60066349E /* icon_upgrade_5.jpg in Resources */,
 				28F0CF36165D63E60066349E /* icon_upgrade_con_upgrade_2.jpg in Resources */,
 				28F0CF37165D63E60066349E /* shop_iPhone5.jpg in Resources */,
+				2804CB21165E567500DE9E0B /* shipBonusSpeed.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

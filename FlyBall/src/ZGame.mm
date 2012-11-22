@@ -56,6 +56,7 @@
         // То, что можно прокачать
         //--------------------------------------
         [Defs instance].bonusAccelerationValue = BONUS_ACCELERATION_DEFAULT;
+        [Defs instance].bonusAccelerationDelay = BONUS_ACCELERATION_DELAY_DEFAULT;
         [Defs instance].bonusGetChance = BONUS_GET_CHANCE_DEFAULT;
         [Defs instance].bonusGodModeTime = BONUS_GODMODE_TIME_DEFAULT;
         [Defs instance].gravitation = GRAVITATION_DEFAULT;
@@ -344,6 +345,8 @@
 	
     [self show:NO];
     
+    [Defs instance].bestScore = 0;
+    
     [[MainScene instance] showLevelDinishScreenAndSetScore:YES _score:scoreLevel _starCount:3];
     
     [MyData encodeDict:[MyData getDictForSaveData]];
@@ -449,7 +452,7 @@
     } else
         if (_bonusID <= BONUS_ACCELERATION) {
             // Ускорение
-            [player addVelocity:ccp(0, [Defs instance].bonusAccelerationValue)];
+            [player setSpeedBonus];
         } else
             if (_bonusID <= BONUS_APOCALYPSE) {
                 // Апокалипсис

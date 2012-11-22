@@ -13,10 +13,6 @@
 @interface ActorActiveObject : Actor {
 	BOOL isDying;
 	
-	BOOL isPlayingSndHit;
-	float sndHitTime;
-	float sndHitDelay;
-	
 	unsigned int touchCounter;
     
     BOOL isEraserCollide;

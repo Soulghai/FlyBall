@@ -79,6 +79,7 @@
 
 // Прокачиваемые параметры
 @property (nonatomic, readwrite) float bonusAccelerationValue;
+@property (nonatomic, readwrite) float bonusAccelerationDelay;
 @property (nonatomic, readwrite) float bonusGetChance;
 @property (nonatomic, readwrite) float bonusGodModeTime;
 @property (nonatomic, readwrite) float gravitation;

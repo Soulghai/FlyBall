@@ -167,7 +167,7 @@ static void MainScene_remover() {
     //[game addChild:[Defs instance].objectBackLayer];
     [game addChild:[Defs instance].objectFrontLayer];
     [[Defs instance].objectFrontLayer addChild:[Defs instance].spriteSheetCells z:0];
-    [[Defs instance].objectFrontLayer addChild:[Defs instance].spriteSheetChars z:1];
+    [[Defs instance].objectFrontLayer addChild:[Defs instance].spriteSheetChars z:100];
     [self addChild:levelFinishScreen];
 	[self addChild:pauseScreen];
     [self addChild:marketScreen];
