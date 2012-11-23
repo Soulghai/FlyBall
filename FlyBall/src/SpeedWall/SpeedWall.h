@@ -27,10 +27,13 @@
     
     float showingSpeed;
     float addSpeedCoeff;
+    float addSpeedCoeffOld;
     CGPoint positionChangeCoeff;
     
-    CCParticleSystemQuad *emitterStars;
-    CCParticleSystemQuad *emitterWarning;
+    CCParticleSystemQuad *emitterStarsAcc;
+    CCParticleSystemQuad *emitterStarsDecc;
+    CCParticleSystemQuad *emitterWarningAcc;
+    CCParticleSystemQuad *emitterWarningDecc;
 }
 
 - (id) init:(CCNode*)_parentFrame;

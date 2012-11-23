@@ -43,10 +43,10 @@ static void instance_remover() {
     cellWidth = 64;
     cellHeight = 128;
     
-    cellsHighMap = [NSMutableArray arrayWithObjects:[NSNumber numberWithInt:SCREEN_HEIGHT_HALF],
-                    [NSNumber numberWithInt:2000],
+    cellsHighMap = [NSMutableArray arrayWithObjects:[NSNumber numberWithInt:2000],
                     [NSNumber numberWithInt:5000],
-                    [NSNumber numberWithInt:10000],nil];
+                    [NSNumber numberWithInt:10000],
+                    [NSNumber numberWithInt:30000],nil];
     [cellsHighMap retain];
     
     cellCurrentFrames = [NSMutableArray arrayWithCapacity:cellCountX*cellCountY];
@@ -58,7 +58,7 @@ static void instance_remover() {
     CCSprite *_spr;
     for (int i = 0; i < cellCountX; i++) {
         for (int j = 0; j < cellCountY; j++) {
-            _spr = [CCSprite spriteWithSpriteFrameName:@"cell_0.jpg"];
+            _spr = [CCSprite spriteWithSpriteFrameName:@"cell_1.jpg"];
             [_spr setAnchorPoint:CGPointZero];
             [cells addObject:_spr];
         }
@@ -73,7 +73,7 @@ static void instance_remover() {
     for (int i = 0; i < cells.count; i++) {
         _spr = [cells objectAtIndex:i];
         [_spr setPosition:ccp((i % cellCountX)*cellWidth, (int)round(i / cellCountX)*cellHeight)];
-        frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"cell_0.jpg"];
+        frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"cell_1.jpg"];
         [_spr setDisplayFrame:frame];
     }
     
@@ -106,7 +106,11 @@ static void instance_remover() {
         
         if (_cellCurrentFrameValue != _currHighLevel) {
             _cellCurrentFrameValue = _currHighLevel;
-            frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"cell_%i.jpg",_cellCurrentFrameValue]];
+            float _ran = CCRANDOM_0_1()*10;
+            if (_ran <= 9)
+                frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"cell_%i.jpg",_cellCurrentFrameValue+1]];
+            else
+                frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"cell_%i_1.jpg",_cellCurrentFrameValue+1]];
             [_spr setDisplayFrame:frame];
             [cellCurrentFrames replaceObjectAtIndex:i withObject:[NSNumber numberWithInteger:_cellCurrentFrameValue]];
         }

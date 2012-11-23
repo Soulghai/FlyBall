@@ -342,11 +342,6 @@
 		28F0CF25165D62860066349E /* scrLevelFinish.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 28F0CF1B165D62860066349E /* scrLevelFinish.jpg */; };
 		28F0CF30165D63E60066349E /* shop-hd.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 28F0CF27165D63E60066349E /* shop-hd.jpg */; };
 		28F0CF31165D63E60066349E /* shop.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 28F0CF28165D63E60066349E /* shop.jpg */; };
-		28F0CF32165D63E60066349E /* icon_upgrade_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 28F0CF2A165D63E60066349E /* icon_upgrade_1.jpg */; };
-		28F0CF33165D63E60066349E /* icon_upgrade_3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 28F0CF2B165D63E60066349E /* icon_upgrade_3.jpg */; };
-		28F0CF34165D63E60066349E /* icon_upgrade_4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 28F0CF2C165D63E60066349E /* icon_upgrade_4.jpg */; };
-		28F0CF35165D63E60066349E /* icon_upgrade_5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 28F0CF2D165D63E60066349E /* icon_upgrade_5.jpg */; };
-		28F0CF36165D63E60066349E /* icon_upgrade_con_upgrade_2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 28F0CF2E165D63E60066349E /* icon_upgrade_con_upgrade_2.jpg */; };
 		28F0CF37165D63E60066349E /* shop_iPhone5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 28F0CF2F165D63E60066349E /* shop_iPhone5.jpg */; };
 /* End PBXBuildFile section */
 
@@ -884,11 +879,6 @@
 		28F0CF1B165D62860066349E /* scrLevelFinish.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = scrLevelFinish.jpg; path = FlyBall/Resources/gfx/Screens/scrLevelFinish.jpg; sourceTree = SOURCE_ROOT; };
 		28F0CF27165D63E60066349E /* shop-hd.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "shop-hd.jpg"; sourceTree = "<group>"; };
 		28F0CF28165D63E60066349E /* shop.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = shop.jpg; sourceTree = "<group>"; };
-		28F0CF2A165D63E60066349E /* icon_upgrade_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = icon_upgrade_1.jpg; sourceTree = "<group>"; };
-		28F0CF2B165D63E60066349E /* icon_upgrade_3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = icon_upgrade_3.jpg; sourceTree = "<group>"; };
-		28F0CF2C165D63E60066349E /* icon_upgrade_4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = icon_upgrade_4.jpg; sourceTree = "<group>"; };
-		28F0CF2D165D63E60066349E /* icon_upgrade_5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = icon_upgrade_5.jpg; sourceTree = "<group>"; };
-		28F0CF2E165D63E60066349E /* icon_upgrade_con_upgrade_2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = icon_upgrade_con_upgrade_2.jpg; sourceTree = "<group>"; };
 		28F0CF2F165D63E60066349E /* shop_iPhone5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = shop_iPhone5.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1846,24 +1836,11 @@
 			children = (
 				28F0CF27165D63E60066349E /* shop-hd.jpg */,
 				28F0CF28165D63E60066349E /* shop.jpg */,
-				28F0CF29165D63E60066349E /* shop_icons */,
 				28F0CF2F165D63E60066349E /* shop_iPhone5.jpg */,
 			);
 			name = Shop;
 			path = FlyBall/Resources/gfx/Screens/Shop;
 			sourceTree = SOURCE_ROOT;
-		};
-		28F0CF29165D63E60066349E /* shop_icons */ = {
-			isa = PBXGroup;
-			children = (
-				28F0CF2A165D63E60066349E /* icon_upgrade_1.jpg */,
-				28F0CF2B165D63E60066349E /* icon_upgrade_3.jpg */,
-				28F0CF2C165D63E60066349E /* icon_upgrade_4.jpg */,
-				28F0CF2D165D63E60066349E /* icon_upgrade_5.jpg */,
-				28F0CF2E165D63E60066349E /* icon_upgrade_con_upgrade_2.jpg */,
-			);
-			path = shop_icons;
-			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -2091,11 +2068,6 @@
 				28F0CF25165D62860066349E /* scrLevelFinish.jpg in Resources */,
 				28F0CF30165D63E60066349E /* shop-hd.jpg in Resources */,
 				28F0CF31165D63E60066349E /* shop.jpg in Resources */,
-				28F0CF32165D63E60066349E /* icon_upgrade_1.jpg in Resources */,
-				28F0CF33165D63E60066349E /* icon_upgrade_3.jpg in Resources */,
-				28F0CF34165D63E60066349E /* icon_upgrade_4.jpg in Resources */,
-				28F0CF35165D63E60066349E /* icon_upgrade_5.jpg in Resources */,
-				28F0CF36165D63E60066349E /* icon_upgrade_con_upgrade_2.jpg in Resources */,
 				28F0CF37165D63E60066349E /* shop_iPhone5.jpg in Resources */,
 				2804CB21165E567500DE9E0B /* shipBonusSpeed.plist in Resources */,
 			);

@@ -345,7 +345,7 @@
 	
     [self show:NO];
     
-    [Defs instance].bestScore = 0;
+    //[Defs instance].bestScore = 0;
     
     [[MainScene instance] showLevelDinishScreenAndSetScore:YES _score:scoreLevel _starCount:3];
     
@@ -556,14 +556,19 @@
         
         timerAddBall += TIME_STEP;
         if (timerAddBall >= timerDelayAddBall - fabs(player.velocity.x/300)) {
-            float _velocityXCoeff = 1 + fabs(player.velocity.x/10);
-            float _velocityYCoeff = (1.f + fabs(player.velocity.y/40))*3 + CCRANDOM_0_1()*(fabs(player.velocity.y/40));
+            float _playerVelocityX = player.velocity.x;
+            float _playerVelocityY = player.velocity.y;
+            if (player.isBonusSpeed) {
+                _playerVelocityY -= [Defs instance].bonusAccelerationValue;
+            }
+            float _velocityXCoeff = 1 + fabs(_playerVelocityX/10);
+            float _velocityYCoeff = (1.f + fabs(_playerVelocityY/40))*3 + CCRANDOM_0_1()*(fabs(_playerVelocityY/40));
             if (_velocityYCoeff < 4.5f) {
                 _velocityYCoeff = 4.5f;
             }
             int _ballCount = round(CCRANDOM_0_1()*2);
             for (int i = 0; i < _ballCount; i++) {
-                [self addBall:ccp(player.costume.position.x + player.velocity.x*5 + SCREEN_WIDTH_HALF*CCRANDOM_MINUS1_1(), player.costume.position.y - SCREEN_HEIGHT_HALF - elementRadius) _velocity:ccp(player.velocity.x + CCRANDOM_MINUS1_1()*_velocityXCoeff, player.velocity.y + _velocityYCoeff) _active:YES]; 
+                [self addBall:ccp(player.costume.position.x + _playerVelocityX*5 + SCREEN_WIDTH_HALF*CCRANDOM_MINUS1_1(), player.costume.position.y - SCREEN_HEIGHT_HALF - elementRadius) _velocity:ccp(_playerVelocityX + CCRANDOM_MINUS1_1()*_velocityXCoeff, _playerVelocityY + _velocityYCoeff) _active:YES];
             }
             
             timerAddBall = 0;
@@ -577,7 +582,7 @@
                 [scoreStr setColor:ccc3(50, 150, 255)];
                 [scoreStr setText:[NSString stringWithFormat:@"Wooow %i !!!",scoreLevel]];
                 if (!isNewScoreSound) {
-                    if (![Defs instance].isSoundMute) [[SimpleAudioEngine sharedEngine] playEffect:@"round_bomb_3.wav"];
+                    if (![Defs instance].isSoundMute) [[SimpleAudioEngine sharedEngine] playEffect:@"star.wav"];
                     isNewScoreSound = YES;
                 }
             } else [scoreStr setText:[NSString stringWithFormat:@"%i",scoreLevel]];

@@ -35,8 +35,19 @@
 }
 
 - (void) buttonBuyItem1Action {
-    //[[MKStoreManager sharedManager] buyFeature:kFeatureAId];
-    //[FlurryAnalytics logEvent:ANALYTICS_IAP_MARKET_SCREEN_BUY_5_SKIPS];
+    [panelBuyInformation show:YES];
+    [btnPanelBuyInfoNO show:YES];
+    [btnPanelBuyInfoYES show:YES];
+    [btnPanelBuyInfoNO setEnabled:YES];
+    [btnPanelBuyInfoYES setEnabled:YES];
+}
+
+- (void) panelBuyInformationHide {
+    [panelBuyInformation show:NO];
+    [btnPanelBuyInfoNO show:NO];
+    [btnPanelBuyInfoYES show:NO];
+    [btnPanelBuyInfoNO setEnabled:NO];
+    [btnPanelBuyInfoYES setEnabled:NO];
 }
 
 - (void) buttonBuyItem2Action {
@@ -54,45 +65,89 @@
 		
 		backSpr = nil;		
 		
-		GUIButtonDef *btnPlayDef = [GUIButtonDef node];
-		btnPlayDef.sprName = @"btnBack.png";
-		btnPlayDef.sprDownName = @"btnBackDown.png";
-		btnPlayDef.group = GAME_STATE_MARKETSCREEN;
-		btnPlayDef.objCreator = self;
-		btnPlayDef.func = @selector(buttonBackToMenuScreenClick);
-		btnPlayDef.sound = @"button_click.wav";
+		GUIButtonDef *btnDef = [GUIButtonDef node];
+		btnDef.sprName = @"btnBack.png";
+		btnDef.sprDownName = @"btnBackDown.png";
+		btnDef.group = GAME_STATE_MARKETSCREEN;
+		btnDef.objCreator = self;
+		btnDef.func = @selector(buttonBackToMenuScreenClick);
+		btnDef.sound = @"button_click.wav";
 		
-		[[MainScene instance].gui addItem:(id)btnPlayDef _pos:ccp(30,30)];
+		[[MainScene instance].gui addItem:(id)btnDef _pos:ccp(30,30)];
 		
         GUIPanelDef *_panelDef = [GUIPanelDef node];
-        _panelDef.group = GAME_STATE_MARKETSCREEN;
-        for (int i = 0; i < 5; i++) {
-            _panelDef.sprName = @"icon_upgrade_1.jpg";
+        _panelDef.group = GAME_STATE_NONE;
+        _panelDef.parentFrame = [MainScene instance];
+        _panelDef.zOrder = 100;
+        _panelDef.sprName = @"window_reset.png";
+        
+        panelBuyInformation = [[MainScene instance].gui addItem:(id)_panelDef _pos:ccp(SCREEN_WIDTH_HALF, SCREEN_HEIGHT_HALF)];
+        
+        btnDef.group = GAME_STATE_NONE;
+        btnDef.isManyTouches = YES;
+		btnDef.sprName = @"btnNo.png";
+		btnDef.sprDownName = @"btnNoDown.png";
+		btnDef.parentFrame = panelBuyInformation.spr;
+		btnDef.func = @selector(panelBuyInformationHide);
+		btnDef.enabled = NO;
+		
+		btnPanelBuyInfoNO = [[MainScene instance].gui addItem:(id)btnDef
+                                                                _pos:ccp(panelBuyInformation.spr.contentSize.width*0.5f-50, panelBuyInformation.spr.contentSize.height*0.25f)];
+		
+		btnDef.sprName = @"btnOk.png";
+		btnDef.sprDownName = @"btnOkDown.png";
+		btnDef.func = @selector(panelBuyInformationHide);
+		
+		btnPanelBuyInfoYES = [[MainScene instance].gui addItem:(id)btnDef
+                                                                 _pos:ccp(panelBuyInformation.spr.contentSize.width*0.5f+50, panelBuyInformation.spr.contentSize.height*0.25f)];
+        
+        GUILabelTTFOutlinedDef *_labelTTFOutlinedDef = [GUILabelTTFOutlinedDef node];
+        _labelTTFOutlinedDef.group = GAME_STATE_MARKETSCREEN;
+        _labelTTFOutlinedDef.alignement = kCCTextAlignmentCenter;
+        _labelTTFOutlinedDef.text = @"Improvements";
+        [[MainScene instance].gui addItem:(id)_labelTTFOutlinedDef _pos:ccp(SCREEN_WIDTH_HALF, 465)];
+        
+        _labelTTFOutlinedDef.alignement = kCCTextAlignmentLeft;
+        _labelTTFOutlinedDef.text = @"Ship";
+        [[MainScene instance].gui addItem:(id)_labelTTFOutlinedDef _pos:ccp(5, 442)];
+        
+        _labelTTFOutlinedDef.alignement = kCCTextAlignmentRight;
+        _labelTTFOutlinedDef.text = @"Bonuses";
+        [[MainScene instance].gui addItem:(id)_labelTTFOutlinedDef _pos:ccp(315, 442)];
+        
+        _labelTTFOutlinedDef.alignement = kCCTextAlignmentLeft;
+        _labelTTFOutlinedDef.text = @"Ship equipment";
+        [[MainScene instance].gui addItem:(id)_labelTTFOutlinedDef _pos:ccp(5, 200)];
+        
+        
+        btnDef.group = GAME_STATE_MARKETSCREEN;
+        btnDef.parentFrame = [MainScene instance].gui;
+        btnDef.enabled = YES;
+        // Корабль
+        for (int i = 0; i < 6; i++) {
+            btnDef.sprName = [NSString stringWithFormat:@"icon_upgrade_%i.jpg",i];
+            btnDef.sprDownName = nil;
+            btnDef.func = @selector(buttonBuyItem1Action);
+            btnDef.isManyTouches = YES;
             
-            [[MainScene instance].gui addItem:(id)_panelDef _pos:ccp(20 + (i*64 + 10), 400)];
+            [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(43 + ((i % 2)*64) + (i % 2)*8, 400 - int(i / 2)*72)];
         }
         
-        
-        for (int i = 0; i < 5; i++) {
-            btnPlayDef.sprName = @"btnBuy5Up.png";
-            btnPlayDef.sprDownName = @"btnBuy5Down.png";
-            btnPlayDef.func = @selector(buttonBuyItem1Action);
-            btnPlayDef.isManyTouches = YES;
+        // Бонусы
+        for (int i = 0; i < 6; i++) {
+            btnDef.sprName = [NSString stringWithFormat:@"icon_upgrade_%i.jpg",5-i];
+            btnDef.sprDownName = nil;
+            btnDef.func = @selector(buttonBuyItem1Action);
+            btnDef.isManyTouches = YES;
             
-            [[MainScene instance].gui addItem:(id)btnPlayDef _pos:ccp(20 + (i*64 + 10), 400)];
+            [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(206 + ((i % 2)*64) + (i % 2)*8, 400 - int(i / 2)*72)];
         }
-		
-		btnPlayDef.sprName = @"btnBuy15Up.png";
-		btnPlayDef.sprDownName = @"btnBuy15Down.png";
-		btnPlayDef.func = @selector(buttonBuyItem2Action);
-		
-		[[MainScene instance].gui addItem:(id)btnPlayDef _pos:ccp(134,170)];
         
-        btnPlayDef.sprName = @"btnGiftUp.png";
-		btnPlayDef.sprDownName = @"btnGiftDown.png";
-		btnPlayDef.func = @selector(buttonBuyAppAsGift);
+        btnDef.sprName = @"btnGiftUp.png";
+		btnDef.sprDownName = @"btnGiftDown.png";
+		btnDef.func = @selector(buttonBuyAppAsGift);
 		
-		[[MainScene instance].gui addItem:(id)btnPlayDef _pos:ccp(280,30)];
+		[[MainScene instance].gui addItem:(id)btnDef _pos:ccp(275,30)];
 		
 	}
 	return self;

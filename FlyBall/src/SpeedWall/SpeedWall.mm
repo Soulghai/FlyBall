@@ -30,16 +30,36 @@
         timeShowing = 0;
         delayShowing = [Defs instance].speedWallDelayShowingCoeff;
         
-        costume = [CCSprite spriteWithSpriteFrameName:@"speedWallBackground.jpg"];
+        costume = [CCSprite spriteWithSpriteFrameName:@"speedWallBackground_2.png"];
         [costume retain];
         [costume setScaleY:3.75f];
         [costume setScaleX:10];
-        [costume setOpacity:100];
+        //[costume setOpacity:100];
         
         showingSpeed = -30;
         addSpeedCoeff = [Defs instance].speedWallAccelerationCoeff;
+        addSpeedCoeffOld = -1;
         
         positionChangeCoeff = CGPointZero;
+        
+        emitterWarningAcc = [CCParticleSystemQuad particleWithFile:@"speedWallPrepareAcc.plist"];
+        [emitterWarningAcc retain];
+        emitterWarningDecc = [CCParticleSystemQuad particleWithFile:@"speedWallPrepareDecc.plist"];
+        [emitterWarningDecc retain];
+        
+        emitterWarningAcc.positionType = kCCPositionTypeGrouped;
+        [emitterWarningAcc unscheduleUpdate];
+        emitterWarningDecc.positionType = kCCPositionTypeGrouped;
+        [emitterWarningDecc unscheduleUpdate];
+        
+        emitterStarsAcc = [CCParticleSystemQuad particleWithFile:@"speedWallAcceleration.plist"];
+        [emitterStarsAcc retain];
+        emitterStarsAcc.positionType = kCCPositionTypeGrouped;
+        [emitterStarsAcc unscheduleUpdate];
+        emitterStarsDecc = [CCParticleSystemQuad particleWithFile:@"speedWallDecceleration.plist"];
+        [emitterStarsDecc retain];
+        emitterStarsAcc.positionType = kCCPositionTypeGrouped;
+        [emitterStarsDecc unscheduleUpdate];
 	}
 	return self;
 }
@@ -52,21 +72,26 @@
 	return isOutOfArea;
 }
 
-- (void) deleteEmitter {
-    if (emitterStars) {
-        [emitterStars resetSystem];
-        [emitterStars stopSystem];
-        [emitterStars removeFromParentAndCleanup:YES];
-        emitterStars = nil;
+- (void) hideEmitter {
+    if (emitterStarsAcc.parent) {
+        [emitterStarsAcc unscheduleUpdate];
+        [emitterStarsAcc removeFromParentAndCleanup:YES];
+    }
+    if (emitterStarsDecc.parent) {
+        [emitterStarsDecc unscheduleUpdate];
+        [emitterStarsDecc removeFromParentAndCleanup:YES];
     }
 }
 
-- (void) deleteEmitterWarning {
-    if (emitterWarning) {
-        [emitterWarning resetSystem];
-        [emitterWarning stopSystem];
-        [emitterWarning removeFromParentAndCleanup:YES];
-        emitterWarning = nil;
+- (void) hideEmitterWarning {
+    if (emitterWarningAcc.parent)  {
+        [emitterWarningAcc unscheduleUpdate];
+        [emitterWarningAcc removeFromParentAndCleanup:YES];
+    }
+    
+    if (emitterWarningDecc.parent) {
+        [emitterWarningDecc unscheduleUpdate];
+        [emitterWarningDecc removeFromParentAndCleanup:YES];
     }
 }
 
@@ -86,7 +111,7 @@
             if ((isShowing)&&(positionChangeCoeff.y <= 0)) {
                 costume.position = ccp(costume.position.x, [MainScene instance].game.player.costume.position.y);
                 positionChangeCoeff = ccp(positionChangeCoeff.x, 0);
-                [self deleteEmitterWarning];
+                [self hideEmitterWarning];
                 isShowing = NO;
             } else
                 if ((isHiding)&&(positionChangeCoeff.y <= -SCREEN_HEIGHT)) {
@@ -100,54 +125,81 @@
             costume.position = ccpAdd([MainScene instance].game.player.costume.position, positionChangeCoeff);
         }
         
-        if (emitterStars)
-            emitterStars.position = ccpAdd(costume.position, ccp(0, SCREEN_HEIGHT_HALF));
+        if (emitterStarsAcc.parent)
+            emitterStarsAcc.position = ccpAdd(costume.position, ccp(0, SCREEN_HEIGHT_HALF));
+        else
+            if (emitterStarsDecc.parent)
+                emitterStarsDecc.position = ccpAdd(costume.position, ccp(0, SCREEN_HEIGHT_HALF));
         
-        if (emitterWarning)
-            emitterWarning.position = ccpAdd(costume.position, ccp(0, -SCREEN_HEIGHT_HALF));
+        if (emitterWarningAcc.parent)
+            emitterWarningAcc.position = ccpAdd(costume.position, ccp(0, -SCREEN_HEIGHT_HALF));
+        else
+            if (emitterWarningDecc.parent)
+                emitterWarningDecc.position = ccpAdd(costume.position, ccp(0, -SCREEN_HEIGHT_HALF));
         
     } else {
         timeWaiting += TIME_STEP;
-        if ((timeWaiting >= delayWaiting - delayWarning)&&(emitterWarning == nil)) {
+        if ((timeWaiting >= delayWaiting - delayWarning)&&((emitterWarningAcc.parent == nil)&&(emitterWarningDecc.parent == nil))) {
             float _ran = CCRANDOM_MINUS1_1();
             if (_ran >= 0) {
                 addSpeedCoeff = [Defs instance].speedWallAccelerationCoeff;
-                emitterWarning = [CCParticleSystemQuad particleWithFile:@"speedWallPrepareAcc.plist"];
+                [emitterWarningAcc scheduleUpdate];
+                emitterWarningAcc.position = ccpAdd(costume.position, ccp(0, SCREEN_HEIGHT_HALF));
+                if ((emitterWarningAcc)&&(emitterWarningAcc.parent == nil))
+                    [[Defs instance].objectFrontLayer addChild:emitterWarningAcc];
             } else {
                 addSpeedCoeff = [Defs instance].speedWallDeccelerationCoeff;
-                emitterWarning = [CCParticleSystemQuad particleWithFile:@"speedWallPrepareDecc.plist"];
+                [emitterWarningDecc scheduleUpdate];
+                emitterWarningDecc.position = ccpAdd(costume.position, ccp(0, SCREEN_HEIGHT_HALF));
+                if ((emitterWarningDecc)&&(emitterWarningDecc.parent == nil))
+                    [[Defs instance].objectFrontLayer addChild:emitterWarningDecc];
             }
-            
-                
-            emitterWarning.positionType = kCCPositionTypeGrouped;
-            emitterWarning.position = ccpAdd(costume.position, ccp(0, SCREEN_HEIGHT_HALF));
-            if ((emitterWarning)&&(emitterStars.parent == nil))
-                [[Defs instance].objectFrontLayer addChild:emitterWarning];
         }
         
-        if (emitterWarning)
-            emitterWarning.position = ccp([MainScene instance].game.player.costume.position.x, [MainScene instance].game.player.costume.position.y +SCREEN_HEIGHT_HALF);
+        if (emitterWarningAcc.parent)
+            emitterWarningAcc.position = ccp([MainScene instance].game.player.costume.position.x, [MainScene instance].game.player.costume.position.y +SCREEN_HEIGHT_HALF);
+        else
+            if (emitterWarningDecc.parent)
+                emitterWarningDecc.position = ccp([MainScene instance].game.player.costume.position.x, [MainScene instance].game.player.costume.position.y +SCREEN_HEIGHT_HALF);
         
         timeWaiting += TIME_STEP;
         if (timeWaiting >= delayWaiting) {
             timeWaiting = 0;
             delayWaiting = delayWaitingDefault + CCRANDOM_0_1()*5;
             isShowing = YES;
-            [self deleteEmitter];
+            [self hideEmitter];
 
-            if (addSpeedCoeff >= 0) {
-                [costume setColor:ccc3(0, 255, 0)];
-                emitterStars = [CCParticleSystemQuad particleWithFile:@"speedWallAcceleration.plist"]; 
-            } else {
-                [costume setColor:ccc3(255, 0, 0)];
-                emitterStars = [CCParticleSystemQuad particleWithFile:@"speedWallDecceleration.plist"];
-            }
             positionChangeCoeff = ccp(0, SCREEN_HEIGHT);
             costume.position = ccp(costume.position.x, [MainScene instance].game.player.costume.position.y-SCREEN_HEIGHT);
-            emitterStars.positionType = kCCPositionTypeGrouped;
-            emitterStars.position = ccpAdd(costume.position, ccp(0, SCREEN_HEIGHT_HALF));
-            if ((emitterStars)&&(emitterStars.parent == nil))
-                [[Defs instance].objectFrontLayer addChild:emitterStars];
+            
+            if (addSpeedCoeff >= 0) {
+                if (addSpeedCoeff != addSpeedCoeffOld) {
+                    CCSpriteFrame* frame;
+                    frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"speedWallBackground_2.png"];
+                    [costume setDisplayFrame:frame];
+                }
+            } else {
+                if (addSpeedCoeff != addSpeedCoeffOld) {
+                    CCSpriteFrame* frame;
+                    frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"speedWallBackground_1.png"];
+                    [costume setDisplayFrame:frame];
+                }
+            }
+            addSpeedCoeffOld = addSpeedCoeff;
+            
+            if (addSpeedCoeff >= 0) {
+                emitterStarsAcc.position = ccpAdd(costume.position, ccp(0, SCREEN_HEIGHT_HALF));
+                if ((emitterStarsAcc)&&(emitterStarsAcc.parent == nil))
+                    [[Defs instance].objectFrontLayer addChild:emitterStarsAcc];
+                [emitterStarsAcc scheduleUpdate];
+            } else {
+                emitterStarsDecc.position = ccpAdd(costume.position, ccp(0, SCREEN_HEIGHT_HALF));
+                if ((emitterStarsDecc)&&(emitterStarsDecc.parent == nil))
+                    [[Defs instance].objectFrontLayer addChild:emitterStarsDecc];
+                [emitterStarsDecc scheduleUpdate];
+            }
+            
+            
             [self show:YES];
         }
     }
@@ -156,10 +208,7 @@
 - (void) deactivate {
     timeShowing = 0;
     timeWaiting = 0;
-    isShowing = NO;
     isHiding = NO;
-    [self deleteEmitter];
-    [self deleteEmitterWarning];
     [self show:NO];
 }
 
@@ -185,8 +234,11 @@
 	if (_flag) {
 		if (!costume.parent) [parentFrame addChild:costume];
 	}
-	else
+	else {
 		if (costume.parent) [costume removeFromParentAndCleanup:YES];
+        [self hideEmitter];
+        [self hideEmitterWarning];
+    }
 	
 	isVisible = _flag;
 }

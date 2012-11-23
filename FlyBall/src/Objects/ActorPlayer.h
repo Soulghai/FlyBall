@@ -30,6 +30,9 @@
     float magnetDistance;
     float magnetPower;
 }
+
+@property(nonatomic, readonly) BOOL isBonusSpeed;
+
 -(id) init:(CCNode*)_parent
    _location:(CGPoint)_location;
 - (void) loadCostume;

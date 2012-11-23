@@ -16,6 +16,8 @@
 
 @implementation ActorPlayer
 
+@synthesize isBonusSpeed;
+
 -(id) init:(CCNode*)_parent
  _location:(CGPoint)_location {
 	
@@ -61,7 +63,7 @@
     
     bonusCell = [CCSprite spriteWithSpriteFrameName:@"bonus_apocalypse.png"];
     [bonusCell retain];
-    [bonusCell setPosition:ccp(elementRadius, 15)];
+    [bonusCell setPosition:ccp(elementRadius, elementRadius)];
 }
 
 - (void) setArmorSprite {

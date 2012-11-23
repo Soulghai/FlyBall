@@ -73,8 +73,10 @@
 	 &&(endTouchPos.y > btnPlay.position.y - 20)&&(endTouchPos.y < btnPlay.position.y + 20)))*/{
 		 btnDownTime += TIME_STEP;
 		 if (btnDownTime >= BUTTON_DOWN_WAIT) {
-			 CCSpriteFrame *frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:sprName];
-			 [spr setDisplayFrame:frame];
+			 if (sprDownName != nil) {
+                 CCSpriteFrame *frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:sprName];
+                 [spr setDisplayFrame:frame];
+             }
 			 isBtnDown = NO;
              isClickOnce = YES;
 			 if (![Defs instance].isSoundMute) [[SimpleAudioEngine sharedEngine] playEffect:sound];
@@ -104,8 +106,10 @@
 	CGPoint _windowPoint = [spr convertToWorldSpace:ccp(spr.contentSize.width*0.5f,spr.contentSize.height*0.5f)];
 	if ((isBtnDown)&&(_touchPos.x > _windowPoint.x - spr.contentSize.width*0.5f)&&(_touchPos.x < _windowPoint.x + spr.contentSize.width*0.5f)
 		&&(_touchPos.y > _windowPoint.y - spr.contentSize.height*0.5f)&&(_touchPos.y < _windowPoint.y + spr.contentSize.height*0.5f)){
-		CCSpriteFrame *frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:sprName];
-		[spr setDisplayFrame:frame];
+		if (sprDownName != nil) {
+            CCSpriteFrame *frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:sprName];
+            [spr setDisplayFrame:frame];
+        }
 		isBtnDown = NO;
         isClickOnce = YES;
 		if (![Defs instance].isSoundMute) [[SimpleAudioEngine sharedEngine] playEffect:sound];
@@ -119,7 +123,7 @@
 			   _diff:(CGPoint)_diff {
 	endTouchPos = CGPointMake(_touchLocation.x, _touchLocation.y);
 	CGPoint _windowPoint = [spr convertToWorldSpace:ccp(spr.contentSize.width*0.5f,spr.contentSize.height*0.5f)];
-	if (isBtnDown)
+	if (isBtnDown) {
 		if ((_touchLocation.x < _windowPoint.x - spr.contentSize.width*0.5f)||(_touchLocation.x > _windowPoint.x + spr.contentSize.width*0.5f)
 			||(_touchLocation.y < _windowPoint.y - spr.contentSize.height*0.5f)||(_touchLocation.y > _windowPoint.y + spr.contentSize.height*0.5f)){
             // Если меняли изображение на нажатое, то возвращаем обратно    
@@ -131,6 +135,7 @@
 		} else {
 			btnDownTime = 0;
 		}
+    }
 }
 
 - (void) dealloc {

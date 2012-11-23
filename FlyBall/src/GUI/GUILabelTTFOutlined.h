@@ -19,6 +19,7 @@
     ccColor3B textColor;
     ccColor3B outlineColor;
     float outlineSize;
+    CCTextAlignment alignement;
     
     CCLabelTTF* label; 
     CCRenderTexture* stroke;
@@ -32,6 +33,7 @@
 @property (nonatomic,readwrite) ccColor3B textColor;
 @property (nonatomic,readwrite) ccColor3B outlineColor;
 @property (nonatomic,readwrite) float outlineSize;
+@property (nonatomic,readwrite) CCTextAlignment alignement;
 
 - (id) init:(id)_def;
 - (void) setOpacity:(GLubyte)_opacity;

@@ -20,6 +20,7 @@
 @synthesize textColor;
 @synthesize outlineColor;
 @synthesize outlineSize;
+@synthesize alignement;
 
 - (id) init:(id)_def{
 	if ((self = [super init])) {		
@@ -32,13 +33,14 @@
         textColor = _tmpDef.textColor;
         outlineColor = _tmpDef.outlineColor;
         outlineSize = _tmpDef.outlineSize;
+        alignement = _tmpDef.alignement;
         
         spr = [CCSprite node];
         
-        if (containerSize.width == 0)
+        if (containerSize.width == 0) {
             label = [CCLabelTTF labelWithString:text fontName:fontName fontSize:fontSize];
-        else
-            label = [CCLabelTTF labelWithString:text fontName:fontName fontSize:fontSize dimensions:containerSize hAlignment:kCCTextAlignmentCenter];
+        } else
+            label = [CCLabelTTF labelWithString:text fontName:fontName fontSize:fontSize dimensions:containerSize hAlignment:alignement];
         
         //[label setPosition:ccp(_pos.x, _pos.y)];
         [label setColor:textColor];
@@ -60,7 +62,12 @@
 }
 
 - (void) setPosition:(CGPoint)_newPosition {
-    spr.position = ccp(_newPosition.x,_newPosition.y);
+    if (alignement == kCCTextAlignmentCenter) spr.position = ccp(_newPosition.x,_newPosition.y);
+    else
+    if (alignement == kCCTextAlignmentLeft) {
+        spr.position = ccp(_newPosition.x + label.contentSize.width/2,_newPosition.y);
+    } else
+        spr.position = ccp(_newPosition.x - label.contentSize.width/2,_newPosition.y);
 }
 
 - (void) setText:(NSString *)_text {

@@ -18,6 +18,7 @@
 @synthesize textColor;
 @synthesize outlineColor;
 @synthesize outlineSize;
+@synthesize alignement;
 
 - (id) init{
 	if ((self = [super init])) {		
@@ -29,6 +30,7 @@
         textColor = ccc3(255, 255, 255);
         outlineColor = ccc3(0, 0, 0);
         outlineSize = 2;
+        alignement = kCCTextAlignmentCenter;
 	}
 	return self;
 }

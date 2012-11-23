@@ -18,6 +18,7 @@
     ccColor3B textColor;
     ccColor3B outlineColor;
     float outlineSize;
+    CCTextAlignment alignement;
 }
 
 @property (nonatomic,assign) NSString* text;
@@ -27,6 +28,7 @@
 @property (nonatomic,readwrite) ccColor3B textColor;
 @property (nonatomic,readwrite) ccColor3B outlineColor;
 @property (nonatomic,readwrite) float outlineSize;
+@property (nonatomic,readwrite) CCTextAlignment alignement;
 
 - (id) init;
 

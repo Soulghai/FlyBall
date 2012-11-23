@@ -142,7 +142,7 @@
 			   _diff:(CGPoint)_diff {
 	endTouchPos = CGPointMake(_touchLocation.x, _touchLocation.y);
 	CGPoint _windowPoint = [spr convertToWorldSpace:ccp(spr.contentSize.width*0.5f,spr.contentSize.height*0.5f)];
-	if (isBtnDown)
+	if (isBtnDown) {
 		if ((_touchLocation.x < _windowPoint.x - spr.contentSize.width*0.5f)||(_touchLocation.x > _windowPoint.x + spr.contentSize.width*0.5f)
 			||(_touchLocation.y < _windowPoint.y - spr.contentSize.height*0.5f)||(_touchLocation.y > _windowPoint.y + spr.contentSize.height*0.5f)){
 			CCSpriteFrame *frame;
@@ -155,6 +155,7 @@
 		} else {
 			btnDownTime = 0;
 		}
+    }
 }
 
 - (oneway void) release {
