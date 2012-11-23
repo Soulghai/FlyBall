@@ -38,6 +38,10 @@
 	return self;
 }
 
+- (void) setFunction:(SEL)_func {
+    func = _func;
+}
+
 - (void) setPosition:(CGPoint)_newPosition {
     spr.position = ccp(_newPosition.x,_newPosition.y);
 }

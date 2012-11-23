@@ -257,7 +257,6 @@
 		284FBEAD16530AF1003C16BE /* ActorManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 284FBE1F16530AF1003C16BE /* ActorManager.mm */; };
 		284FBEAF16530AF1003C16BE /* MyData.mm in Sources */ = {isa = PBXBuildFile; fileRef = 284FBE2316530AF1003C16BE /* MyData.mm */; };
 		284FBEB016530AF1003C16BE /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 284FBE2516530AF1003C16BE /* Utils.m */; };
-		284FBEB116530AF1003C16BE /* ZFontManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 284FBE2716530AF1003C16BE /* ZFontManager.mm */; };
 		284FBEB316530AF1003C16BE /* Analytics-README.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 284FBE2C16530AF1003C16BE /* Analytics-README.pdf */; };
 		284FBEB416530AF1003C16BE /* AppCircle-README.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 284FBE2D16530AF1003C16BE /* AppCircle-README.pdf */; };
 		284FBEB516530AF1003C16BE /* libFlurryAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 284FBE3016530AF1003C16BE /* libFlurryAnalytics.a */; };
@@ -751,8 +750,6 @@
 		284FBE2316530AF1003C16BE /* MyData.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MyData.mm; sourceTree = "<group>"; };
 		284FBE2416530AF1003C16BE /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		284FBE2516530AF1003C16BE /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
-		284FBE2616530AF1003C16BE /* ZFontManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFontManager.h; sourceTree = "<group>"; };
-		284FBE2716530AF1003C16BE /* ZFontManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ZFontManager.mm; sourceTree = "<group>"; };
 		284FBE2C16530AF1003C16BE /* Analytics-README.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Analytics-README.pdf"; sourceTree = "<group>"; };
 		284FBE2D16530AF1003C16BE /* AppCircle-README.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "AppCircle-README.pdf"; sourceTree = "<group>"; };
 		284FBE2F16530AF1003C16BE /* FlurryAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAnalytics.h; sourceTree = "<group>"; };
@@ -1621,8 +1618,6 @@
 				284FBE2316530AF1003C16BE /* MyData.mm */,
 				284FBE2416530AF1003C16BE /* Utils.h */,
 				284FBE2516530AF1003C16BE /* Utils.m */,
-				284FBE2616530AF1003C16BE /* ZFontManager.h */,
-				284FBE2716530AF1003C16BE /* ZFontManager.mm */,
 			);
 			path = Engine;
 			sourceTree = "<group>";
@@ -2192,7 +2187,6 @@
 				284FBEAD16530AF1003C16BE /* ActorManager.mm in Sources */,
 				284FBEAF16530AF1003C16BE /* MyData.mm in Sources */,
 				284FBEB016530AF1003C16BE /* Utils.m in Sources */,
-				284FBEB116530AF1003C16BE /* ZFontManager.mm in Sources */,
 				284FBEBC16530AF1003C16BE /* GameCenter.mm in Sources */,
 				284FBEBD16530AF1003C16BE /* GameStandartFunctions.mm in Sources */,
 				284FBEBE16530AF1003C16BE /* Defs.mm in Sources */,
@@ -2270,7 +2264,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -2289,7 +2283,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

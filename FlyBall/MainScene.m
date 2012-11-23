@@ -16,7 +16,6 @@
 #import "SimpleAudioEngine.h"
 #import "globalParam.h"
 #import "Defs.h"
-#import	"ZFontManager.h"
 #import	"ZMenu.h"
 #import "ZGame.h"
 #import "AboutScreen.h"
@@ -111,8 +110,6 @@ static void MainScene_remover() {
     [Defs instance].spriteSheetCells = [CCSpriteBatchNode batchNodeWithFile: @"gfx_cells.jpg" capacity: 100];
 	[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"gfx_cells.plist" texture:[Defs instance].spriteSheetCells.texture];
 	[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];
-    
-	[Defs instance].myFont = [[ZFontManager alloc] init];
 	
     //[MyData decodeDict];
     

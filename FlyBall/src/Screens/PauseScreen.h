@@ -16,7 +16,6 @@
 @interface PauseScreen : CCNode {
 	BOOL isVisible;
 	GUIPanel *backgroundSpr;
-	CCLabelBMFont* levelNumber;
 	
 	GUIPanel *pauseZZZSpr;
 	id pauseAction;

@@ -15,6 +15,7 @@
 #import "GameStandartFunctions.h"
 #import "AnalyticsData.h"
 #import "FlurryAnalytics.h"
+#import "MyData.h"
 
 @implementation MarketScreen
 
@@ -34,12 +35,27 @@
     else [[MainScene instance] showGamePause];
 }
 
-- (void) buttonBuyItem1Action {
+- (void) showPanelBuyInformation:(NSString*)_captionText
+                _descriptionText:(NSString*)_descriptionText
+                        _sprName:(NSString*)_sprName
+                          _price:(NSString*)_price
+                           _func:(SEL)_func {
     [panelBuyInformation show:YES];
     [btnPanelBuyInfoNO show:YES];
-    [btnPanelBuyInfoYES show:YES];
     [btnPanelBuyInfoNO setEnabled:YES];
+    [btnPanelBuyInfoYES show:YES];
     [btnPanelBuyInfoYES setEnabled:YES];
+    [btnPanelBuyInfoYES setFunction:_func];
+    [labelPanelBuyInfoCaption show:YES];
+    [labelPanelBuyInfoCaption setText:_captionText];
+    [labelPanelBuyInfoDescription show:YES];
+    [labelPanelBuyInfoDescription setText:_descriptionText];
+    [labelPanelBuyInfoPrice show:YES];
+    [labelPanelBuyInfoPrice setText:_price];
+    
+    CCSpriteFrame *_frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:_sprName];
+    [panelBuyInfoPicture.spr setDisplayFrame:_frame];
+    [panelBuyInfoPicture show:YES];
 }
 
 - (void) panelBuyInformationHide {
@@ -48,15 +64,57 @@
     [btnPanelBuyInfoYES show:NO];
     [btnPanelBuyInfoNO setEnabled:NO];
     [btnPanelBuyInfoYES setEnabled:NO];
+    [labelPanelBuyInfoCaption show:NO];
+    [labelPanelBuyInfoDescription show:NO];
+    [labelPanelBuyInfoPrice show:NO];
+    [panelBuyInfoPicture show:NO];
 }
 
-- (void) buttonBuyItem2Action {
-    //[[MKStoreManager sharedManager] buyFeature:kFeatureBId];
-    //[FlurryAnalytics logEvent:ANALYTICS_IAP_MARKET_SCREEN_BUY_15_SKIPS];
+- (void) panelBuyInformationBtnYesAction {
+    
+    
 }
 
-- (void) buttonBuyItem3Action {
-	
+- (NSString*) getSpriteName:(NSString*)_str {
+    return [_str substringToIndex:[_str length]-5];
+}
+
+- (void) setCorrectIconFrames {
+    CCSpriteFrame *_frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+                             [NSString stringWithFormat:@"%@%i.jpg", [self getSpriteName:btnBonusAccelerationPower.sprName], [Defs instance].bonusAccelerationPowerLevel]];
+    CCLOG(@"%@", [NSString stringWithFormat:@"%@%i.jpg", [self getSpriteName:btnBonusAccelerationPower.sprName], [Defs instance].bonusAccelerationPowerLevel]);
+    [btnBonusAccelerationPower.spr setDisplayFrame:_frame];
+}
+     
+- (void) buttonBuyBonusAccelerationPowerAction {
+    [self panelBuyInformationHide];
+    
+    int _price = [[[Defs instance].prices objectAtIndex:[Defs instance].bonusAccelerationPowerLevel] intValue];
+    
+    if ([Defs instance].coinsCount > _price) {
+        ++[Defs instance].bonusAccelerationPowerLevel;
+        [MyData setStoreValue:@"bonusAccelerationPowerLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].bonusAccelerationPowerLevel]];
+        [Defs instance].bonusAccelerationPower += BONUS_ACCELERATION_POWER_ADD_COEFF;
+        [MyData setStoreValue:@"bonusAccelerationPower" value:[NSString stringWithFormat:@"%f",[Defs instance].bonusAccelerationPower]];
+        [Defs instance].coinsCount -= _price;
+        [MyData setStoreValue:@"coinsCount" value:[NSString stringWithFormat:@"%i",[Defs instance].coinsCount]];
+        [MyData encodeDict:[MyData getDictForSaveData]];
+        
+        [self setCorrectIconFrames];
+        [labelCoinsCount setText:[NSString stringWithFormat:@"%i", [Defs instance].coinsCount]];
+    } else {
+        CCLOG(@"Maybe buy soom coins??? :)");
+    }
+}
+
+- (void) buttonBuyBonusAccelerationPowerClick {
+    if ([Defs instance].bonusAccelerationPowerLevel < UPGRADE_LEVEL_COUNT) {
+        [self showPanelBuyInformation:NSLocalizedString(@"buttonBuyBonusAccelerationPowerCaption","")
+                     _descriptionText:NSLocalizedString(@"buttonBuyBonusAccelerationPowerDescription","")
+                             _sprName:[NSString stringWithFormat:@"%@%i.jpg", [self getSpriteName:btnBonusAccelerationPower.sprName], [Defs instance].bonusAccelerationPowerLevel]
+                               _price:[NSString stringWithFormat:@"%i", [[[Defs instance].prices objectAtIndex:[Defs instance].bonusAccelerationPowerLevel] intValue]]
+                                _func:@selector(buttonBuyBonusAccelerationPowerAction)];
+    }
 }
 
 - (id) init{
@@ -75,13 +133,29 @@
 		
 		[[MainScene instance].gui addItem:(id)btnDef _pos:ccp(30,30)];
 		
+        //-------------------------------------
+        //   Окно покупки элемента
+        //-------------------------------------
+        
+        float _panelX = SCREEN_WIDTH_HALF;
+        float _panelY = SCREEN_HEIGHT_HALF;
+        
         GUIPanelDef *_panelDef = [GUIPanelDef node];
         _panelDef.group = GAME_STATE_NONE;
         _panelDef.parentFrame = [MainScene instance];
         _panelDef.zOrder = 100;
         _panelDef.sprName = @"window_reset.png";
         
-        panelBuyInformation = [[MainScene instance].gui addItem:(id)_panelDef _pos:ccp(SCREEN_WIDTH_HALF, SCREEN_HEIGHT_HALF)];
+        panelBuyInformation = [[MainScene instance].gui addItem:(id)_panelDef _pos:ccp(_panelX, _panelY)];
+        
+        float _panelWidth = panelBuyInformation.spr.contentSize.width;
+        float _panelHeight = panelBuyInformation.spr.contentSize.height;
+        
+        _panelDef.parentFrame = panelBuyInformation.spr;
+        _panelDef.zOrder = 0;
+        _panelDef.sprName = @"icon_upgrade_0.jpg";
+        panelBuyInfoPicture = [[MainScene instance].gui addItem:(id)_panelDef _pos:ccp(37, _panelHeight - 37)];
+        
         
         btnDef.group = GAME_STATE_NONE;
         btnDef.isManyTouches = YES;
@@ -91,22 +165,37 @@
 		btnDef.func = @selector(panelBuyInformationHide);
 		btnDef.enabled = NO;
 		
-		btnPanelBuyInfoNO = [[MainScene instance].gui addItem:(id)btnDef
-                                                                _pos:ccp(panelBuyInformation.spr.contentSize.width*0.5f-50, panelBuyInformation.spr.contentSize.height*0.25f)];
+		btnPanelBuyInfoNO = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(_panelWidth*0.5f-50, _panelHeight*0.25f)];
 		
 		btnDef.sprName = @"btnOk.png";
 		btnDef.sprDownName = @"btnOkDown.png";
 		btnDef.func = @selector(panelBuyInformationHide);
 		
-		btnPanelBuyInfoYES = [[MainScene instance].gui addItem:(id)btnDef
-                                                                 _pos:ccp(panelBuyInformation.spr.contentSize.width*0.5f+50, panelBuyInformation.spr.contentSize.height*0.25f)];
+		btnPanelBuyInfoYES = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(_panelWidth*0.5f+50, _panelHeight*0.25f)];
+        
+        
         
         GUILabelTTFOutlinedDef *_labelTTFOutlinedDef = [GUILabelTTFOutlinedDef node];
-        _labelTTFOutlinedDef.group = GAME_STATE_MARKETSCREEN;
-        _labelTTFOutlinedDef.alignement = kCCTextAlignmentCenter;
-        _labelTTFOutlinedDef.text = @"Improvements";
-        [[MainScene instance].gui addItem:(id)_labelTTFOutlinedDef _pos:ccp(SCREEN_WIDTH_HALF, 465)];
+        _labelTTFOutlinedDef.group = GAME_STATE_NONE;
+        _labelTTFOutlinedDef.text = @"";
+        labelPanelBuyInfoCaption = [[MainScene instance].gui addItem:(id)_labelTTFOutlinedDef _pos:ccp(_panelX, _panelY + 100)];
         
+        _labelTTFOutlinedDef.text = @"";
+        _labelTTFOutlinedDef.alignement = kCCTextAlignmentCenter;
+        _labelTTFOutlinedDef.containerSize = CGSizeMake(200, 150);
+        labelPanelBuyInfoDescription = [[MainScene instance].gui addItem:(id)_labelTTFOutlinedDef _pos:ccp(_panelX + 40, _panelY)];
+        
+        _labelTTFOutlinedDef.text = @"";
+        _labelTTFOutlinedDef.alignement = kCCTextAlignmentLeft;
+        _labelTTFOutlinedDef.containerSize = CGSizeZero;
+        labelPanelBuyInfoPrice = [[MainScene instance].gui addItem:(id)_labelTTFOutlinedDef _pos:ccp(_panelX - _panelWidth*0.5f + 15, _panelY - _panelHeight *0.5f+ 15)];
+        
+        
+        //-------------------------------------
+        //   Надписи на экране
+        //-------------------------------------
+        
+        _labelTTFOutlinedDef.group = GAME_STATE_MARKETSCREEN;
         _labelTTFOutlinedDef.alignement = kCCTextAlignmentLeft;
         _labelTTFOutlinedDef.text = @"Ship";
         [[MainScene instance].gui addItem:(id)_labelTTFOutlinedDef _pos:ccp(5, 442)];
@@ -115,20 +204,30 @@
         _labelTTFOutlinedDef.text = @"Bonuses";
         [[MainScene instance].gui addItem:(id)_labelTTFOutlinedDef _pos:ccp(315, 442)];
         
-        _labelTTFOutlinedDef.alignement = kCCTextAlignmentLeft;
-        _labelTTFOutlinedDef.text = @"Ship equipment";
-        [[MainScene instance].gui addItem:(id)_labelTTFOutlinedDef _pos:ccp(5, 200)];
+        _labelTTFOutlinedDef.alignement = kCCTextAlignmentRight;
+        _labelTTFOutlinedDef.text = [NSString stringWithFormat:@"%i", [Defs instance].coinsCount];
+        _labelTTFOutlinedDef.textColor = ccc3(255, 255, 0);
+        labelCoinsCount = [[MainScene instance].gui addItem:(id)_labelTTFOutlinedDef _pos:ccp(318, SCREEN_HEIGHT - 13)];
         
         
         btnDef.group = GAME_STATE_MARKETSCREEN;
         btnDef.parentFrame = [MainScene instance].gui;
         btnDef.enabled = YES;
+        btnDef.isManyTouches = YES;
+        
         // Корабль
-        for (int i = 0; i < 6; i++) {
+        
+        btnDef.sprName = @"icon_upgrade_0.jpg";
+        btnDef.sprDownName = nil;
+        btnDef.func = @selector(buttonBuyBonusAccelerationPowerClick);
+        btnBonusAccelerationPower = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(43 + 64 + 8, 400 - 72)];
+        
+        
+       /* for (int i = 0; i < 6; i++) {
             btnDef.sprName = [NSString stringWithFormat:@"icon_upgrade_%i.jpg",i];
             btnDef.sprDownName = nil;
             btnDef.func = @selector(buttonBuyItem1Action);
-            btnDef.isManyTouches = YES;
+            
             
             [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(43 + ((i % 2)*64) + (i % 2)*8, 400 - int(i / 2)*72)];
         }
@@ -141,7 +240,7 @@
             btnDef.isManyTouches = YES;
             
             [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(206 + ((i % 2)*64) + (i % 2)*8, 400 - int(i / 2)*72)];
-        }
+        }*/
         
         btnDef.sprName = @"btnGiftUp.png";
 		btnDef.sprDownName = @"btnGiftDown.png";
@@ -170,6 +269,10 @@
             [backSpr retain];
         }
 		if (backSpr.parent == nil) [self addChild:backSpr];
+        
+        [self setCorrectIconFrames];
+        
+        [labelCoinsCount setText:[NSString stringWithFormat:@"%i", [Defs instance].coinsCount]];
 	} else { 
 		if (backSpr.parent != nil) [backSpr removeFromParentAndCleanup:YES];
 	}

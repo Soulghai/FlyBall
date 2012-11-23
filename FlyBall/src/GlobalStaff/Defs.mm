@@ -4,7 +4,6 @@
 
 //@synthesize particles;
 @synthesize actorManager = _actorManager;
-@synthesize myFont;
 @synthesize spriteSheetChars;
 @synthesize spriteSheetCells;
 //@synthesize objectBackLayer;
@@ -58,8 +57,12 @@
 @synthesize coinsCount;
 @synthesize bestScore;
 
-@synthesize bonusAccelerationValue;
+@synthesize prices;
+
+@synthesize bonusAccelerationPower;
+@synthesize bonusAccelerationPowerLevel;
 @synthesize bonusAccelerationDelay;
+@synthesize bonusAccelerationDelayLevel;
 @synthesize bonusGetChance;
 @synthesize bonusGodModeTime;
 @synthesize gravitation;

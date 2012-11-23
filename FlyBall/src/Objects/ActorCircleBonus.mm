@@ -36,7 +36,7 @@
 
 - (void) setRandomBonus {
     
-    CCSpriteFrame* frame;
+    CCSpriteFrame* frame = nil;
     int _ran = (int)round(CCRANDOM_0_1()*BONUS_GODMODE);
     bonusID = _ran;
     if (bonusID <= BONUS_ARMOR) {
@@ -56,7 +56,7 @@
                     bonusID = BONUS_GODMODE;
                 }
 
-    [costume setDisplayFrame:frame];
+    if (frame != nil) [costume setDisplayFrame:frame];
 }
 
 - (void) eraserCollide {

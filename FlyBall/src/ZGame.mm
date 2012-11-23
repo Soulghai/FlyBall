@@ -11,7 +11,6 @@
 #import "Defs.h"
 #import "globalParam.h"
 #import "Utils.h"
-#import "ZFontManager.h"
 #import "SimpleAudioEngine.h"
 #import "ActorPlayer.h"
 #import "MKStoreManager.h"
@@ -52,20 +51,12 @@
 		isVisible = NO;
 		
 		isPause = NO;
-		//--------------------------------------
-        // То, что можно прокачать
-        //--------------------------------------
-        [Defs instance].bonusAccelerationValue = BONUS_ACCELERATION_DEFAULT;
-        [Defs instance].bonusAccelerationDelay = BONUS_ACCELERATION_DELAY_DEFAULT;
-        [Defs instance].bonusGetChance = BONUS_GET_CHANCE_DEFAULT;
-        [Defs instance].bonusGodModeTime = BONUS_GODMODE_TIME_DEFAULT;
-        [Defs instance].gravitation = GRAVITATION_DEFAULT;
-        [Defs instance].speedWallAccelerationCoeff = SPEEDWALL_ACCELERATION_DEFAULT;
-        [Defs instance].speedWallDeccelerationCoeff = SPEEDWALL_DECCELERARION_DEFAULT;
-        [Defs instance].speedWallDelayShowingCoeff = SPEEDWALL_DELAYSHOWINGCOEFF_DEFAULT;
-        [Defs instance].playerMagnetDistance = PLAYER_MAGNET_DISTANDE_DEFAULT;
-        [Defs instance].playerMagnetPower = PLAYER_MAGNET_POWER_DEFAULT;
-        [Defs instance].playerGodModeAfterCrashTime = BONUS_GODMODE_AFTERCRASH_TIME_DEFAULT;
+        
+        [Defs instance].prices = [NSArray arrayWithObjects:[NSNumber numberWithInt:5],
+                                  [NSNumber numberWithInt:10],
+                                  [NSNumber numberWithInt:20],
+                                  [NSNumber numberWithInt:30],
+                                  [NSNumber numberWithInt:40], nil];
         
 		[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];
         
@@ -73,48 +64,84 @@
         
         if (![Defs instance].startGameNotFirstTime) {
             [Defs instance].rateMeWindowShowValue = 0;
-            //[[Defs instance].userSettings setInteger:0 forKey:@"rateMeWindowShowValue"];
-            [MyData setStoreValue:@"rateMeWindowShowValue" value:@"0"];
-            
-            
-            [MyData setStoreValue:@"coinsCount" value:@"0"];
-
-            //[[Defs instance].userSettings setInteger:0 forKey:@"totalTouchBloxCounter"];
-            [MyData setStoreValue:@"totalTouchBloxCounter" value:@"0"];
-            //[[Defs instance].userSettings setInteger:0 forKey:@"totalDeadBloxCounter"];
-            [MyData setStoreValue:@"totalDeadBloxCounter" value:@"0"];
-            [MyData setStoreValue:@"totalBombCounter" value:@"0"];
-            [MyData setStoreValue:@"bestScore" value:@"0"];
-            
             [Defs instance].bestScore = 0;
             [Defs instance].totalTouchBloxCounter = 0;
             [Defs instance].totalDeadBloxCounter = 0;
             [Defs instance].totalBombCounter = 0;
             [Defs instance].coinsCount = 0;
             
+            //--------------------------------------
+            // То, что можно прокачать
+            //--------------------------------------
+            [Defs instance].bonusAccelerationPower = BONUS_ACCELERATION_POWER_DEFAULT;
+            [Defs instance].bonusAccelerationPowerLevel = 0;
+            [Defs instance].bonusAccelerationDelay = BONUS_ACCELERATION_DELAY_DEFAULT;
+            [Defs instance].bonusAccelerationDelayLevel = 0;
+            [Defs instance].bonusGetChance = BONUS_GET_CHANCE_DEFAULT;
+            [Defs instance].bonusGodModeTime = BONUS_GODMODE_TIME_DEFAULT;
+            [Defs instance].gravitation = GRAVITATION_DEFAULT;
+            [Defs instance].speedWallAccelerationCoeff = SPEEDWALL_ACCELERATION_DEFAULT;
+            [Defs instance].speedWallDeccelerationCoeff = SPEEDWALL_DECCELERARION_DEFAULT;
+            [Defs instance].speedWallDelayShowingCoeff = SPEEDWALL_DELAYSHOWINGCOEFF_DEFAULT;
+            [Defs instance].playerMagnetDistance = PLAYER_MAGNET_DISTANDE_DEFAULT;
+            [Defs instance].playerMagnetPower = PLAYER_MAGNET_POWER_DEFAULT;
+            [Defs instance].playerGodModeAfterCrashTime = BONUS_GODMODE_AFTERCRASH_TIME_DEFAULT;
+            
+            [MyData setStoreValue:@"rateMeWindowShowValue" value:@"0"];
+            [MyData setStoreValue:@"coinsCount" value:@"0"];
+            [MyData setStoreValue:@"totalTouchBloxCounter" value:@"0"];
+            [MyData setStoreValue:@"totalDeadBloxCounter" value:@"0"];
+            [MyData setStoreValue:@"totalBombCounter" value:@"0"];
+            [MyData setStoreValue:@"bestScore" value:@"0"];
+            
+            [MyData setStoreValue:@"bonusAccelerationPower" value:[NSString stringWithFormat:@"%f",[Defs instance].bonusAccelerationPower]];
+            [MyData setStoreValue:@"bonusAccelerationPowerLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].bonusAccelerationPowerLevel]];
+            [MyData setStoreValue:@"bonusAccelerationDelay" value:[NSString stringWithFormat:@"%f",[Defs instance].bonusAccelerationDelay]];
+            [MyData setStoreValue:@"bonusAccelerationDelayLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].bonusAccelerationDelayLevel]];
+            [MyData setStoreValue:@"bonusGetChance" value:[NSString stringWithFormat:@"%f",[Defs instance].bonusGetChance]];
+            [MyData setStoreValue:@"bonusGodModeTime" value:[NSString stringWithFormat:@"%f",[Defs instance].bonusGodModeTime]];
+            [MyData setStoreValue:@"gravitation" value:[NSString stringWithFormat:@"%f",[Defs instance].gravitation]];
+            [MyData setStoreValue:@"speedWallAccelerationCoeff" value:[NSString stringWithFormat:@"%f",[Defs instance].speedWallAccelerationCoeff]];
+            [MyData setStoreValue:@"speedWallDeccelerationCoeff" value:[NSString stringWithFormat:@"%f",[Defs instance].speedWallDeccelerationCoeff]];
+            [MyData setStoreValue:@"speedWallDelayShowingCoeff" value:[NSString stringWithFormat:@"%f",[Defs instance].speedWallDelayShowingCoeff]];
+            [MyData setStoreValue:@"playerMagnetDistance" value:[NSString stringWithFormat:@"%f",[Defs instance].playerMagnetDistance]];
+            [MyData setStoreValue:@"playerMagnetPower" value:[NSString stringWithFormat:@"%f",[Defs instance].playerMagnetPower]];
+            [MyData setStoreValue:@"playerGodModeAfterCrashTime" value:[NSString stringWithFormat:@"%f",[Defs instance].playerGodModeAfterCrashTime]];
+            
+            [MyData encodeDict:[MyData getDictForSaveData]];
         } else {
             [Defs instance].rateMeWindowShowValue = [[MyData getStoreValue:@"rateMeWindowShowValue"] intValue];
-            
             [Defs instance].coinsCount = [[MyData getStoreValue:@"coinsCount"] intValue];
             [Defs instance].bestScore = [[MyData getStoreValue:@"bestScore"] intValue];
             [Defs instance].totalTouchBloxCounter = [[MyData getStoreValue:@"totalTouchBloxCounter"] intValue];
             [Defs instance].totalDeadBloxCounter = [[MyData getStoreValue:@"totalDeadBloxCounter"] intValue];
             [Defs instance].totalBombCounter = [[MyData getStoreValue:@"totalDeadBloxCounter"] intValue];
+            
+            [Defs instance].bonusAccelerationPower = [[MyData getStoreValue:@"bonusAccelerationPower"] floatValue];
+            [Defs instance].bonusAccelerationPowerLevel  = [[MyData getStoreValue:@"bonusAccelerationPowerLevel"] intValue];
+            [Defs instance].bonusAccelerationDelay = [[MyData getStoreValue:@"bonusAccelerationDelay"] floatValue];
+            [Defs instance].bonusAccelerationDelayLevel  = [[MyData getStoreValue:@"bonusAccelerationDelayLevel"] intValue];
         }
+        
+        //[Defs instance].coinsCount = 10;
+        //[Defs instance].bonusAccelerationPower = BONUS_ACCELERATION_POWER_DEFAULT;
+        //[Defs instance].bonusAccelerationPowerLevel = 0;
+        //[Defs instance].bonusAccelerationDelay = BONUS_ACCELERATION_DELAY_DEFAULT;
+        //[Defs instance].bonusAccelerationDelayLevel = 0;
+        //[Defs instance].bonusGetChance = BONUS_GET_CHANCE_DEFAULT;
+        //[Defs instance].bonusGodModeTime = BONUS_GODMODE_TIME_DEFAULT;
+        //[Defs instance].gravitation = GRAVITATION_DEFAULT;
+        //[Defs instance].speedWallAccelerationCoeff = SPEEDWALL_ACCELERATION_DEFAULT;
+        //[Defs instance].speedWallDeccelerationCoeff = SPEEDWALL_DECCELERARION_DEFAULT;
+        //[Defs instance].speedWallDelayShowingCoeff = SPEEDWALL_DELAYSHOWINGCOEFF_DEFAULT;
+        //[Defs instance].playerMagnetDistance = PLAYER_MAGNET_DISTANDE_DEFAULT;
+        //[Defs instance].playerMagnetPower = PLAYER_MAGNET_POWER_DEFAULT;
+        //[Defs instance].playerGodModeAfterCrashTime = BONUS_GODMODE_AFTERCRASH_TIME_DEFAULT;
 		
         if (![Defs instance].isSoundMute) {
             [[SimpleAudioEngine sharedEngine] preloadEffect:@"level_win.wav"]; 
-            [[SimpleAudioEngine sharedEngine] preloadEffect:@"expand1.wav"];
-            [[SimpleAudioEngine sharedEngine] preloadEffect:@"expand2.wav"];
-            [[SimpleAudioEngine sharedEngine] preloadEffect:@"expand3.wav"];
-            [[SimpleAudioEngine sharedEngine] preloadEffect:@"expand4.wav"];
             [[SimpleAudioEngine sharedEngine] preloadEffect:@"button_click.wav"]; 
-            [[SimpleAudioEngine sharedEngine] preloadEffect:@"objectHit.wav"]; 
-            [[SimpleAudioEngine sharedEngine] preloadEffect:@"redThing_3.wav"]; 
             [[SimpleAudioEngine sharedEngine] preloadEffect:@"star.wav"]; 
-            [[SimpleAudioEngine sharedEngine] preloadEffect:@"level_fix.wav"];
-            [[SimpleAudioEngine sharedEngine] preloadEffect:@"rainbow_back.wav"];
-            [[SimpleAudioEngine sharedEngine] preloadEffect:@"_3__Safe_Clicks_looped.mp3"];
         }
             
 		GUIButtonDef *btnDef = [GUIButtonDef node];
@@ -125,11 +152,11 @@
 		btnDef.func = @selector(buttonPauseAction);
 		btnDef.sound = @"button_click.wav";
 		if ([Defs instance].iPhone5) {
-            GUIButton *_btn = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(SCREEN_WIDTH - 40, 30)];
+            GUIButton *_btn = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(SCREEN_WIDTH - 40, SCREEN_HEIGHT - 30)];
             [_btn.spr setScale:1.3f];
             _btn = nil;
         } else
-            [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(20,SCREEN_HEIGHT-20)];    
+            [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(SCREEN_WIDTH - 20,SCREEN_HEIGHT-20)];    
         
 		
 		/*btnDef.sprName = @"btnPlayPauseScreen.png";
@@ -144,11 +171,11 @@
 		btnDef.func = @selector(buttonLevelRestartAction);
         btnDef.isManyTouches = YES;
 		if ([Defs instance].iPhone5) {
-            GUIButton *_btnRestart = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(SCREEN_WIDTH - 40, SCREEN_HEIGHT - 30)];
+            GUIButton *_btnRestart = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(SCREEN_WIDTH - 40, 30)];
             [_btnRestart.spr setScale:1.f];
             _btnRestart = nil;
         } else {
-            GUIButton *_btnRestart = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(SCREEN_WIDTH - 20,SCREEN_HEIGHT-20)];
+            GUIButton *_btnRestart = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(20,SCREEN_HEIGHT-20)];
             [_btnRestart.spr setScale:0.7f];
             _btnRestart = nil;
         }
@@ -559,7 +586,7 @@
             float _playerVelocityX = player.velocity.x;
             float _playerVelocityY = player.velocity.y;
             if (player.isBonusSpeed) {
-                _playerVelocityY -= [Defs instance].bonusAccelerationValue;
+                _playerVelocityY -= [Defs instance].bonusAccelerationPower;
             }
             float _velocityXCoeff = 1 + fabs(_playerVelocityX/10);
             float _velocityYCoeff = (1.f + fabs(_playerVelocityY/40))*3 + CCRANDOM_0_1()*(fabs(_playerVelocityY/40));

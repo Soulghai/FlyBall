@@ -19,7 +19,6 @@
 - (id) init:(id)_def{
 	if ((self = [super init])) {		
 		GUILabelDef *_tmpDef = (GUILabelDef*)_def;
-		//spr = [[Defs instance].myFont textOut:ccp(0, 0) _str:@""];
         
         fontName = _tmpDef.fontName;
         

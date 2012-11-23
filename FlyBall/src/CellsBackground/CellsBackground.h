@@ -21,7 +21,6 @@
     NSMutableArray* cellsHighMap;
 }
 
-+(CellsBackground*) instance;
 -(void) restartParameters;
 - (void) update;
 - (void) show:(BOOL)_flag;

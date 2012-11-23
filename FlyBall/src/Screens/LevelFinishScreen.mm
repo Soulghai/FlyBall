@@ -51,8 +51,7 @@
         
         GUILabelTTFOutlinedDef *_labelTTFOutlinedDef = [GUILabelTTFOutlinedDef node];
         _labelTTFOutlinedDef.group = GAME_STATE_LEVELFINISH;
-        _labelTTFOutlinedDef.text = [NSString stringWithFormat:@"coins %i", [Defs instance].coinsCount];
-        
+        _labelTTFOutlinedDef.text = [NSString stringWithFormat:@"%i", [Defs instance].coinsCount];
         _labelTTFOutlinedDef.textColor = ccc3(255, 255, 0);
         scoreTotalStrPos = ccp(SCREEN_WIDTH_HALF, 320);
         levelNumber =[[MainScene instance].gui addItem:(id)_labelTTFOutlinedDef _pos:scoreTotalStrPos];
@@ -184,6 +183,7 @@
         
         waitAddScoreTime = 0;
         [scoreStr setText:@"0"];
+        [levelNumber setText:[NSString stringWithFormat:@"%i",[Defs instance].coinsCount]];
 	} else { 
         
 	}
@@ -259,12 +259,12 @@
             }
         } else
         {
-            if (scoreTotalCurrValue < [Defs instance].coinsCount) {
+            if (scoreTotalCurrValue <= [Defs instance].coinsCount) {
                 timeCoinsAdd += TIME_STEP;
                 if (timeCoinsAdd >= delayCoinsAdd) {
                     scoreTotalCurrValue += 1;
                     [levelNumber setPosition:ccp(scoreTotalStrPos.x + [[Utils instance] myRandom2F]*2, scoreTotalStrPos.y + [[Utils instance] myRandom2F]*2)];
-                    [levelNumber setText:[NSString stringWithFormat:@"coins %i",scoreTotalCurrValue]];
+                    [levelNumber setText:[NSString stringWithFormat:@"%i",scoreTotalCurrValue]];
                     if (![Defs instance].isSoundMute) [[SimpleAudioEngine sharedEngine] playEffect:@"star.wav"];
                     timeCoinsAdd = 0;
                 }

@@ -456,9 +456,6 @@
 		rotationSpd = 2;
         
         marketGoSpeed = 0.17f;
-	
-		//btnLeaderboard = [[Defs instance].myFont textOut:ccp(SCREEN_WIDTH_HALF, SCREEN_HEIGHT - 240) _str:@"LEADERBOARD-CRYSTAL"];
-		//[btnLeaderboard retain];
 		
 		//tip = [[Tips alloc] init];
 		}

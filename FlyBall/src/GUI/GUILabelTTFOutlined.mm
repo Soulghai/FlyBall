@@ -22,6 +22,29 @@
 @synthesize outlineSize;
 @synthesize alignement;
 
+-(CCRenderTexture*) createStroke: (CCLabelTTF*) _label   size:(float)size   color:(ccColor3B)cor
+{
+	CCRenderTexture* rt = [CCRenderTexture renderTextureWithWidth:_label.texture.contentSize.width+size*2  height:_label.texture.contentSize.height+size*2];
+	CGPoint originalPos = [_label position];
+	ccColor3B originalColor = [_label color];
+	[_label setColor:cor];
+	ccBlendFunc originalBlend = [_label blendFunc];
+	[_label setBlendFunc:(ccBlendFunc) { GL_SRC_ALPHA, GL_ONE }];
+	CGPoint center = ccp(_label.texture.contentSize.width/2+size, _label.texture.contentSize.height/2+size);
+	[rt begin];
+	for (int i=0; i<360; i+=15)
+	{
+		[_label setPosition:ccp(center.x + sin(CC_DEGREES_TO_RADIANS(i))*size, center.y + cos(CC_DEGREES_TO_RADIANS(i))*size)];
+		[_label visit];
+	}
+	[rt end];
+	[_label setPosition:originalPos];
+	[_label setColor:originalColor];
+	[_label setBlendFunc:originalBlend];
+	[rt setPosition:originalPos];
+	return rt;
+}
+
 - (id) init:(id)_def{
 	if ((self = [super init])) {		
 		GUILabelTTFOutlinedDef *_tmpDef = (GUILabelTTFOutlinedDef*)_def;
@@ -44,7 +67,7 @@
         
         //[label setPosition:ccp(_pos.x, _pos.y)];
         [label setColor:textColor];
-        stroke = [[Defs instance].myFont createStroke:label  size:outlineSize  color:outlineColor];
+        stroke = [self createStroke:label  size:outlineSize  color:outlineColor];
         [spr addChild:stroke];
         [spr addChild:label];
         
@@ -57,11 +80,14 @@
 		group = _tmpDef.group;
         enabled = _tmpDef.enabled;
         zIndex = _tmpDef.zIndex;
+        
+        oldPosition = CGPointZero;
 	}
 	return self;
 }
 
 - (void) setPosition:(CGPoint)_newPosition {
+    oldPosition = _newPosition;
     if (alignement == kCCTextAlignmentCenter) spr.position = ccp(_newPosition.x,_newPosition.y);
     else
     if (alignement == kCCTextAlignmentLeft) {
@@ -75,10 +101,11 @@
     [spr removeAllChildrenWithCleanup:YES];
     [label setString:_text];
     [stroke release];
-    stroke = [[Defs instance].myFont createStroke:label  size:outlineSize  color:outlineColor];
+    stroke = [self createStroke:label  size:outlineSize  color:outlineColor];
     [stroke retain];
     [spr addChild:stroke];
     [spr addChild:label];
+    [self setPosition:oldPosition];
 }
 
 - (void) setColor:(ccColor3B)_cc3 {

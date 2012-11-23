@@ -23,6 +23,7 @@
     
     CCLabelTTF* label; 
     CCRenderTexture* stroke;
+    CGPoint oldPosition;
 }
 
 @property (nonatomic, retain) CCSprite *spr;

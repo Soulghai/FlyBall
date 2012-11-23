@@ -114,12 +114,12 @@
 		isBtnDown = YES;
 		btnDownTime = 0;
         
-        CCSpriteFrame *frame;
+        CCSpriteFrame *frame = nil;
         if (checked) {
             if (sprTwoDownName != nil) frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:sprTwoDownName];
         }
         else {
-            if (sprTwoDownName != nil) frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:sprOneDownName];
+            if (sprOneDownName != nil) frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:sprOneDownName];
         }
         if (frame != nil) [spr setDisplayFrame:frame];
 	}

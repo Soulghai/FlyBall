@@ -209,7 +209,7 @@
     }
     
     if (isBonusSpeed) {
-        [self addVelocity:ccp(0, [Defs instance].bonusAccelerationValue)];
+        [self addVelocity:ccp(0, [Defs instance].bonusAccelerationPower)];
         
         if (emitterBonusSpeedFire) {
             if (emitterEngineFire) {

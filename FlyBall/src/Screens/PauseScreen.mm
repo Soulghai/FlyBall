@@ -68,7 +68,12 @@
     btnDef.func = @selector(buttonPauseClick);
     btnDef.sound = @"button_click.wav";
     
-    [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(20,SCREEN_HEIGHT-20)];
+    if ([Defs instance].iPhone5) {
+        GUIButton *_btn = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(SCREEN_WIDTH - 40, SCREEN_HEIGHT - 30)];
+        [_btn.spr setScale:1.3f];
+        _btn = nil;
+    } else
+        [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(SCREEN_WIDTH - 20,SCREEN_HEIGHT-20)];
     
     GUIPanelDef *panelDef = [GUIPanelDef node];
     panelDef.parentFrame = self;
@@ -99,10 +104,6 @@
     CCAnimation *animation = [CCAnimation animationWithSpriteFrames:animArr delay:0.2f];
     pauseAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:animation]];
     [pauseAction retain];
-    
-    levelNumber = [[Defs instance].myFont textOut:ccp(240, 275) _str:@""];
-    [levelNumber setColor:ccc3(255, 255, 255)];
-    [levelNumber retain];
     
     btnDef.sprName = @"btnLevels.png";
     btnDef.sprDownName = @"btnLevelsDown.png";
@@ -157,13 +158,10 @@
         [btnSound.spr setOpacity:5];
         [pauseHeroZZZ.spr setOpacity:5];
         [pauseZZZSpr.spr setOpacity:5];
-        [levelNumber setOpacity:5];
-		if (levelNumber.parent == nil) [[MainScene instance] addChild:levelNumber];
 		[pauseZZZSpr.spr runAction:pauseAction];
 		[btnSound setChecked:[Defs instance].isSoundMute];
         [btnMusic setChecked:[Defs instance].isMusicMute];
-	} else { 
-		if (levelNumber.parent != nil) [levelNumber removeFromParentAndCleanup:YES];
+	} else {
 		[pauseZZZSpr.spr stopAction:pauseAction];
 	}
 }
@@ -176,7 +174,6 @@
         if (btnSound.spr.opacity > 25) btnSound.spr.opacity -= 25; else btnSound.spr.opacity = 0;
         if (pauseHeroZZZ.spr.opacity > 25) pauseHeroZZZ.spr.opacity -= 25; else pauseHeroZZZ.spr.opacity = 0;
         if (pauseZZZSpr.spr.opacity > 25) pauseZZZSpr.spr.opacity -= 25; else pauseZZZSpr.spr.opacity = 0;
-        if (levelNumber.opacity > 25) levelNumber.opacity -= 25; else levelNumber.opacity = 0;
         
         if (backgroundSpr.spr.opacity > 25) backgroundSpr.spr.opacity -= 25; else {
             backgroundSpr.spr.opacity = 0;
@@ -191,7 +188,6 @@
         if (btnSound.spr.opacity < 250) btnSound.spr.opacity+= 25; else btnSound.spr.opacity = 255;
         if (pauseHeroZZZ.spr.opacity < 250) pauseHeroZZZ.spr.opacity+= 25; else pauseHeroZZZ.spr.opacity = 255;
         if (pauseZZZSpr.spr.opacity < 250) pauseZZZSpr.spr.opacity+= 25; else pauseZZZSpr.spr.opacity = 255;
-        if (levelNumber.opacity < 250) levelNumber.opacity+= 25; else levelNumber.opacity = 255;
     }
     
     /*CGPoint pos = btnMarket.spr.position;

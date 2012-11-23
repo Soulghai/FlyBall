@@ -13,54 +13,36 @@
 
 @implementation CellsBackground
 
-static CellsBackground *instance_;
-
-static void instance_remover() {
-	[instance_ release];
-}
-
-+ (CellsBackground*)instance {
-	@synchronized(self) {
-		if( instance_ == nil ) {
-			[[self alloc] init];
-		}
-	}
-	
-	return instance_;
-}
 
 - (id)init {
-	self = [super init];
-	instance_ = self;
-	
-	atexit(instance_remover);
-    
-    cells = [NSMutableArray arrayWithCapacity:6*8];
-    [cells retain];
-    
-    cellCountX = 6;
-    cellCountY = 5;
-    cellWidth = 64;
-    cellHeight = 128;
-    
-    cellsHighMap = [NSMutableArray arrayWithObjects:[NSNumber numberWithInt:2000],
-                    [NSNumber numberWithInt:5000],
-                    [NSNumber numberWithInt:10000],
-                    [NSNumber numberWithInt:30000],nil];
-    [cellsHighMap retain];
-    
-    cellCurrentFrames = [NSMutableArray arrayWithCapacity:cellCountX*cellCountY];
-    for (int i = 0; i < cellCountX*cellCountY; i++) {
-        [cellCurrentFrames addObject:[NSNumber numberWithInteger:0]];
-    }
-    [cellCurrentFrames retain];
-    
-    CCSprite *_spr;
-    for (int i = 0; i < cellCountX; i++) {
-        for (int j = 0; j < cellCountY; j++) {
-            _spr = [CCSprite spriteWithSpriteFrameName:@"cell_1.jpg"];
-            [_spr setAnchorPoint:CGPointZero];
-            [cells addObject:_spr];
+	if ((self = [super init])) {
+        cells = [NSMutableArray arrayWithCapacity:6*8];
+        [cells retain];
+        
+        cellCountX = 6;
+        cellCountY = 5;
+        cellWidth = 64;
+        cellHeight = 128;
+        
+        cellsHighMap = [NSMutableArray arrayWithObjects:[NSNumber numberWithInt:2000],
+                        [NSNumber numberWithInt:5000],
+                        [NSNumber numberWithInt:10000],
+                        [NSNumber numberWithInt:30000],nil];
+        [cellsHighMap retain];
+        
+        cellCurrentFrames = [NSMutableArray arrayWithCapacity:cellCountX*cellCountY];
+        for (int i = 0; i < cellCountX*cellCountY; i++) {
+            [cellCurrentFrames addObject:[NSNumber numberWithInteger:0]];
+        }
+        [cellCurrentFrames retain];
+        
+        CCSprite *_spr;
+        for (int i = 0; i < cellCountX; i++) {
+            for (int j = 0; j < cellCountY; j++) {
+                _spr = [CCSprite spriteWithSpriteFrameName:@"cell_1.jpg"];
+                [_spr setAnchorPoint:CGPointZero];
+                [cells addObject:_spr];
+            }
         }
     }
 	

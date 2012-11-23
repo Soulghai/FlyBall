@@ -35,4 +35,5 @@
 - (void) ccTouchMoved:(CGPoint)_touchLocation
 		_prevLocation:(CGPoint)_prevLocation 
 				_diff:(CGPoint)_diff;
+- (void) setFunction:(SEL)_func;
 @end

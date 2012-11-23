@@ -9,7 +9,6 @@
 
 //#import "ParticlesEngine.h";
 #import "cocos2d.h"
-#import "ZFontManager.h"
 #import "ActorManager.h"
 #import "GUIPanel.h"
 
@@ -19,7 +18,6 @@
 
 //@property (nonatomic, retain) ParticlesEngine *particles;
 @property (nonatomic, retain) ActorManager* actorManager;
-@property (nonatomic, retain) ZFontManager *myFont;
 @property (nonatomic, retain) CCSpriteBatchNode *spriteSheetChars;
 @property (nonatomic, retain) CCSpriteBatchNode *spriteSheetCells;
 //@property (nonatomic, retain) CCNode *objectBackLayer;
@@ -77,9 +75,14 @@
 @property (nonatomic, readwrite) int coinsCount;
 @property (nonatomic, readwrite) int bestScore;
 
+@property (nonatomic, retain) NSArray* prices;
+
 // Прокачиваемые параметры
-@property (nonatomic, readwrite) float bonusAccelerationValue;
+
+@property (nonatomic, readwrite) float bonusAccelerationPower;
+@property (nonatomic, readwrite) int bonusAccelerationPowerLevel;
 @property (nonatomic, readwrite) float bonusAccelerationDelay;
+@property (nonatomic, readwrite) int bonusAccelerationDelayLevel;
 @property (nonatomic, readwrite) float bonusGetChance;
 @property (nonatomic, readwrite) float bonusGodModeTime;
 @property (nonatomic, readwrite) float gravitation;
