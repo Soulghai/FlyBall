@@ -99,14 +99,23 @@
             [MyData setStoreValue:@"bonusAccelerationDelay" value:[NSString stringWithFormat:@"%f",[Defs instance].bonusAccelerationDelay]];
             [MyData setStoreValue:@"bonusAccelerationDelayLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].bonusAccelerationDelayLevel]];
             [MyData setStoreValue:@"bonusGetChance" value:[NSString stringWithFormat:@"%f",[Defs instance].bonusGetChance]];
+            [MyData setStoreValue:@"bonusGetChanceLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].bonusGetChanceLevel]];
             [MyData setStoreValue:@"bonusGodModeTime" value:[NSString stringWithFormat:@"%f",[Defs instance].bonusGodModeTime]];
+            [MyData setStoreValue:@"bonusGodModeTimeLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].bonusGodModeTimeLevel]];
             [MyData setStoreValue:@"gravitation" value:[NSString stringWithFormat:@"%f",[Defs instance].gravitation]];
+            [MyData setStoreValue:@"gravitationLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].gravitationLevel]];
             [MyData setStoreValue:@"speedWallAccelerationCoeff" value:[NSString stringWithFormat:@"%f",[Defs instance].speedWallAccelerationCoeff]];
+            [MyData setStoreValue:@"speedWallAccelerationCoeffLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].speedWallAccelerationCoeffLevel]];
             [MyData setStoreValue:@"speedWallDeccelerationCoeff" value:[NSString stringWithFormat:@"%f",[Defs instance].speedWallDeccelerationCoeff]];
+            [MyData setStoreValue:@"speedWallDeccelerationCoeffLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].speedWallDeccelerationCoeffLevel]];
             [MyData setStoreValue:@"speedWallDelayShowingCoeff" value:[NSString stringWithFormat:@"%f",[Defs instance].speedWallDelayShowingCoeff]];
+            [MyData setStoreValue:@"speedWallDelayShowingCoeffLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].speedWallDelayShowingCoeffLevel]];
             [MyData setStoreValue:@"playerMagnetDistance" value:[NSString stringWithFormat:@"%f",[Defs instance].playerMagnetDistance]];
+            [MyData setStoreValue:@"playerMagnetDistanceLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].playerMagnetDistanceLevel]];
             [MyData setStoreValue:@"playerMagnetPower" value:[NSString stringWithFormat:@"%f",[Defs instance].playerMagnetPower]];
+            [MyData setStoreValue:@"playerMagnetPowerLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].playerMagnetPowerLevel]];
             [MyData setStoreValue:@"playerGodModeAfterCrashTime" value:[NSString stringWithFormat:@"%f",[Defs instance].playerGodModeAfterCrashTime]];
+            [MyData setStoreValue:@"playerGodModeAfterCrashTimeLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].playerGodModeAfterCrashTimeLevel]];
             
             [MyData encodeDict:[MyData getDictForSaveData]];
         } else {
@@ -121,7 +130,26 @@
             [Defs instance].bonusAccelerationPowerLevel  = [[MyData getStoreValue:@"bonusAccelerationPowerLevel"] intValue];
             [Defs instance].bonusAccelerationDelay = [[MyData getStoreValue:@"bonusAccelerationDelay"] floatValue];
             [Defs instance].bonusAccelerationDelayLevel  = [[MyData getStoreValue:@"bonusAccelerationDelayLevel"] intValue];
+            [Defs instance].bonusGetChance = [[MyData getStoreValue:@"bonusGetChance"] floatValue];
+            [Defs instance].bonusGetChanceLevel  = [[MyData getStoreValue:@"bonusGetChanceLevel"] intValue];
+            [Defs instance].bonusGodModeTime = [[MyData getStoreValue:@"bonusGodModeTime"] floatValue];
+            [Defs instance].bonusGodModeTimeLevel  = [[MyData getStoreValue:@"bonusGodModeTimeLevel"] intValue];
+            [Defs instance].gravitation = [[MyData getStoreValue:@"gravitation"] floatValue];
+            [Defs instance].gravitationLevel  = [[MyData getStoreValue:@"gravitationLevel"] intValue];
+            [Defs instance].speedWallAccelerationCoeff = [[MyData getStoreValue:@"speedWallAccelerationCoeff"] floatValue];
+            [Defs instance].speedWallAccelerationCoeffLevel  = [[MyData getStoreValue:@"speedWallAccelerationCoeffLevel"] intValue];
+            [Defs instance].speedWallDeccelerationCoeff = [[MyData getStoreValue:@"speedWallDeccelerationCoeff"] floatValue];
+            [Defs instance].speedWallDeccelerationCoeffLevel  = [[MyData getStoreValue:@"speedWallDeccelerationCoeffLevel"] intValue];
+            [Defs instance].speedWallDelayShowingCoeff = [[MyData getStoreValue:@"speedWallDelayShowingCoeff"] floatValue];
+            [Defs instance].speedWallDelayShowingCoeffLevel  = [[MyData getStoreValue:@"speedWallDelayShowingCoeffLevel"] intValue];
+            [Defs instance].playerMagnetDistance = [[MyData getStoreValue:@"playerMagnetDistance"] floatValue];
+            [Defs instance].playerMagnetDistanceLevel  = [[MyData getStoreValue:@"playerMagnetDistanceLevel"] intValue];
+            [Defs instance].playerMagnetPower = [[MyData getStoreValue:@"playerMagnetPower"] floatValue];
+            [Defs instance].playerMagnetPowerLevel  = [[MyData getStoreValue:@"playerMagnetPowerLevel"] intValue];
+            [Defs instance].playerGodModeAfterCrashTime = [[MyData getStoreValue:@"playerGodModeAfterCrashTime"] floatValue];
+            [Defs instance].playerGodModeAfterCrashTimeLevel  = [[MyData getStoreValue:@"playerGodModeAfterCrashTimeLevel"] intValue];
         }
+        
         
         //[Defs instance].coinsCount = 10;
         //[Defs instance].bonusAccelerationPower = BONUS_ACCELERATION_POWER_DEFAULT;

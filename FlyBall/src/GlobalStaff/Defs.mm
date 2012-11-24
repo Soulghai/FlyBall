@@ -59,19 +59,39 @@
 
 @synthesize prices;
 
+
 @synthesize bonusAccelerationPower;
 @synthesize bonusAccelerationPowerLevel;
+
 @synthesize bonusAccelerationDelay;
 @synthesize bonusAccelerationDelayLevel;
+
 @synthesize bonusGetChance;
+@synthesize bonusGetChanceLevel;
+
 @synthesize bonusGodModeTime;
+@synthesize bonusGodModeTimeLevel;
+
 @synthesize gravitation;
+@synthesize gravitationLevel;
+
 @synthesize speedWallAccelerationCoeff;
+@synthesize speedWallAccelerationCoeffLevel;
+
 @synthesize speedWallDeccelerationCoeff;
+@synthesize speedWallDeccelerationCoeffLevel;
+
 @synthesize speedWallDelayShowingCoeff;
+@synthesize speedWallDelayShowingCoeffLevel;
+
 @synthesize playerMagnetDistance;
+@synthesize playerMagnetDistanceLevel;
+
 @synthesize playerMagnetPower;
+@synthesize playerMagnetPowerLevel;
+
 @synthesize playerGodModeAfterCrashTime;
+@synthesize playerGodModeAfterCrashTimeLevel;
 
 
 static Defs *instance_;

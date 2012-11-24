@@ -81,17 +81,36 @@
 
 @property (nonatomic, readwrite) float bonusAccelerationPower;
 @property (nonatomic, readwrite) int bonusAccelerationPowerLevel;
+
 @property (nonatomic, readwrite) float bonusAccelerationDelay;
 @property (nonatomic, readwrite) int bonusAccelerationDelayLevel;
+
 @property (nonatomic, readwrite) float bonusGetChance;
+@property (nonatomic, readwrite) int bonusGetChanceLevel;
+
 @property (nonatomic, readwrite) float bonusGodModeTime;
+@property (nonatomic, readwrite) int bonusGodModeTimeLevel;
+
 @property (nonatomic, readwrite) float gravitation;
+@property (nonatomic, readwrite) int gravitationLevel;
+
 @property (nonatomic, readwrite) float speedWallAccelerationCoeff;
+@property (nonatomic, readwrite) int speedWallAccelerationCoeffLevel;
+
 @property (nonatomic, readwrite) float speedWallDeccelerationCoeff;
+@property (nonatomic, readwrite) int speedWallDeccelerationCoeffLevel;
+
 @property (nonatomic, readwrite) float speedWallDelayShowingCoeff;
+@property (nonatomic, readwrite) int speedWallDelayShowingCoeffLevel;
+
 @property (nonatomic, readwrite) float playerMagnetDistance;
+@property (nonatomic, readwrite) int playerMagnetDistanceLevel;
+
 @property (nonatomic, readwrite) float playerMagnetPower;
+@property (nonatomic, readwrite) int playerMagnetPowerLevel;
+
 @property (nonatomic, readwrite) float playerGodModeAfterCrashTime;
+@property (nonatomic, readwrite) int playerGodModeAfterCrashTimeLevel;
 
 +(Defs*) instance;
 

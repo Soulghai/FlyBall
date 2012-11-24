@@ -27,6 +27,9 @@
     GUILabelTTFOutlined* labelCoinsCount;
     
     GUIButton* btnBonusAccelerationPower;
+    GUIButton* btnBonusAccelerationDelay;
+    GUIButton* btnBonusGetChance;
+    GUIButton* btnBonusGodModeTime;
 }
 
 - (id) init;
