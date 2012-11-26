@@ -26,8 +26,8 @@
         
         cellsHighMap = [NSMutableArray arrayWithObjects:[NSNumber numberWithInt:2000],
                         [NSNumber numberWithInt:5000],
-                        [NSNumber numberWithInt:10000],
-                        [NSNumber numberWithInt:30000],nil];
+                        [NSNumber numberWithInt:150000],
+                        [NSNumber numberWithInt:160000],nil];
         [cellsHighMap retain];
         
         cellCurrentFrames = [NSMutableArray arrayWithCapacity:cellCountX*cellCountY];

@@ -269,12 +269,17 @@ static void MainScene_remover() {
 	[pauseScreen show:YES];
 }
 
-- (void) showLevelDinishScreenAndSetScore:(BOOL)_flag
+- (void) showLevelFinishScreenAndSetScore:(BOOL)_flag
                                    _score:(int)_score
                                _starCount:(int)_starScore {
     if (_score < 0) _score = 0;
     [levelFinishScreen setScore:_score];
 	[levelFinishScreen show:_flag];
+}
+
+- (void) fromMarketToLevelFinishScreen {
+    game.state = GAME_STATE_LEVELFINISH;
+    [gui show:game.state];
 }
 
 - (void) accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration {

@@ -18,7 +18,6 @@
     BOOL isEraserCollide;
     
     CGPoint velocity;
-    float friction;
     float gravitation;
     
     CCParticleSystemQuad *emitterBoom;

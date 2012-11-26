@@ -95,7 +95,7 @@ In App Purchase Dialog
 /*
  Market Screen
  */
-"get 5 skips" = "+5 super rainbows";
+"panelBuyCoinsCaption" = "Not enough coins.\nBuy some?";
 
 "get 15 skips" = "+15 super rainbows";
 

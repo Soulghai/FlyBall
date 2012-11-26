@@ -45,6 +45,11 @@
     [FlurryAnalytics logEvent:ANALYTICS_PAUSE_SCREEN_BUTTON_LEVELS_CLICKED];
 }
 
+- (void) buttonMarketAction {
+	[[MainScene instance] showMarketScreen:GAME_STATE_LEVELFINISH];
+    [FlurryAnalytics logEvent:ANALYTICS_PAUSE_SCREEN_BUTTON_MARKET_CLICKED];
+}
+
 - (id) init{
 	if ((self = [super init])) {
 		isVisible = NO;
@@ -74,6 +79,12 @@
 		btnDef.group = GAME_STATE_LEVELFINISH;
 		btnDef.func = @selector(buttonLevelRestartClick);
         [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(SCREEN_WIDTH_HALF+40,40)];
+        
+        btnDef.sprName = @"btnShop.png";
+        btnDef.sprDownName = @"btnShopDown.png";
+        btnDef.func = @selector(buttonMarketAction);
+        
+        [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(SCREEN_WIDTH_HALF - 75,100)];
         
         GUIPanelDef *panelDef = [GUIPanelDef node];
         
@@ -151,11 +162,11 @@
     }
 
     int _newCoinsCount = int(scoreValue/10000);
-    CCLOG(@"_newCoinsCount = %i",_newCoinsCount);
+    CCLOG(@"_Score = %i , _newCoinsCount = %i",scoreValue, _newCoinsCount);
     
     timeCoinsAdd = 0;
     scoreTotalCurrValue = [Defs instance].coinsCount;
-    delayCoinsAdd = 0.3f;
+    delayCoinsAdd = 0.2f;
     
     [Defs instance].coinsCount += _newCoinsCount;
     //[[Defs instance].userSettings setInteger:[Statistics instance].totalLevelsComplite forKey:@"totalLevelsComplite"];
@@ -183,7 +194,7 @@
         
         waitAddScoreTime = 0;
         [scoreStr setText:@"0"];
-        [levelNumber setText:[NSString stringWithFormat:@"%i",[Defs instance].coinsCount]];
+        [levelNumber setText:[NSString stringWithFormat:@"%i",scoreTotalCurrValue]];
 	} else { 
         
 	}
@@ -259,7 +270,7 @@
             }
         } else
         {
-            if (scoreTotalCurrValue <= [Defs instance].coinsCount) {
+            if (scoreTotalCurrValue < [Defs instance].coinsCount) {
                 timeCoinsAdd += TIME_STEP;
                 if (timeCoinsAdd >= delayCoinsAdd) {
                     scoreTotalCurrValue += 1;

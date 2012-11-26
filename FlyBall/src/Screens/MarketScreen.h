@@ -21,8 +21,16 @@
     GUIButton* btnPanelBuyInfoYES;
     GUIPanel* panelBuyInfoPicture;
     GUILabelTTFOutlined* labelPanelBuyInfoCaption;
-    GUILabelTTFOutlined* labelPanelBuyInfoDescription;
+    GUILabelTTFOutlined* labelPanelBuyInfoCurrValue;
+    GUILabelTTFOutlined* labelPanelBuyInfoNextValue;
     GUILabelTTFOutlined* labelPanelBuyInfoPrice;
+    
+    GUIPanel* panelBuyCoins;
+    GUIButton* btnPanelBuyCoinsNO;
+    GUIButton* btnPanelBuyCoinsYES_1;
+    GUIButton* btnPanelBuyCoinsYES_3;
+    GUIButton* btnPanelBuyCoinsYES_5;
+    GUILabelTTFOutlined* labelPanelBuyCoinsCaption;
     
     GUILabelTTFOutlined* labelCoinsCount;
     
@@ -30,6 +38,12 @@
     GUIButton* btnBonusAccelerationDelay;
     GUIButton* btnBonusGetChance;
     GUIButton* btnBonusGodModeTime;
+    GUIButton* btnGravitation;
+    GUIButton* btnSpeedWallAccelerationCoeff;
+    GUIButton* btnSpeedWallDeccelerationCoeff;
+    GUIButton* btnPlayerMagnetDistance;
+    GUIButton* btnPlayerMagnetPower;
+    GUIButton* btnPlayerGodModeAfterCrashTime;
 }
 
 - (id) init;

@@ -20,6 +20,7 @@
     
     BOOL isBonusSpeed;
     float timeBonusSpeed;
+    float delayBonusSpeed;
     
     CCSprite *bonusCell;
     NSMutableArray* bonusCellItemIDs;
@@ -38,7 +39,7 @@
 - (void) loadCostume;
 - (void) addArmor;
 - (void) setGodMode:(float)_godModeTime;
-- (void) setSpeedBonus;
+- (void) setSpeedBonus:(float)_bonusSpeedTime;
 - (void) setBonusCell:(int)_bonusID;
 - (CGPoint) magnetReaction:(CGPoint)_point;
 @end

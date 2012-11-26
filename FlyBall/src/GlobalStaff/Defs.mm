@@ -78,10 +78,10 @@
 @synthesize speedWallAccelerationCoeff;
 @synthesize speedWallAccelerationCoeffLevel;
 
-@synthesize speedWallDeccelerationCoeff;
+@synthesize speedWallDeccelerationCoeff;        
 @synthesize speedWallDeccelerationCoeffLevel;
 
-@synthesize speedWallDelayShowingCoeff;
+@synthesize speedWallDelayShowingCoeff;                 //пока нельзя прокачивать в магазине
 @synthesize speedWallDelayShowingCoeffLevel;
 
 @synthesize playerMagnetDistance;

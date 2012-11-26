@@ -42,8 +42,9 @@
 - (void) showMenu;
 - (void) showMarketScreen:(int)_state;
 - (void) showGamePause;
-- (void) showLevelDinishScreenAndSetScore:(BOOL)_flag
+- (void) showLevelFinishScreenAndSetScore:(BOOL)_flag
                                    _score:(int)_score
                                _starCount:(int)_starScore;
+- (void) fromMarketToLevelFinishScreen;
 
 @end

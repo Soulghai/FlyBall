@@ -78,7 +78,7 @@
                 <key>x</key>
                 <integer>83</integer>
                 <key>y</key>
-                <integer>143</integer>
+                <integer>149</integer>
             </dict>
             <key>bonus_speed.png</key>
             <dict>
@@ -97,45 +97,45 @@
                 <key>x</key>
                 <integer>49</integer>
                 <key>y</key>
-                <integer>143</integer>
+                <integer>149</integer>
             </dict>
             <key>player.png</key>
             <dict>
                 <key>height</key>
-                <integer>45</integer>
+                <integer>48</integer>
                 <key>offsetX</key>
                 <real>0</real>
                 <key>offsetY</key>
                 <real>0</real>
                 <key>originalHeight</key>
-                <integer>45</integer>
+                <integer>48</integer>
                 <key>originalWidth</key>
-                <integer>45</integer>
+                <integer>48</integer>
                 <key>width</key>
-                <integer>45</integer>
+                <integer>48</integer>
                 <key>x</key>
-                <integer>49</integer>
+                <integer>68</integer>
                 <key>y</key>
-                <integer>96</integer>
+                <integer>52</integer>
             </dict>
             <key>player_armor_1.png</key>
             <dict>
                 <key>height</key>
-                <integer>45</integer>
+                <integer>48</integer>
                 <key>offsetX</key>
                 <real>0</real>
                 <key>offsetY</key>
                 <real>0</real>
                 <key>originalHeight</key>
-                <integer>45</integer>
+                <integer>48</integer>
                 <key>originalWidth</key>
-                <integer>45</integer>
+                <integer>48</integer>
                 <key>width</key>
-                <integer>45</integer>
+                <integer>48</integer>
                 <key>x</key>
-                <integer>2</integer>
-                <key>y</key>
                 <integer>68</integer>
+                <key>y</key>
+                <integer>2</integer>
             </dict>
             <key>player_armor_2.png</key>
             <dict>
@@ -152,9 +152,9 @@
                 <key>width</key>
                 <integer>45</integer>
                 <key>x</key>
-                <integer>68</integer>
-                <key>y</key>
                 <integer>49</integer>
+                <key>y</key>
+                <integer>102</integer>
             </dict>
             <key>player_armor_3.png</key>
             <dict>
@@ -171,9 +171,9 @@
                 <key>width</key>
                 <integer>45</integer>
                 <key>x</key>
-                <integer>68</integer>
-                <key>y</key>
                 <integer>2</integer>
+                <key>y</key>
+                <integer>68</integer>
             </dict>
             <key>playerglow.png</key>
             <dict>
@@ -204,7 +204,7 @@
             <key>size</key>
             <string>{128,256}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:dae810b5d0b5eb5f3814117941c8545f$</string>
+            <string>$TexturePacker:SmartUpdate:1202d8d729aaf34c9535efed6fa18f72$</string>
             <key>textureFileName</key>
             <string>gfx_chars.pvr.ccz</string>
         </dict>

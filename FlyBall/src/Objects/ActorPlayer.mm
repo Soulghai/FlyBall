@@ -33,6 +33,9 @@
         armored = 0;
         isGodMode = 0;
         
+        timeBonusSpeed = 0;
+        delayBonusSpeed = 0;
+        
         magnetDistance = [Defs instance].playerMagnetDistance;
         magnetPower = [Defs instance].playerMagnetPower;
         
@@ -92,13 +95,15 @@
     CCLOG(@"[GOD MODE:ON]");
 }
 
-- (void) setSpeedBonus {
+- (void) setSpeedBonus:(float)_bonusSpeedTime {
     isBonusSpeed = YES;
-    timeBonusSpeed = 0;
+    delayBonusSpeed += _bonusSpeedTime;
     if (emitterBonusSpeedFire) {
-        [emitterBonusSpeedFire scheduleUpdate];
-        if (emitterBonusSpeedFire.parent == nil) {
-            [[Defs instance].objectFrontLayer addChild:emitterBonusSpeedFire z:50];
+        if (!emitterBonusSpeedFire.parent) {
+            [emitterBonusSpeedFire scheduleUpdate];
+            if (emitterBonusSpeedFire.parent == nil) {
+                [[Defs instance].objectFrontLayer addChild:emitterBonusSpeedFire z:50];
+            }
         }
     }
 }
@@ -124,26 +129,30 @@
     }
 }
 
+- (void) hideBonusSpeedFire {
+    if (emitterBonusSpeedFire) {
+        [emitterBonusSpeedFire unscheduleUpdate];
+        if (emitterBonusSpeedFire.parent) [emitterBonusSpeedFire removeFromParentAndCleanup:NO];
+    }
+}
+
 - (void) show:(BOOL)_flag {
     [super show:_flag];
     
     if (_flag) {
-        if (emitterEngineFire) {
+        if (!emitterEngineFire.parent) {
             [emitterEngineFire scheduleUpdate];
             if (emitterEngineFire.parent == nil) {
                 [[Defs instance].objectFrontLayer addChild:emitterEngineFire z:50];
             }
         }
     } else {
-        if (emitterEngineFire) {
+        if (emitterEngineFire.parent) {
             [emitterEngineFire unscheduleUpdate];
             if (emitterEngineFire.parent) [emitterEngineFire removeFromParentAndCleanup:NO];
         }
         
-        if (emitterBonusSpeedFire) {
-            [emitterBonusSpeedFire unscheduleUpdate];
-            if (emitterBonusSpeedFire.parent) [emitterBonusSpeedFire removeFromParentAndCleanup:NO];
-        }
+        [self hideBonusSpeedFire];
     }
     
     [self showGodModeSprite:_flag];
@@ -183,9 +192,13 @@
     CGPoint _oldPosition = costume.position;
     [super update];
     
+    costume.rotation = -[Utils GetAngleBetweenPt1:_oldPosition andPt2:costume.position]-90;
+    
     if (emitterEngineFire) {
         emitterEngineFire.position = costume.position;
         emitterEngineFire.speed = 30*[[Utils instance] distance:costume.position.x _y1:costume.position.y _x2:_oldPosition.x _y2:_oldPosition.y];
+        if (emitterEngineFire.speed < 30) emitterEngineFire.speed = 1; else
+            if (emitterEngineFire.speed > 1500) emitterEngineFire.speed = 1500;
         emitterEngineFire.angle = [Utils GetAngleBetweenPt1:_oldPosition andPt2:costume.position];
     }
     
@@ -220,13 +233,11 @@
         }
         
         timeBonusSpeed += TIME_STEP;
-        if (timeBonusSpeed >= [Defs instance].bonusAccelerationDelay) {
+        if (timeBonusSpeed >= delayBonusSpeed) {
             isBonusSpeed = NO;
             timeBonusSpeed = 0;
-            if (emitterBonusSpeedFire) {
-                [emitterBonusSpeedFire unscheduleUpdate];
-                if (emitterBonusSpeedFire.parent) [emitterBonusSpeedFire removeFromParentAndCleanup:NO];
-            }
+            delayGodMode = 0;
+            [self hideBonusSpeedFire];
         }
     }
 

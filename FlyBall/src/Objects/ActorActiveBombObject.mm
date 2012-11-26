@@ -89,9 +89,9 @@
                 break;
         }
         
-        emitterBoom.position = costume.position;
+        emitterBoom.position = ccpAdd(costume.position, [Defs instance].objectFrontLayer.position);
         if ((emitterBoom)&&(emitterBoom.parent == nil))
-            [[Defs instance].objectFrontLayer addChild:emitterBoom];
+            [[MainScene instance].game addChild:emitterBoom];
         
         [self deactivate];
 	}	

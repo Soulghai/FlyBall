@@ -46,8 +46,67 @@
     [self setPause:!isPause];
 }
 
+-(void) retartGameProcess {
+    [Defs instance].bestScore = 0;
+    [Defs instance].coinsCount = 0;
+    
+    //--------------------------------------
+    // То, что можно прокачать
+    //--------------------------------------
+    [Defs instance].bonusAccelerationPower = BONUS_ACCELERATION_POWER_DEFAULT;
+    [Defs instance].bonusAccelerationPowerLevel = 0;
+    [Defs instance].bonusAccelerationDelay = BONUS_ACCELERATION_DELAY_DEFAULT;
+    [Defs instance].bonusAccelerationDelayLevel = 0;
+    [Defs instance].bonusGetChance = BONUS_GET_CHANCE_DEFAULT;
+    [Defs instance].bonusGetChanceLevel = 0;
+    [Defs instance].bonusGodModeTime = BONUS_GODMODE_TIME_DEFAULT;
+    [Defs instance].bonusGodModeTimeLevel = 0;
+    [Defs instance].gravitation = GRAVITATION_DEFAULT;
+    [Defs instance].gravitationLevel = 0;
+    [Defs instance].speedWallAccelerationCoeff = SPEEDWALL_ACCELERATION_DEFAULT;
+    [Defs instance].speedWallAccelerationCoeffLevel = 0;
+    [Defs instance].speedWallDeccelerationCoeff = SPEEDWALL_DECCELERARION_DEFAULT;
+    [Defs instance].speedWallDeccelerationCoeffLevel = 0;
+    [Defs instance].speedWallDelayShowingCoeff = SPEEDWALL_DELAYSHOWINGCOEFF_DEFAULT;
+    [Defs instance].speedWallDelayShowingCoeffLevel = 0;
+    [Defs instance].playerMagnetDistance = PLAYER_MAGNET_DISTANDE_DEFAULT;
+    [Defs instance].playerMagnetDistanceLevel = 0;
+    [Defs instance].playerMagnetPower = PLAYER_MAGNET_POWER_DEFAULT;
+    [Defs instance].playerMagnetPowerLevel = 0;
+    [Defs instance].playerGodModeAfterCrashTime = GODMODE_AFTERCRASH_TIME_DEFAULT;
+    [Defs instance].playerGodModeAfterCrashTimeLevel = 0;
+    
+    [MyData setStoreValue:@"coinsCount" value:@"0"];
+    [MyData setStoreValue:@"bestScore" value:@"0"];
+    
+    [MyData setStoreValue:@"bonusAccelerationPower" value:[NSString stringWithFormat:@"%f",[Defs instance].bonusAccelerationPower]];
+    [MyData setStoreValue:@"bonusAccelerationPowerLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].bonusAccelerationPowerLevel]];
+    [MyData setStoreValue:@"bonusAccelerationDelay" value:[NSString stringWithFormat:@"%f",[Defs instance].bonusAccelerationDelay]];
+    [MyData setStoreValue:@"bonusAccelerationDelayLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].bonusAccelerationDelayLevel]];
+    [MyData setStoreValue:@"bonusGetChance" value:[NSString stringWithFormat:@"%f",[Defs instance].bonusGetChance]];
+    [MyData setStoreValue:@"bonusGetChanceLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].bonusGetChanceLevel]];
+    [MyData setStoreValue:@"bonusGodModeTime" value:[NSString stringWithFormat:@"%f",[Defs instance].bonusGodModeTime]];
+    [MyData setStoreValue:@"bonusGodModeTimeLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].bonusGodModeTimeLevel]];
+    [MyData setStoreValue:@"gravitation" value:[NSString stringWithFormat:@"%f",[Defs instance].gravitation]];
+    [MyData setStoreValue:@"gravitationLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].gravitationLevel]];
+    [MyData setStoreValue:@"speedWallAccelerationCoeff" value:[NSString stringWithFormat:@"%f",[Defs instance].speedWallAccelerationCoeff]];
+    [MyData setStoreValue:@"speedWallAccelerationCoeffLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].speedWallAccelerationCoeffLevel]];
+    [MyData setStoreValue:@"speedWallDeccelerationCoeff" value:[NSString stringWithFormat:@"%f",[Defs instance].speedWallDeccelerationCoeff]];
+    [MyData setStoreValue:@"speedWallDeccelerationCoeffLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].speedWallDeccelerationCoeffLevel]];
+    [MyData setStoreValue:@"speedWallDelayShowingCoeff" value:[NSString stringWithFormat:@"%f",[Defs instance].speedWallDelayShowingCoeff]];
+    [MyData setStoreValue:@"speedWallDelayShowingCoeffLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].speedWallDelayShowingCoeffLevel]];
+    [MyData setStoreValue:@"playerMagnetDistance" value:[NSString stringWithFormat:@"%i",[Defs instance].playerMagnetDistance]];
+    [MyData setStoreValue:@"playerMagnetDistanceLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].playerMagnetDistanceLevel]];
+    [MyData setStoreValue:@"playerMagnetPower" value:[NSString stringWithFormat:@"%f",[Defs instance].playerMagnetPower]];
+    [MyData setStoreValue:@"playerMagnetPowerLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].playerMagnetPowerLevel]];
+    [MyData setStoreValue:@"playerGodModeAfterCrashTime" value:[NSString stringWithFormat:@"%f",[Defs instance].playerGodModeAfterCrashTime]];
+    [MyData setStoreValue:@"playerGodModeAfterCrashTimeLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].playerGodModeAfterCrashTimeLevel]];
+    
+    [MyData encodeDict:[MyData getDictForSaveData]];
+}
+
 - (id) init{
-	if ((self = [super init])) {		
+	if ((self = [super init])) {
 		isVisible = NO;
 		
 		isPause = NO;
@@ -64,60 +123,11 @@
         
         if (![Defs instance].startGameNotFirstTime) {
             [Defs instance].rateMeWindowShowValue = 0;
-            [Defs instance].bestScore = 0;
             [Defs instance].totalTouchBloxCounter = 0;
             [Defs instance].totalDeadBloxCounter = 0;
             [Defs instance].totalBombCounter = 0;
-            [Defs instance].coinsCount = 0;
             
-            //--------------------------------------
-            // То, что можно прокачать
-            //--------------------------------------
-            [Defs instance].bonusAccelerationPower = BONUS_ACCELERATION_POWER_DEFAULT;
-            [Defs instance].bonusAccelerationPowerLevel = 0;
-            [Defs instance].bonusAccelerationDelay = BONUS_ACCELERATION_DELAY_DEFAULT;
-            [Defs instance].bonusAccelerationDelayLevel = 0;
-            [Defs instance].bonusGetChance = BONUS_GET_CHANCE_DEFAULT;
-            [Defs instance].bonusGodModeTime = BONUS_GODMODE_TIME_DEFAULT;
-            [Defs instance].gravitation = GRAVITATION_DEFAULT;
-            [Defs instance].speedWallAccelerationCoeff = SPEEDWALL_ACCELERATION_DEFAULT;
-            [Defs instance].speedWallDeccelerationCoeff = SPEEDWALL_DECCELERARION_DEFAULT;
-            [Defs instance].speedWallDelayShowingCoeff = SPEEDWALL_DELAYSHOWINGCOEFF_DEFAULT;
-            [Defs instance].playerMagnetDistance = PLAYER_MAGNET_DISTANDE_DEFAULT;
-            [Defs instance].playerMagnetPower = PLAYER_MAGNET_POWER_DEFAULT;
-            [Defs instance].playerGodModeAfterCrashTime = BONUS_GODMODE_AFTERCRASH_TIME_DEFAULT;
-            
-            [MyData setStoreValue:@"rateMeWindowShowValue" value:@"0"];
-            [MyData setStoreValue:@"coinsCount" value:@"0"];
-            [MyData setStoreValue:@"totalTouchBloxCounter" value:@"0"];
-            [MyData setStoreValue:@"totalDeadBloxCounter" value:@"0"];
-            [MyData setStoreValue:@"totalBombCounter" value:@"0"];
-            [MyData setStoreValue:@"bestScore" value:@"0"];
-            
-            [MyData setStoreValue:@"bonusAccelerationPower" value:[NSString stringWithFormat:@"%f",[Defs instance].bonusAccelerationPower]];
-            [MyData setStoreValue:@"bonusAccelerationPowerLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].bonusAccelerationPowerLevel]];
-            [MyData setStoreValue:@"bonusAccelerationDelay" value:[NSString stringWithFormat:@"%f",[Defs instance].bonusAccelerationDelay]];
-            [MyData setStoreValue:@"bonusAccelerationDelayLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].bonusAccelerationDelayLevel]];
-            [MyData setStoreValue:@"bonusGetChance" value:[NSString stringWithFormat:@"%f",[Defs instance].bonusGetChance]];
-            [MyData setStoreValue:@"bonusGetChanceLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].bonusGetChanceLevel]];
-            [MyData setStoreValue:@"bonusGodModeTime" value:[NSString stringWithFormat:@"%f",[Defs instance].bonusGodModeTime]];
-            [MyData setStoreValue:@"bonusGodModeTimeLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].bonusGodModeTimeLevel]];
-            [MyData setStoreValue:@"gravitation" value:[NSString stringWithFormat:@"%f",[Defs instance].gravitation]];
-            [MyData setStoreValue:@"gravitationLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].gravitationLevel]];
-            [MyData setStoreValue:@"speedWallAccelerationCoeff" value:[NSString stringWithFormat:@"%f",[Defs instance].speedWallAccelerationCoeff]];
-            [MyData setStoreValue:@"speedWallAccelerationCoeffLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].speedWallAccelerationCoeffLevel]];
-            [MyData setStoreValue:@"speedWallDeccelerationCoeff" value:[NSString stringWithFormat:@"%f",[Defs instance].speedWallDeccelerationCoeff]];
-            [MyData setStoreValue:@"speedWallDeccelerationCoeffLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].speedWallDeccelerationCoeffLevel]];
-            [MyData setStoreValue:@"speedWallDelayShowingCoeff" value:[NSString stringWithFormat:@"%f",[Defs instance].speedWallDelayShowingCoeff]];
-            [MyData setStoreValue:@"speedWallDelayShowingCoeffLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].speedWallDelayShowingCoeffLevel]];
-            [MyData setStoreValue:@"playerMagnetDistance" value:[NSString stringWithFormat:@"%f",[Defs instance].playerMagnetDistance]];
-            [MyData setStoreValue:@"playerMagnetDistanceLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].playerMagnetDistanceLevel]];
-            [MyData setStoreValue:@"playerMagnetPower" value:[NSString stringWithFormat:@"%f",[Defs instance].playerMagnetPower]];
-            [MyData setStoreValue:@"playerMagnetPowerLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].playerMagnetPowerLevel]];
-            [MyData setStoreValue:@"playerGodModeAfterCrashTime" value:[NSString stringWithFormat:@"%f",[Defs instance].playerGodModeAfterCrashTime]];
-            [MyData setStoreValue:@"playerGodModeAfterCrashTimeLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].playerGodModeAfterCrashTimeLevel]];
-            
-            [MyData encodeDict:[MyData getDictForSaveData]];
+            [self retartGameProcess];
         } else {
             [Defs instance].rateMeWindowShowValue = [[MyData getStoreValue:@"rateMeWindowShowValue"] intValue];
             [Defs instance].coinsCount = [[MyData getStoreValue:@"coinsCount"] intValue];
@@ -142,7 +152,7 @@
             [Defs instance].speedWallDeccelerationCoeffLevel  = [[MyData getStoreValue:@"speedWallDeccelerationCoeffLevel"] intValue];
             [Defs instance].speedWallDelayShowingCoeff = [[MyData getStoreValue:@"speedWallDelayShowingCoeff"] floatValue];
             [Defs instance].speedWallDelayShowingCoeffLevel  = [[MyData getStoreValue:@"speedWallDelayShowingCoeffLevel"] intValue];
-            [Defs instance].playerMagnetDistance = [[MyData getStoreValue:@"playerMagnetDistance"] floatValue];
+            [Defs instance].playerMagnetDistance = [[MyData getStoreValue:@"playerMagnetDistance"] intValue];
             [Defs instance].playerMagnetDistanceLevel  = [[MyData getStoreValue:@"playerMagnetDistanceLevel"] intValue];
             [Defs instance].playerMagnetPower = [[MyData getStoreValue:@"playerMagnetPower"] floatValue];
             [Defs instance].playerMagnetPowerLevel  = [[MyData getStoreValue:@"playerMagnetPowerLevel"] intValue];
@@ -150,8 +160,10 @@
             [Defs instance].playerGodModeAfterCrashTimeLevel  = [[MyData getStoreValue:@"playerGodModeAfterCrashTimeLevel"] intValue];
         }
         
+        //[self retartGameProcess];
         
-        //[Defs instance].coinsCount = 10;
+        
+        [Defs instance].coinsCount = 1000;
         //[Defs instance].bonusAccelerationPower = BONUS_ACCELERATION_POWER_DEFAULT;
         //[Defs instance].bonusAccelerationPowerLevel = 0;
         //[Defs instance].bonusAccelerationDelay = BONUS_ACCELERATION_DELAY_DEFAULT;
@@ -343,9 +355,9 @@
     [player activate];
     [player addVelocity:ccp(0,4)];
     
-    [self addBall:ccp(player.costume.position.x, player.costume.position.y - SCREEN_HEIGHT_HALF) _velocity:ccp(0,7) _active:YES];
+    [self addBall:ccp(player.costume.position.x, player.costume.position.y - SCREEN_HEIGHT_HALF) _velocity:ccp(0,8) _active:YES];
     
-    timerAddBall = -0.5f;
+    timerAddBall = -0.4f;
     timerDelayAddBall = 0.4f;
     
     [cells restartParameters];
@@ -402,7 +414,7 @@
     
     //[Defs instance].bestScore = 0;
     
-    [[MainScene instance] showLevelDinishScreenAndSetScore:YES _score:scoreLevel _starCount:3];
+    [[MainScene instance] showLevelFinishScreenAndSetScore:YES _score:scoreLevel _starCount:3];
     
     [MyData encodeDict:[MyData getDictForSaveData]];
 }
@@ -507,7 +519,7 @@
     } else
         if (_bonusID <= BONUS_ACCELERATION) {
             // Ускорение
-            [player setSpeedBonus];
+            [player setSpeedBonus:[Defs instance].bonusAccelerationDelay];
         } else
             if (_bonusID <= BONUS_APOCALYPSE) {
                 // Апокалипсис
@@ -610,14 +622,14 @@
         [self labelScoreBarUpdate];
         
         timerAddBall += TIME_STEP;
-        if (timerAddBall >= timerDelayAddBall - fabs(player.velocity.x/300)) {
+        if (timerAddBall >= timerDelayAddBall - (player.costume.position.y/4000000)) {
             float _playerVelocityX = player.velocity.x;
             float _playerVelocityY = player.velocity.y;
             if (player.isBonusSpeed) {
                 _playerVelocityY -= [Defs instance].bonusAccelerationPower;
             }
-            float _velocityXCoeff = 1 + fabs(_playerVelocityX/10);
-            float _velocityYCoeff = (1.f + fabs(_playerVelocityY/40))*3 + CCRANDOM_0_1()*(fabs(_playerVelocityY/40));
+            float _velocityXCoeff = 1 + fabsf(_playerVelocityX/10);
+            float _velocityYCoeff = 1.f + (player.costume.position.y/30000)+ CCRANDOM_0_1()*(player.costume.position.y/120000);
             if (_velocityYCoeff < 4.5f) {
                 _velocityYCoeff = 4.5f;
             }
@@ -664,9 +676,9 @@
 		if (isVisible){
             [[GameStandartFunctions instance] playOpenScreenAnimation];
 		}else {
+            [speedWall show:NO];
 		}
 	}
-    [speedWall show:NO];
     [cells show:_flag];
     [[Defs instance].actorManager show:_flag];
 }

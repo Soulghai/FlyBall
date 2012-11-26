@@ -103,7 +103,7 @@
 @property (nonatomic, readwrite) float speedWallDelayShowingCoeff;
 @property (nonatomic, readwrite) int speedWallDelayShowingCoeffLevel;
 
-@property (nonatomic, readwrite) float playerMagnetDistance;
+@property (nonatomic, readwrite) int playerMagnetDistance;
 @property (nonatomic, readwrite) int playerMagnetDistanceLevel;
 
 @property (nonatomic, readwrite) float playerMagnetPower;

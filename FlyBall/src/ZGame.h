@@ -44,6 +44,7 @@
 // button actions
 - (void) buttonPauseAction;
 - (void) buttonLevelRestartAction;
+- (void) retartGameProcess;
 
 - (id) init;
 - (void) update;

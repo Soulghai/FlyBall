@@ -32,8 +32,7 @@
         isEraserCollide = NO;
         
         velocity = CGPointZero;
-        friction = 0.05f;
-        gravitation = [Defs instance].gravitation;
+        gravitation = GRAVITATION_DEFAULT;
 	}
 	
 	return self;

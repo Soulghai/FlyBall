@@ -98,6 +98,7 @@
 - (void) update {
 	if (isVisible) {
         if ((!isHiding)&&(!isShowing)) {
+            CCLOG(@"time = %f",timeShowing);
             timeShowing += TIME_STEP;
             if (timeShowing >= delayShowing) {
                 isShowing = NO;
@@ -119,6 +120,7 @@
                     positionChangeCoeff = ccp(positionChangeCoeff.x, -SCREEN_HEIGHT);
                     isHiding = NO;
                     [self deactivate];
+                    [self show:NO];
                 }
         } else {
             positionChangeCoeff = ccpAdd(positionChangeCoeff, ccp(-[MainScene instance].game.player.velocity.x, 0));
@@ -191,12 +193,12 @@
                 emitterStarsAcc.position = ccpAdd(costume.position, ccp(0, SCREEN_HEIGHT_HALF));
                 if ((emitterStarsAcc)&&(emitterStarsAcc.parent == nil))
                     [[Defs instance].objectFrontLayer addChild:emitterStarsAcc];
-                [emitterStarsAcc scheduleUpdate];
+                if (!emitterStarsAcc.isRunning) [emitterStarsAcc scheduleUpdate];
             } else {
                 emitterStarsDecc.position = ccpAdd(costume.position, ccp(0, SCREEN_HEIGHT_HALF));
                 if ((emitterStarsDecc)&&(emitterStarsDecc.parent == nil))
                     [[Defs instance].objectFrontLayer addChild:emitterStarsDecc];
-                [emitterStarsDecc scheduleUpdate];
+                if (!emitterStarsDecc.isRunning) [emitterStarsDecc scheduleUpdate];
             }
             
             
@@ -209,7 +211,8 @@
     timeShowing = 0;
     timeWaiting = 0;
     isHiding = NO;
-    [self show:NO];
+    [self hideEmitter];
+    [self hideEmitterWarning];
 }
 
 - (void) outOfArea {

@@ -177,7 +177,7 @@
 }
 
 - (void) restartLevelProgress {
-
+    [[MainScene instance].game retartGameProcess];
 	[self checkBoxRestartLevelProgressPanelHide];
     [FlurryAnalytics logEvent:ANALYTICS_GAME_RESET];
 }
