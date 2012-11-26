@@ -122,6 +122,7 @@
         //[Defs instance].startGameNotFirstTime = NO;
         
         if (![Defs instance].startGameNotFirstTime) {
+            [Defs instance].gameSessionCounter = 0;
             [Defs instance].rateMeWindowShowValue = 0;
             [Defs instance].totalTouchBloxCounter = 0;
             [Defs instance].totalDeadBloxCounter = 0;
@@ -129,6 +130,7 @@
             
             [self retartGameProcess];
         } else {
+            [Defs instance].gameSessionCounter = [[MyData getStoreValue:@"gameSessionCounter"] intValue];
             [Defs instance].rateMeWindowShowValue = [[MyData getStoreValue:@"rateMeWindowShowValue"] intValue];
             [Defs instance].coinsCount = [[MyData getStoreValue:@"coinsCount"] intValue];
             [Defs instance].bestScore = [[MyData getStoreValue:@"bestScore"] intValue];
@@ -187,7 +189,7 @@
 		GUIButtonDef *btnDef = [GUIButtonDef node];
 		btnDef.sprName = @"btnPause.png";
 		btnDef.sprDownName = @"btnPauseDown.png";
-		btnDef.group = GAME_STATE_GAME;
+		btnDef.group = GAME_STATE_GAME|GAME_STATE_GAMEPREPARE;
 		btnDef.objCreator = self;
 		btnDef.func = @selector(buttonPauseAction);
 		btnDef.sound = @"button_click.wav";
@@ -197,13 +199,6 @@
             _btn = nil;
         } else
             [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(SCREEN_WIDTH - 20,SCREEN_HEIGHT-20)];    
-        
-		
-		/*btnDef.sprName = @"btnPlayPauseScreen.png";
-		btnDef.sprDownName = @"btnPlayPauseScreenDown.png";
-		btnDef.group = GAME_STATE_GAMEPAUSE;
-	
-		[[MainScene instance].gui addItem:(id)btnDef _pos:ccp(50,SCREEN_HEIGHT-38)];*/
 		
 		btnDef.sprName = @"btnRestart.png";
 		btnDef.sprDownName = @"btnRestartDown.png";
@@ -221,22 +216,31 @@
         }
         
         GUILabelTTFDef *_labelTTFDef = [GUILabelTTFDef node];
-        _labelTTFDef.group = GAME_STATE_GAME|GAME_STATE_GAMEPAUSE;
+        _labelTTFDef.group = GAME_STATE_GAME|GAME_STATE_GAMEPREPARE|GAME_STATE_GAMEPAUSE;
         _labelTTFDef.text = @"0";
-        
         scoreStrPos = ccp(SCREEN_WIDTH_HALF, SCREEN_HEIGHT - 20);
         _labelTTFDef.textColor = ccc3(255, 255, 255);
         scoreStr =[[MainScene instance].gui addItem:(id)_labelTTFDef _pos:scoreStrPos];
         
         _labelTTFDef.alignement = kCCTextAlignmentLeft;
         _labelTTFDef.textColor = ccc3(255, 255, 255);
+        _labelTTFDef.text = @"";
         labelScoreStr1 =[[MainScene instance].gui addItem:(id)_labelTTFDef _pos:ccp(1, SCREEN_HEIGHT_HALF - SCREEN_HEIGHT_HALF/1.5f)];
         
         _labelTTFDef.textColor = ccc3(255, 255, 255);
+        _labelTTFDef.text = @"0";
         labelScoreStr2 =[[MainScene instance].gui addItem:(id)_labelTTFDef _pos:ccp(1, SCREEN_HEIGHT_HALF)];
         
         _labelTTFDef.textColor = ccc3(255, 255, 255);
+        _labelTTFDef.text = @"160";
         labelScoreStr3 =[[MainScene instance].gui addItem:(id)_labelTTFDef _pos:ccp(1,SCREEN_HEIGHT_HALF + SCREEN_HEIGHT_HALF/1.5f)];
+        
+        // hint for start game
+        _labelTTFDef.group = GAME_STATE_GAMEPREPARE;
+        _labelTTFDef.alignement = kCCTextAlignmentCenter;
+        _labelTTFDef.textColor = ccc3(255, 255, 255);
+        _labelTTFDef.text = NSLocalizedString(@"HINT:Tap to Bomb","");
+        labelScoreStr3 =[[MainScene instance].gui addItem:(id)_labelTTFDef _pos:ccp(SCREEN_WIDTH_HALF, 100)];
         
         cells = [[CellsBackground alloc] init];
         [cells retain];
@@ -345,19 +349,19 @@
     [scoreStr setColor:ccc3(255, 255, 255)];
     isNewScoreSound = NO;
     
-    GAME_IS_PLAYING = YES;
-    state = GAME_STATE_GAME;
+    GAME_IS_PLAYING = NO;
+    state = GAME_STATE_GAMEPREPARE;
     [[MainScene instance].gui show:state];
     
     [self deactivateAllActors];
     
-    player.costume.position = ccp(SCREEN_WIDTH_HALF, SCREEN_HEIGHT_HALF);
     [player activate];
-    [player addVelocity:ccp(0,4)];
+    [player addVelocity:ccp(0,1)];
+    [self setCenterOfTheScreen:player.position];
     
-    [self addBall:ccp(player.costume.position.x, player.costume.position.y - SCREEN_HEIGHT_HALF) _velocity:ccp(0,8) _active:YES];
+    [self addBall:ccp(player.position.x, player.position.y - 70) _velocity:ccp(0,0) _active:YES];
     
-    timerAddBall = -0.4f;
+    timerAddBall = 0.2f;
     timerDelayAddBall = 0.4f;
     
     [cells restartParameters];
@@ -365,7 +369,15 @@
     
     [self show:YES];
     
+    ++[Defs instance].gameSessionCounter;
+    
     [FlurryAnalytics logEvent:ANALYTICS_GAME_LEVEL_START];
+}
+
+- (void) startGameSession {
+    GAME_IS_PLAYING = YES;
+    state = GAME_STATE_GAME;
+    [[MainScene instance].gui show:state];
 }
 
 - (void) levelRestart {
@@ -377,11 +389,12 @@
 	isPause = _flag;
 	[[MainScene instance].pauseScreen show:isPause];
 	  
-    if (isPause) {		
+    if (isPause) {
+        oldState = state;
 		state = GAME_STATE_GAMEPAUSE;
         [FlurryAnalytics logEvent:ANALYTICS_GAME_SCREEN_BUTTON_PAUSE_ON_CLICKED];
 	} else {
-		state = GAME_STATE_GAME;
+		state = oldState;
         [FlurryAnalytics logEvent:ANALYTICS_GAME_SCREEN_BUTTON_PAUSE_OFF_CLICKED];
 	}
 	
@@ -420,12 +433,12 @@
 }
 
 - (void) labelScoreBarUpdate {
-    [labelScoreStr1 setPosition:ccp(1, SCREEN_HEIGHT-(int)(player.costume.position.y - SCREEN_HEIGHT_HALF/1.5f) % SCREEN_HEIGHT)];
-    [labelScoreStr2 setPosition:ccp(1, SCREEN_HEIGHT-(int)(player.costume.position.y) % SCREEN_HEIGHT)];
-    [labelScoreStr3 setPosition:ccp(1, SCREEN_HEIGHT-(int)(player.costume.position.y + SCREEN_HEIGHT_HALF/1.5f) % SCREEN_HEIGHT)];
+    [labelScoreStr1 setPosition:ccp(1, SCREEN_HEIGHT-(int)(player.position.y - SCREEN_HEIGHT_HALF/1.5f) % SCREEN_HEIGHT)];
+    [labelScoreStr2 setPosition:ccp(1, SCREEN_HEIGHT-(int)(player.position.y) % SCREEN_HEIGHT)];
+    [labelScoreStr3 setPosition:ccp(1, SCREEN_HEIGHT-(int)(player.position.y + SCREEN_HEIGHT_HALF/1.5f) % SCREEN_HEIGHT)];
     
     NSString *_strScoreValue;
-    float _scoreValue = (int)(player.costume.position.y + (labelScoreStr1.spr.position.y - SCREEN_HEIGHT));
+    float _scoreValue = (int)(player.position.y + (labelScoreStr1.spr.position.y - SCREEN_HEIGHT));
         if (_scoreValue < 0) _strScoreValue = @""; else {
         if (_scoreValue >= 10000) {
             _strScoreValue = [NSString stringWithFormat:@"%3iK", (int)(_scoreValue/1000)];
@@ -433,13 +446,13 @@
             if (_scoreValue >= 1000) {
                 _strScoreValue = [NSString stringWithFormat:@"%2.1fK", (float)(_scoreValue/1000)];
             } else {
-                _strScoreValue = [NSString stringWithFormat:@"%i",(int)(player.costume.position.y  + (labelScoreStr1.spr.position.y - SCREEN_HEIGHT))];
+                _strScoreValue = [NSString stringWithFormat:@"%i",(int)(player.position.y  + (labelScoreStr1.spr.position.y - SCREEN_HEIGHT))];
             }
         }
     [labelScoreStr1 setText:_strScoreValue];
         
     
-    _scoreValue = (int)(player.costume.position.y + (labelScoreStr2.spr.position.y - SCREEN_HEIGHT));
+    _scoreValue = (int)(player.position.y + (labelScoreStr2.spr.position.y - SCREEN_HEIGHT));
     if (_scoreValue < 0) _strScoreValue = @""; else {
         if (_scoreValue >= 10000) {
             _strScoreValue = [NSString stringWithFormat:@"%3iK", (int)(_scoreValue/1000)];
@@ -447,12 +460,12 @@
             if (_scoreValue >= 1000) {
                 _strScoreValue = [NSString stringWithFormat:@"%2.1fK", (float)(_scoreValue/1000)];
             } else {
-                _strScoreValue = [NSString stringWithFormat:@"%i",(int)(player.costume.position.y + (labelScoreStr2.spr.position.y - SCREEN_HEIGHT))];
+                _strScoreValue = [NSString stringWithFormat:@"%i",(int)(player.position.y + (labelScoreStr2.spr.position.y - SCREEN_HEIGHT))];
             }
     }
     [labelScoreStr2 setText:_strScoreValue];
     
-    _scoreValue = (int)(player.costume.position.y + (labelScoreStr3.spr.position.y - SCREEN_HEIGHT));
+    _scoreValue = (int)(player.position.y + (labelScoreStr3.spr.position.y - SCREEN_HEIGHT));
     if (_scoreValue < 0) _strScoreValue = @""; else {
         if (_scoreValue >= 10000) {
             _strScoreValue = [NSString stringWithFormat:@"%3iK", (int)(_scoreValue/1000)];
@@ -460,7 +473,7 @@
             if (_scoreValue >= 1000) {
                 _strScoreValue = [NSString stringWithFormat:@"%2.1fK", (float)(_scoreValue/1000)];
             } else {
-                _strScoreValue = [NSString stringWithFormat:@"%i",(int)(player.costume.position.y + (labelScoreStr3.spr.position.y - SCREEN_HEIGHT))];
+                _strScoreValue = [NSString stringWithFormat:@"%i",(int)(player.position.y + (labelScoreStr3.spr.position.y - SCREEN_HEIGHT))];
             }
     }
     [labelScoreStr3 setText:_strScoreValue];
@@ -566,7 +579,7 @@
 		
 		levelTime += TIME_STEP;
         
-        if (player.costume.position.y < SCREEN_HEIGHT_HALF) {
+        if (player.position.y < SCREEN_HEIGHT_HALF) {
             [self levelFinishCloseAnimationStart];
             return;
         }
@@ -579,7 +592,7 @@
             _tempActor = [[Defs instance].actorManager.actorsAll objectAtIndex:i];
             if ((_tempActor.isActive)&&(player.itemID != _tempActor.itemID)&&([_tempActor isKindOfClass:[ActorActiveObject class]])
                 &&(![self checkIsOutOfScreen:_tempActor])) {
-                _distanceToActor = [[Utils instance] distance:_tempActor.costume.position.x _y1:_tempActor.costume.position.y _x2:player.costume.position.x _y2:player.costume.position.y];
+                _distanceToActor = [[Utils instance] distance:_tempActor.costume.position.x _y1:_tempActor.costume.position.y _x2:player.position.x _y2:player.position.y];
                 if (_distanceToActor < _minDistance) {
                     if ([_tempActor isKindOfClass:[ActorActiveBombObject class]]) [self bombExplosion:(ActorActiveBombObject*)_tempActor];
                     [(ActorActiveObject*)_tempActor touch];
@@ -603,7 +616,7 @@
         for (int i = 0; i < _count; i++) {
             _tempActor = [[Defs instance].actorManager.actorsAll objectAtIndex:i];
             if ((_tempActor.isActive)&&(player.itemID != _tempActor.itemID)&&([_tempActor isKindOfClass:[ActorActiveObject class]])) {
-                _distanceToActor = [[Utils instance] distance:_tempActor.costume.position.x _y1:_tempActor.costume.position.y _x2:player.costume.position.x _y2:player.costume.position.y];
+                _distanceToActor = [[Utils instance] distance:_tempActor.costume.position.x _y1:_tempActor.costume.position.y _x2:player.position.x _y2:player.position.y];
                 if (_distanceToActor > _minDistance) {
                     [(ActorActiveObject*)_tempActor deactivate];
                 }
@@ -622,30 +635,30 @@
         [self labelScoreBarUpdate];
         
         timerAddBall += TIME_STEP;
-        if (timerAddBall >= timerDelayAddBall - (player.costume.position.y/4000000)) {
+        if (timerAddBall >= timerDelayAddBall - (player.position.y/4000000)) {
             float _playerVelocityX = player.velocity.x;
             float _playerVelocityY = player.velocity.y;
             if (player.isBonusSpeed) {
-                _playerVelocityY -= [Defs instance].bonusAccelerationPower;
+                _playerVelocityY -= [Defs instance].bonusAccelerationPowerLevel*2;
             }
             float _velocityXCoeff = 1 + fabsf(_playerVelocityX/10);
-            float _velocityYCoeff = 1.f + (player.costume.position.y/30000)+ CCRANDOM_0_1()*(player.costume.position.y/120000);
+            float _velocityYCoeff = 1.f + (player.position.y/30000)+ CCRANDOM_0_1()*(player.position.y/120000);
             if (_velocityYCoeff < 4.5f) {
                 _velocityYCoeff = 4.5f;
             }
             int _ballCount = round(CCRANDOM_0_1()*2);
             for (int i = 0; i < _ballCount; i++) {
-                [self addBall:ccp(player.costume.position.x + _playerVelocityX*5 + SCREEN_WIDTH_HALF*CCRANDOM_MINUS1_1(), player.costume.position.y - SCREEN_HEIGHT_HALF - elementRadius) _velocity:ccp(_playerVelocityX + CCRANDOM_MINUS1_1()*_velocityXCoeff, _playerVelocityY + _velocityYCoeff) _active:YES];
+                [self addBall:ccp(player.position.x + _playerVelocityX + SCREEN_WIDTH_HALF*CCRANDOM_MINUS1_1(), player.position.y - SCREEN_HEIGHT_HALF - elementRadius) _velocity:ccp(_playerVelocityX + CCRANDOM_MINUS1_1()*_velocityXCoeff, _playerVelocityY + _velocityYCoeff) _active:YES];
             }
             
             timerAddBall = 0;
         }
         
-        if (scoreLevel < (int)(player.costume.position.y - SCREEN_HEIGHT_HALF)) {
-            scoreLevel = (int)(player.costume.position.y - SCREEN_HEIGHT_HALF);
+        if (scoreLevel < (int)(player.position.y - SCREEN_HEIGHT_HALF)) {
+            scoreLevel = (int)(player.position.y - SCREEN_HEIGHT_HALF);
             [scoreStr setPosition:ccp(scoreStrPos.x + [[Utils instance] myRandom2F]*2, scoreStrPos.y + [[Utils instance] myRandom2F]*2)];
             
-            if (scoreLevel > [Defs instance].bestScore) {
+            if ((scoreLevel > [Defs instance].bestScore)&&([Defs instance].gameSessionCounter != 1)) {
                 [scoreStr setColor:ccc3(50, 150, 255)];
                 [scoreStr setText:[NSString stringWithFormat:@"Wooow %i !!!",scoreLevel]];
                 if (!isNewScoreSound) {
@@ -656,14 +669,13 @@
         }
         
         [[Defs instance].actorManager update];
-        CGPoint centerOfScreen = ccp(player.costume.position.x, player.costume.position.y);
-        [self setCenterOfTheScreen:centerOfScreen];
+        [self setCenterOfTheScreen:player.position];
         
         // делаем апдейт относительно текущей позиции игрока
         [cells update];
         // стена скорости, которая действует на персонажа
         [speedWall update];
-        player.velocity = ccpAdd(player.velocity, [speedWall checkToCollide:player.costume.position]);
+        player.velocity = ccpAdd(player.velocity, [speedWall checkToCollide:player.position]);
     }
 
 }
@@ -701,7 +713,7 @@
                         &&([_tempActor isKindOfClass:[ActorActiveObject class]])
                         &&(![self checkIsOutOfScreen:_tempActor])) {
                         _distanceToActor = [[Utils instance] distance:_tempActor.costume.position.x + [Defs instance].objectFrontLayer.position.x _y1:_tempActor.costume.position.y+ [Defs instance].objectFrontLayer.position.y _x2:_touchPos.x _y2:_touchPos.y];
-                        if (_distanceToActor < elementSize) {
+                        if (_distanceToActor <= elementSize) {
                             if (_minDistance > _distanceToActor) {
                                 _minDistance = _distanceToActor;
                                 _actorWithMinDistanceID = i;
@@ -723,6 +735,36 @@
                     [_tempActor touch];
                     
                     _tempActor = nil;
+                    
+                    return YES;
+                }
+                
+			} else
+            
+            if (state == GAME_STATE_GAMEPREPARE) {
+                
+                Actor* _tempActor;
+                float _distanceToActor = 0;
+                int _actorWithMinDistanceID = -1;
+                int _count = [[Defs instance].actorManager.actorsAll count];
+                for (int i = 0; i < _count; i++) {
+                    _tempActor = [[Defs instance].actorManager.actorsAll objectAtIndex:i];
+                    if ((_tempActor.isActive)
+                        &&([_tempActor isKindOfClass:[ActorActiveBombObject class]])
+                        &&(![self checkIsOutOfScreen:_tempActor])) {
+                        _distanceToActor = [[Utils instance] distance:_tempActor.costume.position.x + [Defs instance].objectFrontLayer.position.x _y1:_tempActor.costume.position.y+ [Defs instance].objectFrontLayer.position.y _x2:_touchPos.x _y2:_touchPos.y];
+                        if (_distanceToActor <= elementSize) {
+                            _actorWithMinDistanceID = i;
+                            break;
+                        }
+                    }
+                }
+                
+                if (_actorWithMinDistanceID != -1) {
+                    _tempActor = [[Defs instance].actorManager.actorsAll objectAtIndex:_actorWithMinDistanceID];
+                    [self bombExplosion:(ActorActiveBombObject*)_tempActor];
+                    [_tempActor touch];
+                    [self startGameSession];
                     
                     return YES;
                 }

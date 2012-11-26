@@ -10,7 +10,7 @@
 #import "cocos2d.h"
 #import "ActorActiveObject.h"
 
-@interface ActorPlayer : ActorActiveObject {
+@interface ActorPlayer : ActorActiveObject {    
     int armored;
     
     float timeGodMode;
@@ -22,17 +22,19 @@
     float timeBonusSpeed;
     float delayBonusSpeed;
     
+    CCSprite *sprArmor;
+    
     CCSprite *bonusCell;
     NSMutableArray* bonusCellItemIDs;
     
     CCParticleSystemQuad *emitterEngineFire;
     CCParticleSystemQuad *emitterBonusSpeedFire;
     
-    float magnetDistance;
     float magnetPower;
 }
 
-@property(nonatomic, readonly) BOOL isBonusSpeed;
+@property (nonatomic, readwrite) CGPoint position;
+@property (nonatomic, readonly) BOOL isBonusSpeed;
 
 -(id) init:(CCNode*)_parent
    _location:(CGPoint)_location;

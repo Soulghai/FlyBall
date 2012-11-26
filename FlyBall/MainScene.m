@@ -190,7 +190,7 @@ static void MainScene_remover() {
 -(void) update:(ccTime)dt{
 	[gui update];
 	
-	if ((game.state	& (GAME_STATE_GAME|GAME_STATE_GAMEPAUSE|GAME_STATE_LEVELFINISH)) != 0){
+	if ((game.state	& (GAME_STATE_GAME|GAME_STATE_GAMEPREPARE)) != 0){
 		[game update];
 	}
     
@@ -297,7 +297,7 @@ static void MainScene_remover() {
 	
 	if (![gui touchReaction:convertedLocation]) {
         
-        if ((game.state & (GAME_STATE_GAME|GAME_STATE_GAMEPAUSE)) != 0) {
+        if ((game.state & (GAME_STATE_GAME|GAME_STATE_GAMEPREPARE|GAME_STATE_GAMEPAUSE)) != 0) {
             return [game ccTouchBegan:convertedLocation];
         }
 	}

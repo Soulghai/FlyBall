@@ -56,48 +56,16 @@ In App Purchase Dialog
 /* button "menu" on the level. */
 "btnMoreGames" = "More Games";
 
-/* button "menu" on the level. */
-"btnISLAND" = "ISLAND";
-
-/* button "menu" on the level. */
-"btnVOLKANO" = "VULCANO";
-
-/* button "menu" on the level. */
-"btnICEAGE" = "ICE AGE";
-
-/* button "menu" on the level. */
-"btnCAVE" = "CAVE";
-
-/* button "menu" on the level. */
-"btnBOMB" = "FIREWORKS";
-
-/* first level hint */
-"Tap to Expand" = "Tap the Dino\nto Expand it";
-
-/* 4 level multy hint */
-"Multi Tap to\nExpand" = "You can also tap two Dinos\nat the same time";
-
-/* 60 level multy hint */
-"Tap to Bomb" = "Tap the bomb\nto blow it up!";
-
-/* Add skips dialog box */
-"ADD SKIPS" = "BUY SUPER RAINBOWS";
-
-/* Realy use dialog box */
-"REALLY USE\nLEVEL SKIP?" = "DO YOU WANT TO USE\nA SUPER RAINBOW\nTO SOLVE THIS LEVEL?";
+/* label Hint Level Start */
+"HINT:Tap to Bomb" = "Tap the Bomb\nto BLOW it";
 
 /* Restart Progress dialog box */
 "Restart Progress?" = "Reset game?";
-
-/*  */
-"CLICK HERE TO RESTART" = "TAP HERE TO RESTART";
 
 /*
  Market Screen
  */
 "panelBuyCoinsCaption" = "Not enough coins.\nBuy some?";
-
-"get 15 skips" = "+15 super rainbows";
 
 "GIFT THIS APP" = "GIFT THIS APP";
 

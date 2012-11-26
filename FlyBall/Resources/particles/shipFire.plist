@@ -15,13 +15,13 @@
 	<key>emitterType</key>
 	<real>0.0</real>
 	<key>finishColorAlpha</key>
-	<real>0.2070000022649765</real>
+	<real>1</real>
 	<key>finishColorBlue</key>
 	<real>1</real>
 	<key>finishColorGreen</key>
-	<real>0.1980794221162796</real>
+	<real>0.3587239682674408</real>
 	<key>finishColorRed</key>
-	<real>0.0</real>
+	<real>0.3157552182674408</real>
 	<key>finishColorVarianceAlpha</key>
 	<real>0.0</real>
 	<key>finishColorVarianceBlue</key>
@@ -69,11 +69,11 @@
 	<key>sourcePositionVariancex</key>
 	<real>7</real>
 	<key>sourcePositionVariancey</key>
-	<real>7</real>
+	<real>5</real>
 	<key>sourcePositionx</key>
-	<real>261.08108520507812</real>
+	<real>175.73760986328125</real>
 	<key>sourcePositiony</key>
-	<real>297.69100952148438</real>
+	<real>245.21884155273438</real>
 	<key>speed</key>
 	<real>0.0</real>
 	<key>speedVariance</key>
@@ -81,11 +81,11 @@
 	<key>startColorAlpha</key>
 	<real>1</real>
 	<key>startColorBlue</key>
-	<real>0.0</real>
+	<real>1</real>
 	<key>startColorGreen</key>
-	<real>0.090000003576278687</real>
+	<real>0.16943359375</real>
 	<key>startColorRed</key>
-	<real>0.31000000238418579</real>
+	<real>1</real>
 	<key>startColorVarianceAlpha</key>
 	<real>0.0</real>
 	<key>startColorVarianceBlue</key>

@@ -53,6 +53,7 @@
 @synthesize achievement_Highscore_5_5;
 @synthesize achievement_Highscore_5_10;
 
+@synthesize gameSessionCounter;
 @synthesize rateMeWindowShowValue;
 @synthesize coinsCount;
 @synthesize bestScore;

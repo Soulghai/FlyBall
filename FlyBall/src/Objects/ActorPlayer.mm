@@ -16,6 +16,7 @@
 
 @implementation ActorPlayer
 
+@synthesize position;
 @synthesize isBonusSpeed;
 
 -(id) init:(CCNode*)_parent
@@ -36,7 +37,6 @@
         timeBonusSpeed = 0;
         delayBonusSpeed = 0;
         
-        magnetDistance = [Defs instance].playerMagnetDistance;
         magnetPower = [Defs instance].playerMagnetPower;
         
         bonusCellItemIDs = [NSMutableArray arrayWithCapacity:5];
@@ -61,6 +61,10 @@
 	costume = [CCSprite spriteWithSpriteFrameName:@"player.png"];
 	[costume retain];
     
+    sprArmor = [CCSprite spriteWithSpriteFrameName:@"player_armor_1.png"];
+    [sprArmor setPosition:ccp(costume.contentSize.width*0.5f, costume.contentSize.height*0.5f)];
+    [sprArmor retain];
+    
     sprGodMode = [CCSprite spriteWithSpriteFrameName:@"playerglow.png"];
     [sprGodMode retain];
     
@@ -70,15 +74,20 @@
 }
 
 - (void) setArmorSprite {
-    CCSpriteFrame* frame;
+    
     if (armored == 0) {
-        frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"player.png"];
-    } else
-    if (armored > 3)
-        frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"player_armor_3.png"];
-    else
-        frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"player_armor_%i.png", armored]];
-    [costume setDisplayFrame:frame];
+        if (sprArmor.parent) {
+            [sprArmor removeFromParentAndCleanup:YES];
+        }
+    } else {
+        if (!sprArmor.parent) [costume addChild:sprArmor];
+        CCSpriteFrame* frame;
+        if (armored > 3)
+            frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"player_armor_3.png"];
+        else
+            frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"player_armor_%i.png", armored]];
+        [sprArmor setDisplayFrame:frame];
+    }
 }
 
 - (void) addArmor {
@@ -152,6 +161,10 @@
             if (emitterEngineFire.parent) [emitterEngineFire removeFromParentAndCleanup:NO];
         }
         
+        if (sprArmor.parent) {
+            [sprArmor removeFromParentAndCleanup:YES];
+        }
+        
         [self hideBonusSpeedFire];
     }
     
@@ -161,6 +174,14 @@
 
 - (void) activate {
     [super activate];
+    [self hideBonusSpeedFire];
+    
+    costume.position = ccp(SCREEN_WIDTH_HALF, SCREEN_HEIGHT_HALF);
+    position = costume.position;
+    costume.rotation = 0;
+    
+    emitterEngineFire.position = position;
+    emitterEngineFire.speed = 0;
     
     isBonusSpeed = NO;
     timeBonusSpeed = 0;
@@ -189,17 +210,24 @@
 }
 
 - (void) update {
+    if (isBonusSpeed) {
+        [self addVelocity:ccp(0, [Defs instance].bonusAccelerationPower)];
+    }
+    
     CGPoint _oldPosition = costume.position;
     [super update];
+    position = costume.position;
     
-    costume.rotation = -[Utils GetAngleBetweenPt1:_oldPosition andPt2:costume.position]-90;
+    // Visual part
+    
+    costume.rotation = -[Utils GetAngleBetweenPt1:_oldPosition andPt2:position]-90;
     
     if (emitterEngineFire) {
-        emitterEngineFire.position = costume.position;
-        emitterEngineFire.speed = 30*[[Utils instance] distance:costume.position.x _y1:costume.position.y _x2:_oldPosition.x _y2:_oldPosition.y];
+        emitterEngineFire.position = position;
+        emitterEngineFire.speed = 30*[[Utils instance] distance:position.x _y1:position.y _x2:_oldPosition.x _y2:_oldPosition.y];
         if (emitterEngineFire.speed < 30) emitterEngineFire.speed = 1; else
             if (emitterEngineFire.speed > 1500) emitterEngineFire.speed = 1500;
-        emitterEngineFire.angle = [Utils GetAngleBetweenPt1:_oldPosition andPt2:costume.position];
+        emitterEngineFire.angle = [Utils GetAngleBetweenPt1:_oldPosition andPt2:position];
     }
     
     if (isGodMode) {
@@ -207,7 +235,7 @@
             sprGodMode.scale += 0.1f;
         }
         
-        [sprGodMode setPosition:costume.position];
+        [sprGodMode setPosition:position];
         sprGodMode.rotation += 5;
         if (sprGodMode.rotation > 360) sprGodMode.rotation -= 360;
         
@@ -222,11 +250,11 @@
     }
     
     if (isBonusSpeed) {
-        [self addVelocity:ccp(0, [Defs instance].bonusAccelerationPower)];
+        costume.position = ccp(position.x + CCRANDOM_MINUS1_1()*2, position.y + CCRANDOM_MINUS1_1()*2);
         
         if (emitterBonusSpeedFire) {
             if (emitterEngineFire) {
-                emitterBonusSpeedFire.position = costume.position;
+                emitterBonusSpeedFire.position = position;
                 emitterBonusSpeedFire.speed = emitterEngineFire.speed;
                 emitterBonusSpeedFire.angle = emitterEngineFire.angle;
             }
@@ -240,13 +268,12 @@
             [self hideBonusSpeedFire];
         }
     }
-
 }
 
 - (CGPoint) magnetReaction:(CGPoint)_point {
-    float _dist = [[Utils instance] distance:costume.position.x _y1:costume.position.y _x2:_point.x _y2:_point.y];
-    if (_dist < magnetDistance) {
-        float _angle = CC_DEGREES_TO_RADIANS([Utils GetAngleBetweenPt1:costume.position andPt2:_point]);
+    float _dist = [[Utils instance] distance:position.x _y1:position.y _x2:_point.x _y2:_point.y];
+    if (_dist < [Defs instance].playerMagnetDistance) {
+        float _angle = CC_DEGREES_TO_RADIANS([Utils GetAngleBetweenPt1:position andPt2:_point]);
         return _point = ccp(magnetPower*cos(_angle), magnetPower*sin(_angle));
     }
     return CGPointZero;

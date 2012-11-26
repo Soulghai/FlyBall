@@ -71,6 +71,7 @@
 @property (nonatomic, readwrite) BOOL achievement_Highscore_5_5;
 @property (nonatomic, readwrite) BOOL achievement_Highscore_5_10;
 
+@property (nonatomic, assign) int gameSessionCounter;
 @property (nonatomic, assign) int rateMeWindowShowValue;
 @property (nonatomic, readwrite) int coinsCount;
 @property (nonatomic, readwrite) int bestScore;

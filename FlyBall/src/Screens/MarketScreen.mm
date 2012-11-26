@@ -568,7 +568,7 @@
 		
 		btnPanelBuyCoinsYES_1 = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(_panelWidth*0.5f - 50, _panelHeight*0.57f)];
         
-        btnDef.sprName = @"btnBuy5Up.png";
+        btnDef.sprName = @"btnBuy15Up.png";
 		btnDef.sprDownName = @"btnBuy15Down.png";
 		btnDef.func = @selector(buyCoinsAtThreeDollars);
 		

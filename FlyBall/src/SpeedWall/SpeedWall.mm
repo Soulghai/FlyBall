@@ -108,15 +108,15 @@
         
         if (isShowing||isHiding) {
             positionChangeCoeff = ccpAdd(positionChangeCoeff, ccp(-[MainScene instance].game.player.velocity.x, showingSpeed));
-            costume.position = ccpAdd([MainScene instance].game.player.costume.position, positionChangeCoeff);
+            costume.position = ccpAdd([MainScene instance].game.player.position, positionChangeCoeff);
             if ((isShowing)&&(positionChangeCoeff.y <= 0)) {
-                costume.position = ccp(costume.position.x, [MainScene instance].game.player.costume.position.y);
+                costume.position = ccp(costume.position.x, [MainScene instance].game.player.position.y);
                 positionChangeCoeff = ccp(positionChangeCoeff.x, 0);
                 [self hideEmitterWarning];
                 isShowing = NO;
             } else
                 if ((isHiding)&&(positionChangeCoeff.y <= -SCREEN_HEIGHT)) {
-                    costume.position = ccp(costume.position.x, [MainScene instance].game.player.costume.position.y);
+                    costume.position = ccp(costume.position.x, [MainScene instance].game.player.position.y);
                     positionChangeCoeff = ccp(positionChangeCoeff.x, -SCREEN_HEIGHT);
                     isHiding = NO;
                     [self deactivate];
@@ -124,7 +124,7 @@
                 }
         } else {
             positionChangeCoeff = ccpAdd(positionChangeCoeff, ccp(-[MainScene instance].game.player.velocity.x, 0));
-            costume.position = ccpAdd([MainScene instance].game.player.costume.position, positionChangeCoeff);
+            costume.position = ccpAdd([MainScene instance].game.player.position, positionChangeCoeff);
         }
         
         if (emitterStarsAcc.parent)
@@ -159,10 +159,10 @@
         }
         
         if (emitterWarningAcc.parent)
-            emitterWarningAcc.position = ccp([MainScene instance].game.player.costume.position.x, [MainScene instance].game.player.costume.position.y +SCREEN_HEIGHT_HALF);
+            emitterWarningAcc.position = ccp([MainScene instance].game.player.position.x, [MainScene instance].game.player.position.y +SCREEN_HEIGHT_HALF);
         else
             if (emitterWarningDecc.parent)
-                emitterWarningDecc.position = ccp([MainScene instance].game.player.costume.position.x, [MainScene instance].game.player.costume.position.y +SCREEN_HEIGHT_HALF);
+                emitterWarningDecc.position = ccp([MainScene instance].game.player.position.x, [MainScene instance].game.player.position.y +SCREEN_HEIGHT_HALF);
         
         timeWaiting += TIME_STEP;
         if (timeWaiting >= delayWaiting) {
@@ -172,9 +172,9 @@
             [self hideEmitter];
 
             positionChangeCoeff = ccp(0, SCREEN_HEIGHT);
-            costume.position = ccp(costume.position.x, [MainScene instance].game.player.costume.position.y-SCREEN_HEIGHT);
+            costume.position = ccp(costume.position.x, [MainScene instance].game.player.position.y-SCREEN_HEIGHT);
             
-            if (addSpeedCoeff >= 0) {
+            if (addSpeedCoeff > 0) {
                 if (addSpeedCoeff != addSpeedCoeffOld) {
                     CCSpriteFrame* frame;
                     frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"speedWallBackground_2.png"];
@@ -211,6 +211,8 @@
     timeShowing = 0;
     timeWaiting = 0;
     isHiding = NO;
+    isShowing= NO;
+    addSpeedCoeffOld = 0;
     [self hideEmitter];
     [self hideEmitterWarning];
 }

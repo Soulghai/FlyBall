@@ -58,51 +58,22 @@
 /* button "menu" on the level. */
 "btnMoreGames" = "Еще игры";
 
-/* button "menu" on the level. */
-"btnISLAND" = "Остров";
-
-/* button "menu" on the level. */
-"btnVOLKANO" = "Вулкан";
-
-/* button "menu" on the level. */
-"btnICEAGE" = "Ледник";
-
-/* button "menu" on the level. */
-"btnCAVE" = "Пещера";
-
-/* button "menu" on the level. */
-"btnBOMB" = "ФЕЙЕРВЕРК";
-
-/* button "menu" on the level. */
-"Tap to Expand" = "Прикоснись к\nдинозавру,\nчтобы увеличить его";
+/* label Hint Level Start */
+"labelHintForLevelStart" = "Tap the Bomb\nto BLOW it";
 
 /* 4 level multy hint */
 "Multi Tap to\nExpand" = "Также одновременно\nможно прикоснуться\nк двум динозаврам";
 
 /* 60 level multy hint */
-"Tap to Bomb" = "Прикоснитесь к бомбе,\nчтобы взорвать ее!";
-
-/* button "menu" on the level. */
-"ADD SKIPS" = "КУПИ СУПЕРРАДУГИ";
-
-/* button "menu" on the level. */
-"REALLY USE\nLEVEL SKIP?" = "ХОЧЕШЬ ВОСПОЛЬЗОВАТЬСЯ\nСУПЕРРАДУГОЙ,\nЧТОБЫ ПРОЙТИ ЭТОТ УРОВЕНЬ?";
+"HINT:Tap to Bomb" = "Прикоснитесь к бомбе,\nчтобы взорвать ее!";
 
 /* button "menu" on the level. */
 "Restart Progress?" = "Стереть прогресс?";
 
-/* button "menu" on the level. */
-"CLICK HERE TO RESTART" = "Нажми чтобы переиграть";
-
-
 /*
  Market Screen
  */
-/* button "menu" on the level. */
-"get 5 skips" = "+5 суперрадуг";
-
-/* button "menu" on the level. */
-"get 15 skips" = "+15 суперрадуг";
+"panelBuyCoinsCaption" = "Не достаточно монет.\nКупить несколько?";
 
 /* button "menu" on the level. */
 "GIFT THIS APP" = "Подарить игру";
