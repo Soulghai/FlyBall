@@ -70,6 +70,9 @@
 @synthesize bonusGetChance;
 @synthesize bonusGetChanceLevel;
 
+@synthesize coinsGetChance;
+@synthesize coinsGetChanceLevel;
+
 @synthesize bonusGodModeTime;
 @synthesize bonusGodModeTimeLevel;
 
@@ -90,6 +93,12 @@
 
 @synthesize playerMagnetPower;
 @synthesize playerMagnetPowerLevel;
+
+@synthesize playerSpeedLimit;
+@synthesize playerSpeedLimitLevel;
+
+@synthesize playerBombSlow;
+@synthesize playerBombSlowLevel;
 
 @synthesize playerGodModeAfterCrashTime;
 @synthesize playerGodModeAfterCrashTimeLevel;

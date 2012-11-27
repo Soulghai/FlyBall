@@ -38,11 +38,30 @@
                 <key>width</key>
                 <integer>64</integer>
                 <key>x</key>
+                <integer>156</integer>
+                <key>y</key>
+                <integer>322</integer>
+            </dict>
+            <key>bonus_armor.png</key>
+            <dict>
+                <key>height</key>
+                <integer>64</integer>
+                <key>offsetX</key>
+                <real>0</real>
+                <key>offsetY</key>
+                <real>0</real>
+                <key>originalHeight</key>
+                <integer>64</integer>
+                <key>originalWidth</key>
+                <integer>64</integer>
+                <key>width</key>
+                <integer>64</integer>
+                <key>x</key>
                 <integer>2</integer>
                 <key>y</key>
                 <integer>324</integer>
             </dict>
-            <key>bonus_armor.png</key>
+            <key>bonus_fire.png</key>
             <dict>
                 <key>height</key>
                 <integer>64</integer>
@@ -61,7 +80,7 @@
                 <key>y</key>
                 <integer>282</integer>
             </dict>
-            <key>bonus_fire.png</key>
+            <key>bonus_speed.png</key>
             <dict>
                 <key>height</key>
                 <integer>64</integer>
@@ -80,7 +99,7 @@
                 <key>y</key>
                 <integer>256</integer>
             </dict>
-            <key>bonus_speed.png</key>
+            <key>coin.png</key>
             <dict>
                 <key>height</key>
                 <integer>64</integer>
@@ -204,7 +223,7 @@
             <key>size</key>
             <string>{256,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:a31ae5dfc8dfe472f873c6bb682cb849$</string>
+            <string>$TexturePacker:SmartUpdate:1c39e1ddbfc3d86e68031be01c2616f7$</string>
             <key>textureFileName</key>
             <string>gfx_chars-hd.pvr.ccz</string>
         </dict>

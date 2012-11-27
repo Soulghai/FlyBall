@@ -10,24 +10,15 @@ extern int SCREEN_WIDTH;
 extern int SCREEN_HEIGHT;
 extern int SCREEN_WIDTH_HALF;
 extern int SCREEN_HEIGHT_HALF;
-extern int const FRAME_RATE;
 
 //-------GUI--------------
 extern float BUTTON_DOWN_WAIT;
 //------------------------
 
-extern BOOL GAME_OVER;
-extern float GAME_TIME;
-extern BOOL GAME_STARTED;
 extern BOOL GAME_IS_PLAYING;
 extern BOOL GAME_EASTER;
 
-extern int GAME_SCORE;
-
-extern int GLOBAL_LAYER_ACTIVEOBJECT_COUNTER;
-extern int GLOBAL_LAYER_PASSIVEOBJECT_COUNTER;
-
-#define GAME_VERSION 1.2f
+#define GAME_VERSION 1.f
 
 #define GAME_RATE_URL @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=515220537&onlyLatestVersion=true&pageNumber=0&sortOrdering=1&type=Purple+Software"
 #define URL_GIFT_THIS_APP @"https://buy.itunes.apple.com/WebObjects/MZFinance.woa/wa/giftSongsWizard?gift=1&salableAdamId=515220537&productType=C&pricingParameter=STDQ"
@@ -65,10 +56,12 @@ extern int GLOBAL_LAYER_PASSIVEOBJECT_COUNTER;
 
 #define UPGRADE_LEVEL_COUNT 5
 
-#define BONUS_ARMOR 10
-#define BONUS_ACCELERATION 15
-#define BONUS_APOCALYPSE 20
-#define BONUS_GODMODE 25
+#define BONUS_COINS 15
+#define BONUS_ARMOR 25
+#define BONUS_ACCELERATION 30
+#define BONUS_APOCALYPSE 35
+#define BONUS_GODMODE 40
+#define BONUS_RANDOM_RANGE 43
 
 #define BONUS_ACCELERATION_POWER_DEFAULT 0.1f
 #define BONUS_ACCELERATION_POWER_MAX 0.5f
@@ -83,11 +76,12 @@ extern int GLOBAL_LAYER_PASSIVEOBJECT_COUNTER;
 #define BONUS_GODMODE_TIME_ADD_COEFF 0.5f
 
 #define BONUS_GET_CHANCE_DEFAULT 0.05f
-#define BONUS_GET_CHANCE_MAX 0.3f
 #define BONUS_GET_CHANCE_ADD_COEFF 0.05f
 
+#define COINS_GET_CHANCE_DEFAULT 0.05f
+#define COINS_GET_CHANCE_ADD_COEFF 0.05f
+
 #define GRAVITATION_DEFAULT 0.07f
-#define GRAVITATION_MIN 0.04f
 #define GRAVITATION_ADD_COEFF -0.01f
 
 #define SPEEDWALL_ACCELERATION_DEFAULT 0.15f
@@ -102,13 +96,19 @@ extern int GLOBAL_LAYER_PASSIVEOBJECT_COUNTER;
 #define SPEEDWALL_DELAYSHOWINGCOEFF_MAX 12
 #define SPEEDWALL_DELAYSHOWINGCOEFF_ADD_COEFF 1
 
-#define PLAYER_MAGNET_DISTANDE_DEFAULT 88  //прибавляется по 88 за апдейт. Всего три апдейта
+#define PLAYER_MAGNET_DISTANDE_DEFAULT 50  //прибавляется по 88 за апдейт. Всего три апдейта
 #define PLAYER_MAGNET_DISTANDE_MAX 264
-#define PLAYER_MAGNET_DISTANDE_ADD_COEFF 88
+#define PLAYER_MAGNET_DISTANDE_ADD_COEFF 40
 
 #define PLAYER_MAGNET_POWER_DEFAULT 2
 #define PLAYER_MAGNET_POWER_MAX 8
 #define PLAYER_MAGNET_POWER_ADD_COEFF 2
+
+#define PLAYER_SPEED_LIMIT_DEFAULT 30
+#define PLAYER_SPEED_LIMIT_ADD_COEFF 60
+
+#define PLAYER_BOMB_SLOW_DEFAULT 1
+#define PLAYER_BOMB_SLOW_ADD_COEFF 1
 
 #define GODMODE_AFTERCRASH_TIME_DEFAULT 0.5f
 #define GODMODE_AFTERCRASH_TIME_MAX 3.0f
@@ -121,10 +121,6 @@ extern int GLOBAL_LAYER_PASSIVEOBJECT_COUNTER;
 
 #define elementSize 45
 #define elementRadius 22.5f
-#define elementDensity 1
-
-#define eraserDensity 0.7f
-#define woodDensity 0.7f
 
 #define ZCOORD_OBJECTS 100
 

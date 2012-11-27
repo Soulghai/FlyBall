@@ -64,17 +64,24 @@
     }
 }
 
-- (void) update {
+- (void) manageCells {
     CCSprite *_spr;
-    CCSpriteFrame* frame;
     for (int i = 0; i < cells.count; i++) {
         _spr = [cells objectAtIndex:i];
         if (_spr.position.y + [Defs instance].objectFrontLayer.position.y < -cellHeight) _spr.position = ccp(_spr.position.x, _spr.position.y + cellCountY*cellHeight); else
             if (_spr.position.y + [Defs instance].objectFrontLayer.position.y > cellCountY*cellHeight - cellHeight) _spr.position = ccp(_spr.position.x, _spr.position.y - + cellCountY*cellHeight);
         if (_spr.position.x + [Defs instance].objectFrontLayer.position.x < -cellWidth) _spr.position = ccp(_spr.position.x + cellCountX*cellWidth, _spr.position.y); else
             if (_spr.position.x + [Defs instance].objectFrontLayer.position.x > cellCountX*cellWidth - cellWidth) _spr.position = ccp(_spr.position.x - cellCountX*cellWidth, _spr.position.y);
-        
-        
+    }
+}
+
+- (void) update {
+    [self manageCells];
+    
+    CCSprite *_spr;
+    CCSpriteFrame* frame;
+    for (int i = 0; i < cells.count; i++) {
+        _spr = [cells objectAtIndex:i];
         
         int _cellCurrentFrameValue = [[cellCurrentFrames objectAtIndex:i] intValue];
         

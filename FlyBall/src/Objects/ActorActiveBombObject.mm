@@ -36,6 +36,7 @@
 	if ((!isEraserCollide)&&(!isOutOfArea)){
         isEraserCollide = YES;
         ++[Defs instance].totalDeadBloxCounter;
+        
         [self getAchievement];
 		// play sound
         
@@ -115,6 +116,7 @@
 }
 
 - (void) touch {
+    [[MainScene instance].game bombExplosion:self];
     [self eraserCollide];
 }
 

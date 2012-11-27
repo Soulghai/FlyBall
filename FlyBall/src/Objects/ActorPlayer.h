@@ -22,6 +22,8 @@
     float timeBonusSpeed;
     float delayBonusSpeed;
     
+    float friction;
+    
     CCSprite *sprArmor;
     
     CCSprite *bonusCell;
@@ -39,6 +41,7 @@
 -(id) init:(CCNode*)_parent
    _location:(CGPoint)_location;
 - (void) loadCostume;
+- (void) setPosition:(CGPoint)_position;
 - (void) addArmor;
 - (void) setGodMode:(float)_godModeTime;
 - (void) setSpeedBonus:(float)_bonusSpeedTime;

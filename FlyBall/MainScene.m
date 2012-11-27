@@ -270,9 +270,11 @@ static void MainScene_remover() {
 }
 
 - (void) showLevelFinishScreenAndSetScore:(BOOL)_flag
+                          _collectedCoins:(int)_collectedCoins
                                    _score:(int)_score
                                _starCount:(int)_starScore {
     if (_score < 0) _score = 0;
+    [levelFinishScreen setCollectedCoins:_collectedCoins];
     [levelFinishScreen setScore:_score];
 	[levelFinishScreen show:_flag];
 }

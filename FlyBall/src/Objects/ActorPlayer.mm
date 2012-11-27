@@ -53,6 +53,8 @@
         emitterBonusSpeedFire.position = costume.position;
         [emitterBonusSpeedFire retain];
         [emitterBonusSpeedFire unscheduleUpdate];
+        
+        friction = 0.01f;
 	}
 	return self;
 }
@@ -197,6 +199,10 @@
     [super deactivate];
 }
 
+- (void) setPosition:(CGPoint)_position {
+    position = _position;
+}
+
 - (void) eraserCollide {
     if (isGodMode) return;
     if (armored > 0) {
@@ -209,14 +215,26 @@
     [super eraserCollide];
 }
 
+- (void) addVelocity:(CGPoint)_value {
+    [super addVelocity:_value];
+    
+    if (velocity.y > [Defs instance].playerSpeedLimit) velocity.y = [Defs instance].playerSpeedLimit;
+    CCLOG(@"playerVelocity.y = %f",velocity.y);
+}
+
 - (void) update {
     if (isBonusSpeed) {
         [self addVelocity:ccp(0, [Defs instance].bonusAccelerationPower)];
     }
     
-    CGPoint _oldPosition = costume.position;
+    CGPoint _oldPosition = position;
+    costume.position = position;
     [super update];
+    
     position = costume.position;
+    
+    if (velocity.x > friction) velocity.x -= friction; else
+        if (velocity.x < -friction) velocity.x += friction;
     
     // Visual part
     
@@ -250,7 +268,7 @@
     }
     
     if (isBonusSpeed) {
-        costume.position = ccp(position.x + CCRANDOM_MINUS1_1()*2, position.y + CCRANDOM_MINUS1_1()*2);
+        costume.position = ccp(position.x + CCRANDOM_MINUS1_1()*[Defs instance].bonusAccelerationPower*6, position.y + CCRANDOM_MINUS1_1()*[Defs instance].bonusAccelerationPower*6);
         
         if (emitterBonusSpeedFire) {
             if (emitterEngineFire) {
@@ -265,6 +283,7 @@
             isBonusSpeed = NO;
             timeBonusSpeed = 0;
             delayGodMode = 0;
+            delayBonusSpeed = 0;
             [self hideBonusSpeedFire];
         }
     }
@@ -272,7 +291,7 @@
 
 - (CGPoint) magnetReaction:(CGPoint)_point {
     float _dist = [[Utils instance] distance:position.x _y1:position.y _x2:_point.x _y2:_point.y];
-    if (_dist < [Defs instance].playerMagnetDistance) {
+    if (_dist <= [Defs instance].playerMagnetDistance) {
         float _angle = CC_DEGREES_TO_RADIANS([Utils GetAngleBetweenPt1:position andPt2:_point]);
         return _point = ccp(magnetPower*cos(_angle), magnetPower*sin(_angle));
     }

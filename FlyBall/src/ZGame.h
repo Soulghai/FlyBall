@@ -12,6 +12,7 @@
 #import "ActorPlayer.h"
 #import "CellsBackground.h"
 #import "SpeedWall.h"
+#import "ActorActiveBombObject.h"
 
 @interface ZGame : CCNode {	
 	BOOL isVisible;
@@ -35,6 +36,8 @@
     
     CellsBackground *cells;
     SpeedWall *speedWall;
+    
+    int collectedCoins;
 }
 
 @property (nonatomic, assign) int state;
@@ -52,6 +55,7 @@
 - (void) levelStart;
 - (void) levelRestart;
 - (void) prepareToHideGameScreen;
+- (void) bombExplosion:(ActorActiveBombObject*)_tempActor;
 - (void) doBonusEffect:(int)_bonusID;
 - (void) bonusTouchReaction:(int)_bonusID;
 - (BOOL) ccTouchBegan:(CGPoint)_touchPos;

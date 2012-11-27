@@ -43,6 +43,7 @@
 - (void) showMarketScreen:(int)_state;
 - (void) showGamePause;
 - (void) showLevelFinishScreenAndSetScore:(BOOL)_flag
+                          _collectedCoins:(int)_collectedCoins
                                    _score:(int)_score
                                _starCount:(int)_starScore;
 - (void) fromMarketToLevelFinishScreen;

@@ -34,10 +34,16 @@
 	[costume retain];
 }
 
-- (void) setRandomBonus {
-    
+- (void) setCoins {
+    bonusID = BONUS_COINS;
     CCSpriteFrame* frame = nil;
-    int _ran = (int)round(CCRANDOM_0_1()*BONUS_GODMODE);
+    frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"coin.png"];
+    if (frame != nil) [costume setDisplayFrame:frame];
+}
+
+- (void) setRandomBonus {
+    CCSpriteFrame* frame = nil;
+    int _ran = (int)round(CCRANDOM_0_1()*BONUS_RANDOM_RANGE);
     bonusID = _ran;
     if (bonusID <= BONUS_ARMOR) {
             frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"bonus_armor.png"];
@@ -82,6 +88,10 @@
         }
         
         switch (bonusID) {
+            case BONUS_COINS:
+                emitterBoom = [CCParticleSystemQuad particleWithFile:@"bonus_armor_get.plist"];
+                break;
+                
             case BONUS_ARMOR:
                 emitterBoom = [CCParticleSystemQuad particleWithFile:@"bonus_armor_get.plist"];
                 break;

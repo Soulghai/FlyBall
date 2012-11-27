@@ -62,8 +62,14 @@
         levelNumber =[[MainScene instance].gui addItem:(id)_labelTTFOutlinedDef _pos:scoreTotalStrPos];
         
         scoreStrPos = ccp(SCREEN_WIDTH_HALF, 244);
+        _labelTTFOutlinedDef.text = @"";
         _labelTTFOutlinedDef.textColor = ccc3(255, 255, 255);
         scoreStr =[[MainScene instance].gui addItem:(id)_labelTTFOutlinedDef _pos:scoreStrPos];
+        
+        collectedCoinsStrPos = ccp(SCREEN_WIDTH_HALF, 200);
+        _labelTTFOutlinedDef.text = @"";
+        _labelTTFOutlinedDef.textColor = ccc3(255, 255, 0);
+        collectedCoinsStr =[[MainScene instance].gui addItem:(id)_labelTTFOutlinedDef _pos:collectedCoinsStrPos];
 		
 		GUIButtonDef *btnDef = [GUIButtonDef node];
 		btnDef.sprName = @"btnLevels.png";
@@ -148,6 +154,16 @@
 	return self;
 }
 
+- (void) setCollectedCoins:(int) _value {
+    collectedCoinsValue = _value;
+    collectedCoinsCurrValue = 0;
+    soundScoreTime = soundScoreDelay;
+    
+    timeCollectedCoinsAdd = 0;
+    [Defs instance].coinsCount += _value;
+    delayCollectedCoinsAdd = 0.2f;
+}
+
 - (void) setScore:(int) _value {
     scoreValue = _value;
     scoreCurrValue = 0;
@@ -193,6 +209,7 @@
         [[GameStandartFunctions instance] playOpenScreenAnimation];
         
         waitAddScoreTime = 0;
+        [collectedCoinsStr setText:@"0"];
         [scoreStr setText:@"0"];
         [levelNumber setText:[NSString stringWithFormat:@"%i",scoreTotalCurrValue]];
 	} else { 
@@ -254,6 +271,17 @@
         } else {
             if (panelPalmLeft.spr.rotation > -1) panelPalmLeft.spr.rotation -= 0.03f; else isPalmLeftGoUp = YES;
         }
+        
+        if (collectedCoinsCurrValue < collectedCoinsValue) {
+            timeCollectedCoinsAdd += TIME_STEP;
+            if (timeCollectedCoinsAdd >= delayCollectedCoinsAdd) {
+                collectedCoinsCurrValue += 1;
+                [collectedCoinsStr setPosition:ccp(collectedCoinsStrPos.x + [[Utils instance] myRandom2F]*2, collectedCoinsStrPos.y + [[Utils instance] myRandom2F]*2)];
+                [collectedCoinsStr setText:[NSString stringWithFormat:@"%i",collectedCoinsCurrValue]];
+                if (![Defs instance].isSoundMute) [[SimpleAudioEngine sharedEngine] playEffect:@"star.wav"];
+                timeCoinsAdd = 0;
+            }
+        } else
         
         if (scoreCurrValue < scoreValue) {
             scoreCurrValue += scoreCurrValueKoeff;

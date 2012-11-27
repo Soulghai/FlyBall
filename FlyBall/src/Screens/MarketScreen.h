@@ -37,13 +37,15 @@
     GUIButton* btnBonusAccelerationPower;
     GUIButton* btnBonusAccelerationDelay;
     GUIButton* btnBonusGetChance;
+    GUIButton* btnCoinsGetChance;
     GUIButton* btnBonusGodModeTime;
-    GUIButton* btnGravitation;
+    GUIButton* btnPlayerSpeedLimit;
     GUIButton* btnSpeedWallAccelerationCoeff;
     GUIButton* btnSpeedWallDeccelerationCoeff;
     GUIButton* btnPlayerMagnetDistance;
     GUIButton* btnPlayerMagnetPower;
     GUIButton* btnPlayerGodModeAfterCrashTime;
+    GUIButton* btnPlayerBombSlow;
 }
 
 - (id) init;

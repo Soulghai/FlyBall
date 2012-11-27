@@ -33,8 +33,10 @@
         costume = [CCSprite spriteWithSpriteFrameName:@"speedWallBackground_2.png"];
         [costume retain];
         [costume setScaleY:3.75f];
-        [costume setScaleX:10];
+        [costume setScaleX:16];
         //[costume setOpacity:100];
+        
+        halfWidth = costume.contentSize.width*0.5f*costume.scaleX;
         
         showingSpeed = -30;
         addSpeedCoeff = [Defs instance].speedWallAccelerationCoeff;
@@ -98,7 +100,6 @@
 - (void) update {
 	if (isVisible) {
         if ((!isHiding)&&(!isShowing)) {
-            CCLOG(@"time = %f",timeShowing);
             timeShowing += TIME_STEP;
             if (timeShowing >= delayShowing) {
                 isShowing = NO;
@@ -223,8 +224,8 @@
 
 - (CGPoint) checkToCollide:(CGPoint)_position {
     if (isVisible) {
-        if ((_position.x + elementRadius > costume.position.x - SCREEN_WIDTH)
-            &&(_position.x - elementRadius < costume.position.x + SCREEN_WIDTH)
+        if ((_position.x + elementRadius > costume.position.x - halfWidth)
+            &&(_position.x - elementRadius < costume.position.x + halfWidth)
             &&(_position.y + elementRadius > costume.position.y - SCREEN_HEIGHT_HALF)
             &&(_position.y - elementRadius < costume.position.y + SCREEN_HEIGHT_HALF)) {
                 return ccp(0, addSpeedCoeff);

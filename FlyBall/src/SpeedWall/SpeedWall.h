@@ -12,6 +12,8 @@
 @interface SpeedWall : NSObject {
 	CCSprite *costume;
 	CCNode *parentFrame;
+    
+    float halfWidth;
 	
     BOOL isShowing;
     BOOL isHiding;

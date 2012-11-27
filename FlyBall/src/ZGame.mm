@@ -22,6 +22,8 @@
 #import "AnalyticsData.h"
 #import "MyData.h"
 #import "ActorCircleBomb.h"
+#import "ActorCircleTimeBomb.h"
+#import "ActorCircleMagnetBomb.h"
 #import "ActorCircleBonus.h"
 #import "CellsBackground.h"
 #import "SpeedWall.h"
@@ -59,6 +61,8 @@
     [Defs instance].bonusAccelerationDelayLevel = 0;
     [Defs instance].bonusGetChance = BONUS_GET_CHANCE_DEFAULT;
     [Defs instance].bonusGetChanceLevel = 0;
+    [Defs instance].coinsGetChance = COINS_GET_CHANCE_DEFAULT;
+    [Defs instance].coinsGetChanceLevel = 0;
     [Defs instance].bonusGodModeTime = BONUS_GODMODE_TIME_DEFAULT;
     [Defs instance].bonusGodModeTimeLevel = 0;
     [Defs instance].gravitation = GRAVITATION_DEFAULT;
@@ -73,6 +77,10 @@
     [Defs instance].playerMagnetDistanceLevel = 0;
     [Defs instance].playerMagnetPower = PLAYER_MAGNET_POWER_DEFAULT;
     [Defs instance].playerMagnetPowerLevel = 0;
+    [Defs instance].playerSpeedLimit = PLAYER_SPEED_LIMIT_DEFAULT;
+    [Defs instance].playerSpeedLimitLevel = 0;
+    [Defs instance].playerBombSlow = PLAYER_BOMB_SLOW_DEFAULT;
+    [Defs instance].playerBombSlowLevel = 0;
     [Defs instance].playerGodModeAfterCrashTime = GODMODE_AFTERCRASH_TIME_DEFAULT;
     [Defs instance].playerGodModeAfterCrashTimeLevel = 0;
     
@@ -85,6 +93,8 @@
     [MyData setStoreValue:@"bonusAccelerationDelayLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].bonusAccelerationDelayLevel]];
     [MyData setStoreValue:@"bonusGetChance" value:[NSString stringWithFormat:@"%f",[Defs instance].bonusGetChance]];
     [MyData setStoreValue:@"bonusGetChanceLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].bonusGetChanceLevel]];
+    [MyData setStoreValue:@"coinsGetChance" value:[NSString stringWithFormat:@"%f",[Defs instance].coinsGetChance]];
+    [MyData setStoreValue:@"coinsGetChanceLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].coinsGetChanceLevel]];
     [MyData setStoreValue:@"bonusGodModeTime" value:[NSString stringWithFormat:@"%f",[Defs instance].bonusGodModeTime]];
     [MyData setStoreValue:@"bonusGodModeTimeLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].bonusGodModeTimeLevel]];
     [MyData setStoreValue:@"gravitation" value:[NSString stringWithFormat:@"%f",[Defs instance].gravitation]];
@@ -99,6 +109,10 @@
     [MyData setStoreValue:@"playerMagnetDistanceLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].playerMagnetDistanceLevel]];
     [MyData setStoreValue:@"playerMagnetPower" value:[NSString stringWithFormat:@"%f",[Defs instance].playerMagnetPower]];
     [MyData setStoreValue:@"playerMagnetPowerLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].playerMagnetPowerLevel]];
+    [MyData setStoreValue:@"playerSpeedLimit" value:[NSString stringWithFormat:@"%f",[Defs instance].playerSpeedLimit]];
+    [MyData setStoreValue:@"playerSpeedLimitLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].playerSpeedLimitLevel]];
+    [MyData setStoreValue:@"playerBombSlow" value:[NSString stringWithFormat:@"%i",[Defs instance].playerBombSlow]];
+    [MyData setStoreValue:@"playerBombSlowLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].playerBombSlowLevel]];
     [MyData setStoreValue:@"playerGodModeAfterCrashTime" value:[NSString stringWithFormat:@"%f",[Defs instance].playerGodModeAfterCrashTime]];
     [MyData setStoreValue:@"playerGodModeAfterCrashTimeLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].playerGodModeAfterCrashTimeLevel]];
     
@@ -144,6 +158,8 @@
             [Defs instance].bonusAccelerationDelayLevel  = [[MyData getStoreValue:@"bonusAccelerationDelayLevel"] intValue];
             [Defs instance].bonusGetChance = [[MyData getStoreValue:@"bonusGetChance"] floatValue];
             [Defs instance].bonusGetChanceLevel  = [[MyData getStoreValue:@"bonusGetChanceLevel"] intValue];
+            [Defs instance].coinsGetChance = [[MyData getStoreValue:@"coinsGetChance"] floatValue];
+            [Defs instance].coinsGetChanceLevel  = [[MyData getStoreValue:@"coinsGetChanceLevel"] intValue];
             [Defs instance].bonusGodModeTime = [[MyData getStoreValue:@"bonusGodModeTime"] floatValue];
             [Defs instance].bonusGodModeTimeLevel  = [[MyData getStoreValue:@"bonusGodModeTimeLevel"] intValue];
             [Defs instance].gravitation = [[MyData getStoreValue:@"gravitation"] floatValue];
@@ -158,27 +174,15 @@
             [Defs instance].playerMagnetDistanceLevel  = [[MyData getStoreValue:@"playerMagnetDistanceLevel"] intValue];
             [Defs instance].playerMagnetPower = [[MyData getStoreValue:@"playerMagnetPower"] floatValue];
             [Defs instance].playerMagnetPowerLevel  = [[MyData getStoreValue:@"playerMagnetPowerLevel"] intValue];
+            [Defs instance].playerSpeedLimit = [[MyData getStoreValue:@"playerSpeedLimit"] floatValue];
+            [Defs instance].playerSpeedLimitLevel  = [[MyData getStoreValue:@"playerSpeedLimitLevel"] intValue];
+            [Defs instance].playerBombSlow = [[MyData getStoreValue:@"playerBombSlow"] intValue];
+            [Defs instance].playerBombSlowLevel  = [[MyData getStoreValue:@"playerBombSlowLevel"] intValue];
             [Defs instance].playerGodModeAfterCrashTime = [[MyData getStoreValue:@"playerGodModeAfterCrashTime"] floatValue];
             [Defs instance].playerGodModeAfterCrashTimeLevel  = [[MyData getStoreValue:@"playerGodModeAfterCrashTimeLevel"] intValue];
         }
         
-        //[self retartGameProcess];
-        
-        
         [Defs instance].coinsCount = 1000;
-        //[Defs instance].bonusAccelerationPower = BONUS_ACCELERATION_POWER_DEFAULT;
-        //[Defs instance].bonusAccelerationPowerLevel = 0;
-        //[Defs instance].bonusAccelerationDelay = BONUS_ACCELERATION_DELAY_DEFAULT;
-        //[Defs instance].bonusAccelerationDelayLevel = 0;
-        //[Defs instance].bonusGetChance = BONUS_GET_CHANCE_DEFAULT;
-        //[Defs instance].bonusGodModeTime = BONUS_GODMODE_TIME_DEFAULT;
-        //[Defs instance].gravitation = GRAVITATION_DEFAULT;
-        //[Defs instance].speedWallAccelerationCoeff = SPEEDWALL_ACCELERATION_DEFAULT;
-        //[Defs instance].speedWallDeccelerationCoeff = SPEEDWALL_DECCELERARION_DEFAULT;
-        //[Defs instance].speedWallDelayShowingCoeff = SPEEDWALL_DELAYSHOWINGCOEFF_DEFAULT;
-        //[Defs instance].playerMagnetDistance = PLAYER_MAGNET_DISTANDE_DEFAULT;
-        //[Defs instance].playerMagnetPower = PLAYER_MAGNET_POWER_DEFAULT;
-        //[Defs instance].playerGodModeAfterCrashTime = BONUS_GODMODE_AFTERCRASH_TIME_DEFAULT;
 		
         if (![Defs instance].isSoundMute) {
             [[SimpleAudioEngine sharedEngine] preloadEffect:@"level_win.wav"]; 
@@ -233,6 +237,7 @@
         
         _labelTTFDef.textColor = ccc3(255, 255, 255);
         _labelTTFDef.text = @"160";
+        _labelTTFDef.fontSize = 24;
         labelScoreStr3 =[[MainScene instance].gui addItem:(id)_labelTTFDef _pos:ccp(1,SCREEN_HEIGHT_HALF + SCREEN_HEIGHT_HALF/1.5f)];
         
         // hint for start game
@@ -240,15 +245,21 @@
         _labelTTFDef.alignement = kCCTextAlignmentCenter;
         _labelTTFDef.textColor = ccc3(255, 255, 255);
         _labelTTFDef.text = NSLocalizedString(@"HINT:Tap to Bomb","");
-        labelScoreStr3 =[[MainScene instance].gui addItem:(id)_labelTTFDef _pos:ccp(SCREEN_WIDTH_HALF, 100)];
+        [[MainScene instance].gui addItem:(id)_labelTTFDef _pos:ccp(SCREEN_WIDTH_HALF, 100)];
         
         cells = [[CellsBackground alloc] init];
         [cells retain];
         
         player = [[ActorPlayer alloc] init:[Defs instance].spriteSheetChars _location:ccp(SCREEN_WIDTH_HALF, SCREEN_HEIGHT_HALF)];
         
-        for (int i = 0; i < 15; i++)
+        for (int i = 0; i < 10; i++)
         [[ActorCircleBomb alloc] init:[Defs instance].spriteSheetChars _location:CGPointZero];
+        
+        for (int i = 0; i < 5; i++)
+            [[ActorCircleTimeBomb alloc] init:[Defs instance].spriteSheetChars _location:CGPointZero];
+        
+        for (int i = 0; i < 5; i++)
+            [[ActorCircleMagnetBomb alloc] init:[Defs instance].spriteSheetChars _location:CGPointZero];
         
         for (int i = 0; i < 10; i++)
             [[ActorCircleBonus alloc] init:[Defs instance].spriteSheetChars _location:CGPointZero];
@@ -281,21 +292,21 @@
 - (void) prepareToHideGameScreen {
     [self setCenterOfTheScreen:ccp(SCREEN_WIDTH_HALF, 0)];
 	[self show:NO];
-	//[self deactivateAllActors];
 	GAME_IS_PLAYING = NO;
 }
 
-- (void) addBall:(CGPoint)_point
+- (void) addBall:(id)_class
+          _point:(CGPoint)_point
        _velocity:(CGPoint)_velocity
          _active:(BOOL)_active{
     
     int _cnt = [Defs instance].actorManager.actorsAll.count;
     Actor *_a;
-    ActorCircleBomb *_circleBombActor = nil;
+    ActorActiveBombObject *_circleBombActor = nil;
     for (int i = 0; i < _cnt; i++) {
         _a = [[Defs instance].actorManager.actorsAll objectAtIndex:i];
-        if (([_a isMemberOfClass:[ActorCircleBomb class]])&&(_a.isActive == NO)) {
-            _circleBombActor = (ActorCircleBomb*)_a;
+        if (([_a isMemberOfClass:_class])&&(_a.isActive == NO)) {
+            _circleBombActor = (ActorActiveBombObject*)_a;
             break;
         }
     }
@@ -303,16 +314,17 @@
     if (_circleBombActor != nil)
         [_circleBombActor addToField:_point _velocity:_velocity];
     else {
-        _circleBombActor = [[ActorCircleBomb alloc] init:[Defs instance].spriteSheetChars _location:_point];
+        _circleBombActor = [[_class alloc] init:[Defs instance].spriteSheetChars _location:_point];
         CCLOG(@"CREATE NEW BOMB");
     }
-
+    
     
     _circleBombActor.isActive = _active;
     [_circleBombActor show:_active];
 }
 
-- (void) addBonus:(CGPoint)_point
+- (void) addBonus:(int)_type
+           _point:(CGPoint)_point
        _velocity:(CGPoint)_velocity
          _active:(BOOL)_active{
     
@@ -333,18 +345,21 @@
         _circleBombBonus = [[ActorCircleBonus alloc] init:[Defs instance].spriteSheetChars _location:_point];
         CCLOG(@"CREATE NEW BONUS");
     }
-    if (_active) [_circleBombBonus setRandomBonus];
+    if (_active) {
+        if (_type == 0) [_circleBombBonus setRandomBonus]; else
+            if (_type == 1) [_circleBombBonus setCoins];
+    }
     
     _circleBombBonus.isActive = _active;
     [_circleBombBonus show:_active];
 }
 
 - (void) levelStart{
-	GAME_STARTED = YES;
     isPause = NO;
 	
 	levelTime = 0;
 	
+    collectedCoins = 0;
 	scoreLevel = 0;
     [scoreStr setColor:ccc3(255, 255, 255)];
     isNewScoreSound = NO;
@@ -359,11 +374,12 @@
     [player addVelocity:ccp(0,1)];
     [self setCenterOfTheScreen:player.position];
     
-    [self addBall:ccp(player.position.x, player.position.y - 70) _velocity:ccp(0,0) _active:YES];
+    [self addBall:[ActorCircleBomb class] _point:ccp(player.position.x, player.position.y - 70) _velocity:ccp(0,0) _active:YES];
     
     timerAddBall = 0.2f;
     timerDelayAddBall = 0.4f;
     
+    [self labelScoreBarUpdate];
     [cells restartParameters];
     [speedWall deactivate];
     
@@ -427,7 +443,7 @@
     
     //[Defs instance].bestScore = 0;
     
-    [[MainScene instance] showLevelFinishScreenAndSetScore:YES _score:scoreLevel _starCount:3];
+    [[MainScene instance] showLevelFinishScreenAndSetScore:YES _collectedCoins:collectedCoins _score:scoreLevel _starCount:3];
     
     [MyData encodeDict:[MyData getDictForSaveData]];
 }
@@ -486,6 +502,8 @@
     float _distance = [[Utils instance] distance:SCREEN_WIDTH_HALF _y1:SCREEN_HEIGHT_HALF _x2:_tempActorX _y2:_tempActorY];
     if (_distance < elementSize) _distance = elementSize;
     
+    if (_distance > SCREEN_HEIGHT_HALF) return;
+    
     float _power = (1 - _distance/SCREEN_HEIGHT_HALF)*10.0f;
     
     float _angle = CC_DEGREES_TO_RADIANS([Utils GetAngleBetweenPt1:ccp(SCREEN_WIDTH_HALF, SCREEN_HEIGHT_HALF) andPt2:ccp(_tempActorX,_tempActorY)]);
@@ -526,6 +544,10 @@
 }
 
 - (void) bonusTouchReaction:(int)_bonusID {
+    if (_bonusID <= BONUS_COINS) {
+        // Добавляем одну монетку
+        ++collectedCoins;
+    } else
     if (_bonusID <= BONUS_ARMOR) {
         // Включаем броню
         [player addArmor];
@@ -632,23 +654,47 @@
             }
         }
         
+        // действуем бомбой магнитом на игрока
+        for (int i = 0; i < _count; i++) {
+            _tempActor = [[Defs instance].actorManager.actorsAll objectAtIndex:i];
+            if ((_tempActor.isActive)&&([_tempActor isMemberOfClass:[ActorCircleMagnetBomb class]])
+                /*&&(![self checkIsOutOfScreen:_tempActor])*/) {
+                [player setPosition:ccpAdd(player.position, [(ActorCircleMagnetBomb*)_tempActor magnetReaction:player.position])];
+            }
+        }
+        
         [self labelScoreBarUpdate];
         
         timerAddBall += TIME_STEP;
         if (timerAddBall >= timerDelayAddBall - (player.position.y/4000000)) {
             float _playerVelocityX = player.velocity.x;
             float _playerVelocityY = player.velocity.y;
+            
             if (player.isBonusSpeed) {
-                _playerVelocityY -= [Defs instance].bonusAccelerationPowerLevel*2;
+                _playerVelocityY -= [Defs instance].bonusAccelerationPower*5;
             }
-            float _velocityXCoeff = 1 + fabsf(_playerVelocityX/10);
-            float _velocityYCoeff = 1.f + (player.position.y/30000)+ CCRANDOM_0_1()*(player.position.y/120000);
+            
+            if (_playerVelocityY < 0) _playerVelocityY = 0;
+            
+            float _velocityXCoeff = 1.5f;
+            float _velocityYCoeff = 3 + player.position.y/(12000*([Defs instance].playerBombSlow)) + CCRANDOM_0_1()*(player.position.y/(20000*([Defs instance].playerBombSlow)));
             if (_velocityYCoeff < 4.5f) {
                 _velocityYCoeff = 4.5f;
             }
             int _ballCount = round(CCRANDOM_0_1()*2);
             for (int i = 0; i < _ballCount; i++) {
-                [self addBall:ccp(player.position.x + _playerVelocityX + SCREEN_WIDTH_HALF*CCRANDOM_MINUS1_1(), player.position.y - SCREEN_HEIGHT_HALF - elementRadius) _velocity:ccp(_playerVelocityX + CCRANDOM_MINUS1_1()*_velocityXCoeff, _playerVelocityY + _velocityYCoeff) _active:YES];
+                float _ran = CCRANDOM_0_1()*8;
+                id _newBombType = [ActorCircleBomb class];
+                if ((player.position.y >= 100000)&&(_ran > 7)) {
+                    _newBombType = [ActorCircleMagnetBomb class];
+                    [self addBall:_newBombType _point:ccp(player.position.x + _playerVelocityX + SCREEN_WIDTH_HALF*CCRANDOM_MINUS1_1(), player.position.y - SCREEN_HEIGHT_HALF - elementRadius) _velocity:ccp(_playerVelocityX, _playerVelocityY + 4 + CCRANDOM_0_1()*2) _active:YES];
+                } else
+                if ((player.position.y >= 50000)&&(_ran > 5)) {
+                    _newBombType = [ActorCircleTimeBomb class];
+                    [self addBall:_newBombType _point:ccp(player.position.x + _playerVelocityX + SCREEN_WIDTH_HALF*CCRANDOM_MINUS1_1(), player.position.y - SCREEN_HEIGHT_HALF - elementRadius) _velocity:ccp(_playerVelocityX, _playerVelocityY + 4 + CCRANDOM_0_1()*2) _active:YES];
+                } else {
+                    [self addBall:_newBombType _point:ccp(player.position.x + _playerVelocityX + SCREEN_WIDTH_HALF*CCRANDOM_MINUS1_1(), player.position.y - SCREEN_HEIGHT_HALF - elementRadius) _velocity:ccp(_playerVelocityX + CCRANDOM_MINUS1_1()*_velocityXCoeff, _playerVelocityY + _velocityYCoeff) _active:YES];
+                }
             }
             
             timerAddBall = 0;
@@ -660,12 +706,12 @@
             
             if ((scoreLevel > [Defs instance].bestScore)&&([Defs instance].gameSessionCounter != 1)) {
                 [scoreStr setColor:ccc3(50, 150, 255)];
-                [scoreStr setText:[NSString stringWithFormat:@"Wooow %i !!!",scoreLevel]];
+                [scoreStr setText:[NSString stringWithFormat:@"Wooow %im!!!",scoreLevel]];
                 if (!isNewScoreSound) {
                     if (![Defs instance].isSoundMute) [[SimpleAudioEngine sharedEngine] playEffect:@"star.wav"];
                     isNewScoreSound = YES;
                 }
-            } else [scoreStr setText:[NSString stringWithFormat:@"%i",scoreLevel]];
+            } else [scoreStr setText:[NSString stringWithFormat:@"%im",scoreLevel]];
         }
         
         [[Defs instance].actorManager update];
@@ -725,14 +771,16 @@
                 if (_actorWithMinDistanceID != -1) {
                     _tempActor = [[Defs instance].actorManager.actorsAll objectAtIndex:_actorWithMinDistanceID];
                     
-                    if ([_tempActor isKindOfClass:[ActorActiveBombObject class]]) {
-                        [self bombExplosion:(ActorActiveBombObject*)_tempActor];
-                        if (CCRANDOM_0_1() < [Defs instance].bonusGetChance) {
-                            [self addBonus:_tempActor.costume.position _velocity:player.velocity _active:YES];
-                        }
-                    }
-                    
                     [_tempActor touch];
+                    
+                    if ([_tempActor isKindOfClass:[ActorActiveBombObject class]]) {
+                        float _ran = CCRANDOM_0_1();
+                        if (_ran< [Defs instance].bonusGetChance) {
+                            [self addBonus:0 _point:_tempActor.costume.position _velocity:player.velocity _active:YES];
+                        } else
+                            if (_ran < [Defs instance].bonusGetChance + [Defs instance].coinsGetChance)
+                                [self addBonus:1 _point:_tempActor.costume.position _velocity:player.velocity _active:YES];
+                    }
                     
                     _tempActor = nil;
                     
@@ -762,7 +810,6 @@
                 
                 if (_actorWithMinDistanceID != -1) {
                     _tempActor = [[Defs instance].actorManager.actorsAll objectAtIndex:_actorWithMinDistanceID];
-                    [self bombExplosion:(ActorActiveBombObject*)_tempActor];
                     [_tempActor touch];
                     [self startGameSession];
                     

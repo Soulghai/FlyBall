@@ -89,6 +89,9 @@
 @property (nonatomic, readwrite) float bonusGetChance;
 @property (nonatomic, readwrite) int bonusGetChanceLevel;
 
+@property (nonatomic, readwrite) float coinsGetChance;
+@property (nonatomic, readwrite) int coinsGetChanceLevel;
+
 @property (nonatomic, readwrite) float bonusGodModeTime;
 @property (nonatomic, readwrite) int bonusGodModeTimeLevel;
 
@@ -109,6 +112,12 @@
 
 @property (nonatomic, readwrite) float playerMagnetPower;
 @property (nonatomic, readwrite) int playerMagnetPowerLevel;
+
+@property (nonatomic, readwrite) float playerSpeedLimit;
+@property (nonatomic, readwrite) int playerSpeedLimitLevel;
+
+@property (nonatomic, readwrite) int playerBombSlow;
+@property (nonatomic, readwrite) int playerBombSlowLevel;
 
 @property (nonatomic, readwrite) float playerGodModeAfterCrashTime;
 @property (nonatomic, readwrite) int playerGodModeAfterCrashTimeLevel;

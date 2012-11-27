@@ -8,14 +8,17 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
-#import "ActorActiveObject.h"
+#import "ActorActiveBombObject.h"
 
-@interface ActorCircleBonus : ActorActiveObject {
-    int bonusID;
+@interface ActorCircleMagnetBomb : ActorActiveBombObject {
+    float rotationSpeed;
+    float magnetPower;
+    float magnetDistance;
+    int currSpriteFrame;
+    BOOL isWorking;
 }
 -(id) init:(CCNode*)_parent
    _location:(CGPoint)_location;
 - (void) loadCostume;
-- (void) setCoins;
-- (void) setRandomBonus;
+- (CGPoint) magnetReaction:(CGPoint)_point;
 @end

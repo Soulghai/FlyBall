@@ -16,6 +16,7 @@
     
 	GUILabelTTFOutlined* levelNumber;
 	GUILabelTTFOutlined* scoreStr;
+    GUILabelTTFOutlined* collectedCoinsStr;
     CGPoint scoreStrPos;
     int scoreValue;
     float scoreCurrValue;
@@ -27,6 +28,13 @@
     float soundScoreTime;
     float timeCoinsAdd;
     float delayCoinsAdd;
+    
+    
+    CGPoint collectedCoinsStrPos;
+    int collectedCoinsValue;
+    int collectedCoinsCurrValue;
+    float timeCollectedCoinsAdd;
+    float delayCollectedCoinsAdd;
     
     CGPoint scoreTotalStrPos;
     int scoreTotalCurrValue;
@@ -49,6 +57,7 @@
 }
 
 - (id) init;
+- (void) setCollectedCoins:(int) _value;
 - (void) setScore:(int) _value;
 - (void) showPanelImproved:(BOOL)_flag;
 - (void) show:(BOOL)_flag;

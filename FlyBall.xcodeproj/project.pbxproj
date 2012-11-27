@@ -342,11 +342,13 @@
 		28F0CF30165D63E60066349E /* shop-hd.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 28F0CF27165D63E60066349E /* shop-hd.jpg */; };
 		28F0CF31165D63E60066349E /* shop.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 28F0CF28165D63E60066349E /* shop.jpg */; };
 		28F0CF37165D63E60066349E /* shop_iPhone5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 28F0CF2F165D63E60066349E /* shop_iPhone5.jpg */; };
+		28F183B41664ED80004561E8 /* ActorCircleTimeBomb.mm in Sources */ = {isa = PBXBuildFile; fileRef = 28F183B21664ED80004561E8 /* ActorCircleTimeBomb.mm */; };
+		28F183B916650AFC004561E8 /* ActorCircleMagnetBomb.mm in Sources */ = {isa = PBXBuildFile; fileRef = 28F183B816650AFB004561E8 /* ActorCircleMagnetBomb.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2804CB20165E567500DE9E0B /* shipBonusSpeed.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = shipBonusSpeed.plist; sourceTree = "<group>"; };
-		283E034716530A5700D8A53B /* It's Donut.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "It's Donut.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		283E034716530A5700D8A53B /* Umka Go Up.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Umka Go Up.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		283E034B16530A5700D8A53B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		283E034D16530A5700D8A53B /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		283E034F16530A5700D8A53B /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
@@ -767,8 +769,8 @@
 		284FBE3E16530AF1003C16BE /* GameCenter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GameCenter.mm; sourceTree = "<group>"; };
 		284FBE3F16530AF1003C16BE /* GameStandartFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameStandartFunctions.h; sourceTree = "<group>"; };
 		284FBE4016530AF1003C16BE /* GameStandartFunctions.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GameStandartFunctions.mm; sourceTree = "<group>"; };
-		284FBE4216530AF1003C16BE /* Defs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Defs.h; sourceTree = "<group>"; };
-		284FBE4316530AF1003C16BE /* Defs.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Defs.mm; sourceTree = "<group>"; };
+		284FBE4216530AF1003C16BE /* Defs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Defs.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		284FBE4316530AF1003C16BE /* Defs.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 0; path = Defs.mm; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		284FBE4416530AF1003C16BE /* globalParam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = globalParam.h; sourceTree = "<group>"; };
 		284FBE4516530AF1003C16BE /* globalParam.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = globalParam.mm; sourceTree = "<group>"; };
 		284FBE4716530AF1003C16BE /* GUIButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GUIButton.h; sourceTree = "<group>"; };
@@ -828,8 +830,8 @@
 		284FBE8316530AF1003C16BE /* ActorActiveBombObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ActorActiveBombObject.mm; sourceTree = "<group>"; };
 		284FBE8416530AF1003C16BE /* ActorActiveObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActorActiveObject.h; sourceTree = "<group>"; };
 		284FBE8516530AF1003C16BE /* ActorActiveObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ActorActiveObject.mm; sourceTree = "<group>"; };
-		284FBE8616530AF1003C16BE /* ActorPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActorPlayer.h; sourceTree = "<group>"; };
-		284FBE8716530AF1003C16BE /* ActorPlayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ActorPlayer.mm; sourceTree = "<group>"; };
+		284FBE8616530AF1003C16BE /* ActorPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ActorPlayer.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		284FBE8716530AF1003C16BE /* ActorPlayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 0; path = ActorPlayer.mm; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		284FBE8816530AF1003C16BE /* ActorCircleBomb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActorCircleBomb.h; sourceTree = "<group>"; };
 		284FBE8916530AF1003C16BE /* ActorCircleBomb.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ActorCircleBomb.mm; sourceTree = "<group>"; };
 		284FBE9B16530AF1003C16BE /* AboutScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutScreen.h; sourceTree = "<group>"; };
@@ -877,6 +879,10 @@
 		28F0CF27165D63E60066349E /* shop-hd.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "shop-hd.jpg"; sourceTree = "<group>"; };
 		28F0CF28165D63E60066349E /* shop.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = shop.jpg; sourceTree = "<group>"; };
 		28F0CF2F165D63E60066349E /* shop_iPhone5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = shop_iPhone5.jpg; sourceTree = "<group>"; };
+		28F183B21664ED80004561E8 /* ActorCircleTimeBomb.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ActorCircleTimeBomb.mm; sourceTree = "<group>"; };
+		28F183B61664EDDD004561E8 /* ActorCircleTimeBomb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActorCircleTimeBomb.h; sourceTree = "<group>"; };
+		28F183B716650AFB004561E8 /* ActorCircleMagnetBomb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ActorCircleMagnetBomb.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		28F183B816650AFB004561E8 /* ActorCircleMagnetBomb.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 0; path = ActorCircleMagnetBomb.mm; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -915,7 +921,7 @@
 		283E034816530A5700D8A53B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				283E034716530A5700D8A53B /* It's Donut.app */,
+				283E034716530A5700D8A53B /* Umka Go Up.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1779,16 +1785,20 @@
 		284FBE8116530AF1003C16BE /* Objects */ = {
 			isa = PBXGroup;
 			children = (
-				284FBE8216530AF1003C16BE /* ActorActiveBombObject.h */,
-				284FBE8316530AF1003C16BE /* ActorActiveBombObject.mm */,
 				284FBE8416530AF1003C16BE /* ActorActiveObject.h */,
 				284FBE8516530AF1003C16BE /* ActorActiveObject.mm */,
+				284FBE8216530AF1003C16BE /* ActorActiveBombObject.h */,
+				284FBE8316530AF1003C16BE /* ActorActiveBombObject.mm */,
 				284FBE8616530AF1003C16BE /* ActorPlayer.h */,
 				284FBE8716530AF1003C16BE /* ActorPlayer.mm */,
 				284FBE8816530AF1003C16BE /* ActorCircleBomb.h */,
 				284FBE8916530AF1003C16BE /* ActorCircleBomb.mm */,
 				288DF4B1165700B500595477 /* ActorCircleBonus.h */,
 				288DF4B2165700B500595477 /* ActorCircleBonus.mm */,
+				28F183B61664EDDD004561E8 /* ActorCircleTimeBomb.h */,
+				28F183B21664ED80004561E8 /* ActorCircleTimeBomb.mm */,
+				28F183B716650AFB004561E8 /* ActorCircleMagnetBomb.h */,
+				28F183B816650AFB004561E8 /* ActorCircleMagnetBomb.mm */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -1854,7 +1864,7 @@
 			);
 			name = FlyBall;
 			productName = FlyBall;
-			productReference = 283E034716530A5700D8A53B /* It's Donut.app */;
+			productReference = 283E034716530A5700D8A53B /* Umka Go Up.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -2226,6 +2236,8 @@
 				288DF4B3165700B500595477 /* ActorCircleBonus.mm in Sources */,
 				2886673C1658728E0089DEB1 /* CellsBackground.mm in Sources */,
 				28BA4BAA1659C0EF00D2A2FA /* SpeedWall.mm in Sources */,
+				28F183B41664ED80004561E8 /* ActorCircleTimeBomb.mm in Sources */,
+				28F183B916650AFC004561E8 /* ActorCircleMagnetBomb.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2312,7 +2324,7 @@
 					"-lz",
 					"-ObjC",
 				);
-				PRODUCT_NAME = "It's Donut";
+				PRODUCT_NAME = "Umka Go Up";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2339,7 +2351,7 @@
 					"-lz",
 					"-ObjC",
 				);
-				PRODUCT_NAME = "It's Donut";
+				PRODUCT_NAME = "Umka Go Up";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
