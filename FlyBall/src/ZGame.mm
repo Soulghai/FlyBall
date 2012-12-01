@@ -39,6 +39,7 @@
 }
 
 - (void) buttonLevelRestartAction {
+    [[MainScene instance].levelFinishScreen show:NO];
 	[self levelRestart];
     
     [FlurryAnalytics logEvent:ANALYTICS_GAME_SCREEN_BUTTON_RESTART_LEVEL_CLICKED];
@@ -83,6 +84,7 @@
     [Defs instance].playerBombSlowLevel = 0;
     [Defs instance].playerGodModeAfterCrashTime = GODMODE_AFTERCRASH_TIME_DEFAULT;
     [Defs instance].playerGodModeAfterCrashTimeLevel = 0;
+    [Defs instance].playerArmorLevel = 0;
     
     [MyData setStoreValue:@"coinsCount" value:@"0"];
     [MyData setStoreValue:@"bestScore" value:@"0"];
@@ -115,6 +117,7 @@
     [MyData setStoreValue:@"playerBombSlowLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].playerBombSlowLevel]];
     [MyData setStoreValue:@"playerGodModeAfterCrashTime" value:[NSString stringWithFormat:@"%f",[Defs instance].playerGodModeAfterCrashTime]];
     [MyData setStoreValue:@"playerGodModeAfterCrashTimeLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].playerGodModeAfterCrashTimeLevel]];
+    [MyData setStoreValue:@"playerArmorLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].playerArmorLevel]];
     
     [MyData encodeDict:[MyData getDictForSaveData]];
 }
@@ -180,6 +183,7 @@
             [Defs instance].playerBombSlowLevel  = [[MyData getStoreValue:@"playerBombSlowLevel"] intValue];
             [Defs instance].playerGodModeAfterCrashTime = [[MyData getStoreValue:@"playerGodModeAfterCrashTime"] floatValue];
             [Defs instance].playerGodModeAfterCrashTimeLevel  = [[MyData getStoreValue:@"playerGodModeAfterCrashTimeLevel"] intValue];
+            [Defs instance].playerArmorLevel  = [[MyData getStoreValue:@"playerArmorLevel"] intValue];
         }
         
         [Defs instance].coinsCount = 1000;
@@ -206,18 +210,10 @@
 		
 		btnDef.sprName = @"btnRestart.png";
 		btnDef.sprDownName = @"btnRestartDown.png";
-		btnDef.group = GAME_STATE_GAMEPAUSE;
+		btnDef.group = GAME_STATE_GAMEPAUSE|GAME_STATE_LEVELFINISH;
 		btnDef.func = @selector(buttonLevelRestartAction);
         btnDef.isManyTouches = YES;
-		if ([Defs instance].iPhone5) {
-            GUIButton *_btnRestart = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(SCREEN_WIDTH - 40, 30)];
-            [_btnRestart.spr setScale:1.f];
-            _btnRestart = nil;
-        } else {
-            GUIButton *_btnRestart = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(20,SCREEN_HEIGHT-20)];
-            [_btnRestart.spr setScale:0.7f];
-            _btnRestart = nil;
-        }
+		[[MainScene instance].gui addItem:(id)btnDef _pos:ccp(SCREEN_WIDTH_HALF+40,40)];
         
         GUILabelTTFDef *_labelTTFDef = [GUILabelTTFDef node];
         _labelTTFDef.group = GAME_STATE_GAME|GAME_STATE_GAMEPREPARE|GAME_STATE_GAMEPAUSE;
@@ -376,7 +372,7 @@
     
     [self addBall:[ActorCircleBomb class] _point:ccp(player.position.x, player.position.y - 70) _velocity:ccp(0,0) _active:YES];
     
-    timerAddBall = 0.2f;
+    timerAddBall = 0.3f;
     timerDelayAddBall = 0.4f;
     
     [self labelScoreBarUpdate];
@@ -513,9 +509,9 @@
 
 - (void) doBonusEffect:(int)_bonusID {
     switch (_bonusID) {
-        case BONUS_ARMOR:
+        //case BONUS_ARMOR:
 
-            break;
+            //break;
             
         case BONUS_ACCELERATION:
 
@@ -548,10 +544,10 @@
         // Добавляем одну монетку
         ++collectedCoins;
     } else
-    if (_bonusID <= BONUS_ARMOR) {
-        // Включаем броню
+   // if (_bonusID <= BONUS_ARMOR) {
+   //     // Включаем броню
         [player addArmor];
-    } else
+   // } else
         if (_bonusID <= BONUS_ACCELERATION) {
             // Ускорение
             [player setSpeedBonus:[Defs instance].bonusAccelerationDelay];
@@ -681,13 +677,13 @@
             if (_velocityYCoeff < 4.5f) {
                 _velocityYCoeff = 4.5f;
             }
-            int _ballCount = round(CCRANDOM_0_1()*2);
+            int _ballCount = 1 + round(CCRANDOM_0_1());
             for (int i = 0; i < _ballCount; i++) {
                 float _ran = CCRANDOM_0_1()*8;
                 id _newBombType = [ActorCircleBomb class];
                 if ((player.position.y >= 100000)&&(_ran > 7)) {
                     _newBombType = [ActorCircleMagnetBomb class];
-                    [self addBall:_newBombType _point:ccp(player.position.x + _playerVelocityX + SCREEN_WIDTH_HALF*CCRANDOM_MINUS1_1(), player.position.y - SCREEN_HEIGHT_HALF - elementRadius) _velocity:ccp(_playerVelocityX, _playerVelocityY + 4 + CCRANDOM_0_1()*2) _active:YES];
+                    [self addBall:_newBombType _point:ccp(player.position.x + _playerVelocityX + (SCREEN_WIDTH_HALF - elementRadius)*CCRANDOM_MINUS1_1(), player.position.y - SCREEN_HEIGHT_HALF - elementRadius) _velocity:ccp(_playerVelocityX, _playerVelocityY + 4 + CCRANDOM_0_1()*2) _active:YES];
                 } else
                 if ((player.position.y >= 50000)&&(_ran > 5)) {
                     _newBombType = [ActorCircleTimeBomb class];

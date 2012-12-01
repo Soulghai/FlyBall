@@ -40,10 +40,42 @@
         }
 }
 
+- (int) calcAvailableUpdatesCount {
+    int _counter = 0;
+    if (([Defs instance].bonusAccelerationDelayLevel < UPGRADE_LEVEL_COUNT)
+        &&([Defs instance].coinsCount >= [[[Defs instance].prices objectAtIndex:[Defs instance].bonusAccelerationDelayLevel] intValue])) ++_counter;
+    if (([Defs instance].bonusAccelerationPowerLevel < UPGRADE_LEVEL_COUNT)
+        &&([Defs instance].coinsCount >= [[[Defs instance].prices objectAtIndex:[Defs instance].bonusAccelerationPowerLevel] intValue])) ++_counter;
+    if (([Defs instance].bonusGetChanceLevel < UPGRADE_LEVEL_COUNT)
+        &&([Defs instance].coinsCount >= [[[Defs instance].prices objectAtIndex:[Defs instance].bonusGetChanceLevel] intValue])) ++_counter;
+    if (([Defs instance].bonusGodModeTimeLevel < UPGRADE_LEVEL_COUNT)
+        &&([Defs instance].coinsCount >= [[[Defs instance].prices objectAtIndex:[Defs instance].bonusGodModeTimeLevel] intValue])) ++_counter;
+    if (([Defs instance].coinsGetChanceLevel < UPGRADE_LEVEL_COUNT)
+        &&([Defs instance].coinsCount >= [[[Defs instance].prices objectAtIndex:[Defs instance].coinsGetChanceLevel] intValue])) ++_counter;
+    if (([Defs instance].playerBombSlowLevel < UPGRADE_LEVEL_COUNT)
+        &&([Defs instance].coinsCount >= [[[Defs instance].prices objectAtIndex:[Defs instance].playerBombSlowLevel] intValue])) ++_counter;
+    if (([Defs instance].playerGodModeAfterCrashTimeLevel < UPGRADE_LEVEL_COUNT)
+        &&([Defs instance].coinsCount >= [[[Defs instance].prices objectAtIndex:[Defs instance].playerGodModeAfterCrashTimeLevel] intValue])) ++_counter;
+    if (([Defs instance].playerMagnetDistanceLevel < UPGRADE_LEVEL_COUNT)
+        &&([Defs instance].coinsCount >= [[[Defs instance].prices objectAtIndex:[Defs instance].playerMagnetDistanceLevel] intValue])) ++_counter;
+    if (([Defs instance].playerMagnetPowerLevel < UPGRADE_LEVEL_COUNT)
+        &&([Defs instance].coinsCount >= [[[Defs instance].prices objectAtIndex:[Defs instance].playerMagnetPowerLevel] intValue])) ++_counter;
+    if (([Defs instance].playerSpeedLimitLevel < UPGRADE_LEVEL_COUNT)
+        &&([Defs instance].coinsCount >= [[[Defs instance].prices objectAtIndex:[Defs instance].playerSpeedLimitLevel] intValue])) ++_counter;
+    if (([Defs instance].speedWallAccelerationCoeffLevel < UPGRADE_LEVEL_COUNT)
+        &&([Defs instance].coinsCount >= [[[Defs instance].prices objectAtIndex:[Defs instance].speedWallAccelerationCoeffLevel] intValue])) ++_counter;
+    if (([Defs instance].speedWallDeccelerationCoeffLevel < UPGRADE_LEVEL_COUNT)
+         &&([Defs instance].coinsCount >= [[[Defs instance].prices objectAtIndex:[Defs instance].speedWallDeccelerationCoeffLevel] intValue])) ++_counter;
+    if (([Defs instance].playerArmorLevel < UPGRADE_LEVEL_COUNT)
+        &&([Defs instance].coinsCount >= [[[Defs instance].prices objectAtIndex:[Defs instance].playerArmorLevel] intValue])) ++_counter;
+    return _counter;
+}
+
 - (void) allUpgradeIconsSetEnabled:(BOOL)_flag {
     [btnBonusAccelerationDelay setEnabled:_flag];
     [btnBonusAccelerationPower setEnabled:_flag];
     [btnBonusGetChance setEnabled:_flag];
+    [btnCoinsGetChance setEnabled:_flag];
     [btnBonusGodModeTime setEnabled:_flag];
     [btnPlayerSpeedLimit setEnabled:_flag];
     [btnSpeedWallAccelerationCoeff setEnabled:_flag];
@@ -52,6 +84,7 @@
     [btnPlayerMagnetDistance setEnabled:_flag];
     [btnPlayerBombSlow setEnabled:_flag];
     [btnPlayerGodModeAfterCrashTime setEnabled:_flag];
+    [btnPlayerArmor setEnabled:_flag];
 }
 
 - (void) buyCoinsPanelShow {
@@ -158,6 +191,7 @@
     [self setCorrectIconFrame:btnPlayerMagnetPower _level:[Defs instance].playerMagnetPowerLevel];
     [self setCorrectIconFrame:btnPlayerBombSlow _level:[Defs instance].playerBombSlowLevel];
     [self setCorrectIconFrame:btnPlayerGodModeAfterCrashTime _level:[Defs instance].playerGodModeAfterCrashTimeLevel];
+    [self setCorrectIconFrame:btnPlayerArmor _level:[Defs instance].playerArmorLevel];
 }
 
 //---------------------------------------------------
@@ -562,6 +596,39 @@
     }
 }
 
+- (void) buttonBuyPlayerArmorAction {
+    [self panelBuyInformationHide];
+    
+    int _price = [[[Defs instance].prices objectAtIndex:[Defs instance].playerArmorLevel] intValue];
+    
+    if ([Defs instance].coinsCount > _price) {
+        ++[Defs instance].playerArmorLevel;
+        [MyData setStoreValue:@"playerArmorLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].playerArmorLevel]];
+        [Defs instance].coinsCount -= _price;
+        [MyData setStoreValue:@"coinsCount" value:[NSString stringWithFormat:@"%i",[Defs instance].coinsCount]];
+        [MyData encodeDict:[MyData getDictForSaveData]];
+        
+        [self setCorrectIconFrame:btnPlayerArmor _level:[Defs instance].playerArmorLevel];
+        [labelCoinsCount setText:[NSString stringWithFormat:@"%i", [Defs instance].coinsCount]];
+    } else {
+        CCLOG(@"Maybe buy some coins??? :)");
+        
+        [self buyCoinsPanelShow];
+        
+    }
+}
+
+- (void) buttonBuyPlayerArmorClick {
+    if ([Defs instance].playerArmorLevel < UPGRADE_LEVEL_COUNT) {
+        [self showPanelBuyInformation:NSLocalizedString(@"buttonBuyPlayerArmorLevelCaption","")
+                       _currValueText:[NSString stringWithFormat:@"%@ = %i", NSLocalizedString(@"buttonBuyCurrValue",""), [Defs instance].playerArmorLevel]
+                       _nextValueText:[NSString stringWithFormat:@"%@ = %i", NSLocalizedString(@"buttonBuyNextValue",""), [Defs instance].playerArmorLevel + 1]
+                             _sprName:[NSString stringWithFormat:@"%@%i.jpg", [self getSpriteName:btnPlayerArmor.sprName], [Defs instance].playerArmorLevel]
+                               _price:[NSString stringWithFormat:@"%i", [[[Defs instance].prices objectAtIndex:[Defs instance].playerArmorLevel] intValue]]
+                                _func:@selector(buttonBuyPlayerArmorAction)];
+    }
+}
+
 
 - (id) init{
 	if ((self = [super init])) {
@@ -734,6 +801,9 @@
         
         btnDef.func = @selector(buttonBuyCoinsGetChanceClick);
         btnCoinsGetChance = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(277, 234)];
+        
+        btnDef.func = @selector(buttonBuyPlayerArmorClick);
+        btnPlayerArmor = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(43, 156)];
         
         
        /* for (int i = 0; i < 6; i++) {

@@ -43,17 +43,19 @@
     GUIButton *btnAward;
 	GUIButton *btnTwitter;
 	GUIButton *btnFacebook;
-	GUIButton *btnVideo;
+	GUIButton *btnEmailRecomendation;
 	GUICheckBox *btnSound;
     GUICheckBox *btnMusic;
 	GUIButton *btnRestartGameProgressNO;
 	GUIButton *btnRestartGameProgressYES;
-    GUIButton *btnMarket;
+    GUIButton *btnCredits;
     GUIPanel *panelMarket;
     BOOL isPanelMarketOpacityAlpaAdd;
     GLubyte panelMarketOpacity;
     GUILabelTTFOutlined *labelPanelRestartGameProgress;
+    //GUILabelTTFOutlined *labelMarketUpdateAvailableCounter;
     GUIButton *btnShop;
+    GUIPanel *panelExclamationMark;
     
     float marketGoSpeed;
 }

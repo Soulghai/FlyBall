@@ -324,10 +324,12 @@
 		288CD662165B1BF70095637F /* bonus_armor_get.plist in Resources */ = {isa = PBXBuildFile; fileRef = 288CD65E165B1BF70095637F /* bonus_armor_get.plist */; };
 		288CD663165B1BF70095637F /* bonus_godmode_get.plist in Resources */ = {isa = PBXBuildFile; fileRef = 288CD65F165B1BF70095637F /* bonus_godmode_get.plist */; };
 		288DF4B3165700B500595477 /* ActorCircleBonus.mm in Sources */ = {isa = PBXBuildFile; fileRef = 288DF4B2165700B500595477 /* ActorCircleBonus.mm */; };
+		288E5A0C166A0ADF00E8E07C /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288E5A09166A0ABA00E8E07C /* MessageUI.framework */; };
 		2890F6801655C2C000B4031B /* gfx_cells-hd.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2890F67C1655C2BF00B4031B /* gfx_cells-hd.jpg */; };
 		2890F6811655C2C000B4031B /* gfx_cells-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2890F67D1655C2BF00B4031B /* gfx_cells-hd.plist */; };
 		2890F6821655C2C000B4031B /* gfx_cells.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2890F67E1655C2C000B4031B /* gfx_cells.jpg */; };
 		2890F6831655C2C000B4031B /* gfx_cells.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2890F67F1655C2C000B4031B /* gfx_cells.plist */; };
+		28A311D41669637500F32DFB /* bonus_coin_get.plist in Resources */ = {isa = PBXBuildFile; fileRef = 28A311D31669637500F32DFB /* bonus_coin_get.plist */; };
 		28BA4BAA1659C0EF00D2A2FA /* SpeedWall.mm in Sources */ = {isa = PBXBuildFile; fileRef = 28BA4BA91659C0EF00D2A2FA /* SpeedWall.mm */; };
 		28F0CF1C165D62860066349E /* blackScreen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 28F0CF12165D62860066349E /* blackScreen.jpg */; };
 		28F0CF1D165D62860066349E /* credits_iPhone5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 28F0CF13165D62860066349E /* credits_iPhone5.jpg */; };
@@ -348,7 +350,7 @@
 
 /* Begin PBXFileReference section */
 		2804CB20165E567500DE9E0B /* shipBonusSpeed.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = shipBonusSpeed.plist; sourceTree = "<group>"; };
-		283E034716530A5700D8A53B /* Umka Go Up.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Umka Go Up.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		283E034716530A5700D8A53B /* Doby Goes Up.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Doby Goes Up.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		283E034B16530A5700D8A53B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		283E034D16530A5700D8A53B /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		283E034F16530A5700D8A53B /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
@@ -860,10 +862,12 @@
 		288CD65F165B1BF70095637F /* bonus_godmode_get.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = bonus_godmode_get.plist; sourceTree = "<group>"; };
 		288DF4B1165700B500595477 /* ActorCircleBonus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActorCircleBonus.h; sourceTree = "<group>"; };
 		288DF4B2165700B500595477 /* ActorCircleBonus.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ActorCircleBonus.mm; sourceTree = "<group>"; };
+		288E5A09166A0ABA00E8E07C /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		2890F67C1655C2BF00B4031B /* gfx_cells-hd.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "gfx_cells-hd.jpg"; sourceTree = "<group>"; };
 		2890F67D1655C2BF00B4031B /* gfx_cells-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "gfx_cells-hd.plist"; sourceTree = "<group>"; };
 		2890F67E1655C2C000B4031B /* gfx_cells.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = gfx_cells.jpg; sourceTree = "<group>"; };
 		2890F67F1655C2C000B4031B /* gfx_cells.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = gfx_cells.plist; sourceTree = "<group>"; };
+		28A311D31669637500F32DFB /* bonus_coin_get.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = bonus_coin_get.plist; sourceTree = "<group>"; };
 		28BA4BA81659C0EF00D2A2FA /* SpeedWall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeedWall.h; sourceTree = "<group>"; };
 		28BA4BA91659C0EF00D2A2FA /* SpeedWall.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SpeedWall.mm; sourceTree = "<group>"; };
 		28F0CF12165D62860066349E /* blackScreen.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = blackScreen.jpg; path = FlyBall/Resources/gfx/Screens/blackScreen.jpg; sourceTree = SOURCE_ROOT; };
@@ -891,6 +895,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				284FBEF616530F46003C16BE /* StoreKit.framework in Frameworks */,
+				288E5A0C166A0ADF00E8E07C /* MessageUI.framework in Frameworks */,
 				283E034C16530A5700D8A53B /* QuartzCore.framework in Frameworks */,
 				283E034E16530A5700D8A53B /* OpenGLES.framework in Frameworks */,
 				283E035016530A5700D8A53B /* OpenAL.framework in Frameworks */,
@@ -900,9 +905,9 @@
 				283E035816530A5700D8A53B /* Foundation.framework in Frameworks */,
 				283E035A16530A5700D8A53B /* CoreGraphics.framework in Frameworks */,
 				283E035C16530A5700D8A53B /* GameKit.framework in Frameworks */,
+				284FBED316530AF1003C16BE /* HockeySDK.framework in Frameworks */,
 				284FBEB516530AF1003C16BE /* libFlurryAnalytics.a in Frameworks */,
 				284FBEB616530AF1003C16BE /* libFlurryAppCircle.a in Frameworks */,
-				284FBED316530AF1003C16BE /* HockeySDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -921,7 +926,7 @@
 		283E034816530A5700D8A53B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				283E034716530A5700D8A53B /* Umka Go Up.app */,
+				283E034716530A5700D8A53B /* Doby Goes Up.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -929,6 +934,7 @@
 		283E034A16530A5700D8A53B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				288E5A09166A0ABA00E8E07C /* MessageUI.framework */,
 				283E04F716530A9F00D8A53B /* StoreKit.framework */,
 				283E04F516530A9100D8A53B /* Security.framework */,
 				283E034B16530A5700D8A53B /* QuartzCore.framework */,
@@ -1442,6 +1448,7 @@
 		284FBAA416530AD8003C16BE /* particles */ = {
 			isa = PBXGroup;
 			children = (
+				28A311D31669637500F32DFB /* bonus_coin_get.plist */,
 				2804CB20165E567500DE9E0B /* shipBonusSpeed.plist */,
 				288CD65C165B1BF70095637F /* bonus_acceleration_get.plist */,
 				288CD65D165B1BF70095637F /* bonus_apocalypse_get.plist */,
@@ -1864,7 +1871,7 @@
 			);
 			name = FlyBall;
 			productName = FlyBall;
-			productReference = 283E034716530A5700D8A53B /* Umka Go Up.app */;
+			productReference = 283E034716530A5700D8A53B /* Doby Goes Up.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -2075,6 +2082,7 @@
 				28F0CF31165D63E60066349E /* shop.jpg in Resources */,
 				28F0CF37165D63E60066349E /* shop_iPhone5.jpg in Resources */,
 				2804CB21165E567500DE9E0B /* shipBonusSpeed.plist in Resources */,
+				28A311D41669637500F32DFB /* bonus_coin_get.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2324,7 +2332,7 @@
 					"-lz",
 					"-ObjC",
 				);
-				PRODUCT_NAME = "Umka Go Up";
+				PRODUCT_NAME = "Doby Goes Up";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2351,7 +2359,7 @@
 					"-lz",
 					"-ObjC",
 				);
-				PRODUCT_NAME = "Umka Go Up";
+				PRODUCT_NAME = "Doby Goes Up";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};

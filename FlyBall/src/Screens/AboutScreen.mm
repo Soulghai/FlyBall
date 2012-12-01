@@ -71,7 +71,7 @@
         
         CCLabelBMFont *font;
         
-        font = [CCLabelBMFont labelWithString:@"Expand It" fntFile:@"gameFont.fnt"];
+        font = [CCLabelBMFont labelWithString:@"Doby Goes Up" fntFile:@"gameFont.fnt"];
         [font setScale:1.6f];
         [font setColor:ccc3(100,100,255)];
         [creditsArr addObject: font];

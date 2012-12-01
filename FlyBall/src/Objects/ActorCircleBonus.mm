@@ -30,7 +30,7 @@
 }
 
 - (void) loadCostume {
-    costume = [CCSprite spriteWithSpriteFrameName:@"bonus_armor.png"];
+    costume = [CCSprite spriteWithSpriteFrameName:@"bonus_speed.png"];
 	[costume retain];
 }
 
@@ -45,10 +45,10 @@
     CCSpriteFrame* frame = nil;
     int _ran = (int)round(CCRANDOM_0_1()*BONUS_RANDOM_RANGE);
     bonusID = _ran;
-    if (bonusID <= BONUS_ARMOR) {
-            frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"bonus_armor.png"];
-        bonusID = BONUS_ARMOR;
-    } else
+    //if (bonusID <= BONUS_ARMOR) {
+    //        frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"bonus_armor.png"];
+    //    bonusID = BONUS_ARMOR;
+    //} else
         if (bonusID <= BONUS_ACCELERATION) {
             frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"bonus_speed.png"];
             bonusID = BONUS_ACCELERATION;
@@ -73,28 +73,35 @@
 		// play sound
         
         if (![Defs instance].isSoundMute) {
-            switch ((int)round(CCRANDOM_0_1()*2)) {
-                case 0:
-                    [[SimpleAudioEngine sharedEngine] playEffect:@"round_bomb_1.wav"];
+            switch (bonusID) {
+                case BONUS_COINS:
+                    [[SimpleAudioEngine sharedEngine] playEffect:@"star.wav"];
                     break;
-                case 1:
-                    [[SimpleAudioEngine sharedEngine] playEffect:@"round_bomb_1.wav"];
+                case BONUS_ACCELERATION:
+                    [[SimpleAudioEngine sharedEngine] playEffect:@"star.wav"];
+                    break;
+                    
+                case BONUS_APOCALYPSE:
+                    [[SimpleAudioEngine sharedEngine] playEffect:@"star.wav"];
+                    break;
+                    
+                case BONUS_GODMODE:
+                    [[SimpleAudioEngine sharedEngine] playEffect:@"star.wav"];
                     break;
                     
                 default:
-                    [[SimpleAudioEngine sharedEngine] playEffect:@"round_bomb_3.wav"];
                     break;
             }
         }
         
         switch (bonusID) {
             case BONUS_COINS:
-                emitterBoom = [CCParticleSystemQuad particleWithFile:@"bonus_armor_get.plist"];
+                emitterBoom = [CCParticleSystemQuad particleWithFile:@"bonus_coin_get.plist"];
                 break;
                 
-            case BONUS_ARMOR:
-                emitterBoom = [CCParticleSystemQuad particleWithFile:@"bonus_armor_get.plist"];
-                break;
+            //case BONUS_ARMOR:
+             //   emitterBoom = [CCParticleSystemQuad particleWithFile:@"bonus_armor_get.plist"];
+             //   break;
                 
             case BONUS_ACCELERATION:
                 emitterBoom = [CCParticleSystemQuad particleWithFile:@"bonus_acceleration_get.plist"];
@@ -109,9 +116,9 @@
                 break;
         }
         
-        emitterBoom.position = costume.position;
+        emitterBoom.position = ccpAdd(costume.position, [Defs instance].objectFrontLayer.position);
         if ((emitterBoom)&&(emitterBoom.parent == nil))
-            [[Defs instance].objectFrontLayer addChild:emitterBoom];
+            [[MainScene instance].game addChild:emitterBoom];
         
         [self deactivate];
 	}

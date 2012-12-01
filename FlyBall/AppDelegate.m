@@ -194,6 +194,147 @@
 	[[CCDirector sharedDirector] setNextDeltaTimeZero:YES];
 }
 
+#pragma mark -
+#pragma mark Compose Mail
+- (void)setUpMailAccount {
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"System Error"
+													message:@"Please setup a mail account first."
+												   delegate:self
+										  cancelButtonTitle:@"Dismiss"
+										  otherButtonTitles:nil];
+	[alert show];
+	[alert release];
+}
+
+#pragma mark -
+#pragma mark Compose Mail
+// Displays an email composition interface inside the application. Populates all the Mail fields.
+-(void)displayComposerSheet {
+	if(![MFMailComposeViewController canSendMail]) {
+		[self setUpMailAccount];
+		return;
+	}
+    
+    
+    [[CCDirector sharedDirector] pause];
+    [[CCDirector sharedDirector] stopAnimation];
+    
+    if (!emailController) {
+        emailController = [[UIViewController alloc] init];
+    }
+    
+    //[window_ addSubview: emailController.view];
+    
+	MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
+	picker.mailComposeDelegate = self;
+    
+    //CGAffineTransform landscapeTransform = CGAffineTransformMakeRotation( 1.570796327 ); // 90 degrees in radian
+    //[picker.view setTransform:landscapeTransform];
+    //[emailController.view setTransform:landscapeTransform];
+    
+    //[[UIDevice currentDevice] orientation];
+    
+    [picker setSubject:@"Just discovered this great game!"];
+    
+    
+    
+    NSString *emailBody = @"<html><head></head><body bgcolor=\"#FFFFFF\"><br><table cellpadding=\"5\"><tbody><tr><td valign=\"top\"><h3><a href=\"%applink%\"><img src=\"%appicon%\" width=\"60\" height=\"60\"></a></h3></td><td valign=\"top\"><h3>%message%</h3></td></tr></tbody></table><br><a href=\"%applink%\"><img src=\"%screen01%\" width=\"240\" height=\"%screen_height%\"></a> <a href=\"%applink%\"><img src=\"%screen02%\" width=\"240\" height=\"%screen_height%\"></a> <a href=\"%applink%\"><img src=\"%screen03%\" width=\"240\" height=\"%screen_height%\"></a> <a href=\"%applink%\"><img src=\"%screen04%\" width=\"240\" height=\"%screen_height%\"></a> <a href=\"%applink%\"><img src=\"%screen05%\" width=\"240\" height=\"%screen_height%\"></a></body></html>";
+	
+	if ([Defs instance].iPad)
+		emailBody = [emailBody stringByReplacingOccurrencesOfString:@"%applink%" withString:NSLocalizedString(@"recommend_email_app_link_hd", @"")];
+	else
+		emailBody = [emailBody stringByReplacingOccurrencesOfString:@"%applink%" withString:NSLocalizedString(@"recommend_email_app_link", @"")];
+	
+	if ([Defs instance].iPad)
+		emailBody = [emailBody stringByReplacingOccurrencesOfString:@"%appicon%" withString:NSLocalizedString(@"recommend_email_app_icon_hd", @"")];
+	else
+		emailBody = [emailBody stringByReplacingOccurrencesOfString:@"%appicon%" withString:NSLocalizedString(@"recommend_email_app_icon", @"")];
+	
+	// Pic size for iPhone: 160, for iPad: 180
+	if ([Defs instance].iPad)
+		emailBody = [emailBody stringByReplacingOccurrencesOfString:@"%screen_height%" withString:@"180"];
+	else
+		emailBody = [emailBody stringByReplacingOccurrencesOfString:@"%screen_height%" withString:@"160"];
+	
+	NSString *messageText = @"";
+	if ([Defs instance].iPad)
+		messageText = [NSString stringWithFormat:NSLocalizedString(@"recommend_email_message_text", @""), NSLocalizedString(@"recommend_email_app_link_hd", @""), NSLocalizedString(@"recommend_email_app_title_hd", @""), [Defs instance].bestScore];
+	else
+		messageText = [NSString stringWithFormat:NSLocalizedString(@"recommend_email_message_text", @""), NSLocalizedString(@"recommend_email_app_link", @""), NSLocalizedString(@"recommend_email_app_title", @""),  [Defs instance].bestScore];
+	
+	emailBody = [emailBody stringByReplacingOccurrencesOfString:@"%message%" withString:messageText];
+	
+	if ([Defs instance].iPad) {
+		emailBody = [emailBody stringByReplacingOccurrencesOfString:@"%screen01%"
+														 withString:NSLocalizedString(@"recommend_email_app_screenshot_01_hd", @"")];
+		
+		emailBody = [emailBody stringByReplacingOccurrencesOfString:@"%screen02%"
+														 withString:NSLocalizedString(@"recommend_email_app_screenshot_02_hd", @"")];
+		emailBody = [emailBody stringByReplacingOccurrencesOfString:@"%screen03%"
+														 withString:NSLocalizedString(@"recommend_email_app_screenshot_03_hd", @"")];
+		emailBody = [emailBody stringByReplacingOccurrencesOfString:@"%screen04%"
+														 withString:NSLocalizedString(@"recommend_email_app_screenshot_04_hd", @"")];
+		emailBody = [emailBody stringByReplacingOccurrencesOfString:@"%screen05%"
+														 withString:NSLocalizedString(@"recommend_email_app_screenshot_05_hd", @"")];
+	} else {
+		emailBody = [emailBody stringByReplacingOccurrencesOfString:@"%screen01%"
+														 withString:NSLocalizedString(@"recommend_email_app_screenshot_01", @"")];
+		
+		emailBody = [emailBody stringByReplacingOccurrencesOfString:@"%screen02%"
+														 withString:NSLocalizedString(@"recommend_email_app_screenshot_02", @"")];
+		emailBody = [emailBody stringByReplacingOccurrencesOfString:@"%screen03%"
+														 withString:NSLocalizedString(@"recommend_email_app_screenshot_03", @"")];
+		emailBody = [emailBody stringByReplacingOccurrencesOfString:@"%screen04%"
+														 withString:NSLocalizedString(@"recommend_email_app_screenshot_04", @"")];
+		emailBody = [emailBody stringByReplacingOccurrencesOfString:@"%screen05%"
+														 withString:NSLocalizedString(@"recommend_email_app_screenshot_05", @"")];
+        
+    }
+    
+    [picker setMessageBody:emailBody isHTML:YES];
+    
+	[navController_ presentModalViewController:picker animated:YES];
+    [picker release];
+}
+
+// Dismisses the email composition interface when users tap Cancel or Send. Proceeds to update the message field with the result of the operation.
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
+{
+	// Notifies users about errors associated with the interface
+	switch (result)
+	{
+		case MFMailComposeResultCancelled:
+			break;
+		case MFMailComposeResultSaved:
+			break;
+		case MFMailComposeResultSent:
+			break;
+		case MFMailComposeResultFailed:
+			break;
+			
+		default:
+		{
+			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Email" message:@"Sending Failed - Unknown Error :-("
+														   delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+			[alert show];
+			[alert release];
+		}
+			
+			break;
+	}
+	[navController_ dismissModalViewControllerAnimated:YES];
+    //[emailController.view removeFromSuperview];
+    
+    [[CCDirector sharedDirector] resume];
+    [[CCDirector sharedDirector] startAnimation];
+}
+
+-(void)sendEmail
+{
+	NSLog(@"pop-up email here");
+	[self displayComposerSheet];
+}
+
 - (void) dealloc
 {
 	[window_ release];

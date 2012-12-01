@@ -24,9 +24,14 @@
 #import "AnalyticsData.h"
 #import "FlurryAnalytics.h"
 #import "MyData.h"
+#import "AppDelegate.h"
 
 @implementation ZMenu
 
+-(void) emailCallback {
+	[(AppController*)[[UIApplication sharedApplication] delegate] sendEmail];
+    [FlurryAnalytics logEvent:ANALYTICS_BUTTON_SHARE_ROCOMMEND_TO_FIEND_CLICKED];
+}
 
 - (void) sliderPanelsHide {
     isSlideLeftAction = YES;
@@ -42,7 +47,7 @@
     slideRightTarget = 0;
     [btnAward setEnabled:NO];
     [btnScore setEnabled:NO];
-    [btnVideo setEnabled:NO];
+    [btnEmailRecomendation setEnabled:NO];
 }
 
 - (void) buttonTwitterAction {
@@ -144,7 +149,7 @@
     
     [self sliderPanelsHide];
     [checkBoxSettings setEnabled:NO];
-    [btnMarket setEnabled:NO];
+    [btnCredits setEnabled:NO];
     [btnShop setEnabled:NO];
     if ([GameCenter instance].isAvailable) {
         [checkBoxOnline setEnabled:NO];
@@ -164,7 +169,7 @@
 	[btnPlay show:YES];
     
     [checkBoxSettings setEnabled:YES];
-    [btnMarket setEnabled:YES];
+    [btnCredits setEnabled:YES];
     [btnShop setEnabled:YES];
     if ([GameCenter instance].isAvailable) {
         [checkBoxOnline setEnabled:YES];
@@ -179,6 +184,7 @@
 - (void) restartLevelProgress {
     [[MainScene instance].game retartGameProcess];
 	[self checkBoxRestartLevelProgressPanelHide];
+    [panelExclamationMark show:NO];
     [FlurryAnalytics logEvent:ANALYTICS_GAME_RESET];
 }
 
@@ -206,13 +212,19 @@
 		slideRightTarget = rightMenuSlider.spr.contentSize.height+13;
         [btnAward setEnabled:YES];
 		[btnScore setEnabled:YES];
-		[btnVideo setEnabled:YES];
+		[btnEmailRecomendation setEnabled:YES];
 	} else {
 		slideRightTarget = 0;
 		[btnAward setEnabled:NO];
 		[btnScore setEnabled:NO];
-		[btnVideo setEnabled:NO];
+		[btnEmailRecomendation setEnabled:NO];
 	}
+}
+
+- (void) checkAvailableUpdates {
+    if ([[MainScene instance].marketScreen calcAvailableUpdatesCount] > 0) {
+        [panelExclamationMark show:YES];
+    }
 }
 
 - (id) init{
@@ -301,18 +313,27 @@
 		
 		btnPlay = [[MainScene instance].gui addItem:(id)btnPlayDef _pos:ccp(SCREEN_WIDTH_HALF,200)];
         
+        btnPlayDef.group = GAME_STATE_MENU;
         btnPlayDef.sprName = @"btnShop.png";
 		btnPlayDef.sprDownName = @"btnShopDown.png";
 		btnPlayDef.func = @selector(buttonMarketClick);
 		
 		btnShop = [[MainScene instance].gui addItem:(id)btnPlayDef _pos:ccp(35,SCREEN_HEIGHT - 35)];
+        
+        /*btnPlayDef.group = GAME_STATE_MENU;
+        labelTTFOutlinedDef.fontSize = 18;
+        labelTTFOutlinedDef.outlineSize = 1;
+        labelTTFOutlinedDef.group = GAME_STATE_NONE;
+        labelMarketUpdateAvailableCounter = [[MainScene instance].gui addItem:(id)labelTTFOutlinedDef _pos:ccp(btnShop.spr.position.x + 20,btnShop.spr.position.y + 20)];*/
 		
 		btnPlayDef.sprName = @"btnCreditsBallon.png";
 		btnPlayDef.sprDownName = @"btnCreditsBallon.png";
 		btnPlayDef.func = @selector(buttonCreditsClick);
         btnPlayDef.zIndex = 9;
 		
-		btnMarket = [[MainScene instance].gui addItem:(id)btnPlayDef _pos:ccp(160,SCREEN_HEIGHT - 50)];
+		btnCredits = [[MainScene instance].gui addItem:(id)btnPlayDef _pos:ccp(160,SCREEN_HEIGHT - 50)];
+        
+        
         
         panelDef.group = GAME_STATE_MENU;
         panelDef.sprName = @"lightMarket.png";
@@ -394,24 +415,30 @@
 		btnPlayDef.func = @selector(buttonGameCenterAchievementAction);
 		
 		btnAward = [[MainScene instance].gui addItem:(id)btnPlayDef _pos:ccp(rightMenuSlider.spr.contentSize.width*0.5f,115)];
+        
+        btnPlayDef.sprName = @"btnLike_up.png";
+		btnPlayDef.sprDownName = @"btnLike_down.png";
+		btnPlayDef.func = @selector(emailCallback);
 		
-		btnPlayDef.sprName = @"iconWalktrough.png";
-		btnPlayDef.sprDownName = @"iconWalktrough.png";
-		btnPlayDef.parentFrame = rightMenuSlider.spr;
-		btnPlayDef.func = @selector(buttonWalktroughAction);
-		
-		btnVideo = [[MainScene instance].gui addItem:(id)btnPlayDef _pos:ccp(rightMenuSlider.spr.contentSize.width*0.5f,165)];
+		btnEmailRecomendation = [[MainScene instance].gui addItem:(id)btnPlayDef _pos:ccp(rightMenuSlider.spr.contentSize.width*0.5f,165)];
         
     } else {
         
         rightMenuSlider = nil;
         
-        btnPlayDef.sprName = @"iconWalktrough.png";
+        /*btnPlayDef.sprName = @"iconWalktrough.png";
 		btnPlayDef.sprDownName = @"iconWalktrough.png";
 		btnPlayDef.parentFrame = [MainScene instance].gui;
 		btnPlayDef.func = @selector(buttonWalktroughAction);
 		
-		btnVideo = [[MainScene instance].gui addItem:(id)btnPlayDef _pos:ccp(SCREEN_WIDTH - 25,20)];
+		btnVideo = [[MainScene instance].gui addItem:(id)btnPlayDef _pos:ccp(SCREEN_WIDTH - 25,20)];*/
+        
+        btnPlayDef.sprName = @"btnLike_up.png";
+		btnPlayDef.sprDownName = @"btnLike_down.png";
+        btnPlayDef.isManyTouches = YES;
+		btnPlayDef.func = @selector(emailCallback);
+		
+		btnEmailRecomendation = [[MainScene instance].gui addItem:(id)btnPlayDef _pos:ccp(SCREEN_WIDTH - 25, 20)];
     }
 		
         btnPlayDef.isManyTouches = YES;
@@ -457,13 +484,16 @@
         
         marketGoSpeed = 0.17f;
 		
-		//tip = [[Tips alloc] init];
+		panelDef.group = GAME_STATE_NONE;
+        panelDef.parentFrame = btnShop.spr;
+        panelDef.sprName = @"exclamation_mark.png";
+        panelExclamationMark = [[MainScene instance].gui addItem:(id)panelDef _pos:ccp(55, 55)];
 		}
 	return self;
 }
 
 - (void) update {
-	/*[btnMarket setPosition:ccp([[Utils instance] aspire:btnMarket.spr.position.x _aim:SCREEN_WIDTH_HALF _speed:0.1],btnMarket.spr.position.y)]; */ 
+	/*[btnCredits setPosition:ccp([[Utils instance] aspire:btnCredits.spr.position.x _aim:SCREEN_WIDTH_HALF _speed:0.1],btnCredits.spr.position.y)]; */ 
     
     if ([Defs instance].isOpenScreenAnimation) {
         if ([Defs instance].closeAnimationPanel.spr.opacity >= 25) [Defs instance].closeAnimationPanel.spr.opacity -= 25; else {
@@ -493,7 +523,7 @@
     panelHighlight.spr.rotation += 0.5f;
     if (panelHighlight.spr.rotation > 360) panelHighlight.spr.rotation -= 360;
     
-	CGPoint pos = btnMarket.spr.position;
+	CGPoint pos = btnCredits.spr.position;
 	pos.x += logoVelocity.x;
 	
 	float leftBorder = 80;
@@ -515,7 +545,7 @@
     
     pos.y += marketGoSpeed;
 	
-	[btnMarket setPosition:pos];
+	[btnCredits setPosition:pos];
     [panelMarket setPosition:pos];
     
     if (isPanelMarketOpacityAlpaAdd) {
@@ -526,8 +556,8 @@
     [panelMarket.spr setOpacity:panelMarketOpacity];
 	
 	/*if (rotationState == 0) {
-		btnMarket.rotation = [[Utils instance] aspire:btnMarket.rotation _aim:3 _speed:0.3f];  
-		if (6 - btnMarket.rotation < 1) {
+		btnCredits.rotation = [[Utils instance] aspire:btnCredits.rotation _aim:3 _speed:0.3f];  
+		if (6 - btnCredits.rotation < 1) {
 			//logoSpr.rotation += rotationSpd;
 			rotationState = 1;
 		} else {
@@ -535,8 +565,8 @@
 		}
 	} else 
 		if(rotationState == 1) {
-			btnMarket.rotation = [[Utils instance] aspire:btnMarket.rotation _aim:-3 _speed:0.3f];
-			if (fabs(btnMarket.rotation + 6) < 1) {
+			btnCredits.rotation = [[Utils instance] aspire:btnCredits.rotation _aim:-3 _speed:0.3f];
+			if (fabs(btnCredits.rotation + 6) < 1) {
 				//logoSpr.rotation -= rotationSpd;
 				rotationState = 0;
 			} else {
@@ -589,6 +619,8 @@
 		[self checkBoxRestartLevelProgressPanelHide];
 		[btnSound setChecked:[Defs instance].isSoundMute];
         [btnMusic setChecked:[Defs instance].isMusicMute];
+        
+        [self checkAvailableUpdates];
 
 	} else { 
 		if (backSpr.parent != nil) [backSpr removeFromParentAndCleanup:YES];
@@ -614,9 +646,9 @@
 	if (logoVelocity.x > maxVelocity) logoVelocity.x = maxVelocity; else
 		if (logoVelocity.x < - maxVelocity) logoVelocity.x = -maxVelocity;
 	
-    btnMarket.spr.rotation *= 0.8f;
+    btnCredits.spr.rotation *= 0.8f;
     
-    btnMarket.spr.rotation -= acceleration.y * 3.2f;
+    btnCredits.spr.rotation -= acceleration.y * 3.2f;
     
 	//logoSpr.position = ccp(logoSpr.position.x-acceleration.y,logoSpr.position.y);
 }

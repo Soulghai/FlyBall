@@ -29,17 +29,6 @@
     isShadowAnimationClose = YES;
 }
 
-/*- (void) buttonMarketClick {
-    [[GameStandartFunctions instance] playCloseScreenAnimation:0];
-}*/
-
-- (void) buttonMarketAction {
-	[self show:NO];
-    //[[MainScene instance].game prepareToHideGameScreen];
-	[[MainScene instance] showMarketScreen:GAME_STATE_GAME];
-    [FlurryAnalytics logEvent:ANALYTICS_PAUSE_SCREEN_BUTTON_MARKET_CLICKED];
-}
-
 /*- (void) buttonLevelsClick {
     [[GameStandartFunctions instance] playCloseScreenAnimation:1];
 }*/
@@ -112,13 +101,7 @@
     btnDef.func = @selector(buttonLevelsAction);
     btnDef.sound = @"button_click.wav";
     
-    btnLevels = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(SCREEN_WIDTH_HALF - 50,100)];
-    
-    btnDef.sprName = @"btnShop.png";
-    btnDef.sprDownName = @"btnShopDown.png";
-    btnDef.func = @selector(buttonMarketAction);
-    
-    btnShop = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(SCREEN_WIDTH_HALF - 75,160)];
+    btnLevels = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(SCREEN_WIDTH_HALF - 40, 40)];
     
     GUICheckBoxDef *checkBoxSoundDef = [GUICheckBoxDef node];
     checkBoxSoundDef.sprName = @"btnMusicOn.png";
@@ -131,7 +114,7 @@
     checkBoxSoundDef.checked = [Defs instance].isMusicMute;
     checkBoxSoundDef.sound = @"button_click.wav";
     
-    btnMusic = [[MainScene instance].gui addItem:(id)checkBoxSoundDef _pos:ccp(SCREEN_WIDTH_HALF + 75,160)];
+    btnMusic = [[MainScene instance].gui addItem:(id)checkBoxSoundDef _pos:ccp(SCREEN_WIDTH - 30, 270)];
     
     checkBoxSoundDef.sprName = @"btnSound.png";
     checkBoxSoundDef.sprOneDownName = @"btnSoundDown.png";
@@ -140,7 +123,7 @@
     checkBoxSoundDef.func = @selector(checkBoxEnableSoundAction);
     checkBoxSoundDef.checked = [Defs instance].isSoundMute;
     
-    btnSound = [[MainScene instance].gui addItem:(id)checkBoxSoundDef _pos:ccp(SCREEN_WIDTH_HALF + 50,100)];
+    btnSound = [[MainScene instance].gui addItem:(id)checkBoxSoundDef _pos:ccp(SCREEN_WIDTH - 30, 210)];
 }
 
 - (void) show:(BOOL)_flag {
@@ -190,7 +173,7 @@
         if (pauseZZZSpr.spr.opacity < 250) pauseZZZSpr.spr.opacity+= 25; else pauseZZZSpr.spr.opacity = 255;
     }
     
-    /*CGPoint pos = btnMarket.spr.position;
+    /*CGPoint pos = btnCredits.spr.position;
 	float _marketGoSpeedAcc = 0.01f;
     
     if (pos.y > (200)) _marketGoSpeedAcc = -0.01f;
@@ -200,7 +183,7 @@
     pos.y += marketGoSpeed;
     
 	
-	[btnMarket setPosition:pos];
+	[btnCredits setPosition:pos];
     [panelMarket setPosition:pos];
     
     if (isPanelMarketOpacityAlpaAdd) {

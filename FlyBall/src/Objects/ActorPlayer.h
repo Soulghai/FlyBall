@@ -24,7 +24,14 @@
     
     float friction;
     
+    BOOL isMayBlink;
+    float blinkTime;
+    float blinkDelay;
+    BOOL isEyeOpen;
+    
     CCSprite *sprArmor;
+    CCSprite *sprShoes;
+    int currShoesID;
     
     CCSprite *bonusCell;
     NSMutableArray* bonusCellItemIDs;

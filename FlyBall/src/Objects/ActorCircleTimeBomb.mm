@@ -32,7 +32,7 @@
 }
 
 - (void) loadCostume {
-	costume = [CCSprite spriteWithSpriteFrameName:@"player_armor_2.png"];
+	costume = [CCSprite spriteWithSpriteFrameName:@"bomb_circle.png"];
 	[costume retain];
 }
 
@@ -48,13 +48,13 @@
     CCSpriteFrame* frame;
     switch (currSpriteFrame) {
         case 0:
-            frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"player_armor_2.png"];
+            frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"bomb_circle.png"];
             break;
         case 1:
-            frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"player_armor_1.png"];
+            frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"player_armor_3.png"];
             break;
         case 2:
-            frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"player_armor_0.png"];
+            frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"player_sleep.png"];
             break;
             
         default:

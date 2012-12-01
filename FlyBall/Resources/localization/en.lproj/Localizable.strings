@@ -66,6 +66,8 @@ In App Purchase Dialog
  Market Screen
  */
 "panelBuyCoinsCaption" = "Not enough coins.\nBuy some?";
+"buttonBuyCurrValue" = "current value";
+"buttonBuyNextValue" = "next value";
 
 "GIFT THIS APP" = "GIFT THIS APP";
 

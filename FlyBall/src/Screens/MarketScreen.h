@@ -46,8 +46,10 @@
     GUIButton* btnPlayerMagnetPower;
     GUIButton* btnPlayerGodModeAfterCrashTime;
     GUIButton* btnPlayerBombSlow;
+    GUIButton* btnPlayerArmor;
 }
 
+- (int) calcAvailableUpdatesCount;
 - (id) init;
 - (void) show:(BOOL)_flag;
 - (void) update;

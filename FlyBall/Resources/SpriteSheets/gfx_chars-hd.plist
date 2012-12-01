@@ -19,9 +19,9 @@
                 <key>width</key>
                 <integer>90</integer>
                 <key>x</key>
-                <integer>94</integer>
+                <integer>334</integer>
                 <key>y</key>
-                <integer>190</integer>
+                <integer>144</integer>
             </dict>
             <key>bonus_apocalypse.png</key>
             <dict>
@@ -38,9 +38,9 @@
                 <key>width</key>
                 <integer>64</integer>
                 <key>x</key>
-                <integer>156</integer>
+                <integer>2</integer>
                 <key>y</key>
-                <integer>322</integer>
+                <integer>366</integer>
             </dict>
             <key>bonus_armor.png</key>
             <dict>
@@ -59,7 +59,7 @@
                 <key>x</key>
                 <integer>2</integer>
                 <key>y</key>
-                <integer>324</integer>
+                <integer>300</integer>
             </dict>
             <key>bonus_fire.png</key>
             <dict>
@@ -76,9 +76,9 @@
                 <key>width</key>
                 <integer>64</integer>
                 <key>x</key>
-                <integer>90</integer>
+                <integer>426</integer>
                 <key>y</key>
-                <integer>282</integer>
+                <integer>234</integer>
             </dict>
             <key>bonus_speed.png</key>
             <dict>
@@ -95,9 +95,104 @@
                 <key>width</key>
                 <integer>64</integer>
                 <key>x</key>
-                <integer>186</integer>
+                <integer>426</integer>
                 <key>y</key>
-                <integer>256</integer>
+                <integer>168</integer>
+            </dict>
+            <key>boots_1.png</key>
+            <dict>
+                <key>height</key>
+                <integer>40</integer>
+                <key>offsetX</key>
+                <real>-2</real>
+                <key>offsetY</key>
+                <real>-2</real>
+                <key>originalHeight</key>
+                <integer>64</integer>
+                <key>originalWidth</key>
+                <integer>128</integer>
+                <key>width</key>
+                <integer>92</integer>
+                <key>x</key>
+                <integer>340</integer>
+                <key>y</key>
+                <integer>102</integer>
+            </dict>
+            <key>boots_2.png</key>
+            <dict>
+                <key>height</key>
+                <integer>40</integer>
+                <key>offsetX</key>
+                <real>-3</real>
+                <key>offsetY</key>
+                <real>-2</real>
+                <key>originalHeight</key>
+                <integer>64</integer>
+                <key>originalWidth</key>
+                <integer>128</integer>
+                <key>width</key>
+                <integer>96</integer>
+                <key>x</key>
+                <integer>242</integer>
+                <key>y</key>
+                <integer>102</integer>
+            </dict>
+            <key>boots_3.png</key>
+            <dict>
+                <key>height</key>
+                <integer>40</integer>
+                <key>offsetX</key>
+                <real>-2</real>
+                <key>offsetY</key>
+                <real>-2</real>
+                <key>originalHeight</key>
+                <integer>64</integer>
+                <key>originalWidth</key>
+                <integer>128</integer>
+                <key>width</key>
+                <integer>92</integer>
+                <key>x</key>
+                <integer>340</integer>
+                <key>y</key>
+                <integer>102</integer>
+            </dict>
+            <key>boots_4.png</key>
+            <dict>
+                <key>height</key>
+                <integer>40</integer>
+                <key>offsetX</key>
+                <real>-3</real>
+                <key>offsetY</key>
+                <real>-2</real>
+                <key>originalHeight</key>
+                <integer>64</integer>
+                <key>originalWidth</key>
+                <integer>128</integer>
+                <key>width</key>
+                <integer>96</integer>
+                <key>x</key>
+                <integer>242</integer>
+                <key>y</key>
+                <integer>102</integer>
+            </dict>
+            <key>boots_5.png</key>
+            <dict>
+                <key>height</key>
+                <integer>40</integer>
+                <key>offsetX</key>
+                <real>-3</real>
+                <key>offsetY</key>
+                <real>-2</real>
+                <key>originalHeight</key>
+                <integer>64</integer>
+                <key>originalWidth</key>
+                <integer>128</integer>
+                <key>width</key>
+                <integer>96</integer>
+                <key>x</key>
+                <integer>242</integer>
+                <key>y</key>
+                <integer>102</integer>
             </dict>
             <key>coin.png</key>
             <dict>
@@ -114,66 +209,104 @@
                 <key>width</key>
                 <integer>64</integer>
                 <key>x</key>
-                <integer>186</integer>
+                <integer>434</integer>
                 <key>y</key>
-                <integer>190</integer>
+                <integer>102</integer>
             </dict>
-            <key>player.png</key>
+            <key>helmet_1.png</key>
             <dict>
                 <key>height</key>
-                <integer>94</integer>
+                <integer>54</integer>
                 <key>offsetX</key>
                 <real>0</real>
                 <key>offsetY</key>
-                <real>-2</real>
+                <real>-5</real>
                 <key>originalHeight</key>
-                <integer>100</integer>
+                <integer>64</integer>
                 <key>originalWidth</key>
-                <integer>100</integer>
+                <integer>128</integer>
                 <key>width</key>
-                <integer>96</integer>
+                <integer>90</integer>
                 <key>x</key>
-                <integer>132</integer>
-                <key>y</key>
                 <integer>2</integer>
+                <key>y</key>
+                <integer>232</integer>
             </dict>
-            <key>player_armor_1.png</key>
+            <key>helmet_2.png</key>
+            <dict>
+                <key>height</key>
+                <integer>54</integer>
+                <key>offsetX</key>
+                <real>-1</real>
+                <key>offsetY</key>
+                <real>-5</real>
+                <key>originalHeight</key>
+                <integer>64</integer>
+                <key>originalWidth</key>
+                <integer>128</integer>
+                <key>width</key>
+                <integer>90</integer>
+                <key>x</key>
+                <integer>110</integer>
+                <key>y</key>
+                <integer>202</integer>
+            </dict>
+            <key>player_1.png</key>
             <dict>
                 <key>height</key>
                 <integer>98</integer>
                 <key>offsetX</key>
                 <real>0</real>
                 <key>offsetY</key>
-                <real>1</real>
+                <real>-2</real>
                 <key>originalHeight</key>
-                <integer>100</integer>
+                <integer>128</integer>
                 <key>originalWidth</key>
-                <integer>100</integer>
+                <integer>128</integer>
                 <key>width</key>
-                <integer>86</integer>
+                <integer>108</integer>
                 <key>x</key>
-                <integer>2</integer>
+                <integer>132</integer>
                 <key>y</key>
-                <integer>224</integer>
+                <integer>102</integer>
             </dict>
-            <key>player_armor_2.png</key>
+            <key>player_2.png</key>
             <dict>
                 <key>height</key>
-                <integer>90</integer>
+                <integer>98</integer>
                 <key>offsetX</key>
                 <real>0</real>
                 <key>offsetY</key>
-                <real>0</real>
+                <real>-2</real>
                 <key>originalHeight</key>
-                <integer>90</integer>
+                <integer>128</integer>
                 <key>originalWidth</key>
-                <integer>90</integer>
+                <integer>128</integer>
                 <key>width</key>
-                <integer>90</integer>
+                <integer>108</integer>
                 <key>x</key>
-                <integer>2</integer>
+                <integer>352</integer>
                 <key>y</key>
-                <integer>132</integer>
+                <integer>2</integer>
+            </dict>
+            <key>player_3.png</key>
+            <dict>
+                <key>height</key>
+                <integer>98</integer>
+                <key>offsetX</key>
+                <real>0</real>
+                <key>offsetY</key>
+                <real>-2</real>
+                <key>originalHeight</key>
+                <integer>128</integer>
+                <key>originalWidth</key>
+                <integer>128</integer>
+                <key>width</key>
+                <integer>108</integer>
+                <key>x</key>
+                <integer>242</integer>
+                <key>y</key>
+                <integer>2</integer>
             </dict>
             <key>player_armor_3.png</key>
             <dict>
@@ -190,9 +323,47 @@
                 <key>width</key>
                 <integer>90</integer>
                 <key>x</key>
+                <integer>242</integer>
+                <key>y</key>
+                <integer>144</integer>
+            </dict>
+            <key>player_bonus_apocalipsus.png</key>
+            <dict>
+                <key>height</key>
+                <integer>98</integer>
+                <key>offsetX</key>
+                <real>0</real>
+                <key>offsetY</key>
+                <real>-3</real>
+                <key>originalHeight</key>
+                <integer>110</integer>
+                <key>originalWidth</key>
+                <integer>110</integer>
+                <key>width</key>
+                <integer>106</integer>
+                <key>x</key>
+                <integer>2</integer>
+                <key>y</key>
+                <integer>132</integer>
+            </dict>
+            <key>player_sleep_1.png</key>
+            <dict>
+                <key>height</key>
+                <integer>98</integer>
+                <key>offsetX</key>
+                <real>0</real>
+                <key>offsetY</key>
+                <real>-2</real>
+                <key>originalHeight</key>
+                <integer>128</integer>
+                <key>originalWidth</key>
+                <integer>128</integer>
+                <key>width</key>
+                <integer>108</integer>
+                <key>x</key>
                 <integer>132</integer>
                 <key>y</key>
-                <integer>98</integer>
+                <integer>2</integer>
             </dict>
             <key>playerglow.png</key>
             <dict>
@@ -221,9 +392,9 @@
             <key>realTextureFileName</key>
             <string>gfx_chars-hd.pvr.ccz</string>
             <key>size</key>
-            <string>{256,512}</string>
+            <string>{512,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:1c39e1ddbfc3d86e68031be01c2616f7$</string>
+            <string>$TexturePacker:SmartUpdate:4e1634338045f22549d0362ca4efd50e$</string>
             <key>textureFileName</key>
             <string>gfx_chars-hd.pvr.ccz</string>
         </dict>
@@ -232,7 +403,7 @@
             <key>height</key>
             <integer>512</integer>
             <key>width</key>
-            <integer>256</integer>
+            <integer>512</integer>
         </dict>
     </dict>
 </plist>

@@ -74,6 +74,8 @@
  Market Screen
  */
 "panelBuyCoinsCaption" = "Не достаточно монет.\nКупить несколько?";
+"buttonBuyCurrValue" = "сейчас";
+"buttonBuyNextValue" = "будет";
 
 /* button "menu" on the level. */
 "GIFT THIS APP" = "Подарить игру";

@@ -122,6 +122,8 @@
 @property (nonatomic, readwrite) float playerGodModeAfterCrashTime;
 @property (nonatomic, readwrite) int playerGodModeAfterCrashTimeLevel;
 
+@property (nonatomic, readwrite) int playerArmorLevel;
+
 +(Defs*) instance;
 
 - (void)dealloc;

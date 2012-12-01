@@ -103,6 +103,8 @@
 @synthesize playerGodModeAfterCrashTime;
 @synthesize playerGodModeAfterCrashTimeLevel;
 
+@synthesize playerArmorLevel;
+
 
 static Defs *instance_;
 

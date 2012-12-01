@@ -30,6 +30,7 @@
 @property (nonatomic, assign) PauseScreen *pauseScreen;
 @property (nonatomic, assign) MarketScreen *marketScreen;
 @property (nonatomic, assign) GUIInterface *gui;
+@property (nonatomic, assign) LevelFinishScreen *levelFinishScreen;
 
 +(MainScene*) instance;
 // returns a Scene that contains the HelloWorld as the only child

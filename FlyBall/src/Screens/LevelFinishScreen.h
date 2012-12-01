@@ -50,6 +50,8 @@
     GUIPanel *panelPalmRight;
     GUIPanel *panelPalmLeft;
     
+    GUIPanel *panelExclamationMark;
+    
     BOOL isBushGoUp;
     BOOL isBushLeftGoUp;
     BOOL isPalmGoUp;

@@ -33,6 +33,7 @@
 @synthesize game;
 @synthesize pauseScreen;
 @synthesize gui;
+@synthesize levelFinishScreen;
 
 
 static MainScene *instance_;
@@ -256,6 +257,7 @@ static void MainScene_remover() {
 	[gui show:game.state];
 	//[game show:NO];
 	[menu show:NO];
+    [pauseScreen show:NO];
 	[marketScreen show:YES];
 	self.accelerometerEnabled = NO;
     [FlurryAnalytics logEvent:ANALYTICS_MARKET_SCREEN_OPENED];

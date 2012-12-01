@@ -55,41 +55,72 @@
         [emitterBonusSpeedFire unscheduleUpdate];
         
         friction = 0.01f;
+        
+        isMayBlink = YES;
+        blinkDelay = 1;
+        blinkTime = 0;
+        isEyeOpen = YES;
+        
+        currShoesID = 0;
 	}
 	return self;
 }
 
 - (void) loadCostume {
-	costume = [CCSprite spriteWithSpriteFrameName:@"player.png"];
+	costume = [CCSprite spriteWithSpriteFrameName:@"player_1.png"];
 	[costume retain];
     
-    sprArmor = [CCSprite spriteWithSpriteFrameName:@"player_armor_1.png"];
-    [sprArmor setPosition:ccp(costume.contentSize.width*0.5f, costume.contentSize.height*0.5f)];
+    sprArmor = [CCSprite spriteWithSpriteFrameName:@"helmet_1.png"];
+    [sprArmor setAnchorPoint:ccp(0.5f,1)];
+    [sprArmor setPosition:ccp(costume.contentSize.width*0.5f, costume.contentSize.height)];
     [sprArmor retain];
+    
+    sprShoes = [CCSprite spriteWithSpriteFrameName:@"boots_1.png"];
+    [sprShoes setAnchorPoint:ccp(0.5f,0)];
+    [sprShoes setPosition:ccp(costume.contentSize.width*0.5f, 0)];
+    [sprShoes retain];
     
     sprGodMode = [CCSprite spriteWithSpriteFrameName:@"playerglow.png"];
     [sprGodMode retain];
     
     bonusCell = [CCSprite spriteWithSpriteFrameName:@"bonus_apocalypse.png"];
     [bonusCell retain];
-    [bonusCell setPosition:ccp(elementRadius, elementRadius)];
+    [bonusCell setPosition:ccp(costume.contentSize.width*0.5f, costume.contentSize.height)];
+}
+
+- (void) setCurrentBodySprite {
+    CCSpriteFrame* frame = nil;
+    if (isEyeOpen)
+        frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"player_1.png"];
+    else
+        frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"player_sleep_1.png"];
+    if (frame) [costume setDisplayFrame:frame];
 }
 
 - (void) setArmorSprite {
-    
     if (armored == 0) {
         if (sprArmor.parent) {
             [sprArmor removeFromParentAndCleanup:YES];
         }
     } else {
-        if (!sprArmor.parent) [costume addChild:sprArmor];
-        CCSpriteFrame* frame;
+        [self showArmorSprite:YES];
+        CCSpriteFrame* frame = nil;
         if (armored > 3)
-            frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"player_armor_3.png"];
+            frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"helmet_3.png"];
         else
-            frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"player_armor_%i.png", armored]];
-        [sprArmor setDisplayFrame:frame];
+            frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"helmet_%i.png", armored]];
+        if (frame) [sprArmor setDisplayFrame:frame];
     }
+}
+
+- (void) setShoesSprite {
+    if (currShoesID == [Defs instance].playerSpeedLimitLevel) return;
+    currShoesID = [Defs instance].playerSpeedLimitLevel;
+    CCSpriteFrame* frame = nil;
+    if (currShoesID > 0) {
+        frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"boots_%i.png", [Defs instance].playerSpeedLimitLevel]];
+    }
+    if (frame) [sprShoes setDisplayFrame:frame];
 }
 
 - (void) addArmor {
@@ -122,6 +153,22 @@
 - (void) setBonusCell:(int)_bonusID {
     [bonusCellItemIDs addObject:[NSNumber numberWithInteger:_bonusID]];
     [self showBonusCell:YES];
+}
+
+- (void) showShoesSprite:(BOOL)_flag {
+    if (_flag) {
+        if ((currShoesID > 0)&&(!sprShoes.parent)) [costume addChild:sprShoes];
+    } else {
+        if (sprShoes.parent) [sprShoes removeFromParent];
+    }
+}
+
+- (void) showArmorSprite:(BOOL)_flag {
+    if (_flag) {
+        if ((armored > 0)&&(!sprArmor.parent)) [costume addChild:sprArmor];
+    } else {
+        if (sprArmor.parent) [sprArmor removeFromParent];
+    }
 }
 
 - (void) showBonusCell:(BOOL)_flag {
@@ -163,15 +210,17 @@
             if (emitterEngineFire.parent) [emitterEngineFire removeFromParentAndCleanup:NO];
         }
         
-        if (sprArmor.parent) {
-            [sprArmor removeFromParentAndCleanup:YES];
-        }
-        
         [self hideBonusSpeedFire];
     }
     
     [self showGodModeSprite:_flag];
     [self showBonusCell:_flag];
+    [self showShoesSprite:_flag];
+    [self showArmorSprite:_flag];
+}
+
+- (void) setStartAmmunition {
+    [self setShoesSprite];
 }
 
 - (void) activate {
@@ -187,13 +236,20 @@
     
     isBonusSpeed = NO;
     timeBonusSpeed = 0;
+    
+    isMayBlink = YES;
+    blinkDelay = 1;
+    blinkTime = 0;
+    isEyeOpen = YES;
+    [self setCurrentBodySprite];
+    [self setShoesSprite];
 }
 
 - (void) deactivate {
     [self showGodModeSprite:NO];
     [self showBonusCell:NO];
     [bonusCellItemIDs removeAllObjects];
-    armored = 0;
+    armored = [Defs instance].playerArmorLevel;
     [self setArmorSprite];
     
     [super deactivate];
@@ -285,6 +341,16 @@
             delayGodMode = 0;
             delayBonusSpeed = 0;
             [self hideBonusSpeedFire];
+        }
+    }
+    
+    if (isMayBlink ) {
+        blinkTime += TIME_STEP;
+        if (blinkTime >= blinkDelay) {
+            isEyeOpen = !isEyeOpen;
+            if (isEyeOpen) blinkDelay = 1 + CCRANDOM_0_1()*3; else blinkDelay = 0.2f + CCRANDOM_0_1()*0.4f;
+            [self setCurrentBodySprite];
+            blinkTime = 0;
         }
     }
 }

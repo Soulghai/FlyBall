@@ -22,7 +22,7 @@
 
 @implementation LevelFinishScreen
 
-- (void) buttonLevelRestartClick {
+/*- (void) buttonLevelRestartClick {
 	[[GameStandartFunctions instance] playCloseScreenAnimation:2];
     [FlurryAnalytics logEvent:ANALYTICS_LEVELEND_SCREEN_BUTTON_REPLAY_CLICKED];
 }
@@ -32,7 +32,7 @@
     [[MainScene instance].game levelRestart];
         
     [FlurryAnalytics logEvent:ANALYTICS_GAME_SCREEN_BUTTON_RESTART_LEVEL_CLICKED];
-}
+}*/
 
 - (void) buttonLevelsClick {
 	[[GameStandartFunctions instance] playCloseScreenAnimation:1];
@@ -48,6 +48,14 @@
 - (void) buttonMarketAction {
 	[[MainScene instance] showMarketScreen:GAME_STATE_LEVELFINISH];
     [FlurryAnalytics logEvent:ANALYTICS_PAUSE_SCREEN_BUTTON_MARKET_CLICKED];
+}
+
+- (void) checkAvailableUpdates {
+    if ([[MainScene instance].marketScreen calcAvailableUpdatesCount] > 0) {
+        //[labelMarketUpdateAvailableCounter setText:[NSString stringWithFormat:@"%i",_marketUpdateCounter]];
+        //[labelMarketUpdateAvailableCounter show:YES];
+        [panelExclamationMark show:YES];
+    }
 }
 
 - (id) init{
@@ -80,20 +88,26 @@
 		btnDef.sound = @"button_click.wav";
         [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(SCREEN_WIDTH_HALF-40,40)];
         
-        btnDef.sprName = @"btnRestart.png";
+        /*btnDef.sprName = @"btnRestart.png";
 		btnDef.sprDownName = @"btnRestartDown.png";
 		btnDef.group = GAME_STATE_LEVELFINISH;
 		btnDef.func = @selector(buttonLevelRestartClick);
-        [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(SCREEN_WIDTH_HALF+40,40)];
+        [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(SCREEN_WIDTH_HALF+40,40)];*/
         
         btnDef.sprName = @"btnShop.png";
         btnDef.sprDownName = @"btnShopDown.png";
         btnDef.func = @selector(buttonMarketAction);
         
-        [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(SCREEN_WIDTH_HALF - 75,100)];
+        GUIButton* _btnShop = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(SCREEN_WIDTH_HALF - 75,100)];
         
         GUIPanelDef *panelDef = [GUIPanelDef node];
         
+        panelDef.group = GAME_STATE_NONE;
+        panelDef.parentFrame = _btnShop.spr;
+        panelDef.sprName = @"exclamation_mark.png";
+        panelExclamationMark = [[MainScene instance].gui addItem:(id)panelDef _pos:ccp(55, 55)];
+        
+        panelDef.parentFrame = [MainScene instance].gui;
         //panelDef.parentFrame = [Defs];
         panelDef.group = GAME_STATE_LEVELFINISH;
         panelDef.sprName = @"star_menu.png";
@@ -155,6 +169,10 @@
 }
 
 - (void) setCollectedCoins:(int) _value {
+    timeCoinsAdd = 0;
+    scoreTotalCurrValue = [Defs instance].coinsCount;
+    delayCoinsAdd = 0.2f;
+    
     collectedCoinsValue = _value;
     collectedCoinsCurrValue = 0;
     soundScoreTime = soundScoreDelay;
@@ -177,14 +195,14 @@
         [self showPanelImproved:YES];
     }
 
-    int _newCoinsCount = int(scoreValue/10000);
+    /*int _newCoinsCount = int(scoreValue/10000);
     CCLOG(@"_Score = %i , _newCoinsCount = %i",scoreValue, _newCoinsCount);
     
     timeCoinsAdd = 0;
     scoreTotalCurrValue = [Defs instance].coinsCount;
     delayCoinsAdd = 0.2f;
     
-    [Defs instance].coinsCount += _newCoinsCount;
+    [Defs instance].coinsCount += _newCoinsCount;*/
     //[[Defs instance].userSettings setInteger:[Statistics instance].totalLevelsComplite forKey:@"totalLevelsComplite"];
     [MyData setStoreValue:@"coinsCount" value:[NSString stringWithFormat:@"%i",[Defs instance].coinsCount]];
 }
@@ -212,6 +230,8 @@
         [collectedCoinsStr setText:@"0"];
         [scoreStr setText:@"0"];
         [levelNumber setText:[NSString stringWithFormat:@"%i",scoreTotalCurrValue]];
+        
+        [self checkAvailableUpdates];
 	} else { 
         
 	}
@@ -236,11 +256,11 @@
                     } else
                         if ([Defs instance].afterCloseAnimationScreenType == 1) {
                             [self buttonLevelsAction];
-                        }
-                        else
+                        } else
                             if ([Defs instance].afterCloseAnimationScreenType == 2) {
-                                [self buttonLevelRestartAction];
+                                //[self buttonLevelRestartAction];
                             }
+                        
                     return;
                 }
             }
@@ -275,7 +295,7 @@
         if (collectedCoinsCurrValue < collectedCoinsValue) {
             timeCollectedCoinsAdd += TIME_STEP;
             if (timeCollectedCoinsAdd >= delayCollectedCoinsAdd) {
-                collectedCoinsCurrValue += 1;
+                ++collectedCoinsCurrValue;
                 [collectedCoinsStr setPosition:ccp(collectedCoinsStrPos.x + [[Utils instance] myRandom2F]*2, collectedCoinsStrPos.y + [[Utils instance] myRandom2F]*2)];
                 [collectedCoinsStr setText:[NSString stringWithFormat:@"%i",collectedCoinsCurrValue]];
                 if (![Defs instance].isSoundMute) [[SimpleAudioEngine sharedEngine] playEffect:@"star.wav"];
@@ -301,10 +321,11 @@
             if (scoreTotalCurrValue < [Defs instance].coinsCount) {
                 timeCoinsAdd += TIME_STEP;
                 if (timeCoinsAdd >= delayCoinsAdd) {
-                    scoreTotalCurrValue += 1;
+                    ++scoreTotalCurrValue;
                     [levelNumber setPosition:ccp(scoreTotalStrPos.x + [[Utils instance] myRandom2F]*2, scoreTotalStrPos.y + [[Utils instance] myRandom2F]*2)];
                     [levelNumber setText:[NSString stringWithFormat:@"%i",scoreTotalCurrValue]];
                     if (![Defs instance].isSoundMute) [[SimpleAudioEngine sharedEngine] playEffect:@"star.wav"];
+                    
                     timeCoinsAdd = 0;
                 }
             }

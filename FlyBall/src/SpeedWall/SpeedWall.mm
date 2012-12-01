@@ -25,7 +25,7 @@
         
         delayWarning = 3;
         timeWaiting = 0;
-        delayWaitingDefault = 10;
+        delayWaitingDefault = 1;
         delayWaiting = delayWaitingDefault + CCRANDOM_0_1()*5;
         timeShowing = 0;
         delayShowing = [Defs instance].speedWallDelayShowingCoeff;
@@ -33,8 +33,8 @@
         costume = [CCSprite spriteWithSpriteFrameName:@"speedWallBackground_2.png"];
         [costume retain];
         [costume setScaleY:3.75f];
-        [costume setScaleX:16];
-        //[costume setOpacity:100];
+        [costume setScaleX:20];
+        [costume setOpacity:150];
         
         halfWidth = costume.contentSize.width*0.5f*costume.scaleX;
         
@@ -129,10 +129,10 @@
         }
         
         if (emitterStarsAcc.parent)
-            emitterStarsAcc.position = ccpAdd(costume.position, ccp(0, SCREEN_HEIGHT_HALF));
+            emitterStarsAcc.position = ccpAdd([MainScene instance].game.player.position, ccp(0, SCREEN_HEIGHT_HALF));
         else
             if (emitterStarsDecc.parent)
-                emitterStarsDecc.position = ccpAdd(costume.position, ccp(0, SCREEN_HEIGHT_HALF));
+                emitterStarsDecc.position = ccpAdd([MainScene instance].game.player.position, ccp(0, SCREEN_HEIGHT_HALF));
         
         if (emitterWarningAcc.parent)
             emitterWarningAcc.position = ccpAdd(costume.position, ccp(0, -SCREEN_HEIGHT_HALF));
@@ -194,12 +194,12 @@
                 emitterStarsAcc.position = ccpAdd(costume.position, ccp(0, SCREEN_HEIGHT_HALF));
                 if ((emitterStarsAcc)&&(emitterStarsAcc.parent == nil))
                     [[Defs instance].objectFrontLayer addChild:emitterStarsAcc];
-                if (!emitterStarsAcc.isRunning) [emitterStarsAcc scheduleUpdate];
+                [emitterStarsAcc scheduleUpdate];
             } else {
                 emitterStarsDecc.position = ccpAdd(costume.position, ccp(0, SCREEN_HEIGHT_HALF));
                 if ((emitterStarsDecc)&&(emitterStarsDecc.parent == nil))
                     [[Defs instance].objectFrontLayer addChild:emitterStarsDecc];
-                if (!emitterStarsDecc.isRunning) [emitterStarsDecc scheduleUpdate];
+                [emitterStarsDecc scheduleUpdate];
             }
             
             

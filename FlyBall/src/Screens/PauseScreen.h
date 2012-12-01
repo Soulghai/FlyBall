@@ -27,7 +27,7 @@
     //GUIButton *buttonPassLevel;
     //GUIPanel *panelFeaturePassLevelCounterIcon;
     //GUILabel *labelFeaturePassLevelCounterIcon;
-    //GUIButton *btnMarket;
+    //GUIButton *btnCredits;
     //GUIPanel *panelMarket;
     //BOOL isPanelMarketOpacityAlpaAdd;
     //GLubyte panelMarketOpacity;
