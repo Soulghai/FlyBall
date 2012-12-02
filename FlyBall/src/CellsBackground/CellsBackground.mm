@@ -24,10 +24,10 @@
         cellWidth = 128;
         cellHeight = 128;
         
-        cellsHighMap = [NSMutableArray arrayWithObjects:[NSNumber numberWithInt:2000000],
-                        [NSNumber numberWithInt:5000],
-                        [NSNumber numberWithInt:150000],
-                        [NSNumber numberWithInt:160000],nil];
+        cellsHighMap = [NSMutableArray arrayWithObjects:[NSNumber numberWithInt:15000],
+                        [NSNumber numberWithInt:45000],
+                        [NSNumber numberWithInt:100000],
+                        [NSNumber numberWithInt:3500000],nil];
         [cellsHighMap retain];
         
         cellCurrentFrames = [NSMutableArray arrayWithCapacity:cellCountX*cellCountY];
@@ -97,6 +97,8 @@
 
 - (void) changeCellSkin:(CCSprite*)_spr
           _currentLevel:(int)_currentLevel{
+    if (_currentLevel == 3) _currentLevel = 4;
+    if (_currentLevel > 4) _currentLevel = 4;
     CCSpriteFrame* frame;
     float _ran = CCRANDOM_0_1()*13;
     if (_ran <= 11)

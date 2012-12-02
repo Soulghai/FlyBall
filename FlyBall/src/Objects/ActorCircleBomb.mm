@@ -39,7 +39,7 @@
 }
 
 - (void) loadCostume {
-	costume = [CCSprite spriteWithSpriteFrameName:@"bomb_circle.png"];
+	costume = [CCSprite spriteWithSpriteFrameName:@"bomb.png"];
 	[costume retain];
 }
 

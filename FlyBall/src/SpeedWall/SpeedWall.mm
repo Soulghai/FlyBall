@@ -25,7 +25,7 @@
         
         delayWarning = 3;
         timeWaiting = 0;
-        delayWaitingDefault = 1;
+        delayWaitingDefault = 10;
         delayWaiting = delayWaitingDefault + CCRANDOM_0_1()*5;
         timeShowing = 0;
         delayShowing = [Defs instance].speedWallDelayShowingCoeff;
@@ -135,10 +135,10 @@
                 emitterStarsDecc.position = ccpAdd([MainScene instance].game.player.position, ccp(0, SCREEN_HEIGHT_HALF));
         
         if (emitterWarningAcc.parent)
-            emitterWarningAcc.position = ccpAdd(costume.position, ccp(0, -SCREEN_HEIGHT_HALF));
+            emitterWarningAcc.position = ccpAdd(ccp([MainScene instance].game.player.position.x, costume.position.y), ccp(0, -SCREEN_HEIGHT_HALF));
         else
             if (emitterWarningDecc.parent)
-                emitterWarningDecc.position = ccpAdd(costume.position, ccp(0, -SCREEN_HEIGHT_HALF));
+                emitterWarningDecc.position = ccpAdd(ccp([MainScene instance].game.player.position.x, costume.position.y), ccp(0, -SCREEN_HEIGHT_HALF));
         
     } else {
         timeWaiting += TIME_STEP;

@@ -7,7 +7,7 @@
 	<key>angleVariance</key>
 	<real>0.0</real>
 	<key>blendFuncDestination</key>
-	<integer>1</integer>
+	<integer>771</integer>
 	<key>blendFuncSource</key>
 	<integer>770</integer>
 	<key>duration</key>
@@ -67,9 +67,9 @@
 	<key>rotationStartVariance</key>
 	<real>0.0</real>
 	<key>sourcePositionVariancex</key>
-	<real>5</real>
+	<real>8</real>
 	<key>sourcePositionVariancey</key>
-	<real>5</real>
+	<real>8</real>
 	<key>sourcePositionx</key>
 	<real>152.64076232910156</real>
 	<key>sourcePositiony</key>

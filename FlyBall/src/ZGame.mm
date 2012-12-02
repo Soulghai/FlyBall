@@ -546,7 +546,7 @@
     } else
    // if (_bonusID <= BONUS_ARMOR) {
    //     // Включаем броню
-        [player addArmor];
+        //[player addArmor];
    // } else
         if (_bonusID <= BONUS_ACCELERATION) {
             // Ускорение
@@ -667,7 +667,7 @@
             float _playerVelocityY = player.velocity.y;
             
             if (player.isBonusSpeed) {
-                _playerVelocityY -= [Defs instance].bonusAccelerationPower*5;
+                _playerVelocityY -= [Defs instance].bonusAccelerationPower*10;
             }
             
             if (_playerVelocityY < 0) _playerVelocityY = 0;
@@ -681,15 +681,26 @@
             for (int i = 0; i < _ballCount; i++) {
                 float _ran = CCRANDOM_0_1()*8;
                 id _newBombType = [ActorCircleBomb class];
-                if ((player.position.y >= 100000)&&(_ran > 7)) {
+                if ((player.position.y >= 1000)&&(_ran > 7)) {
                     _newBombType = [ActorCircleMagnetBomb class];
-                    [self addBall:_newBombType _point:ccp(player.position.x + _playerVelocityX + (SCREEN_WIDTH_HALF - elementRadius)*CCRANDOM_MINUS1_1(), player.position.y - SCREEN_HEIGHT_HALF - elementRadius) _velocity:ccp(_playerVelocityX, _playerVelocityY + 4 + CCRANDOM_0_1()*2) _active:YES];
+                    
+                    float _bombPosition = SCREEN_WIDTH*0.3f;
+                    if (CCRANDOM_MINUS1_1() < 0) _bombPosition = -SCREEN_WIDTH*0.3f;
+                    
+                    _bombPosition += CCRANDOM_MINUS1_1()*20;
+                    
+                    [self addBall:_newBombType _point:ccp(player.position.x + _bombPosition, player.position.y - SCREEN_HEIGHT_HALF - elementRadius) _velocity:ccp(_playerVelocityX, _playerVelocityY + 4 + CCRANDOM_0_1()*2) _active:YES];
                 } else
-                if ((player.position.y >= 50000)&&(_ran > 5)) {
+                if ((player.position.y >= 1000)&&(_ran > 5)) {
                     _newBombType = [ActorCircleTimeBomb class];
-                    [self addBall:_newBombType _point:ccp(player.position.x + _playerVelocityX + SCREEN_WIDTH_HALF*CCRANDOM_MINUS1_1(), player.position.y - SCREEN_HEIGHT_HALF - elementRadius) _velocity:ccp(_playerVelocityX, _playerVelocityY + 4 + CCRANDOM_0_1()*2) _active:YES];
+                    
+                    float _bombPosition = SCREEN_WIDTH*0.25f;
+                    if (CCRANDOM_MINUS1_1() < 0) _bombPosition = -SCREEN_WIDTH*0.25f;
+                    _bombPosition += CCRANDOM_MINUS1_1()*20;
+                    
+                    [self addBall:_newBombType _point:ccp(player.position.x + _bombPosition, player.position.y - SCREEN_HEIGHT_HALF - elementRadius) _velocity:ccp(_playerVelocityX, _playerVelocityY + 4 + CCRANDOM_0_1()*2) _active:YES];
                 } else {
-                    [self addBall:_newBombType _point:ccp(player.position.x + _playerVelocityX + SCREEN_WIDTH_HALF*CCRANDOM_MINUS1_1(), player.position.y - SCREEN_HEIGHT_HALF - elementRadius) _velocity:ccp(_playerVelocityX + CCRANDOM_MINUS1_1()*_velocityXCoeff, _playerVelocityY + _velocityYCoeff) _active:YES];
+                    [self addBall:_newBombType _point:ccp(player.position.x + _playerVelocityX + (SCREEN_WIDTH_HALF - elementRadius)*CCRANDOM_MINUS1_1(), player.position.y - SCREEN_HEIGHT_HALF - elementRadius) _velocity:ccp(_playerVelocityX + CCRANDOM_MINUS1_1()*_velocityXCoeff, _playerVelocityY + _velocityYCoeff) _active:YES];
                 }
             }
             

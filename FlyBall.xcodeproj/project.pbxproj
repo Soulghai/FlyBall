@@ -184,11 +184,6 @@
 		284FBDCC16530AD9003C16BE /* bomb_explosion_155.plist in Resources */ = {isa = PBXBuildFile; fileRef = 284FBAAA16530AD8003C16BE /* bomb_explosion_155.plist */; };
 		284FBDCD16530AD9003C16BE /* bomb_explosion_purple.plist in Resources */ = {isa = PBXBuildFile; fileRef = 284FBAAB16530AD8003C16BE /* bomb_explosion_purple.plist */; };
 		284FBDCE16530AD9003C16BE /* bomb_explosion_yellow.plist in Resources */ = {isa = PBXBuildFile; fileRef = 284FBAAC16530AD8003C16BE /* bomb_explosion_yellow.plist */; };
-		284FBDCF16530AD9003C16BE /* bomb_particle.png in Resources */ = {isa = PBXBuildFile; fileRef = 284FBAAD16530AD8003C16BE /* bomb_particle.png */; };
-		284FBDD016530AD9003C16BE /* particleTexture_old.png in Resources */ = {isa = PBXBuildFile; fileRef = 284FBAAE16530AD8003C16BE /* particleTexture_old.png */; };
-		284FBDD116530AD9003C16BE /* rainbow.plist in Resources */ = {isa = PBXBuildFile; fileRef = 284FBAAF16530AD8003C16BE /* rainbow.plist */; };
-		284FBDD216530AD9003C16BE /* rainbowProgress.plist in Resources */ = {isa = PBXBuildFile; fileRef = 284FBAB016530AD8003C16BE /* rainbowProgress.plist */; };
-		284FBDD316530AD9003C16BE /* rainbowProgressTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = 284FBAB116530AD8003C16BE /* rainbowProgressTexture.png */; };
 		284FBDD416530AD9003C16BE /* button_click.wav in Resources */ = {isa = PBXBuildFile; fileRef = 284FBAB316530AD8003C16BE /* button_click.wav */; };
 		284FBDD516530AD9003C16BE /* ball_max_01.wav in Resources */ = {isa = PBXBuildFile; fileRef = 284FBAB516530AD8003C16BE /* ball_max_01.wav */; };
 		284FBDD616530AD9003C16BE /* ball_max_02.wav in Resources */ = {isa = PBXBuildFile; fileRef = 284FBAB616530AD8003C16BE /* ball_max_02.wav */; };
@@ -676,11 +671,6 @@
 		284FBAAA16530AD8003C16BE /* bomb_explosion_155.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = bomb_explosion_155.plist; sourceTree = "<group>"; };
 		284FBAAB16530AD8003C16BE /* bomb_explosion_purple.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = bomb_explosion_purple.plist; sourceTree = "<group>"; };
 		284FBAAC16530AD8003C16BE /* bomb_explosion_yellow.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = bomb_explosion_yellow.plist; sourceTree = "<group>"; };
-		284FBAAD16530AD8003C16BE /* bomb_particle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bomb_particle.png; sourceTree = "<group>"; };
-		284FBAAE16530AD8003C16BE /* particleTexture_old.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = particleTexture_old.png; sourceTree = "<group>"; };
-		284FBAAF16530AD8003C16BE /* rainbow.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = rainbow.plist; sourceTree = "<group>"; };
-		284FBAB016530AD8003C16BE /* rainbowProgress.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = rainbowProgress.plist; sourceTree = "<group>"; };
-		284FBAB116530AD8003C16BE /* rainbowProgressTexture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rainbowProgressTexture.png; sourceTree = "<group>"; };
 		284FBAB316530AD8003C16BE /* button_click.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = button_click.wav; sourceTree = "<group>"; };
 		284FBAB516530AD8003C16BE /* ball_max_01.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ball_max_01.wav; sourceTree = "<group>"; };
 		284FBAB616530AD8003C16BE /* ball_max_02.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ball_max_02.wav; sourceTree = "<group>"; };
@@ -1468,11 +1458,6 @@
 				284FBAAA16530AD8003C16BE /* bomb_explosion_155.plist */,
 				284FBAAB16530AD8003C16BE /* bomb_explosion_purple.plist */,
 				284FBAAC16530AD8003C16BE /* bomb_explosion_yellow.plist */,
-				284FBAAD16530AD8003C16BE /* bomb_particle.png */,
-				284FBAAE16530AD8003C16BE /* particleTexture_old.png */,
-				284FBAAF16530AD8003C16BE /* rainbow.plist */,
-				284FBAB016530AD8003C16BE /* rainbowProgress.plist */,
-				284FBAB116530AD8003C16BE /* rainbowProgressTexture.png */,
 			);
 			name = particles;
 			path = Resources/particles;
@@ -1800,12 +1785,12 @@
 				284FBE8716530AF1003C16BE /* ActorPlayer.mm */,
 				284FBE8816530AF1003C16BE /* ActorCircleBomb.h */,
 				284FBE8916530AF1003C16BE /* ActorCircleBomb.mm */,
-				288DF4B1165700B500595477 /* ActorCircleBonus.h */,
-				288DF4B2165700B500595477 /* ActorCircleBonus.mm */,
 				28F183B61664EDDD004561E8 /* ActorCircleTimeBomb.h */,
 				28F183B21664ED80004561E8 /* ActorCircleTimeBomb.mm */,
 				28F183B716650AFB004561E8 /* ActorCircleMagnetBomb.h */,
 				28F183B816650AFB004561E8 /* ActorCircleMagnetBomb.mm */,
+				288DF4B1165700B500595477 /* ActorCircleBonus.h */,
+				288DF4B2165700B500595477 /* ActorCircleBonus.mm */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -1970,11 +1955,6 @@
 				284FBDCC16530AD9003C16BE /* bomb_explosion_155.plist in Resources */,
 				284FBDCD16530AD9003C16BE /* bomb_explosion_purple.plist in Resources */,
 				284FBDCE16530AD9003C16BE /* bomb_explosion_yellow.plist in Resources */,
-				284FBDCF16530AD9003C16BE /* bomb_particle.png in Resources */,
-				284FBDD016530AD9003C16BE /* particleTexture_old.png in Resources */,
-				284FBDD116530AD9003C16BE /* rainbow.plist in Resources */,
-				284FBDD216530AD9003C16BE /* rainbowProgress.plist in Resources */,
-				284FBDD316530AD9003C16BE /* rainbowProgressTexture.png in Resources */,
 				284FBDD416530AD9003C16BE /* button_click.wav in Resources */,
 				284FBDD516530AD9003C16BE /* ball_max_01.wav in Resources */,
 				284FBDD616530AD9003C16BE /* ball_max_02.wav in Resources */,

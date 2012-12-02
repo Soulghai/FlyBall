@@ -85,11 +85,13 @@
     
     bonusCell = [CCSprite spriteWithSpriteFrameName:@"bonus_apocalypse.png"];
     [bonusCell retain];
-    [bonusCell setPosition:ccp(costume.contentSize.width*0.5f, costume.contentSize.height)];
+    [bonusCell setPosition:ccp(costume.contentSize.width*0.5f, 20)];
+    [bonusCell setScale:0.6f];
 }
 
 - (void) setCurrentBodySprite {
     CCSpriteFrame* frame = nil;
+    if (bonusCell.parent) return;
     if (isEyeOpen)
         frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"player_1.png"];
     else
@@ -173,9 +175,15 @@
 
 - (void) showBonusCell:(BOOL)_flag {
     if (_flag) {
-        if (([bonusCellItemIDs count] > 0)&&(!bonusCell.parent)) [costume addChild:bonusCell z:costume.zOrder];
+        if (([bonusCellItemIDs count] > 0)&&(!bonusCell.parent)) {
+            CCSpriteFrame* frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"player_bonus_apocalipsys.png"];
+            if (frame) [costume setDisplayFrame:frame];
+            [costume addChild:bonusCell z:costume.zOrder];
+        }
     } else {
-        if (bonusCell.parent) [bonusCell removeFromParent];
+        if (bonusCell.parent) {
+            [bonusCell removeFromParent];
+        }
     }
 }
 
@@ -368,7 +376,10 @@
     if ([bonusCellItemIDs count] > 0) {
         [[MainScene instance].game doBonusEffect:[[bonusCellItemIDs objectAtIndex:0] integerValue]];
         [bonusCellItemIDs removeObjectAtIndex:0];
-        if ([bonusCellItemIDs count] == 0) [self showBonusCell:NO];
+        if ([bonusCellItemIDs count] == 0) {
+            [self showBonusCell:NO];
+            [self setCurrentBodySprite];
+        }
     }
 }
 
