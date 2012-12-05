@@ -29,6 +29,9 @@
     float blinkDelay;
     BOOL isEyeOpen;
     
+    BOOL isCrazyFace;
+    float timeCrazyFace;
+    
     CCSprite *sprArmor;
     CCSprite *sprShoes;
     int currShoesID;
@@ -53,5 +56,6 @@
 - (void) setGodMode:(float)_godModeTime;
 - (void) setSpeedBonus:(float)_bonusSpeedTime;
 - (void) setBonusCell:(int)_bonusID;
+- (void) setCrazyFace;
 - (CGPoint) magnetReaction:(CGPoint)_point;
 @end

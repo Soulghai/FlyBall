@@ -25,15 +25,15 @@
         
         delayWarning = 3;
         timeWaiting = 0;
-        delayWaitingDefault = 10;
-        delayWaiting = delayWaitingDefault + CCRANDOM_0_1()*5;
+        delayWaitingDefault = 20;
+        delayWaiting = delayWaitingDefault + CCRANDOM_0_1()*10;
         timeShowing = 0;
         delayShowing = [Defs instance].speedWallDelayShowingCoeff;
         
-        costume = [CCSprite spriteWithSpriteFrameName:@"speedWallBackground_2.png"];
+        costume = [CCSprite spriteWithSpriteFrameName:@"speedWallBackground_1.jpg"];
         [costume retain];
-        [costume setScaleY:3.75f];
-        [costume setScaleX:20];
+        [costume setScaleY:2.f];
+        [costume setScaleX:2.0f];
         [costume setOpacity:150];
         
         halfWidth = costume.contentSize.width*0.5f*costume.scaleX;
@@ -107,9 +107,13 @@
             }
         }
         
+        int xPosition = MAX([MainScene instance].game.player.position.x, -64);
+        xPosition = MIN(xPosition, 384);
+        
         if (isShowing||isHiding) {
-            positionChangeCoeff = ccpAdd(positionChangeCoeff, ccp(-[MainScene instance].game.player.velocity.x, showingSpeed));
-            costume.position = ccpAdd([MainScene instance].game.player.position, positionChangeCoeff);
+            positionChangeCoeff = ccpAdd(positionChangeCoeff, ccp(0, showingSpeed));
+            
+            costume.position = ccpAdd(ccp(xPosition, [MainScene instance].game.player.position.y), positionChangeCoeff);
             if ((isShowing)&&(positionChangeCoeff.y <= 0)) {
                 costume.position = ccp(costume.position.x, [MainScene instance].game.player.position.y);
                 positionChangeCoeff = ccp(positionChangeCoeff.x, 0);
@@ -125,20 +129,21 @@
                 }
         } else {
             positionChangeCoeff = ccpAdd(positionChangeCoeff, ccp(-[MainScene instance].game.player.velocity.x, 0));
-            costume.position = ccpAdd([MainScene instance].game.player.position, positionChangeCoeff);
+            costume.position = ccpAdd(ccp(xPosition, [MainScene instance].game.player.position.y), positionChangeCoeff);
         }
         
         if (emitterStarsAcc.parent)
-            emitterStarsAcc.position = ccpAdd([MainScene instance].game.player.position, ccp(0, SCREEN_HEIGHT_HALF));
+            emitterStarsAcc.position = ccpAdd(costume.position, ccp(0, SCREEN_HEIGHT_HALF));
         else
             if (emitterStarsDecc.parent)
-                emitterStarsDecc.position = ccpAdd([MainScene instance].game.player.position, ccp(0, SCREEN_HEIGHT_HALF));
+                emitterStarsDecc.position = ccpAdd(costume.position, ccp(0, SCREEN_HEIGHT_HALF));
         
         if (emitterWarningAcc.parent)
-            emitterWarningAcc.position = ccpAdd(ccp([MainScene instance].game.player.position.x, costume.position.y), ccp(0, -SCREEN_HEIGHT_HALF));
+            
+            emitterWarningAcc.position = ccpAdd(ccp(xPosition, costume.position.y), ccp(0, -SCREEN_HEIGHT_HALF));
         else
             if (emitterWarningDecc.parent)
-                emitterWarningDecc.position = ccpAdd(ccp([MainScene instance].game.player.position.x, costume.position.y), ccp(0, -SCREEN_HEIGHT_HALF));
+                emitterWarningDecc.position = ccpAdd(ccp(xPosition, costume.position.y), ccp(0, -SCREEN_HEIGHT_HALF));
         
     } else {
         timeWaiting += TIME_STEP;
@@ -149,21 +154,24 @@
                 [emitterWarningAcc scheduleUpdate];
                 emitterWarningAcc.position = ccpAdd(costume.position, ccp(0, SCREEN_HEIGHT_HALF));
                 if ((emitterWarningAcc)&&(emitterWarningAcc.parent == nil))
-                    [[Defs instance].objectFrontLayer addChild:emitterWarningAcc];
+                    [[Defs instance].objectFrontLayer addChild:emitterWarningAcc z:60];
             } else {
                 addSpeedCoeff = [Defs instance].speedWallDeccelerationCoeff;
                 [emitterWarningDecc scheduleUpdate];
                 emitterWarningDecc.position = ccpAdd(costume.position, ccp(0, SCREEN_HEIGHT_HALF));
                 if ((emitterWarningDecc)&&(emitterWarningDecc.parent == nil))
-                    [[Defs instance].objectFrontLayer addChild:emitterWarningDecc];
+                    [[Defs instance].objectFrontLayer addChild:emitterWarningDecc z:60];
             }
         }
         
+        int xPosition = MAX([MainScene instance].game.player.position.x, -64);
+        xPosition = MIN(xPosition, 384);
+        
         if (emitterWarningAcc.parent)
-            emitterWarningAcc.position = ccp([MainScene instance].game.player.position.x, [MainScene instance].game.player.position.y +SCREEN_HEIGHT_HALF);
+            emitterWarningAcc.position = ccp(xPosition, [MainScene instance].game.player.position.y +SCREEN_HEIGHT_HALF);
         else
             if (emitterWarningDecc.parent)
-                emitterWarningDecc.position = ccp([MainScene instance].game.player.position.x, [MainScene instance].game.player.position.y +SCREEN_HEIGHT_HALF);
+                emitterWarningDecc.position = ccp(xPosition, [MainScene instance].game.player.position.y +SCREEN_HEIGHT_HALF);
         
         timeWaiting += TIME_STEP;
         if (timeWaiting >= delayWaiting) {
@@ -178,14 +186,16 @@
             if (addSpeedCoeff > 0) {
                 if (addSpeedCoeff != addSpeedCoeffOld) {
                     CCSpriteFrame* frame;
-                    frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"speedWallBackground_2.png"];
+                    frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"speedWallBackground_1.jpg"];
                     [costume setDisplayFrame:frame];
+                    //[costume setColor:ccc3(0, 255, 0)];
                 }
             } else {
                 if (addSpeedCoeff != addSpeedCoeffOld) {
                     CCSpriteFrame* frame;
-                    frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"speedWallBackground_1.png"];
+                    frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"speedWallBackground_2.jpg"];
                     [costume setDisplayFrame:frame];
+                    //[costume setColor:ccc3(255, 0, 0)];
                 }
             }
             addSpeedCoeffOld = addSpeedCoeff;
@@ -193,12 +203,12 @@
             if (addSpeedCoeff >= 0) {
                 emitterStarsAcc.position = ccpAdd(costume.position, ccp(0, SCREEN_HEIGHT_HALF));
                 if ((emitterStarsAcc)&&(emitterStarsAcc.parent == nil))
-                    [[Defs instance].objectFrontLayer addChild:emitterStarsAcc];
+                    [[Defs instance].objectFrontLayer addChild:emitterStarsAcc z:60];
                 [emitterStarsAcc scheduleUpdate];
             } else {
                 emitterStarsDecc.position = ccpAdd(costume.position, ccp(0, SCREEN_HEIGHT_HALF));
                 if ((emitterStarsDecc)&&(emitterStarsDecc.parent == nil))
-                    [[Defs instance].objectFrontLayer addChild:emitterStarsDecc];
+                    [[Defs instance].objectFrontLayer addChild:emitterStarsDecc z:60];
                 [emitterStarsDecc scheduleUpdate];
             }
             

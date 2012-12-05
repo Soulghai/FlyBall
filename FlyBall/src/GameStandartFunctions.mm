@@ -76,7 +76,7 @@ static void GameStandartFunctions_remover() {
 - (void) playCurrentBackgroundMusicTrack{
     if (![Defs instance].isMusicMute) {
         if ([Defs instance].currentMusicTheme == 0) {
-            [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"expand_it_main_menu_v2.mp3"];
+            [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"expand_it_bomb.mp3 "];
         } else
         if ([Defs instance].currentMusicTheme == 1) {
             [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"expand_it_the_island_v2.mp3"];

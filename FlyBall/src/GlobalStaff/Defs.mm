@@ -4,9 +4,11 @@
 
 //@synthesize particles;
 @synthesize actorManager = _actorManager;
+@synthesize spriteSheetParalax_1;
+@synthesize spriteSheetParalax_2;
 @synthesize spriteSheetChars;
 @synthesize spriteSheetCells;
-//@synthesize objectBackLayer;
+@synthesize objectBackLayer;
 @synthesize objectFrontLayer;
 @synthesize isSoundMute;
 @synthesize isMusicMute;

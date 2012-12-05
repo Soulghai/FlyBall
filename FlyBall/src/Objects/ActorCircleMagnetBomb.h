@@ -16,6 +16,10 @@
     float magnetDistance;
     int currSpriteFrame;
     BOOL isWorking;
+    
+    CCSprite *fireSpr;
+    float timerFire;
+    float delayFire;
 }
 -(id) init:(CCNode*)_parent
    _location:(CGPoint)_location;

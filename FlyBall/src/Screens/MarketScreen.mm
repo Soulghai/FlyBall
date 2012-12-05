@@ -720,7 +720,7 @@
         GUILabelTTFOutlinedDef *_labelTTFOutlinedDef = [GUILabelTTFOutlinedDef node];
         _labelTTFOutlinedDef.group = GAME_STATE_NONE;
         _labelTTFOutlinedDef.text = @"";
-        labelPanelBuyInfoCaption = [[MainScene instance].gui addItem:(id)_labelTTFOutlinedDef _pos:ccp(_panelX, _panelY + 100)];
+        labelPanelBuyInfoCaption = [[MainScene instance].gui addItem:(id)_labelTTFOutlinedDef _pos:ccp(_panelX, _panelY + 80)];
         
         _labelTTFOutlinedDef.alignement = kCCTextAlignmentRight;
         labelPanelBuyInfoCurrValue = [[MainScene instance].gui addItem:(id)_labelTTFOutlinedDef _pos:ccp(_panelX + _panelWidth*0.5f - 10, _panelY + 40)];

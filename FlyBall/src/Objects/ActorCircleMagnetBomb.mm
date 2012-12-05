@@ -28,6 +28,9 @@
         magnetPower = 0.2f;
         currSpriteFrame = 0;
         isWorking = NO;
+        
+        timerFire = 0;
+        delayFire = 0.1f;
 	}
 	return self;
 }
@@ -35,6 +38,10 @@
 - (void) loadCostume {
 	costume = [CCSprite spriteWithSpriteFrameName:@"bombmagnet_1.png"];
 	[costume retain];
+    
+    fireSpr = [CCSprite spriteWithSpriteFrameName:@"bombfire.png"];
+    [fireSpr setPosition:ccp(50, 59)];
+    [costume addChild:fireSpr];
 }
 
 - (void) setSpriteFrame:(int)_spriteFrame {
@@ -44,9 +51,11 @@
     CCSpriteFrame* _frame = nil;
     switch (currSpriteFrame) {
         case 0:
+            [fireSpr setVisible:NO];
             _frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"bombmagnet_1.png"];
             break;
         case 1:
+            [fireSpr setVisible:YES];
             _frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"bombmagnet_2.png"];
             break;
             
@@ -54,6 +63,14 @@
             break;
     }
     if (_frame) [costume setDisplayFrame:_frame];
+}
+
+- (void) activate {
+    [fireSpr setVisible:NO];
+    isWorking = NO;
+    [self setSpriteFrame:0];
+    
+    [super activate];
 }
 
 - (CGPoint) magnetReaction:(CGPoint)_point {
@@ -74,7 +91,15 @@
     if (costume.rotation > 360) costume.rotation -= 360; else
         if (costume.rotation < 0) costume.rotation += 360;
     
-    if (isWorking) [self setSpriteFrame:1]; else [self setSpriteFrame:0];
+    if (isWorking) {
+        [self setSpriteFrame:1];
+        
+        timerFire += TIME_STEP;
+        if (timerFire >= delayFire) {
+            [fireSpr setOpacity:100 + int(CCRANDOM_0_1()*155)];
+            timerFire = 0;
+        }
+    } else [self setSpriteFrame:0];
     
     [super update];
 }

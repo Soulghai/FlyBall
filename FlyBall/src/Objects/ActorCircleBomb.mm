@@ -24,6 +24,9 @@
         [self loadCostume];
         
         costume.position = _location;
+        
+        timerFire = 0;
+        delayFire = 0.1f;
 	}
 	return self;
 }
@@ -35,12 +38,24 @@
     if (costume.rotation > 360) costume.rotation -= 360; else
         if (costume.rotation < 0) costume.rotation += 360;
     
+    timerFire += TIME_STEP;
+    if (timerFire >= delayFire) {
+        [fireSpr setOpacity:100 + int(CCRANDOM_0_1()*155)];
+        //[fireSpr setVisible:!fireSpr.visible];
+        timerFire = 0;
+    }
+    
+    
     [super update];
 }
 
 - (void) loadCostume {
 	costume = [CCSprite spriteWithSpriteFrameName:@"bomb.png"];
 	[costume retain];
+    
+    fireSpr = [CCSprite spriteWithSpriteFrameName:@"bombfire.png"];
+    [fireSpr setPosition:ccp(50, 59)];
+    [costume addChild:fireSpr];
 }
 
 - (void) addVelocity:(CGPoint)_value {

@@ -13,6 +13,7 @@
 #import "CellsBackground.h"
 #import "SpeedWall.h"
 #import "ActorActiveBombObject.h"
+#import "ParalaxBackground.h"
 
 @interface ZGame : CCNode {	
 	BOOL isVisible;
@@ -35,6 +36,7 @@
     GUILabelTTF *labelScoreStr3;
     
     CellsBackground *cells;
+    ParalaxBackground* paralaxBackground;
     SpeedWall *speedWall;
     
     int collectedCoins;

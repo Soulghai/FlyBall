@@ -97,7 +97,6 @@
 
 - (void) changeCellSkin:(CCSprite*)_spr
           _currentLevel:(int)_currentLevel{
-    if (_currentLevel == 3) _currentLevel = 4;
     if (_currentLevel > 4) _currentLevel = 4;
     CCSpriteFrame* frame;
     float _ran = CCRANDOM_0_1()*13;

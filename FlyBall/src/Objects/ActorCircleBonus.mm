@@ -58,7 +58,7 @@
                 bonusID = BONUS_APOCALYPSE;
             } else
                 if (bonusID <= BONUS_GODMODE) {
-                    frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"bonus_fire.png"];
+                    frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"bonus_godmode.png"];
                     bonusID = BONUS_GODMODE;
                 }
 
@@ -86,7 +86,7 @@
                     break;
                     
                 case BONUS_GODMODE:
-                    [[SimpleAudioEngine sharedEngine] playEffect:@"star.wav"];
+                    [[SimpleAudioEngine sharedEngine] playEffect:@"god_mode.wav"];
                     break;
                     
                 default:

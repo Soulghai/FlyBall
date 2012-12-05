@@ -120,6 +120,8 @@
     [MyData setStoreValue:@"playerArmorLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].playerArmorLevel]];
     
     [MyData encodeDict:[MyData getDictForSaveData]];
+    
+    [Defs instance].coinsCount = 1000;
 }
 
 - (id) init{
@@ -233,18 +235,21 @@
         
         _labelTTFDef.textColor = ccc3(255, 255, 255);
         _labelTTFDef.text = @"160";
-        _labelTTFDef.fontSize = 24;
         labelScoreStr3 =[[MainScene instance].gui addItem:(id)_labelTTFDef _pos:ccp(1,SCREEN_HEIGHT_HALF + SCREEN_HEIGHT_HALF/1.5f)];
         
         // hint for start game
         _labelTTFDef.group = GAME_STATE_GAMEPREPARE;
+        _labelTTFDef.fontSize = 24;
         _labelTTFDef.alignement = kCCTextAlignmentCenter;
         _labelTTFDef.textColor = ccc3(255, 255, 255);
         _labelTTFDef.text = NSLocalizedString(@"HINT:Tap to Bomb","");
         [[MainScene instance].gui addItem:(id)_labelTTFDef _pos:ccp(SCREEN_WIDTH_HALF, 100)];
         
-        cells = [[CellsBackground alloc] init];
-        [cells retain];
+        //cells = [[CellsBackground alloc] init];
+        //[cells retain];
+        
+        paralaxBackground = [[ParalaxBackground alloc] init];
+        [paralaxBackground retain];
         
         player = [[ActorPlayer alloc] init:[Defs instance].spriteSheetChars _location:ccp(SCREEN_WIDTH_HALF, SCREEN_HEIGHT_HALF)];
         
@@ -276,13 +281,15 @@
 }
 
 - (void) setCenterOfTheScreen:(CGPoint)_position {
-    int x = MAX(_position.x, INTMAX_MIN);
+    int x = MAX(_position.x, -64);
     int y = MAX(_position.y, SCREEN_HEIGHT_HALF);
     
-    x = MIN(x, INTMAX_MAX);
+    x = MIN(x, 384);
     y = MIN(y, INTMAX_MAX);
     
     [Defs instance].objectFrontLayer.position = ccpSub(ccp(SCREEN_WIDTH_HALF, SCREEN_HEIGHT_HALF), ccp(x,y));
+    [Defs instance].spriteSheetParalax_2.position = ccp([Defs instance].objectFrontLayer.position.x/8, [Defs instance].objectFrontLayer.position.y/8);
+    [Defs instance].objectBackLayer.position = ccp(0, [Defs instance].objectFrontLayer.position.y/13);
 }
 
 - (void) prepareToHideGameScreen {
@@ -372,11 +379,12 @@
     
     [self addBall:[ActorCircleBomb class] _point:ccp(player.position.x, player.position.y - 70) _velocity:ccp(0,0) _active:YES];
     
-    timerAddBall = 0.3f;
-    timerDelayAddBall = 0.4f;
+    timerAddBall = 0.35f;
+    timerDelayAddBall = 0.45f;
     
     [self labelScoreBarUpdate];
-    [cells restartParameters];
+    //[cells restartParameters];
+    [paralaxBackground restartParameters];
     [speedWall deactivate];
     
     [self show:YES];
@@ -425,6 +433,7 @@
     [FlurryAnalytics logEvent:ANALYTICS_GAME_LEVEL_FINISH];
     
     [self deactivateAllActors];
+    [speedWall deactivate];
     
     // get Achievement
     [self getAchievements];
@@ -500,7 +509,7 @@
     
     if (_distance > SCREEN_HEIGHT_HALF) return;
     
-    float _power = (1 - _distance/SCREEN_HEIGHT_HALF)*10.0f;
+    float _power = (1 - _distance/SCREEN_HEIGHT_HALF)*7.0f;
     
     float _angle = CC_DEGREES_TO_RADIANS([Utils GetAngleBetweenPt1:ccp(SCREEN_WIDTH_HALF, SCREEN_HEIGHT_HALF) andPt2:ccp(_tempActorX,_tempActorY)]);
     
@@ -662,7 +671,7 @@
         [self labelScoreBarUpdate];
         
         timerAddBall += TIME_STEP;
-        if (timerAddBall >= timerDelayAddBall - (player.position.y/4000000)) {
+        if (timerAddBall >= timerDelayAddBall - (player.position.y/3000000)) {
             float _playerVelocityX = player.velocity.x;
             float _playerVelocityY = player.velocity.y;
             
@@ -672,16 +681,16 @@
             
             if (_playerVelocityY < 0) _playerVelocityY = 0;
             
-            float _velocityXCoeff = 1.5f;
-            float _velocityYCoeff = 3 + player.position.y/(12000*([Defs instance].playerBombSlow)) + CCRANDOM_0_1()*(player.position.y/(20000*([Defs instance].playerBombSlow)));
-            if (_velocityYCoeff < 4.5f) {
-                _velocityYCoeff = 4.5f;
+            float _velocityXCoeff = 1.2f;
+            float _velocityYCoeff = 3 + player.position.y/(30000*([Defs instance].playerBombSlow)) + CCRANDOM_0_1()*(player.position.y/(50000*([Defs instance].playerBombSlow)));
+            if (_velocityYCoeff < 5.f) {
+                _velocityYCoeff = 5.f;
             }
             int _ballCount = 1 + round(CCRANDOM_0_1());
             for (int i = 0; i < _ballCount; i++) {
                 float _ran = CCRANDOM_0_1()*8;
                 id _newBombType = [ActorCircleBomb class];
-                if ((player.position.y >= 1000)&&(_ran > 7)) {
+                if ((player.position.y >= 50000)&&(_ran > 7)) {
                     _newBombType = [ActorCircleMagnetBomb class];
                     
                     float _bombPosition = SCREEN_WIDTH*0.3f;
@@ -691,7 +700,7 @@
                     
                     [self addBall:_newBombType _point:ccp(player.position.x + _bombPosition, player.position.y - SCREEN_HEIGHT_HALF - elementRadius) _velocity:ccp(_playerVelocityX, _playerVelocityY + 4 + CCRANDOM_0_1()*2) _active:YES];
                 } else
-                if ((player.position.y >= 1000)&&(_ran > 5)) {
+                if ((player.position.y >= 100000)&&(_ran > 5)) {
                     _newBombType = [ActorCircleTimeBomb class];
                     
                     float _bombPosition = SCREEN_WIDTH*0.25f;
@@ -715,17 +724,20 @@
                 [scoreStr setColor:ccc3(50, 150, 255)];
                 [scoreStr setText:[NSString stringWithFormat:@"Wooow %im!!!",scoreLevel]];
                 if (!isNewScoreSound) {
-                    if (![Defs instance].isSoundMute) [[SimpleAudioEngine sharedEngine] playEffect:@"star.wav"];
+                    if (![Defs instance].isSoundMute) [[SimpleAudioEngine sharedEngine] playEffect:@"new_record.wav"];
                     isNewScoreSound = YES;
                 }
             } else [scoreStr setText:[NSString stringWithFormat:@"%im",scoreLevel]];
         }
         
+        
+        
         [[Defs instance].actorManager update];
         [self setCenterOfTheScreen:player.position];
         
         // делаем апдейт относительно текущей позиции игрока
-        [cells update];
+        //[cells update];
+        [paralaxBackground update];
         // стена скорости, которая действует на персонажа
         [speedWall update];
         player.velocity = ccpAdd(player.velocity, [speedWall checkToCollide:player.position]);
@@ -744,7 +756,8 @@
             [speedWall show:NO];
 		}
 	}
-    [cells show:_flag];
+    //[cells show:_flag];
+    [paralaxBackground show:_flag];
     [[Defs instance].actorManager show:_flag];
 }
 

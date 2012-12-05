@@ -4,309 +4,43 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>cell_1_1.jpg</key>
+            <key>speedWallBackground_1.jpg</key>
             <dict>
                 <key>height</key>
-                <integer>128</integer>
+                <integer>240</integer>
                 <key>offsetX</key>
                 <real>0</real>
                 <key>offsetY</key>
                 <real>0</real>
                 <key>originalHeight</key>
-                <integer>128</integer>
+                <integer>240</integer>
                 <key>originalWidth</key>
-                <integer>128</integer>
+                <integer>160</integer>
                 <key>width</key>
-                <integer>128</integer>
+                <integer>160</integer>
                 <key>x</key>
-                <integer>0</integer>
+                <integer>1</integer>
                 <key>y</key>
-                <integer>0</integer>
+                <integer>1</integer>
             </dict>
-            <key>cell_1_2.jpg</key>
+            <key>speedWallBackground_2.jpg</key>
             <dict>
                 <key>height</key>
-                <integer>128</integer>
+                <integer>240</integer>
                 <key>offsetX</key>
                 <real>0</real>
                 <key>offsetY</key>
                 <real>0</real>
                 <key>originalHeight</key>
-                <integer>128</integer>
+                <integer>240</integer>
                 <key>originalWidth</key>
-                <integer>128</integer>
+                <integer>160</integer>
                 <key>width</key>
-                <integer>128</integer>
+                <integer>160</integer>
                 <key>x</key>
-                <integer>128</integer>
+                <integer>163</integer>
                 <key>y</key>
-                <integer>0</integer>
-            </dict>
-            <key>cell_1_3.jpg</key>
-            <dict>
-                <key>height</key>
-                <integer>128</integer>
-                <key>offsetX</key>
-                <real>0</real>
-                <key>offsetY</key>
-                <real>0</real>
-                <key>originalHeight</key>
-                <integer>128</integer>
-                <key>originalWidth</key>
-                <integer>128</integer>
-                <key>width</key>
-                <integer>128</integer>
-                <key>x</key>
-                <integer>256</integer>
-                <key>y</key>
-                <integer>0</integer>
-            </dict>
-            <key>cell_1_4.jpg</key>
-            <dict>
-                <key>height</key>
-                <integer>128</integer>
-                <key>offsetX</key>
-                <real>0</real>
-                <key>offsetY</key>
-                <real>0</real>
-                <key>originalHeight</key>
-                <integer>128</integer>
-                <key>originalWidth</key>
-                <integer>128</integer>
-                <key>width</key>
-                <integer>128</integer>
-                <key>x</key>
-                <integer>384</integer>
-                <key>y</key>
-                <integer>0</integer>
-            </dict>
-            <key>cell_2_1.jpg</key>
-            <dict>
-                <key>height</key>
-                <integer>128</integer>
-                <key>offsetX</key>
-                <real>0</real>
-                <key>offsetY</key>
-                <real>0</real>
-                <key>originalHeight</key>
-                <integer>128</integer>
-                <key>originalWidth</key>
-                <integer>128</integer>
-                <key>width</key>
-                <integer>128</integer>
-                <key>x</key>
-                <integer>0</integer>
-                <key>y</key>
-                <integer>128</integer>
-            </dict>
-            <key>cell_2_2.jpg</key>
-            <dict>
-                <key>height</key>
-                <integer>128</integer>
-                <key>offsetX</key>
-                <real>0</real>
-                <key>offsetY</key>
-                <real>0</real>
-                <key>originalHeight</key>
-                <integer>128</integer>
-                <key>originalWidth</key>
-                <integer>128</integer>
-                <key>width</key>
-                <integer>128</integer>
-                <key>x</key>
-                <integer>128</integer>
-                <key>y</key>
-                <integer>128</integer>
-            </dict>
-            <key>cell_2_3.jpg</key>
-            <dict>
-                <key>height</key>
-                <integer>128</integer>
-                <key>offsetX</key>
-                <real>0</real>
-                <key>offsetY</key>
-                <real>0</real>
-                <key>originalHeight</key>
-                <integer>128</integer>
-                <key>originalWidth</key>
-                <integer>128</integer>
-                <key>width</key>
-                <integer>128</integer>
-                <key>x</key>
-                <integer>256</integer>
-                <key>y</key>
-                <integer>128</integer>
-            </dict>
-            <key>cell_2_4.jpg</key>
-            <dict>
-                <key>height</key>
-                <integer>128</integer>
-                <key>offsetX</key>
-                <real>0</real>
-                <key>offsetY</key>
-                <real>0</real>
-                <key>originalHeight</key>
-                <integer>128</integer>
-                <key>originalWidth</key>
-                <integer>128</integer>
-                <key>width</key>
-                <integer>128</integer>
-                <key>x</key>
-                <integer>384</integer>
-                <key>y</key>
-                <integer>128</integer>
-            </dict>
-            <key>cell_3.jpg</key>
-            <dict>
-                <key>height</key>
-                <integer>128</integer>
-                <key>offsetX</key>
-                <real>0</real>
-                <key>offsetY</key>
-                <real>0</real>
-                <key>originalHeight</key>
-                <integer>128</integer>
-                <key>originalWidth</key>
-                <integer>64</integer>
-                <key>width</key>
-                <integer>64</integer>
-                <key>x</key>
-                <integer>0</integer>
-                <key>y</key>
-                <integer>256</integer>
-            </dict>
-            <key>cell_3_1.jpg</key>
-            <dict>
-                <key>height</key>
-                <integer>128</integer>
-                <key>offsetX</key>
-                <real>0</real>
-                <key>offsetY</key>
-                <real>0</real>
-                <key>originalHeight</key>
-                <integer>128</integer>
-                <key>originalWidth</key>
-                <integer>64</integer>
-                <key>width</key>
-                <integer>64</integer>
-                <key>x</key>
-                <integer>64</integer>
-                <key>y</key>
-                <integer>256</integer>
-            </dict>
-            <key>cell_4_1.jpg</key>
-            <dict>
-                <key>height</key>
-                <integer>128</integer>
-                <key>offsetX</key>
-                <real>0</real>
-                <key>offsetY</key>
-                <real>0</real>
-                <key>originalHeight</key>
-                <integer>128</integer>
-                <key>originalWidth</key>
-                <integer>128</integer>
-                <key>width</key>
-                <integer>128</integer>
-                <key>x</key>
-                <integer>128</integer>
-                <key>y</key>
-                <integer>256</integer>
-            </dict>
-            <key>cell_4_2.jpg</key>
-            <dict>
-                <key>height</key>
-                <integer>128</integer>
-                <key>offsetX</key>
-                <real>0</real>
-                <key>offsetY</key>
-                <real>0</real>
-                <key>originalHeight</key>
-                <integer>128</integer>
-                <key>originalWidth</key>
-                <integer>128</integer>
-                <key>width</key>
-                <integer>128</integer>
-                <key>x</key>
-                <integer>256</integer>
-                <key>y</key>
-                <integer>256</integer>
-            </dict>
-            <key>cell_4_3.jpg</key>
-            <dict>
-                <key>height</key>
-                <integer>128</integer>
-                <key>offsetX</key>
-                <real>0</real>
-                <key>offsetY</key>
-                <real>0</real>
-                <key>originalHeight</key>
-                <integer>128</integer>
-                <key>originalWidth</key>
-                <integer>128</integer>
-                <key>width</key>
-                <integer>128</integer>
-                <key>x</key>
-                <integer>384</integer>
-                <key>y</key>
-                <integer>256</integer>
-            </dict>
-            <key>cell_4_4.jpg</key>
-            <dict>
-                <key>height</key>
-                <integer>128</integer>
-                <key>offsetX</key>
-                <real>0</real>
-                <key>offsetY</key>
-                <real>0</real>
-                <key>originalHeight</key>
-                <integer>128</integer>
-                <key>originalWidth</key>
-                <integer>128</integer>
-                <key>width</key>
-                <integer>128</integer>
-                <key>x</key>
-                <integer>0</integer>
-                <key>y</key>
-                <integer>384</integer>
-            </dict>
-            <key>speedWallBackground_1.png</key>
-            <dict>
-                <key>height</key>
-                <integer>128</integer>
-                <key>offsetX</key>
-                <real>0</real>
-                <key>offsetY</key>
-                <real>0</real>
-                <key>originalHeight</key>
-                <integer>128</integer>
-                <key>originalWidth</key>
-                <integer>64</integer>
-                <key>width</key>
-                <integer>64</integer>
-                <key>x</key>
-                <integer>128</integer>
-                <key>y</key>
-                <integer>384</integer>
-            </dict>
-            <key>speedWallBackground_2.png</key>
-            <dict>
-                <key>height</key>
-                <integer>128</integer>
-                <key>offsetX</key>
-                <real>0</real>
-                <key>offsetY</key>
-                <real>0</real>
-                <key>originalHeight</key>
-                <integer>128</integer>
-                <key>originalWidth</key>
-                <integer>64</integer>
-                <key>width</key>
-                <integer>64</integer>
-                <key>x</key>
-                <integer>192</integer>
-                <key>y</key>
-                <integer>384</integer>
+                <integer>1</integer>
             </dict>
         </dict>
         <key>metadata</key>
@@ -316,18 +50,18 @@
             <key>realTextureFileName</key>
             <string>gfx_cells.jpg</string>
             <key>size</key>
-            <string>{512,512}</string>
+            <string>{324,242}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:e330e3a327e21beff91bf9604c454075$</string>
+            <string>$TexturePacker:SmartUpdate:51855fbbeabb330e6457c41d5023f90c$</string>
             <key>textureFileName</key>
             <string>gfx_cells.jpg</string>
         </dict>
         <key>texture</key>
         <dict>
             <key>height</key>
-            <integer>512</integer>
+            <integer>242</integer>
             <key>width</key>
-            <integer>512</integer>
+            <integer>324</integer>
         </dict>
     </dict>
 </plist>

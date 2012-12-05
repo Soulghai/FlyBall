@@ -43,14 +43,14 @@
         if (![Defs instance].isSoundMute) {
             switch ((int)round(CCRANDOM_0_1()*2)) {
                 case 0:
-                    [[SimpleAudioEngine sharedEngine] playEffect:@"round_bomb_1.wav"];
+                    [[SimpleAudioEngine sharedEngine] playEffect:@"square_bomb_1.wav"];
                     break;
                 case 1:
-                    [[SimpleAudioEngine sharedEngine] playEffect:@"round_bomb_1.wav"];
+                    [[SimpleAudioEngine sharedEngine] playEffect:@"square_bomb_2.wav"];
                     break;
                     
                 default:
-                    [[SimpleAudioEngine sharedEngine] playEffect:@"round_bomb_3.wav"];
+                    [[SimpleAudioEngine sharedEngine] playEffect:@"square_bomb_3.wav"];
                     break;
             }
         }

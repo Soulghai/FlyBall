@@ -309,7 +309,7 @@
 		btnPlayDef.group = GAME_STATE_MENU;
 		btnPlayDef.objCreator = self;
 		btnPlayDef.func = @selector(buttonPlayClick);
-		btnPlayDef.sound = @"button_click.wav";
+        btnPlayDef.sound = @"play_on.wav";
 		
 		btnPlay = [[MainScene instance].gui addItem:(id)btnPlayDef _pos:ccp(SCREEN_WIDTH_HALF,200)];
         
@@ -317,6 +317,7 @@
         btnPlayDef.sprName = @"btnShop.png";
 		btnPlayDef.sprDownName = @"btnShopDown.png";
 		btnPlayDef.func = @selector(buttonMarketClick);
+        btnPlayDef.sound = @"button_click.wav";
 		
 		btnShop = [[MainScene instance].gui addItem:(id)btnPlayDef _pos:ccp(35,SCREEN_HEIGHT - 35)];
         

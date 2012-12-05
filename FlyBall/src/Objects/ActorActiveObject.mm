@@ -88,12 +88,12 @@
 		// play sound
         
         if (![Defs instance].isSoundMute) {
-            switch ((int)round(CCRANDOM_0_1()*2)) {
+            switch ((int)round(CCRANDOM_0_1()*1)) {
                 case 0:
-                    [[SimpleAudioEngine sharedEngine] playEffect:@"triangle_bomb_1.wav"];
+                    [[SimpleAudioEngine sharedEngine] playEffect:@"round_bomb_2.wav"];
                     break;
                 case 1:
-                    [[SimpleAudioEngine sharedEngine] playEffect:@"triangle_bomb_1.wav"];
+                    [[SimpleAudioEngine sharedEngine] playEffect:@"round_bomb_3.wav"];
                     break;
                     
                 default:

@@ -61,6 +61,8 @@
         blinkTime = 0;
         isEyeOpen = YES;
         
+        isCrazyFace = NO;
+        
         currShoesID = 0;
 	}
 	return self;
@@ -86,16 +88,22 @@
     bonusCell = [CCSprite spriteWithSpriteFrameName:@"bonus_apocalypse.png"];
     [bonusCell retain];
     [bonusCell setPosition:ccp(costume.contentSize.width*0.5f, 20)];
-    [bonusCell setScale:0.6f];
+    [bonusCell setScale:0.7f];
 }
 
 - (void) setCurrentBodySprite {
     CCSpriteFrame* frame = nil;
     if (bonusCell.parent) return;
+    
+    if (isCrazyFace) {
+        frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"player_speed.png"];
+    } else
+    
     if (isEyeOpen)
         frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"player_1.png"];
     else
         frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"player_sleep_1.png"];
+    
     if (frame) [costume setDisplayFrame:frame];
 }
 
@@ -107,8 +115,8 @@
     } else {
         [self showArmorSprite:YES];
         CCSpriteFrame* frame = nil;
-        if (armored > 3)
-            frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"helmet_3.png"];
+        if (armored > 5)
+            frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"helmet_5.png"];
         else
             frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"helmet_%i.png", armored]];
         if (frame) [sprArmor setDisplayFrame:frame];
@@ -144,6 +152,8 @@
     delayBonusSpeed += _bonusSpeedTime;
     if (emitterBonusSpeedFire) {
         if (!emitterBonusSpeedFire.parent) {
+            [emitterBonusSpeedFire resetSystem];
+            [emitterBonusSpeedFire setPosition:position];
             [emitterBonusSpeedFire scheduleUpdate];
             if (emitterBonusSpeedFire.parent == nil) {
                 [[Defs instance].objectFrontLayer addChild:emitterBonusSpeedFire z:50];
@@ -193,6 +203,14 @@
     } else {
         if (sprGodMode.parent) [sprGodMode removeFromParent];
     }
+}
+
+
+- (void) setCrazyFace {
+    isCrazyFace = YES;
+    timeCrazyFace = 0;
+    
+    [self setCurrentBodySprite];
 }
 
 - (void) hideBonusSpeedFire {
@@ -245,6 +263,10 @@
     isBonusSpeed = NO;
     timeBonusSpeed = 0;
     
+    isGodMode = NO;
+    isCrazyFace = NO;
+    timeCrazyFace = 0;
+    
     isMayBlink = YES;
     blinkDelay = 1;
     blinkTime = 0;
@@ -254,6 +276,7 @@
 }
 
 - (void) deactivate {
+    isGodMode = NO;
     [self showGodModeSprite:NO];
     [self showBonusCell:NO];
     [bonusCellItemIDs removeAllObjects];
@@ -283,7 +306,8 @@
     [super addVelocity:_value];
     
     if (velocity.y > [Defs instance].playerSpeedLimit) velocity.y = [Defs instance].playerSpeedLimit;
-    CCLOG(@"playerVelocity.y = %f",velocity.y);
+    
+    if (_value.y > 4) [self setCrazyFace];
 }
 
 - (void) update {
@@ -300,6 +324,11 @@
     if (velocity.x > friction) velocity.x -= friction; else
         if (velocity.x < -friction) velocity.x += friction;
     
+    if ((position.x < -204 + elementRadius)||(position.x > 524 - elementRadius)) velocity.x = -velocity.x*0.7f;
+    
+    if ((position.x < -194 + elementRadius)&&(velocity.x < 0.5f)) velocity.x = 0.5f;
+    if ((position.x > 514 - elementRadius)&&(velocity.x > -0.5f)) velocity.x = -0.5f;
+    
     // Visual part
     
     costume.rotation = -[Utils GetAngleBetweenPt1:_oldPosition andPt2:position]-90;
@@ -307,7 +336,7 @@
     if (emitterEngineFire) {
         emitterEngineFire.position = position;
         emitterEngineFire.speed = 30*[[Utils instance] distance:position.x _y1:position.y _x2:_oldPosition.x _y2:_oldPosition.y];
-        if (emitterEngineFire.speed < 30) emitterEngineFire.speed = 1; else
+        if (emitterEngineFire.speed < 50) emitterEngineFire.speed = 50; else
             if (emitterEngineFire.speed > 1500) emitterEngineFire.speed = 1500;
         emitterEngineFire.angle = [Utils GetAngleBetweenPt1:_oldPosition andPt2:position];
     }
@@ -352,15 +381,22 @@
         }
     }
     
-    if (isMayBlink ) {
-        blinkTime += TIME_STEP;
-        if (blinkTime >= blinkDelay) {
-            isEyeOpen = !isEyeOpen;
-            if (isEyeOpen) blinkDelay = 1 + CCRANDOM_0_1()*3; else blinkDelay = 0.2f + CCRANDOM_0_1()*0.4f;
+    if (isCrazyFace) {
+        timeCrazyFace += TIME_STEP;
+        if (timeCrazyFace >= 0.4f) {
+            isCrazyFace = NO;
             [self setCurrentBodySprite];
-            blinkTime = 0;
         }
-    }
+    } else
+        if (isMayBlink ) {
+            blinkTime += TIME_STEP;
+            if (blinkTime >= blinkDelay) {
+                isEyeOpen = !isEyeOpen;
+                if (isEyeOpen) blinkDelay = 1 + CCRANDOM_0_1()*3; else blinkDelay = 0.2f + CCRANDOM_0_1()*0.4f;
+                [self setCurrentBodySprite];
+                blinkTime = 0;
+            }
+        }
 }
 
 - (CGPoint) magnetReaction:(CGPoint)_point {

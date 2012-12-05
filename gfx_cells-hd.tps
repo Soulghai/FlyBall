@@ -58,7 +58,7 @@
         <key>shapePadding</key>
         <uint>0</uint>
         <key>jpgQuality</key>
-        <uint>80</uint>
+        <uint>100</uint>
         <key>pngOptimizationLevel</key>
         <uint>2</uint>
         <key>textureSubPath</key>
@@ -90,7 +90,7 @@
             <key>freeSizeMode</key>
             <enum type="AlgorithmSettings::AlgorithmFreeSizeMode">Best</enum>
             <key>sizeConstraints</key>
-            <enum type="AlgorithmSettings::SizeConstraints">POT</enum>
+            <enum type="AlgorithmSettings::SizeConstraints">NPOT</enum>
             <key>forceSquared</key>
             <false/>
             <key>forceWordAligned</key>
@@ -147,7 +147,7 @@
             <key>innerPadding</key>
             <uint>0</uint>
             <key>extrude</key>
-            <uint>0</uint>
+            <uint>1</uint>
             <key>trimThreshold</key>
             <uint>1</uint>
             <key>trimMode</key>
@@ -157,7 +157,6 @@
         </struct>
         <key>fileList</key>
         <array>
-            <filename>FlyBall/Resources/gfx/Background_cells</filename>
             <filename>FlyBall/Resources/gfx/SpeedWall</filename>
         </array>
         <key>ignoreFileList</key>

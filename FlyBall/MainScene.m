@@ -99,9 +99,20 @@ static void MainScene_remover() {
 }
 
 - (void) gameLoaded {
-	
+    
+	[Defs instance].objectBackLayer = [CCNode node];
 	[Defs instance].objectFrontLayer = [CCNode node];
 	
+    [CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA4444];
+    [Defs instance].spriteSheetParalax_1 = [CCSpriteBatchNode batchNodeWithFile: @"gfx_paralax_1.pvr.ccz" capacity: 30];
+	[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"gfx_paralax_1.plist" texture:[Defs instance].spriteSheetParalax_1.texture];
+	[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];
+    
+    [CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA4444];
+    [Defs instance].spriteSheetParalax_2 = [CCSpriteBatchNode batchNodeWithFile: @"gfx_paralax_2.pvr.ccz" capacity: 30];
+	[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"gfx_paralax_2.plist" texture:[Defs instance].spriteSheetParalax_2.texture];
+	[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];
+    
     [CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA4444];
     [Defs instance].spriteSheetChars = [CCSpriteBatchNode batchNodeWithFile: @"gfx_chars.pvr.ccz" capacity: 100];
 	[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"gfx_chars.plist" texture:[Defs instance].spriteSheetChars.texture];
@@ -111,7 +122,7 @@ static void MainScene_remover() {
     [Defs instance].spriteSheetCells = [CCSpriteBatchNode batchNodeWithFile: @"gfx_cells.jpg" capacity: 100];
 	[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"gfx_cells.plist" texture:[Defs instance].spriteSheetCells.texture];
 	[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];
-	
+    
     //[MyData decodeDict];
     
     [Defs instance].startGameNotFirstTime = [[NSUserDefaults standardUserDefaults] boolForKey:@"startGameNotFirstTime"];
@@ -162,9 +173,11 @@ static void MainScene_remover() {
 	[self addChild:aboutScreen];
 	[self addChild:menu];
 	[self addChild:game];
-    //[game addChild:[Defs instance].objectBackLayer];
-    [game addChild:[Defs instance].objectFrontLayer];
-    [[Defs instance].objectFrontLayer addChild:[Defs instance].spriteSheetCells z:0];
+    [game addChild:[Defs instance].objectBackLayer z:-1];
+    [game addChild:[Defs instance].spriteSheetParalax_2 z:10];
+    [game addChild:[Defs instance].objectFrontLayer z:20];
+    [[Defs instance].objectFrontLayer addChild:[Defs instance].spriteSheetParalax_1 z:0];
+    [[Defs instance].objectFrontLayer addChild:[Defs instance].spriteSheetCells z:50];
     [[Defs instance].objectFrontLayer addChild:[Defs instance].spriteSheetChars z:100];
     [self addChild:levelFinishScreen];
 	[self addChild:pauseScreen];
