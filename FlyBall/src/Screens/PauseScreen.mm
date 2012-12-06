@@ -94,8 +94,8 @@
     pauseAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:animation]];
     [pauseAction retain];
     
-    btnDef.sprName = @"btnLevels.png";
-    btnDef.sprDownName = @"btnLevelsDown.png";
+    btnDef.sprName = @"btnBack.png";
+    btnDef.sprDownName = @"btnBackDown.png";
     btnDef.group = GAME_STATE_GAMEPAUSE;
     btnDef.objCreator = self;
     btnDef.func = @selector(buttonLevelsAction);

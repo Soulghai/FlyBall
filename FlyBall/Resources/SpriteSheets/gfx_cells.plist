@@ -19,9 +19,9 @@
                 <key>width</key>
                 <integer>160</integer>
                 <key>x</key>
-                <integer>1</integer>
+                <integer>772</integer>
                 <key>y</key>
-                <integer>1</integer>
+                <integer>244</integer>
             </dict>
             <key>speedWallBackground_2.jpg</key>
             <dict>
@@ -38,9 +38,47 @@
                 <key>width</key>
                 <integer>160</integer>
                 <key>x</key>
-                <integer>163</integer>
+                <integer>772</integer>
                 <key>y</key>
-                <integer>1</integer>
+                <integer>2</integer>
+            </dict>
+            <key>startPlatform-hd.png</key>
+            <dict>
+                <key>height</key>
+                <integer>512</integer>
+                <key>offsetX</key>
+                <real>0</real>
+                <key>offsetY</key>
+                <real>0</real>
+                <key>originalHeight</key>
+                <integer>512</integer>
+                <key>originalWidth</key>
+                <integer>768</integer>
+                <key>width</key>
+                <integer>768</integer>
+                <key>x</key>
+                <integer>2</integer>
+                <key>y</key>
+                <integer>2</integer>
+            </dict>
+            <key>startPlatform.png</key>
+            <dict>
+                <key>height</key>
+                <integer>256</integer>
+                <key>offsetX</key>
+                <real>0</real>
+                <key>offsetY</key>
+                <real>0</real>
+                <key>originalHeight</key>
+                <integer>256</integer>
+                <key>originalWidth</key>
+                <integer>384</integer>
+                <key>width</key>
+                <integer>384</integer>
+                <key>x</key>
+                <integer>2</integer>
+                <key>y</key>
+                <integer>516</integer>
             </dict>
         </dict>
         <key>metadata</key>
@@ -48,20 +86,20 @@
             <key>format</key>
             <integer>0</integer>
             <key>realTextureFileName</key>
-            <string>gfx_cells.jpg</string>
+            <string>gfx_cells.pvr.ccz</string>
             <key>size</key>
-            <string>{324,242}</string>
+            <string>{1024,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:51855fbbeabb330e6457c41d5023f90c$</string>
+            <string>$TexturePacker:SmartUpdate:b154bd63a609b6d330a2ba53daac694e$</string>
             <key>textureFileName</key>
-            <string>gfx_cells.jpg</string>
+            <string>gfx_cells.pvr.ccz</string>
         </dict>
         <key>texture</key>
         <dict>
             <key>height</key>
-            <integer>242</integer>
+            <integer>1024</integer>
             <key>width</key>
-            <integer>324</integer>
+            <integer>1024</integer>
         </dict>
     </dict>
 </plist>

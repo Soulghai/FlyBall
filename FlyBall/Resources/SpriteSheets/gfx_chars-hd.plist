@@ -23,25 +23,6 @@
                 <key>y</key>
                 <integer>338</integer>
             </dict>
-            <key>bomb_circle.png</key>
-            <dict>
-                <key>height</key>
-                <integer>90</integer>
-                <key>offsetX</key>
-                <real>0</real>
-                <key>offsetY</key>
-                <real>0</real>
-                <key>originalHeight</key>
-                <integer>90</integer>
-                <key>originalWidth</key>
-                <integer>90</integer>
-                <key>width</key>
-                <integer>90</integer>
-                <key>x</key>
-                <integer>332</integer>
-                <key>y</key>
-                <integer>450</integer>
-            </dict>
             <key>bombfire.png</key>
             <dict>
                 <key>height</key>
@@ -171,9 +152,9 @@
                 <key>width</key>
                 <integer>64</integer>
                 <key>x</key>
-                <integer>188</integer>
+                <integer>2</integer>
                 <key>y</key>
-                <integer>600</integer>
+                <integer>614</integer>
             </dict>
             <key>bonus_godmode.png</key>
             <dict>
@@ -190,11 +171,11 @@
                 <key>width</key>
                 <integer>64</integer>
                 <key>x</key>
-                <integer>2</integer>
+                <integer>96</integer>
                 <key>y</key>
-                <integer>614</integer>
+                <integer>580</integer>
             </dict>
-            <key>bonus_godmode_1.png</key>
+            <key>bonus_slowmotion.png</key>
             <dict>
                 <key>height</key>
                 <integer>64</integer>
@@ -209,9 +190,9 @@
                 <key>width</key>
                 <integer>64</integer>
                 <key>x</key>
-                <integer>424</integer>
+                <integer>310</integer>
                 <key>y</key>
-                <integer>582</integer>
+                <integer>568</integer>
             </dict>
             <key>bonus_speed.png</key>
             <dict>
@@ -361,9 +342,9 @@
                 <key>width</key>
                 <integer>90</integer>
                 <key>x</key>
-                <integer>96</integer>
+                <integer>218</integer>
                 <key>y</key>
-                <integer>580</integer>
+                <integer>544</integer>
             </dict>
             <key>helmet_2.png</key>
             <dict>
@@ -380,9 +361,9 @@
                 <key>width</key>
                 <integer>90</integer>
                 <key>x</key>
-                <integer>218</integer>
+                <integer>332</integer>
                 <key>y</key>
-                <integer>544</integer>
+                <integer>512</integer>
             </dict>
             <key>helmet_3.png</key>
             <dict>
@@ -401,7 +382,7 @@
                 <key>x</key>
                 <integer>332</integer>
                 <key>y</key>
-                <integer>542</integer>
+                <integer>450</integer>
             </dict>
             <key>helmet_4.png</key>
             <dict>
@@ -603,7 +584,7 @@
             <key>size</key>
             <string>{512,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:4bf14000b0ae48581bc22df44d6dee89$</string>
+            <string>$TexturePacker:SmartUpdate:b6946082170e17d59c2ab2daeb754b28$</string>
             <key>textureFileName</key>
             <string>gfx_chars-hd.pvr.ccz</string>
         </dict>

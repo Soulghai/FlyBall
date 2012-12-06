@@ -59,7 +59,45 @@
                 <key>x</key>
                 <integer>2</integer>
                 <key>y</key>
+                <integer>236</integer>
+            </dict>
+            <key>layer_1_4.png</key>
+            <dict>
+                <key>height</key>
+                <integer>232</integer>
+                <key>offsetX</key>
+                <real>0</real>
+                <key>offsetY</key>
+                <real>-12</real>
+                <key>originalHeight</key>
+                <integer>256</integer>
+                <key>originalWidth</key>
+                <integer>256</integer>
+                <key>width</key>
+                <integer>256</integer>
+                <key>x</key>
                 <integer>2</integer>
+                <key>y</key>
+                <integer>2</integer>
+            </dict>
+            <key>layer_1_5.png</key>
+            <dict>
+                <key>height</key>
+                <integer>104</integer>
+                <key>offsetX</key>
+                <real>-3</real>
+                <key>offsetY</key>
+                <real>8</real>
+                <key>originalHeight</key>
+                <integer>128</integer>
+                <key>originalWidth</key>
+                <integer>128</integer>
+                <key>width</key>
+                <integer>48</integer>
+                <key>x</key>
+                <integer>328</integer>
+                <key>y</key>
+                <integer>158</integer>
             </dict>
         </dict>
         <key>metadata</key>
@@ -69,16 +107,16 @@
             <key>realTextureFileName</key>
             <string>gfx_paralax_1.pvr.ccz</string>
             <key>size</key>
-            <string>{512,256}</string>
+            <string>{512,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:e5d07d404268a7826ee49c66c1b05fe7$</string>
+            <string>$TexturePacker:SmartUpdate:e8288e3f37c72f208a9d5d1297095bb5$</string>
             <key>textureFileName</key>
             <string>gfx_paralax_1.pvr.ccz</string>
         </dict>
         <key>texture</key>
         <dict>
             <key>height</key>
-            <integer>256</integer>
+            <integer>512</integer>
             <key>width</key>
             <integer>512</integer>
         </dict>

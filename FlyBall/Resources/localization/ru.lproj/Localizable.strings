@@ -80,6 +80,22 @@
 /* button "menu" on the level. */
 "GIFT THIS APP" = "Подарить игру";
 
+"buttonBuyBonusAccelerationPowerCaption" = "Сила бонуса - Скорость";
+"buttonBuyBonusAccelerationDelayCaption" = "Время действия бонуса - Скорость";
+"buttonBuyBonusGetChanceCaption" = "Шанс выпадания бонуса";
+"buttonBuyCoinsGetChanceCaption" = "Шанс выпадания монет";
+"buttonBuyGodModeTimeCaption" = "Время действия режима бога";
+"buttonBuyPlayerSpeedLimitCaption" = "Максимальная сокрость игрока";
+"buttonBuySpeedWallAccelerationCoeffCaption" = "Разгоняющий тунель";
+"buttonBuySpeedWallDeccelerationCoeffCaption" = "Замедляющий тунель";
+"buttonBuyPlayerMagnetDistanceCaption" = "Дистанция действия магнита";
+"buttonBuyPlayerMagnetPowerCaption" = "Сила действия магнита";
+"buttonBuyPlayerBombSlowCaption" = "Скорость разгона бомб";
+"buttonBuyPlayerGodModeAfterCrashTimeCaption" = "Режима бога после столкновения";
+"buttonBuyPlayerArmorLevelCaption" = "Броня";
+
+
+
 /* Recommend to Friend email */
 "recommend_email_subject" = "Посмотри какую игру я нашел!";
 "recommend_email_app_title" = "Expand It";

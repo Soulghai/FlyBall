@@ -13,7 +13,6 @@
     int currentLevel;
     int oldLevel;
     int cellHeight;
-    int cellCountY;
     float cellScaleCoeff;
     NSArray* cellsHighMap;
     NSArray* leftBorders;

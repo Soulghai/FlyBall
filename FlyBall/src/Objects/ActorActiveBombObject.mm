@@ -101,17 +101,17 @@
 - (void) getAchievement {
     if ((![Defs instance].achievement_Bomb_1)&&([Defs instance].totalBombCounter == 1)) {
         [Defs instance].achievement_Bomb_1 = YES;
-        [[GameCenter instance] reportAchievementIdentifier:@"ExpandIt_Boom" percentComplete:100];
+        //[[GameCenter instance] reportAchievementIdentifier:@"ExpandIt_Boom" percentComplete:100];
     }
     
     if ((![Defs instance].achievement_Bomb_10)&&([Defs instance].totalBombCounter == 10)) {
         [Defs instance].achievement_Bomb_10 = YES;
-        [[GameCenter instance] reportAchievementIdentifier:@"ExpandIt_BoomBang" percentComplete:100];
+        //[[GameCenter instance] reportAchievementIdentifier:@"ExpandIt_BoomBang" percentComplete:100];
     }
     
     if ((![Defs instance].achievement_Bomb_100)&&([Defs instance].totalBombCounter == 100)) {
         [Defs instance].achievement_Bomb_100 = YES;
-        [[GameCenter instance] reportAchievementIdentifier:@"ExpandIt_BoomBangBoom" percentComplete:100];
+        //[[GameCenter instance] reportAchievementIdentifier:@"ExpandIt_BoomBangBoom" percentComplete:100];
     }
 }
 

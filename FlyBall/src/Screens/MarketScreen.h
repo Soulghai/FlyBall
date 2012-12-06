@@ -33,6 +33,7 @@
     GUILabelTTFOutlined* labelPanelBuyCoinsCaption;
     
     GUILabelTTFOutlined* labelCoinsCount;
+    GUIPanel* panelCoinTotal;
     
     GUIButton* btnBonusAccelerationPower;
     GUIButton* btnBonusAccelerationDelay;

@@ -51,6 +51,7 @@
 
 -(void) retartGameProcess {
     [Defs instance].bestScore = 0;
+    [Defs instance].gameSessionCounter = 0;
     [Defs instance].coinsCount = 0;
     
     //--------------------------------------
@@ -217,23 +218,28 @@
         btnDef.isManyTouches = YES;
 		[[MainScene instance].gui addItem:(id)btnDef _pos:ccp(SCREEN_WIDTH_HALF+40,40)];
         
+        
+        scoreStrPos = ccp(SCREEN_WIDTH_HALF, SCREEN_HEIGHT - 20);
+        scoreStr = [CCLabelBMFont labelWithString:@"0" fntFile:@"fntNumber.fnt"];
+        scoreStr.position = scoreStrPos;
+        [scoreStr retain];
+        
+        
         GUILabelTTFDef *_labelTTFDef = [GUILabelTTFDef node];
         _labelTTFDef.group = GAME_STATE_GAME|GAME_STATE_GAMEPREPARE|GAME_STATE_GAMEPAUSE;
-        _labelTTFDef.text = @"0";
+        /*_labelTTFDef.text = @"0";
         scoreStrPos = ccp(SCREEN_WIDTH_HALF, SCREEN_HEIGHT - 20);
         _labelTTFDef.textColor = ccc3(255, 255, 255);
-        scoreStr =[[MainScene instance].gui addItem:(id)_labelTTFDef _pos:scoreStrPos];
+        scoreStr =[[MainScene instance].gui addItem:(id)_labelTTFDef _pos:scoreStrPos];*/
         
         _labelTTFDef.alignement = kCCTextAlignmentLeft;
-        _labelTTFDef.textColor = ccc3(255, 255, 255);
+        _labelTTFDef.textColor = ccc3(255, 150, 0);
         _labelTTFDef.text = @"";
         labelScoreStr1 =[[MainScene instance].gui addItem:(id)_labelTTFDef _pos:ccp(1, SCREEN_HEIGHT_HALF - SCREEN_HEIGHT_HALF/1.5f)];
         
-        _labelTTFDef.textColor = ccc3(255, 255, 255);
         _labelTTFDef.text = @"0";
         labelScoreStr2 =[[MainScene instance].gui addItem:(id)_labelTTFDef _pos:ccp(1, SCREEN_HEIGHT_HALF)];
         
-        _labelTTFDef.textColor = ccc3(255, 255, 255);
         _labelTTFDef.text = @"160";
         labelScoreStr3 =[[MainScene instance].gui addItem:(id)_labelTTFDef _pos:ccp(1,SCREEN_HEIGHT_HALF + SCREEN_HEIGHT_HALF/1.5f)];
         
@@ -267,6 +273,15 @@
         
         speedWall = [[SpeedWall alloc] init:[Defs instance].spriteSheetCells];
         [speedWall retain];
+        
+        delaySlowMotion = 3;
+        delaySlowMotionPause =  TIME_STEP*2;
+        
+        startPlatform = [CCSprite spriteWithSpriteFrameName:@"startPlatform.png"];
+        [startPlatform setAnchorPoint:ccp(0.5f,0)];
+        [startPlatform setPosition:ccp(SCREEN_WIDTH_HALF,0)];
+        //[startPlatform setScale:2];
+        [startPlatform retain];
 	}
 	return (self);
 }
@@ -365,6 +380,7 @@
     collectedCoins = 0;
 	scoreLevel = 0;
     [scoreStr setColor:ccc3(255, 255, 255)];
+    [scoreStr setString:@"0"];
     isNewScoreSound = NO;
     
     GAME_IS_PLAYING = NO;
@@ -374,7 +390,7 @@
     [self deactivateAllActors];
     
     [player activate];
-    [player addVelocity:ccp(0,1)];
+    [player addVelocity:ccp(0,4)];
     [self setCenterOfTheScreen:player.position];
     
     [self addBall:[ActorCircleBomb class] _point:ccp(player.position.x, player.position.y - 70) _velocity:ccp(0,0) _active:YES];
@@ -386,6 +402,10 @@
     //[cells restartParameters];
     [paralaxBackground restartParameters];
     [speedWall deactivate];
+    
+    timeSlowMotion = 0;
+    timeSlowMotionPause = 0;
+    isSlowMotion = NO;
     
     [self show:YES];
     
@@ -518,9 +538,9 @@
 
 - (void) doBonusEffect:(int)_bonusID {
     switch (_bonusID) {
-        //case BONUS_ARMOR:
+        case BONUS_SLOWMOTION:
 
-            //break;
+            break;
             
         case BONUS_ACCELERATION:
 
@@ -549,26 +569,32 @@
 }
 
 - (void) bonusTouchReaction:(int)_bonusID {
-    if (_bonusID <= BONUS_COINS) {
-        // Добавляем одну монетку
-        ++collectedCoins;
-    } else
-   // if (_bonusID <= BONUS_ARMOR) {
-   //     // Включаем броню
-        //[player addArmor];
-   // } else
-        if (_bonusID <= BONUS_ACCELERATION) {
+    switch (_bonusID) {
+        case BONUS_COINS:
+            // Добавляем одну монетку
+            ++collectedCoins;
+            break;
+            
+        case BONUS_SLOWMOTION:
+            // Включаем замедление времени
+            isSlowMotion = YES;
+            break;
+            
+        case BONUS_ACCELERATION:
             // Ускорение
             [player setSpeedBonus:[Defs instance].bonusAccelerationDelay];
-        } else
-            if (_bonusID <= BONUS_APOCALYPSE) {
-                // Апокалипсис
-                [player setBonusCell:BONUS_APOCALYPSE];
-            } else
-                if (_bonusID <= BONUS_GODMODE) {
-                    // устанавливаем режим бога
-                    [player setGodMode:[Defs instance].bonusGodModeTime];
-                }
+            break;
+            
+        case BONUS_APOCALYPSE:
+            // Апокалипсис
+            [player setBonusCell:BONUS_APOCALYPSE];
+            break;
+            
+        case BONUS_GODMODE:
+            // устанавливаем режим бога
+            [player setGodMode:[Defs instance].bonusGodModeTime];
+            break;
+    }
 }
 
 - (BOOL) checkIsOutOfScreen:(Actor*)_tempActor {
@@ -606,9 +632,37 @@
 		
 		levelTime += TIME_STEP;
         
+        
+        if (isSlowMotion) {
+            
+            timeSlowMotionPause += TIME_STEP;
+            if (timeSlowMotionPause >= delaySlowMotionPause) {
+                timeSlowMotionPause = 0;
+            } else {
+                return;
+            }
+            
+            timeSlowMotion += TIME_STEP;
+            if (timeSlowMotion >= delaySlowMotion) {
+                isSlowMotion = NO;
+                timeSlowMotion = 0;
+            }
+            
+        }
+        
         if (player.position.y < SCREEN_HEIGHT_HALF) {
             [self levelFinishCloseAnimationStart];
             return;
+        }
+        
+        if (startPlatform.parent) {
+            if (startPlatform.position.y + startPlatform.contentSize.height  < -[Defs instance].objectFrontLayer.position.y) {
+                [startPlatform removeFromParent];
+            }
+        } else {
+            if (startPlatform.position.y + startPlatform.contentSize.height  >= -[Defs instance].objectFrontLayer.position.y) {
+                [[Defs instance].objectFrontLayer addChild:startPlatform z:0];
+            }
         }
         
         Actor *_tempActor;
@@ -671,7 +725,7 @@
         [self labelScoreBarUpdate];
         
         timerAddBall += TIME_STEP;
-        if (timerAddBall >= timerDelayAddBall - (player.position.y/3000000)) {
+        if (timerAddBall >= timerDelayAddBall - (player.position.y/4000000)) {
             float _playerVelocityX = player.velocity.x;
             float _playerVelocityY = player.velocity.y;
             
@@ -682,9 +736,9 @@
             if (_playerVelocityY < 0) _playerVelocityY = 0;
             
             float _velocityXCoeff = 1.2f;
-            float _velocityYCoeff = 3 + player.position.y/(30000*([Defs instance].playerBombSlow)) + CCRANDOM_0_1()*(player.position.y/(50000*([Defs instance].playerBombSlow)));
-            if (_velocityYCoeff < 5.f) {
-                _velocityYCoeff = 5.f;
+            float _velocityYCoeff = 3 + player.position.y/(35000*([Defs instance].playerBombSlow)) + CCRANDOM_0_1()*(player.position.y/(50000*([Defs instance].playerBombSlow)));
+            if (_velocityYCoeff < 4.6f) {
+                _velocityYCoeff = 4.6f;
             }
             int _ballCount = 1 + round(CCRANDOM_0_1());
             for (int i = 0; i < _ballCount; i++) {
@@ -721,13 +775,14 @@
             [scoreStr setPosition:ccp(scoreStrPos.x + [[Utils instance] myRandom2F]*2, scoreStrPos.y + [[Utils instance] myRandom2F]*2)];
             
             if ((scoreLevel > [Defs instance].bestScore)&&([Defs instance].gameSessionCounter != 1)) {
-                [scoreStr setColor:ccc3(50, 150, 255)];
-                [scoreStr setText:[NSString stringWithFormat:@"Wooow %im!!!",scoreLevel]];
+                [scoreStr setColor:ccc3(100, 255, 100)];
+                //[scoreStr setString:[NSString stringWithFormat:@"Wooow %im!!!",scoreLevel]];
                 if (!isNewScoreSound) {
                     if (![Defs instance].isSoundMute) [[SimpleAudioEngine sharedEngine] playEffect:@"new_record.wav"];
                     isNewScoreSound = YES;
                 }
-            } else [scoreStr setText:[NSString stringWithFormat:@"%im",scoreLevel]];
+            }
+            [scoreStr setString:[NSString stringWithFormat:@"%i",scoreLevel]];
         }
         
         
@@ -746,16 +801,21 @@
 }
 
 - (void) show:(BOOL)_flag{
-	if (isVisible != _flag) {
+	//if (isVisible != _flag) {
 	
 		isVisible = _flag;
 	
 		if (isVisible){
             [[GameStandartFunctions instance] playOpenScreenAnimation];
+            
+            if (!startPlatform.parent) [[Defs instance].objectFrontLayer addChild:startPlatform z:0];
+            if (!scoreStr.parent) [[MainScene instance] addChild:scoreStr];
 		}else {
+            if (startPlatform.parent) [startPlatform removeFromParent];
+            if (scoreStr.parent) [scoreStr removeFromParent];
             [speedWall show:NO];
 		}
-	}
+	//}
     //[cells show:_flag];
     [paralaxBackground show:_flag];
     [[Defs instance].actorManager show:_flag];

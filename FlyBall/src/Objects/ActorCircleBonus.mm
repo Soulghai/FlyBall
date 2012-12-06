@@ -44,20 +44,19 @@
 - (void) setRandomBonus {
     CCSpriteFrame* frame = nil;
     int _ran = (int)round(CCRANDOM_0_1()*BONUS_RANDOM_RANGE);
-    bonusID = _ran;
-    //if (bonusID <= BONUS_ARMOR) {
-    //        frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"bonus_armor.png"];
-    //    bonusID = BONUS_ARMOR;
-    //} else
-        if (bonusID <= BONUS_ACCELERATION) {
+    if (_ran <= BONUS_SLOWMOTION) {
+            frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"bonus_slowmotion.png"];
+        bonusID = BONUS_SLOWMOTION;
+    } else
+        if (_ran <= BONUS_ACCELERATION) {
             frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"bonus_speed.png"];
             bonusID = BONUS_ACCELERATION;
         } else
-            if (bonusID <= BONUS_APOCALYPSE) {
+            if (_ran <= BONUS_APOCALYPSE) {
                 frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"bonus_apocalypse.png"];
                 bonusID = BONUS_APOCALYPSE;
             } else
-                if (bonusID <= BONUS_GODMODE) {
+                if (_ran <= BONUS_GODMODE) {
                     frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"bonus_godmode.png"];
                     bonusID = BONUS_GODMODE;
                 }
@@ -75,6 +74,9 @@
         if (![Defs instance].isSoundMute) {
             switch (bonusID) {
                 case BONUS_COINS:
+                    [[SimpleAudioEngine sharedEngine] playEffect:@"star.wav"];
+                    break;
+                case BONUS_SLOWMOTION:
                     [[SimpleAudioEngine sharedEngine] playEffect:@"star.wav"];
                     break;
                 case BONUS_ACCELERATION:
@@ -99,9 +101,9 @@
                 emitterBoom = [CCParticleSystemQuad particleWithFile:@"bonus_coin_get.plist"];
                 break;
                 
-            //case BONUS_ARMOR:
-             //   emitterBoom = [CCParticleSystemQuad particleWithFile:@"bonus_armor_get.plist"];
-             //   break;
+            case BONUS_SLOWMOTION:
+                emitterBoom = [CCParticleSystemQuad particleWithFile:@"bonus_armor_get.plist"];
+            break;
                 
             case BONUS_ACCELERATION:
                 emitterBoom = [CCParticleSystemQuad particleWithFile:@"bonus_acceleration_get.plist"];

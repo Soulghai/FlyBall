@@ -118,8 +118,8 @@ static void MainScene_remover() {
 	[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"gfx_chars.plist" texture:[Defs instance].spriteSheetChars.texture];
 	[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];
     
-    [CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGB565];
-    [Defs instance].spriteSheetCells = [CCSpriteBatchNode batchNodeWithFile: @"gfx_cells.jpg" capacity: 100];
+    [CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA4444];
+    [Defs instance].spriteSheetCells = [CCSpriteBatchNode batchNodeWithFile: @"gfx_cells.pvr.ccz" capacity: 100];
 	[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"gfx_cells.plist" texture:[Defs instance].spriteSheetCells.texture];
 	[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];
     

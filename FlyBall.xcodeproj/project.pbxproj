@@ -247,6 +247,10 @@
 		284FBEF016530AF1003C16BE /* ZGame.mm in Sources */ = {isa = PBXBuildFile; fileRef = 284FBEA916530AF1003C16BE /* ZGame.mm */; };
 		284FBEF116530AF1003C16BE /* ZMenu.mm in Sources */ = {isa = PBXBuildFile; fileRef = 284FBEAB16530AF1003C16BE /* ZMenu.mm */; };
 		284FBEF616530F46003C16BE /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 283E04F716530A9F00D8A53B /* StoreKit.framework */; };
+		28522F9D16700716005FC6BE /* back_3-hd.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 28522F9B16700716005FC6BE /* back_3-hd.jpg */; };
+		28522F9E16700716005FC6BE /* back_3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 28522F9C16700716005FC6BE /* back_3.jpg */; };
+		28522FA616701DAA005FC6BE /* gfx_cells-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 28522FA416701DAA005FC6BE /* gfx_cells-hd.pvr.ccz */; };
+		28522FA716701DAA005FC6BE /* gfx_cells.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 28522FA516701DAA005FC6BE /* gfx_cells.pvr.ccz */; };
 		28733FD1166B9908003EEB86 /* button_click.wav in Resources */ = {isa = PBXBuildFile; fileRef = 28733FCF166B9908003EEB86 /* button_click.wav */; };
 		28733FD2166B9908003EEB86 /* play_on.wav in Resources */ = {isa = PBXBuildFile; fileRef = 28733FD0166B9908003EEB86 /* play_on.wav */; };
 		28733FD5166B990E003EEB86 /* god_mode.wav in Resources */ = {isa = PBXBuildFile; fileRef = 28733FD4166B990E003EEB86 /* god_mode.wav */; };
@@ -279,9 +283,7 @@
 		288CD663165B1BF70095637F /* bonus_godmode_get.plist in Resources */ = {isa = PBXBuildFile; fileRef = 288CD65F165B1BF70095637F /* bonus_godmode_get.plist */; };
 		288DF4B3165700B500595477 /* ActorCircleBonus.mm in Sources */ = {isa = PBXBuildFile; fileRef = 288DF4B2165700B500595477 /* ActorCircleBonus.mm */; };
 		288E5A0C166A0ADF00E8E07C /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288E5A09166A0ABA00E8E07C /* MessageUI.framework */; };
-		2890F6801655C2C000B4031B /* gfx_cells-hd.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2890F67C1655C2BF00B4031B /* gfx_cells-hd.jpg */; };
 		2890F6811655C2C000B4031B /* gfx_cells-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2890F67D1655C2BF00B4031B /* gfx_cells-hd.plist */; };
-		2890F6821655C2C000B4031B /* gfx_cells.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2890F67E1655C2C000B4031B /* gfx_cells.jpg */; };
 		2890F6831655C2C000B4031B /* gfx_cells.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2890F67F1655C2C000B4031B /* gfx_cells.plist */; };
 		2898FE38166D5820006B22F4 /* ParalaxBackground.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2898FE37166D5820006B22F4 /* ParalaxBackground.mm */; };
 		2898FE3C166D5AEB006B22F4 /* back_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2898FE3B166D5AEB006B22F4 /* back_1.jpg */; };
@@ -303,7 +305,7 @@
 
 /* Begin PBXFileReference section */
 		2804CB20165E567500DE9E0B /* shipBonusSpeed.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = shipBonusSpeed.plist; sourceTree = "<group>"; };
-		283E034716530A5700D8A53B /* Doby Goes Up.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Doby Goes Up.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		283E034716530A5700D8A53B /* Crazy Jump.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Crazy Jump.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		283E034B16530A5700D8A53B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		283E034D16530A5700D8A53B /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		283E034F16530A5700D8A53B /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
@@ -736,6 +738,10 @@
 		284FBEA916530AF1003C16BE /* ZGame.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ZGame.mm; sourceTree = "<group>"; };
 		284FBEAA16530AF1003C16BE /* ZMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZMenu.h; sourceTree = "<group>"; };
 		284FBEAB16530AF1003C16BE /* ZMenu.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ZMenu.mm; sourceTree = "<group>"; };
+		28522F9B16700716005FC6BE /* back_3-hd.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "back_3-hd.jpg"; sourceTree = "<group>"; };
+		28522F9C16700716005FC6BE /* back_3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = back_3.jpg; sourceTree = "<group>"; };
+		28522FA416701DAA005FC6BE /* gfx_cells-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "gfx_cells-hd.pvr.ccz"; sourceTree = "<group>"; };
+		28522FA516701DAA005FC6BE /* gfx_cells.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = gfx_cells.pvr.ccz; sourceTree = "<group>"; };
 		28733FCF166B9908003EEB86 /* button_click.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = button_click.wav; sourceTree = "<group>"; };
 		28733FD0166B9908003EEB86 /* play_on.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = play_on.wav; sourceTree = "<group>"; };
 		28733FD4166B990E003EEB86 /* god_mode.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = god_mode.wav; sourceTree = "<group>"; };
@@ -770,9 +776,7 @@
 		288DF4B1165700B500595477 /* ActorCircleBonus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActorCircleBonus.h; sourceTree = "<group>"; };
 		288DF4B2165700B500595477 /* ActorCircleBonus.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ActorCircleBonus.mm; sourceTree = "<group>"; };
 		288E5A09166A0ABA00E8E07C /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		2890F67C1655C2BF00B4031B /* gfx_cells-hd.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "gfx_cells-hd.jpg"; sourceTree = "<group>"; };
 		2890F67D1655C2BF00B4031B /* gfx_cells-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "gfx_cells-hd.plist"; sourceTree = "<group>"; };
-		2890F67E1655C2C000B4031B /* gfx_cells.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = gfx_cells.jpg; sourceTree = "<group>"; };
 		2890F67F1655C2C000B4031B /* gfx_cells.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = gfx_cells.plist; sourceTree = "<group>"; };
 		2898FE36166D5820006B22F4 /* ParalaxBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParalaxBackground.h; sourceTree = "<group>"; };
 		2898FE37166D5820006B22F4 /* ParalaxBackground.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ParalaxBackground.mm; sourceTree = "<group>"; };
@@ -833,7 +837,7 @@
 		283E034816530A5700D8A53B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				283E034716530A5700D8A53B /* Doby Goes Up.app */,
+				283E034716530A5700D8A53B /* Crazy Jump.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1396,10 +1400,10 @@
 				288CA353166E12180078E31C /* gfx_paralax_2-hd.pvr.ccz */,
 				288CA354166E12180078E31C /* gfx_paralax_2.plist */,
 				288CA355166E12180078E31C /* gfx_paralax_2.pvr.ccz */,
-				2890F67C1655C2BF00B4031B /* gfx_cells-hd.jpg */,
 				2890F67D1655C2BF00B4031B /* gfx_cells-hd.plist */,
-				2890F67E1655C2C000B4031B /* gfx_cells.jpg */,
+				28522FA416701DAA005FC6BE /* gfx_cells-hd.pvr.ccz */,
 				2890F67F1655C2C000B4031B /* gfx_cells.plist */,
+				28522FA516701DAA005FC6BE /* gfx_cells.pvr.ccz */,
 				284FBAF516530AD8003C16BE /* gfx_chars-hd.plist */,
 				284FBAF616530AD8003C16BE /* gfx_chars-hd.pvr.ccz */,
 				284FBAF716530AD8003C16BE /* gfx_chars.plist */,
@@ -1695,10 +1699,12 @@
 		2898FE3A166D5AEB006B22F4 /* ParalaxBackground */ = {
 			isa = PBXGroup;
 			children = (
-				288CA371166ED02F0078E31C /* back_2-hd.jpg */,
-				288CA372166ED02F0078E31C /* back_2.jpg */,
 				288CA36E166EC5580078E31C /* back_1-hd.jpg */,
 				2898FE3B166D5AEB006B22F4 /* back_1.jpg */,
+				288CA371166ED02F0078E31C /* back_2-hd.jpg */,
+				288CA372166ED02F0078E31C /* back_2.jpg */,
+				28522F9B16700716005FC6BE /* back_3-hd.jpg */,
+				28522F9C16700716005FC6BE /* back_3.jpg */,
 			);
 			name = ParalaxBackground;
 			path = FlyBall/Resources/gfx/ParalaxBackground;
@@ -1741,7 +1747,7 @@
 			);
 			name = FlyBall;
 			productName = FlyBall;
-			productReference = 283E034716530A5700D8A53B /* Doby Goes Up.app */;
+			productReference = 283E034716530A5700D8A53B /* Crazy Jump.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1859,9 +1865,7 @@
 				284FBEDC16530AF1003C16BE /* featureCheck.php in Resources */,
 				284FBEDD16530AF1003C16BE /* requestAccess.php in Resources */,
 				284FBEDE16530AF1003C16BE /* verifyProduct.php in Resources */,
-				2890F6801655C2C000B4031B /* gfx_cells-hd.jpg in Resources */,
 				2890F6811655C2C000B4031B /* gfx_cells-hd.plist in Resources */,
-				2890F6821655C2C000B4031B /* gfx_cells.jpg in Resources */,
 				2890F6831655C2C000B4031B /* gfx_cells.plist in Resources */,
 				288CD63B165A865E0095637F /* shipFire.plist in Resources */,
 				288CD646165A8A510095637F /* particleTexture.png in Resources */,
@@ -1905,6 +1909,10 @@
 				288CA36F166EC5580078E31C /* back_1-hd.jpg in Resources */,
 				288CA373166ED02F0078E31C /* back_2-hd.jpg in Resources */,
 				288CA374166ED02F0078E31C /* back_2.jpg in Resources */,
+				28522F9D16700716005FC6BE /* back_3-hd.jpg in Resources */,
+				28522F9E16700716005FC6BE /* back_3.jpg in Resources */,
+				28522FA616701DAA005FC6BE /* gfx_cells-hd.pvr.ccz in Resources */,
+				28522FA716701DAA005FC6BE /* gfx_cells.pvr.ccz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2155,7 +2163,7 @@
 					"-lz",
 					"-ObjC",
 				);
-				PRODUCT_NAME = "Doby Goes Up";
+				PRODUCT_NAME = "Crazy Jump";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2182,7 +2190,7 @@
 					"-lz",
 					"-ObjC",
 				);
-				PRODUCT_NAME = "Doby Goes Up";
+				PRODUCT_NAME = "Crazy Jump";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};

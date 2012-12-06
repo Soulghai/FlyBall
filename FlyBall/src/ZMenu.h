@@ -36,8 +36,7 @@
 	GUICheckBox *checkBoxOnline;
 	
 	GUIPanel *panelRestartGameProgress;
-	GUIPanel *panelLogo;
-    GUIPanel *panelHighlight;
+	//GUIPanel *panelLogo;
 	GUIButton *btnReset;
     GUIButton *btnScore;
     GUIButton *btnAward;
@@ -48,10 +47,7 @@
     GUICheckBox *btnMusic;
 	GUIButton *btnRestartGameProgressNO;
 	GUIButton *btnRestartGameProgressYES;
-    GUIButton *btnCredits;
-    GUIPanel *panelMarket;
-    BOOL isPanelMarketOpacityAlpaAdd;
-    GLubyte panelMarketOpacity;
+    //GUIButton *btnCredits;
     GUILabelTTFOutlined *labelPanelRestartGameProgress;
     //GUILabelTTFOutlined *labelMarketUpdateAvailableCounter;
     GUIButton *btnShop;

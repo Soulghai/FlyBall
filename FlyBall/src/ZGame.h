@@ -24,7 +24,7 @@
 	
 	float levelTime;
     
-    GUILabelTTF *scoreStr;
+    CCLabelBMFont *scoreStr;
     CGPoint scoreStrPos;
     BOOL isNewScoreSound;
     
@@ -39,7 +39,15 @@
     ParalaxBackground* paralaxBackground;
     SpeedWall *speedWall;
     
+    CCSprite *startPlatform;
+    
     int collectedCoins;
+    
+    BOOL isSlowMotion;
+    float timeSlowMotion;
+    float delaySlowMotion;
+    float timeSlowMotionPause;
+    float delaySlowMotionPause;
 }
 
 @property (nonatomic, assign) int state;

@@ -71,6 +71,22 @@ In App Purchase Dialog
 
 "GIFT THIS APP" = "GIFT THIS APP";
 
+"buttonBuyBonusAccelerationPowerCaption" = "Acceleration Power";
+"buttonBuyBonusAccelerationDelayCaption" = "Acceleration Time";
+"buttonBuyBonusGetChanceCaption" = "Bonus Get Chance";
+"buttonBuyCoinsGetChanceCaption" = "Coins Get Chance";
+"buttonBuyGodModeTimeCaption" = "God Mode Time";
+"buttonBuyPlayerSpeedLimitCaption" = "Player Speed";
+"buttonBuySpeedWallAccelerationCoeffCaption" = "Speed Wall Acceleration";
+"buttonBuySpeedWallDeccelerationCoeffCaption" = "Speed Wall Decceleration";
+"buttonBuyPlayerMagnetDistanceCaption" = "Magnet Distance";
+"buttonBuyPlayerMagnetPowerCaption" = "Magnet Power";
+"buttonBuyPlayerBombSlowCaption" = "Bomb Acceleration";
+"buttonBuyPlayerGodModeAfterCrashTimeCaption" = "God Mode After Crash Time";
+"buttonBuyPlayerArmorLevelCaption" = "Player Armor";
+
+
+
 /* Recommend to Friend email */
 "recommend_email_subject" = "Just discovered this great game!";
 "recommend_email_app_title" = "Expand It";

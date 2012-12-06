@@ -66,22 +66,22 @@
         _labelTTFOutlinedDef.group = GAME_STATE_LEVELFINISH;
         _labelTTFOutlinedDef.text = [NSString stringWithFormat:@"%i", [Defs instance].coinsCount];
         _labelTTFOutlinedDef.textColor = ccc3(255, 255, 0);
-        scoreTotalStrPos = ccp(SCREEN_WIDTH_HALF, 320);
+        scoreTotalStrPos = ccp(SCREEN_WIDTH_HALF, 300);
         levelNumber =[[MainScene instance].gui addItem:(id)_labelTTFOutlinedDef _pos:scoreTotalStrPos];
         
-        scoreStrPos = ccp(SCREEN_WIDTH_HALF, 244);
+        scoreStrPos = ccp(SCREEN_WIDTH_HALF, 240);
         _labelTTFOutlinedDef.text = @"";
         _labelTTFOutlinedDef.textColor = ccc3(255, 255, 255);
         scoreStr =[[MainScene instance].gui addItem:(id)_labelTTFOutlinedDef _pos:scoreStrPos];
         
-        collectedCoinsStrPos = ccp(SCREEN_WIDTH_HALF, 200);
+        collectedCoinsStrPos = ccp(SCREEN_WIDTH_HALF, 188);
         _labelTTFOutlinedDef.text = @"";
         _labelTTFOutlinedDef.textColor = ccc3(255, 255, 0);
         collectedCoinsStr =[[MainScene instance].gui addItem:(id)_labelTTFOutlinedDef _pos:collectedCoinsStrPos];
 		
 		GUIButtonDef *btnDef = [GUIButtonDef node];
-		btnDef.sprName = @"btnLevels.png";
-		btnDef.sprDownName = @"btnLevelsDown.png";
+		btnDef.sprName = @"btnBack.png";
+		btnDef.sprDownName = @"btnBackDown.png";
 		btnDef.group = GAME_STATE_LEVELFINISH;
 		btnDef.objCreator = self;
 		btnDef.func = @selector(buttonLevelsClick);
@@ -105,16 +105,16 @@
         panelDef.group = GAME_STATE_NONE;
         panelDef.parentFrame = _btnShop.spr;
         panelDef.sprName = @"exclamation_mark.png";
-        panelExclamationMark = [[MainScene instance].gui addItem:(id)panelDef _pos:ccp(55, 55)];
+        panelExclamationMark = [[MainScene instance].gui addItem:(id)panelDef _pos:ccp(35, 35)];
         
         panelDef.parentFrame = [MainScene instance].gui;
         //panelDef.parentFrame = [Defs];
         panelDef.group = GAME_STATE_LEVELFINISH;
-        panelDef.sprName = @"star_menu.png";
+        /*panelDef.sprName = @"star_menu.png";
         panelDef.zIndex = 10;
 		panelHighlight = [[MainScene instance].gui addItem:(id)panelDef _pos:ccp(SCREEN_WIDTH_HALF,200)];
         [panelHighlight.spr setScaleX:3.5f];
-        [panelHighlight.spr setScaleY:3.5f];
+        [panelHighlight.spr setScaleY:3.5f];*/
         
         panelDef.sprName = @"levelFinishScreenTable.png";
         panelDef.zIndex = 11;
@@ -132,7 +132,7 @@
         
         panelDef.group = GAME_STATE_LEVELFINISH;
         
-        panelDef.sprName = @"levelFinishScreenLeftPalm.png";
+        /*panelDef.sprName = @"levelFinishScreenLeftPalm.png";
         panelDef.zIndex = 15;
 		panelPalmLeft = [[MainScene instance].gui addItem:(id)panelDef _pos:ccp(-30,130)];
         [panelPalmLeft.spr setAnchorPoint:CGPointMake(0.1f,0.1f)];
@@ -154,7 +154,7 @@
         panelDef.zIndex = 17;
 		panelBushLeft = [[MainScene instance].gui addItem:(id)panelDef _pos:ccp(0,-10)];
         [panelBushLeft.spr setAnchorPoint:CGPointMake(0.1f,0.0f)];
-        isBushLeftGoUp = NO;
+        isBushLeftGoUp = NO;*/
             
         soundScoreDelay = 0.5f;
         timeCoinsAdd = 0;
@@ -191,7 +191,7 @@
     if (_value > [Defs instance].bestScore) {
         [Defs instance].bestScore = _value;
         [MyData setStoreValue:@"bestScore" value:[NSString stringWithFormat:@"%i",[Defs instance].bestScore]];
-        [[GameCenter instance] reportScore:[Defs instance].bestScore forCategory:@"ExpandIt_TotalLeaderboard"];
+        //[[GameCenter instance] reportScore:[Defs instance].bestScore forCategory:@"ExpandIt_TotalLeaderboard"];
         [self showPanelImproved:YES];
     }
 
@@ -265,10 +265,10 @@
                 }
             }
         
-        if (panelHighlight.spr.rotation < 360) panelHighlight.spr.rotation += 1; else panelHighlight.spr.rotation = 1;
+        //if (panelHighlight.spr.rotation < 360) panelHighlight.spr.rotation += 1; else panelHighlight.spr.rotation = 1;
         
         
-        if (isBushGoUp) {
+        /*if (isBushGoUp) {
             if (panelBushRight.spr.rotation < 7) panelBushRight.spr.rotation += 0.2f; else isBushGoUp = NO;
         } else {
             if (panelBushRight.spr.rotation > -10) panelBushRight.spr.rotation -= 0.2f; else isBushGoUp = YES;
@@ -290,7 +290,7 @@
             if (panelPalmLeft.spr.rotation < 4) panelPalmLeft.spr.rotation += 0.04f; else isPalmLeftGoUp = NO;
         } else {
             if (panelPalmLeft.spr.rotation > -1) panelPalmLeft.spr.rotation -= 0.03f; else isPalmLeftGoUp = YES;
-        }
+        }*/
         
         if (collectedCoinsCurrValue < collectedCoinsValue) {
             timeCollectedCoinsAdd += TIME_STEP;

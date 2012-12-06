@@ -61,6 +61,44 @@
                 <key>y</key>
                 <integer>2</integer>
             </dict>
+            <key>layer_1_4.png</key>
+            <dict>
+                <key>height</key>
+                <integer>464</integer>
+                <key>offsetX</key>
+                <real>0</real>
+                <key>offsetY</key>
+                <real>-24</real>
+                <key>originalHeight</key>
+                <integer>512</integer>
+                <key>originalWidth</key>
+                <integer>512</integer>
+                <key>width</key>
+                <integer>512</integer>
+                <key>x</key>
+                <integer>2</integer>
+                <key>y</key>
+                <integer>480</integer>
+            </dict>
+            <key>layer_1_5.png</key>
+            <dict>
+                <key>height</key>
+                <integer>214</integer>
+                <key>offsetX</key>
+                <real>-9</real>
+                <key>offsetY</key>
+                <real>18</real>
+                <key>originalHeight</key>
+                <integer>256</integer>
+                <key>originalWidth</key>
+                <integer>256</integer>
+                <key>width</key>
+                <integer>102</integer>
+                <key>x</key>
+                <integer>648</integer>
+                <key>y</key>
+                <integer>312</integer>
+            </dict>
         </dict>
         <key>metadata</key>
         <dict>
@@ -69,16 +107,16 @@
             <key>realTextureFileName</key>
             <string>gfx_paralax_1-hd.pvr.ccz</string>
             <key>size</key>
-            <string>{1024,512}</string>
+            <string>{1024,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:5875f42a697725b2f9854c4142c1d45d$</string>
+            <string>$TexturePacker:SmartUpdate:22f59e35b651b5f41c734c78529d7125$</string>
             <key>textureFileName</key>
             <string>gfx_paralax_1-hd.pvr.ccz</string>
         </dict>
         <key>texture</key>
         <dict>
             <key>height</key>
-            <integer>512</integer>
+            <integer>1024</integer>
             <key>width</key>
             <integer>1024</integer>
         </dict>

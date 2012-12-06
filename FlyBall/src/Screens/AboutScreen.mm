@@ -38,12 +38,12 @@
         panelDef.group = GAME_STATE_CREDITS;
         //panelDef.parentFrame = [Defs instance].objectBackLayer;
         panelDef.zIndex = 10;
-        panelDef.sprName = @"star_menu.png";
+        /*panelDef.sprName = @"star_menu.png";
 		panelHighlight = [[MainScene instance].gui addItem:(id)panelDef _pos:ccp(SCREEN_WIDTH_HALF,200)];
         [panelHighlight.spr setScaleX:3.5f];
-        [panelHighlight.spr setScaleY:3.5f];
+        [panelHighlight.spr setScaleY:3.5f];*/
 		
-        panelDef.parentFrame = [MainScene instance].gui;
+        /*panelDef.parentFrame = [MainScene instance].gui;
         panelDef.sprName = @"levelFinishScreenLeftPalm.png";
         panelDef.zIndex = 15;
 		panelPalmLeft = [[MainScene instance].gui addItem:(id)panelDef _pos:ccp(-17,130)];
@@ -54,7 +54,7 @@
         panelDef.zIndex = 16;
 		panelPalmRight = [[MainScene instance].gui addItem:(id)panelDef _pos:ccp(SCREEN_WIDTH+30,90)];
         [panelPalmRight.spr setAnchorPoint:CGPointMake(1.0f,0.1f)];
-        isPalmRightGoUp = NO;
+        isPalmRightGoUp = NO;*/
         
         GUIButtonDef *btnPlayDef = [GUIButtonDef node];
 		btnPlayDef.sprName = @"btnBack.png";
@@ -304,9 +304,9 @@
             }
         }
     
-    if (panelHighlight.spr.rotation < 360) panelHighlight.spr.rotation += 0.5f; else panelHighlight.spr.rotation = 0.5f;
+    //if (panelHighlight.spr.rotation < 360) panelHighlight.spr.rotation += 0.5f; else panelHighlight.spr.rotation = 0.5f;
     
-	if (isPalmRightGoUp) {
+	/*if (isPalmRightGoUp) {
         if (panelPalmRight.spr.rotation < 3) panelPalmRight.spr.rotation += 0.07f; else isPalmRightGoUp = NO;
     } else {
         if (panelPalmRight.spr.rotation > -6) panelPalmRight.spr.rotation -= 0.07f; else isPalmRightGoUp = YES;
@@ -316,7 +316,7 @@
         if (panelPalmLeft.spr.rotation < 4) panelPalmLeft.spr.rotation += 0.08f; else isPalmLeftGoUp = NO;
     } else {
         if (panelPalmLeft.spr.rotation > -1) panelPalmLeft.spr.rotation -= 0.08f; else isPalmLeftGoUp = YES;
-    }
+    }*/
     
     if (creditsMoveTime >= creditsMoveDelay) {
         CCLabelBMFont *font;

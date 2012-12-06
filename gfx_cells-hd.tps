@@ -13,15 +13,15 @@
                 <key>scale</key>
                 <double>0.5</double>
                 <key>extension</key>
-                <string></string>
+                <string>.</string>
                 <key>acceptFractionalValues</key>
                 <false/>
                 <key>maxTextureSize</key>
                 <QSize>
                     <key>width</key>
-                    <int>1024</int>
+                    <int>2048</int>
                     <key>height</key>
-                    <int>1024</int>
+                    <int>2048</int>
                 </QSize>
             </struct>
         </array>
@@ -38,7 +38,7 @@
         <key>dataFormat</key>
         <string>cocos2d-original</string>
         <key>textureFileName</key>
-        <filename>FlyBall/Resources/SpriteSheets/gfx_cells-hd.jpg</filename>
+        <filename>FlyBall/Resources/SpriteSheets/gfx_cells-hd.pvr.ccz</filename>
         <key>flipPVR</key>
         <false/>
         <key>ditherType</key>
@@ -56,17 +56,17 @@
             </struct>
         </struct>
         <key>shapePadding</key>
-        <uint>0</uint>
+        <uint>2</uint>
         <key>jpgQuality</key>
-        <uint>100</uint>
+        <uint>80</uint>
         <key>pngOptimizationLevel</key>
         <uint>2</uint>
         <key>textureSubPath</key>
         <string></string>
         <key>textureFormat</key>
-        <enum type="SettingsBase::TextureFormat">jpg</enum>
+        <enum type="SettingsBase::TextureFormat">pvr2ccz</enum>
         <key>borderPadding</key>
-        <uint>0</uint>
+        <uint>2</uint>
         <key>maxTextureSize</key>
         <QSize>
             <key>width</key>
@@ -86,11 +86,11 @@
         <key>algorithmSettings</key>
         <struct type="AlgorithmSettings">
             <key>algorithm</key>
-            <enum type="AlgorithmSettings::AlgorithmId">Basic</enum>
+            <enum type="AlgorithmSettings::AlgorithmId">MaxRects</enum>
             <key>freeSizeMode</key>
             <enum type="AlgorithmSettings::AlgorithmFreeSizeMode">Best</enum>
             <key>sizeConstraints</key>
-            <enum type="AlgorithmSettings::SizeConstraints">NPOT</enum>
+            <enum type="AlgorithmSettings::SizeConstraints">POT</enum>
             <key>forceSquared</key>
             <false/>
             <key>forceWordAligned</key>
@@ -115,7 +115,7 @@
             <key>packageName</key>
             <string>Texture</string>
             <key>javaFileName</key>
-            <filename>../../SpriteSheets/gfx_chars-ipad.java</filename>
+            <filename>FlyBall/Resources/SpriteSheets/gfx_cells-hd.java</filename>
             <key>wrap</key>
             <struct type="AndEngineWrap">
                 <key>s</key>
@@ -129,11 +129,11 @@
         <key>dataFileName</key>
         <filename>FlyBall/Resources/SpriteSheets/gfx_cells-hd.plist</filename>
         <key>mainExtension</key>
-        <string>-hd</string>
+        <string>-hd.</string>
         <key>forceIdenticalLayout</key>
         <false/>
         <key>outputFormat</key>
-        <enum type="SettingsBase::OutputFormat">RGB565</enum>
+        <enum type="SettingsBase::OutputFormat">RGBA4444</enum>
         <key>autoAliasEnabled</key>
         <true/>
         <key>trimSpriteNames</key>
@@ -143,11 +143,11 @@
             <key>scale</key>
             <double>1</double>
             <key>scaleMode</key>
-            <enum type="ScaleMode">Fast</enum>
+            <enum type="ScaleMode">Smooth</enum>
             <key>innerPadding</key>
             <uint>0</uint>
             <key>extrude</key>
-            <uint>1</uint>
+            <uint>0</uint>
             <key>trimThreshold</key>
             <uint>1</uint>
             <key>trimMode</key>
@@ -157,6 +157,7 @@
         </struct>
         <key>fileList</key>
         <array>
+            <filename>FlyBall/Resources/gfx/StartPlatform</filename>
             <filename>FlyBall/Resources/gfx/SpeedWall</filename>
         </array>
         <key>ignoreFileList</key>

@@ -17,19 +17,16 @@
 
 - (id)init {
 	if ((self = [super init])) {
-        cellCountY = 5;
         cellHeight = 2048;
         cellScaleCoeff = 1.25f;
         
         cellsHighMap = [NSArray arrayWithObjects:[CCSprite spriteWithFile:@"back_1.jpg"],
                         [CCSprite spriteWithFile:@"back_2.jpg"],
-                        [CCSprite spriteWithFile:@"back_1.jpg"],
-                        [CCSprite spriteWithFile:@"back_2.jpg"],
-                        [CCSprite spriteWithFile:@"back_1.jpg"],nil];
+                        [CCSprite spriteWithFile:@"back_3.jpg"],nil];
         [cellsHighMap retain];
         
         CCSprite *_spr;
-        for (int i = 0; i < cellCountY; i++) {
+        for (int i = 0; i < [cellsHighMap count]; i++) {
             _spr = [cellsHighMap objectAtIndex:i];
             [_spr setAnchorPoint:CGPointZero];
             [_spr setPosition:ccp(0, i*(cellHeight*cellScaleCoeff))];
@@ -61,8 +58,9 @@
         
         paralax_2 = [NSArray arrayWithObjects://[CCSprite spriteWithSpriteFrameName:@"layer_2_1.png"],
                        [CCSprite spriteWithSpriteFrameName:@"layer_2_2.png"],
-                     //[CCSprite spriteWithSpriteFrameName:@"layer_2_3.png"],
                      [CCSprite spriteWithSpriteFrameName:@"layer_2_4.png"],
+                     [CCSprite spriteWithSpriteFrameName:@"layer_2_5.png"],
+                     [CCSprite spriteWithSpriteFrameName:@"layer_2_6.png"],
                        nil];
         [paralax_2 retain];
         
@@ -75,12 +73,14 @@
         
         paralax_2_distanceToNextObjectDefault = SCREEN_HEIGHT_HALF;
         paralax_2_distanceToNextObjectRandomCoeff = SCREEN_HEIGHT_HALF;
-        paralax_2_distanceToNextObject = SCREEN_HEIGHT_HALF*3;
+        paralax_2_distanceToNextObject = SCREEN_HEIGHT_HALF*2;
         
         //Паралакс слой под ногами
         paralax_1 = [NSArray arrayWithObjects:[CCSprite spriteWithSpriteFrameName:@"layer_1_1.png"],
                      [CCSprite spriteWithSpriteFrameName:@"layer_1_2.png"],
                      [CCSprite spriteWithSpriteFrameName:@"layer_1_3.png"],
+                     [CCSprite spriteWithSpriteFrameName:@"layer_1_4.png"],
+                     [CCSprite spriteWithSpriteFrameName:@"layer_1_5.png"],
                      nil];
         [paralax_1 retain];
         
@@ -92,7 +92,7 @@
         
         paralax_1_distanceToNextObjectDefault = SCREEN_HEIGHT_HALF;
         paralax_1_distanceToNextObjectRandomCoeff = SCREEN_HEIGHT_HALF;
-        paralax_1_distanceToNextObject = SCREEN_HEIGHT_HALF*3;
+        paralax_1_distanceToNextObject = SCREEN_HEIGHT_HALF*2;
     }
 	
 	return self;
@@ -112,9 +112,9 @@
         [_spr setPosition:ccp(544,i*128)];
     }
     
-    paralax_2_distanceToNextObject = SCREEN_HEIGHT_HALF*3;
+    paralax_2_distanceToNextObject = SCREEN_HEIGHT_HALF*2;
     
-    paralax_1_distanceToNextObject = SCREEN_HEIGHT_HALF*3;
+    paralax_1_distanceToNextObject = SCREEN_HEIGHT_HALF*2;
 }
 
 - (void) manageWalls {

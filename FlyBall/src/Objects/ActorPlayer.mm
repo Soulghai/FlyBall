@@ -54,7 +54,7 @@
         [emitterBonusSpeedFire retain];
         [emitterBonusSpeedFire unscheduleUpdate];
         
-        friction = 0.01f;
+        friction = 0.02f;
         
         isMayBlink = YES;
         blinkDelay = 1;
@@ -320,6 +320,8 @@
     [super update];
     
     position = costume.position;
+    
+    if (velocity.y < -3) velocity.y = -3;
     
     if (velocity.x > friction) velocity.x -= friction; else
         if (velocity.x < -friction) velocity.x += friction;

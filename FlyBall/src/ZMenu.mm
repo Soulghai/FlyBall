@@ -121,13 +121,13 @@
 - (void) buttonGameCenterLeaderboardAction {
     [FlurryAnalytics logEvent:ANALYTICS_MAIN_MENU_BUTTON_LEADERBOARD_CLICKED];
     [self settingSliderFastHide];
-    [[GameCenter instance] showLeaderboard];
+    //[[GameCenter instance] showLeaderboard];
 }
 
 - (void) buttonGameCenterAchievementAction {
     [FlurryAnalytics logEvent:ANALYTICS_MAIN_MENU_BUTTON_ACHIEVEMENT_CLICKED];
     [self settingSliderFastHide];
-    [[GameCenter instance] showAchievements]; 
+    //[[GameCenter instance] showAchievements];
 }
 
 - (void) buttonCreditsClick { 
@@ -149,16 +149,16 @@
     
     [self sliderPanelsHide];
     [checkBoxSettings setEnabled:NO];
-    [btnCredits setEnabled:NO];
+    //[btnCredits setEnabled:NO];
     [btnShop setEnabled:NO];
-    if ([GameCenter instance].isAvailable) {
+    /*if ([GameCenter instance].isAvailable) {
         [checkBoxOnline setEnabled:NO];
     } else
     {
-        /*[btnTwitter setEnabled:NO];
+        [btnTwitter setEnabled:NO];
         [btnFacebook setEnabled:NO];
-        [btnVideo setEnabled:NO];*/
-    }
+        [btnVideo setEnabled:NO];
+    }*/
 }
 
 - (void) checkBoxRestartLevelProgressPanelHide {
@@ -169,16 +169,16 @@
 	[btnPlay show:YES];
     
     [checkBoxSettings setEnabled:YES];
-    [btnCredits setEnabled:YES];
+    //[btnCredits setEnabled:YES];
     [btnShop setEnabled:YES];
-    if ([GameCenter instance].isAvailable) {
+    /*if ([GameCenter instance].isAvailable) {
         [checkBoxOnline setEnabled:YES];
     } else
     {
-        /*[btnTwitter setEnabled:YES];
+        [btnTwitter setEnabled:YES];
         [btnFacebook setEnabled:YES];
-        [btnVideo setEnabled:YES];*/
-    }
+        [btnVideo setEnabled:YES];
+    }*/
 }
 
 - (void) restartLevelProgress {
@@ -192,7 +192,7 @@
 	isSlideLeftAction = YES;
 	isSlideLeftUp = !isSlideLeftUp;
 	if (isSlideLeftUp) {
-		slideLeftTarget = leftMenuSlider.spr.contentSize.height+13;
+		slideLeftTarget = leftMenuSlider.spr.contentSize.height+5;
         [btnSound setEnabled:YES];
         [btnMusic setEnabled:YES];
         [btnReset setEnabled:YES];
@@ -262,17 +262,10 @@
         
         panelDef.group = GAME_STATE_MENU;
         
-        //panelDef.parentFrame = [Defs instance].objectBackLayer;
-        panelDef.sprName = @"star_menu.png";
-        panelDef.zIndex = 1;
-		panelHighlight = [[MainScene instance].gui addItem:(id)panelDef _pos:ccp(SCREEN_WIDTH_HALF,350)];
-        [panelHighlight.spr setScaleX:3.5f];
-        [panelHighlight.spr setScaleY:3.5f];
-        
-        panelDef.parentFrame = [MainScene instance].gui;
+        /*panelDef.parentFrame = [MainScene instance].gui;
         panelDef.sprName = @"logo.png";
         panelDef.enabled = NO;
-		panelLogo = [[MainScene instance].gui addItem:(id)panelDef _pos:ccp(SCREEN_WIDTH_HALF,350)];
+		panelLogo = [[MainScene instance].gui addItem:(id)panelDef _pos:ccp(SCREEN_WIDTH_HALF,350)];*/
         
         panelDef.group = GAME_STATE_NONE;
         panelDef.sprName = nil;
@@ -327,26 +320,15 @@
         labelTTFOutlinedDef.group = GAME_STATE_NONE;
         labelMarketUpdateAvailableCounter = [[MainScene instance].gui addItem:(id)labelTTFOutlinedDef _pos:ccp(btnShop.spr.position.x + 20,btnShop.spr.position.y + 20)];*/
 		
-		btnPlayDef.sprName = @"btnCreditsBallon.png";
+		/*btnPlayDef.sprName = @"btnCreditsBallon.png";
 		btnPlayDef.sprDownName = @"btnCreditsBallon.png";
 		btnPlayDef.func = @selector(buttonCreditsClick);
         btnPlayDef.zIndex = 9;
 		
-		btnCredits = [[MainScene instance].gui addItem:(id)btnPlayDef _pos:ccp(160,SCREEN_HEIGHT - 50)];
+		btnCredits = [[MainScene instance].gui addItem:(id)btnPlayDef _pos:ccp(160,SCREEN_HEIGHT - 50)];*/
         
         
-        
-        panelDef.group = GAME_STATE_MENU;
-        panelDef.sprName = @"lightMarket.png";
-		panelDef.enabled = YES;
-        panelDef.zIndex = 8;
-        panelDef.parentFrame = [MainScene instance].gui;
-        panelMarket = [[MainScene instance].gui addItem:(id)panelDef _pos:ccp(26,23)];
-       
-        isPanelMarketOpacityAlpaAdd = NO;
-        panelMarketOpacity = 255;
-        
-        btnPlayDef.isManyTouches = YES;
+        /*btnPlayDef.isManyTouches = YES;
         btnPlayDef.sprName = @"iconFacebook.png";
         btnPlayDef.sprDownName = @"iconFacebook.png";
         btnPlayDef.func = @selector(buttonFacebookAction);
@@ -355,7 +337,7 @@
         btnPlayDef.sprName = @"iconTwitter.png";
         btnPlayDef.sprDownName = @"iconTwitter.png";
         btnPlayDef.func = @selector(buttonTwitterAction);
-        btnTwitter = [[MainScene instance].gui addItem:(id)btnPlayDef _pos:ccp(SCREEN_WIDTH - 80,20)];
+        btnTwitter = [[MainScene instance].gui addItem:(id)btnPlayDef _pos:ccp(SCREEN_WIDTH - 80,20)];*/
         
 		btnPlayDef.sprName = @"btnReset.png";
 		btnPlayDef.sprDownName = @"btnResetDown.png";
@@ -369,8 +351,8 @@
         GUICheckBoxDef *checkBoxSoundDef = [GUICheckBoxDef node];
 		checkBoxSoundDef.sprName = @"btnSetting.png";
 		checkBoxSoundDef.sprOneDownName = @"btnSettingDown.png";
-		checkBoxSoundDef.sprTwoName = @"btnSettingChecked.png";
-		checkBoxSoundDef.sprTwoDownName = @"btnSettingCheckedDown.png";
+		checkBoxSoundDef.sprTwoName = @"btnSetting.png";
+		checkBoxSoundDef.sprTwoDownName = @"btnSettingDown.png";
 		checkBoxSoundDef.group = GAME_STATE_MENU;
 		checkBoxSoundDef.objCreator = self;
 		checkBoxSoundDef.func = @selector(checkBoxSettingSliderPush);
@@ -379,7 +361,7 @@
 		
 		checkBoxSettings = [[MainScene instance].gui addItem:(id)checkBoxSoundDef _pos:ccp(28,25)];
 		
-    if ([GameCenter instance].isAvailable) {
+        /*if ([GameCenter instance].isAvailable) {
         
         //panelDef.parentFrame = [Defs instance].objectBackLayer;
         panelDef.enabled = NO;
@@ -427,20 +409,13 @@
         
         rightMenuSlider = nil;
         
-        /*btnPlayDef.sprName = @"iconWalktrough.png";
-		btnPlayDef.sprDownName = @"iconWalktrough.png";
-		btnPlayDef.parentFrame = [MainScene instance].gui;
-		btnPlayDef.func = @selector(buttonWalktroughAction);
-		
-		btnVideo = [[MainScene instance].gui addItem:(id)btnPlayDef _pos:ccp(SCREEN_WIDTH - 25,20)];*/
-        
         btnPlayDef.sprName = @"btnLike_up.png";
 		btnPlayDef.sprDownName = @"btnLike_down.png";
         btnPlayDef.isManyTouches = YES;
 		btnPlayDef.func = @selector(emailCallback);
 		
 		btnEmailRecomendation = [[MainScene instance].gui addItem:(id)btnPlayDef _pos:ccp(SCREEN_WIDTH - 25, 20)];
-    }
+    }*/
 		
         btnPlayDef.isManyTouches = YES;
 		btnPlayDef.sprName = @"btnNo.png";
@@ -488,7 +463,7 @@
 		panelDef.group = GAME_STATE_NONE;
         panelDef.parentFrame = btnShop.spr;
         panelDef.sprName = @"exclamation_mark.png";
-        panelExclamationMark = [[MainScene instance].gui addItem:(id)panelDef _pos:ccp(55, 55)];
+        panelExclamationMark = [[MainScene instance].gui addItem:(id)panelDef _pos:ccp(35, 35)];
 		}
 	return self;
 }
@@ -521,65 +496,17 @@
         }
     }
     
-    panelHighlight.spr.rotation += 0.5f;
-    if (panelHighlight.spr.rotation > 360) panelHighlight.spr.rotation -= 360;
-    
-	CGPoint pos = btnCredits.spr.position;
-	pos.x += logoVelocity.x;
-	
-	float leftBorder = 80;
-	float rightBorder = SCREEN_WIDTH - 30;
-	
-	if (pos.x < leftBorder) {
-		pos.x = leftBorder;
-		logoVelocity = CGPointZero;
-	} else if (pos.x > rightBorder) {
-		pos.x = rightBorder;
-		logoVelocity = CGPointZero;
-	}
-    
-    float _marketGoSpeedAcc = 0.01f;
-    
-    if (pos.y > (SCREEN_HEIGHT - 50)) _marketGoSpeedAcc = -0.01f;
-        
-    marketGoSpeed += _marketGoSpeedAcc;
-    
-    pos.y += marketGoSpeed;
-	
-	[btnCredits setPosition:pos];
-    [panelMarket setPosition:pos];
-    
-    if (isPanelMarketOpacityAlpaAdd) {
-        if (panelMarketOpacity < 253) panelMarketOpacity += 3; else isPanelMarketOpacityAlpaAdd = NO;
-    } else {
-         if (panelMarketOpacity > 100) panelMarketOpacity -= 3; else isPanelMarketOpacityAlpaAdd = YES;
-    }
-    [panelMarket.spr setOpacity:panelMarketOpacity];
-	
-	/*if (rotationState == 0) {
-		btnCredits.rotation = [[Utils instance] aspire:btnCredits.rotation _aim:3 _speed:0.3f];  
-		if (6 - btnCredits.rotation < 1) {
-			//logoSpr.rotation += rotationSpd;
-			rotationState = 1;
-		} else {
-			//rotationState = 1;
-		}
-	} else 
-		if(rotationState == 1) {
-			btnCredits.rotation = [[Utils instance] aspire:btnCredits.rotation _aim:-3 _speed:0.3f];
-			if (fabs(btnCredits.rotation + 6) < 1) {
-				//logoSpr.rotation -= rotationSpd;
-				rotationState = 0;
-			} else {
-				//rotationState = 0;
-			}
-		}*/
-	
 	if (isSlideLeftAction) {		
 		[leftMenuSlider setPosition:ccp(leftMenuSlider.spr.position.x,
 									   [[Utils instance] aspire:leftMenuSlider.spr.position.y _aim:slideLeftTarget
-														 _speed:fabs(leftMenuSlider.spr.position.y-slideLeftTarget)/5])];
+														 _speed:fabs(leftMenuSlider.spr.position.y-slideLeftTarget)/4])];
 		
+        if (isSlideLeftUp) 
+            [checkBoxSettings.spr setRotation:checkBoxSettings.spr.rotation += 6];
+        else
+            [checkBoxSettings.spr setRotation:checkBoxSettings.spr.rotation -= 6];
+        
+        
 		if ((isSlideLeftUp)&&((slideLeftTarget - leftMenuSlider.spr.position.y) <= 1)) {
 			[leftMenuSlider setPosition:ccp(leftMenuSlider.spr.position.x,slideLeftTarget)];
 			isSlideLeftAction = NO;
@@ -587,6 +514,7 @@
 		if ((!isSlideLeftUp)&&((leftMenuSlider.spr.position.y - slideLeftTarget) <= 1)) {
 			leftMenuSlider.spr.position = ccp(leftMenuSlider.spr.position.x,slideLeftTarget);
 			isSlideLeftAction = NO;
+            
 		}
 
 	}
@@ -621,6 +549,8 @@
 		[btnSound setChecked:[Defs instance].isSoundMute];
         [btnMusic setChecked:[Defs instance].isMusicMute];
         
+        [checkBoxSettings.spr setRotation:0];
+        
         [self checkAvailableUpdates];
 
 	} else { 
@@ -647,9 +577,9 @@
 	if (logoVelocity.x > maxVelocity) logoVelocity.x = maxVelocity; else
 		if (logoVelocity.x < - maxVelocity) logoVelocity.x = -maxVelocity;
 	
-    btnCredits.spr.rotation *= 0.8f;
+    //btnCredits.spr.rotation *= 0.8f;
     
-    btnCredits.spr.rotation -= acceleration.y * 3.2f;
+    //btnCredits.spr.rotation -= acceleration.y * 3.2f;
     
 	//logoSpr.position = ccp(logoSpr.position.x-acceleration.y,logoSpr.position.y);
 }

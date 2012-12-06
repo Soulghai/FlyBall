@@ -135,27 +135,27 @@
 - (void) getAchievement {
     if ((![Defs instance].achievement_Expand_10)&&([Defs instance].totalTouchBloxCounter >= 10)) {
         [Defs instance].achievement_Expand_10 = YES;
-        [[GameCenter instance] reportAchievementIdentifier:@"ExpandIt_Expand_10" percentComplete:100];
+        //[[GameCenter instance] reportAchievementIdentifier:@"ExpandIt_Expand_10" percentComplete:100];
     }
     
     if ((![Defs instance].achievement_Expand_100)&&([Defs instance].totalTouchBloxCounter >= 100)) {
         [Defs instance].achievement_Expand_100 = YES;
-        [[GameCenter instance] reportAchievementIdentifier:@"ExpandIt_Expand_100" percentComplete:100];
+        //[[GameCenter instance] reportAchievementIdentifier:@"ExpandIt_Expand_100" percentComplete:100];
     }
     
     if ((![Defs instance].achievement_Expand_1000)&&([Defs instance].totalTouchBloxCounter >= 1000)) {
         [Defs instance].achievement_Expand_1000 = YES;
-        [[GameCenter instance] reportAchievementIdentifier:@"ExpandIt_Expand_1000" percentComplete:100];
+        //[[GameCenter instance] reportAchievementIdentifier:@"ExpandIt_Expand_1000" percentComplete:100];
     }
     
     if ((![Defs instance].achievement_Expand_2500)&&([Defs instance].totalTouchBloxCounter >= 2500)) {
         [Defs instance].achievement_Expand_2500 = YES;
-        [[GameCenter instance] reportAchievementIdentifier:@"ExpandIt_Expand_2500" percentComplete:100];
+        //[[GameCenter instance] reportAchievementIdentifier:@"ExpandIt_Expand_2500" percentComplete:100];
     }
     
     if ((![Defs instance].achievement_Lost_100)&&([Defs instance].totalDeadBloxCounter >= 100)) {
         [Defs instance].achievement_Lost_100 = YES;
-        [[GameCenter instance] reportAchievementIdentifier:@"ExpandIt_Lost_100" percentComplete:100];
+        //[[GameCenter instance] reportAchievementIdentifier:@"ExpandIt_Lost_100" percentComplete:100];
     }
 }
 
