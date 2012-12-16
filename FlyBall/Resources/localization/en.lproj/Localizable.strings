@@ -57,7 +57,7 @@ In App Purchase Dialog
 "btnMoreGames" = "More Games";
 
 /* label Hint Level Start */
-"HINT:Tap to Bomb" = "Tap the Bomb\nto BLOW it";
+"HINT:Tap to Bomb" = "Explode the BOMB";
 
 /* Restart Progress dialog box */
 "Restart Progress?" = "Reset game?";

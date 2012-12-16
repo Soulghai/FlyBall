@@ -118,8 +118,12 @@ extern BOOL GAME_EASTER;
 // GAMEPLAY CONST
 //----------------------------------------------------------------
 
+#define bombTouchSize 50
 #define elementSize 45
 #define elementRadius 22.5f
+
+#define screenPlayerPositionX 160
+#define screenPlayerPositionY 320
 
 #define ZCOORD_OBJECTS 100
 

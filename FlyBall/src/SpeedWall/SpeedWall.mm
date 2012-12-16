@@ -25,7 +25,7 @@
         
         delayWarning = 3;
         timeWaiting = 0;
-        delayWaitingDefault = 20;
+        delayWaitingDefault = 5;
         delayWaiting = delayWaitingDefault + CCRANDOM_0_1()*10;
         timeShowing = 0;
         delayShowing = [Defs instance].speedWallDelayShowingCoeff;
@@ -110,18 +110,20 @@
         int xPosition = MAX([MainScene instance].game.player.position.x, -64);
         xPosition = MIN(xPosition, 384);
         
+        costume.position = ccpAdd(ccp(xPosition, -[Defs instance].objectFrontLayer.position.y + SCREEN_HEIGHT_HALF), positionChangeCoeff);
+        
         if (isShowing||isHiding) {
             positionChangeCoeff = ccpAdd(positionChangeCoeff, ccp(0, showingSpeed));
             
-            costume.position = ccpAdd(ccp(xPosition, [MainScene instance].game.player.position.y), positionChangeCoeff);
+            
             if ((isShowing)&&(positionChangeCoeff.y <= 0)) {
-                costume.position = ccp(costume.position.x, [MainScene instance].game.player.position.y);
+                costume.position = ccp(costume.position.x, -[Defs instance].objectFrontLayer.position.y + SCREEN_HEIGHT_HALF);
                 positionChangeCoeff = ccp(positionChangeCoeff.x, 0);
                 [self hideEmitterWarning];
                 isShowing = NO;
             } else
                 if ((isHiding)&&(positionChangeCoeff.y <= -SCREEN_HEIGHT)) {
-                    costume.position = ccp(costume.position.x, [MainScene instance].game.player.position.y);
+                    costume.position = ccp(costume.position.x, -[Defs instance].objectFrontLayer.position.y + SCREEN_HEIGHT_HALF);
                     positionChangeCoeff = ccp(positionChangeCoeff.x, -SCREEN_HEIGHT);
                     isHiding = NO;
                     [self deactivate];
@@ -129,7 +131,7 @@
                 }
         } else {
             positionChangeCoeff = ccpAdd(positionChangeCoeff, ccp(-[MainScene instance].game.player.velocity.x, 0));
-            costume.position = ccpAdd(ccp(xPosition, [MainScene instance].game.player.position.y), positionChangeCoeff);
+            //costume.position = ccpAdd(ccp(xPosition, -[Defs instance].objectFrontLayer.position.y + SCREEN_HEIGHT_HALF), positionChangeCoeff);
         }
         
         if (emitterStarsAcc.parent)

@@ -65,7 +65,7 @@
 "Multi Tap to\nExpand" = "Также одновременно\nможно прикоснуться\nк двум динозаврам";
 
 /* 60 level multy hint */
-"HINT:Tap to Bomb" = "Прикоснитесь к бомбе,\nчтобы взорвать ее!";
+"HINT:Tap to Bomb" = "Взорвите БОМБУ!";
 
 /* button "menu" on the level. */
 "Restart Progress?" = "Стереть прогресс?";

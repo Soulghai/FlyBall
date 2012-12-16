@@ -54,7 +54,7 @@
         [emitterBonusSpeedFire retain];
         [emitterBonusSpeedFire unscheduleUpdate];
         
-        friction = 0.02f;
+        friction = 0.015f;
         
         isMayBlink = YES;
         blinkDelay = 1;
@@ -253,7 +253,7 @@
     [super activate];
     [self hideBonusSpeedFire];
     
-    costume.position = ccp(SCREEN_WIDTH_HALF, SCREEN_HEIGHT_HALF);
+    costume.position = ccp(screenPlayerPositionX, screenPlayerPositionY);
     position = costume.position;
     costume.rotation = 0;
     
