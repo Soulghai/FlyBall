@@ -25,7 +25,7 @@
         
         delayWarning = 3;
         timeWaiting = 0;
-        delayWaitingDefault = 5;
+        delayWaitingDefault = 20;
         delayWaiting = delayWaitingDefault + CCRANDOM_0_1()*10;
         timeShowing = 0;
         delayShowing = [Defs instance].speedWallDelayShowingCoeff;
@@ -62,6 +62,8 @@
         [emitterStarsDecc retain];
         emitterStarsAcc.positionType = kCCPositionTypeGrouped;
         [emitterStarsDecc unscheduleUpdate];
+        
+        isTrigger = NO;
 	}
 	return self;
 }
@@ -127,7 +129,6 @@
                     positionChangeCoeff = ccp(positionChangeCoeff.x, -SCREEN_HEIGHT);
                     isHiding = NO;
                     [self deactivate];
-                    [self show:NO];
                 }
         } else {
             positionChangeCoeff = ccpAdd(positionChangeCoeff, ccp(-[MainScene instance].game.player.velocity.x, 0));
@@ -150,8 +151,8 @@
     } else {
         timeWaiting += TIME_STEP;
         if ((timeWaiting >= delayWaiting - delayWarning)&&((emitterWarningAcc.parent == nil)&&(emitterWarningDecc.parent == nil))) {
-            float _ran = CCRANDOM_MINUS1_1();
-            if (_ran >= 0) {
+            isTrigger = !isTrigger;
+            if (isTrigger) {
                 addSpeedCoeff = [Defs instance].speedWallAccelerationCoeff;
                 [emitterWarningAcc scheduleUpdate];
                 emitterWarningAcc.position = ccpAdd(costume.position, ccp(0, SCREEN_HEIGHT_HALF));
@@ -228,6 +229,8 @@
     addSpeedCoeffOld = 0;
     [self hideEmitter];
     [self hideEmitterWarning];
+    [self show:NO];
+    isTrigger = NO;
 }
 
 - (void) outOfArea {

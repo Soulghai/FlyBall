@@ -13,6 +13,8 @@
 	CCSprite *costume;
 	CCNode *parentFrame;
     
+    BOOL isTrigger;
+    
     float halfWidth;
 	
     BOOL isShowing;

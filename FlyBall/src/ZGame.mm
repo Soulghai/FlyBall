@@ -393,11 +393,11 @@
     [player addVelocity:ccp(0,4)];
     [self setCenterOfTheScreen:player.position];
     
-    firstBomb = (ActorCircleBomb*)[self addBall:[ActorCircleBomb class] _point:ccp(player.position.x, player.position.y - 70) _velocity:ccp(0,0) _active:YES];
+    firstBomb = (ActorCircleBomb*)[self addBall:[ActorCircleBomb class] _point:ccp(player.position.x, player.position.y - 90) _velocity:ccp(0,0) _active:YES];
     firstBomb.costume.rotation = 0;
     
     
-    timerAddBall = 0.35f;
+    timerAddBall = -0.3f;
     timerDelayAddBall = 0.45f;
     
     [self labelScoreBarUpdate];
@@ -422,6 +422,8 @@
     GAME_IS_PLAYING = YES;
     state = GAME_STATE_GAME;
     [[MainScene instance].gui show:state];
+    
+    [self addBall:[ActorCircleBomb class] _point:ccp(player.position.x, player.position.y - screenPlayerPositionY) _velocity:ccp(0,13) _active:YES];
 }
 
 - (void) levelRestart {
@@ -804,7 +806,10 @@
     } else
         if (state == GAME_STATE_GAMEPREPARE) {
             if (firstBomb.isActive) {
-                firstBomb.costume.position = ccp(screenPlayerPositionX + CCRANDOM_MINUS1_1()*2, (screenPlayerPositionY - 70) + CCRANDOM_MINUS1_1()*2);
+                [firstBomb update];
+                firstBomb.costume.position = ccp(screenPlayerPositionX + CCRANDOM_MINUS1_1()*2, (screenPlayerPositionY - 90) + CCRANDOM_MINUS1_1()*2);
+                firstBomb.costume.rotation = 0;
+                firstBomb.velocity = CGPointZero;
             }
         }
 
@@ -881,7 +886,7 @@
             
             if (state == GAME_STATE_GAMEPREPARE) {
                 if (firstBomb.isActive) {
-                    firstBomb.costume.position = ccp(screenPlayerPositionX, screenPlayerPositionY - 70);
+                    firstBomb.costume.position = ccp(screenPlayerPositionX, screenPlayerPositionY - 90);
                     float _distanceToActor = [[Utils instance] distance:firstBomb.costume.position.x + [Defs instance].objectFrontLayer.position.x _y1:firstBomb.costume.position.y + [Defs instance].objectFrontLayer.position.y _x2:_touchPos.x _y2:_touchPos.y];
                         if (_distanceToActor <= bombTouchSize) {
                             [firstBomb touch];
