@@ -22,7 +22,9 @@
         
         cellsHighMap = [NSArray arrayWithObjects:[CCSprite spriteWithFile:@"back_1.jpg"],
                         [CCSprite spriteWithFile:@"back_2.jpg"],
-                        [CCSprite spriteWithFile:@"back_3.jpg"],nil];
+                        [CCSprite spriteWithFile:@"back_3.jpg"],
+                        [CCSprite spriteWithFile:@"back_4.jpg"],
+                        [CCSprite spriteWithFile:@"back_5.jpg"],nil];
         [cellsHighMap retain];
         
         CCSprite *_spr;
@@ -61,6 +63,7 @@
                      [CCSprite spriteWithSpriteFrameName:@"layer_2_4.png"],
                      [CCSprite spriteWithSpriteFrameName:@"layer_2_5.png"],
                      [CCSprite spriteWithSpriteFrameName:@"layer_2_6.png"],
+                     [CCSprite spriteWithSpriteFrameName:@"layer_2_7.png"],
                        nil];
         [paralax_2 retain];
         

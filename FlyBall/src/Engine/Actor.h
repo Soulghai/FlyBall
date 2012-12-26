@@ -36,7 +36,7 @@
 - (void) createStuff;
 - (BOOL) getOutOfArea;
 - (void) prepareToRemove;
-- (void) update;
+- (void) update:(ccTime)dt;
 - (void) activate;
 - (void) deactivate;
 - (void) outOfArea;

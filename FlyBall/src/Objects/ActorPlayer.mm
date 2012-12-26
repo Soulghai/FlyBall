@@ -296,7 +296,7 @@
         --armored;
         [self setArmorSprite];
         [self setGodMode:[Defs instance].playerGodModeAfterCrashTime];
-        return;
+        return; 
     }
     
     [super eraserCollide];
@@ -307,24 +307,24 @@
     
     if (velocity.y > [Defs instance].playerSpeedLimit) velocity.y = [Defs instance].playerSpeedLimit;
     
-    if (_value.y > 4) [self setCrazyFace];
+    if (_value.y > 3) [self setCrazyFace];
 }
 
-- (void) update {
+- (void) update:(ccTime)dt {
     if (isBonusSpeed) {
         [self addVelocity:ccp(0, [Defs instance].bonusAccelerationPower)];
     }
     
     CGPoint _oldPosition = position;
     costume.position = position;
-    [super update];
+    [super update:dt];
     
     position = costume.position;
     
     if (velocity.y < -3) velocity.y = -3;
     
-    if (velocity.x > friction) velocity.x -= friction; else
-        if (velocity.x < -friction) velocity.x += friction;
+    if (velocity.x > friction) velocity.x -= friction*dt; else
+        if (velocity.x < -friction) velocity.x += friction*dt;
     
     if ((position.x < -204 + elementRadius)||(position.x > 524 - elementRadius)) velocity.x = -velocity.x*0.7f;
     
@@ -363,7 +363,7 @@
     }
     
     if (isBonusSpeed) {
-        costume.position = ccp(position.x + CCRANDOM_MINUS1_1()*[Defs instance].bonusAccelerationPower*6, position.y + CCRANDOM_MINUS1_1()*[Defs instance].bonusAccelerationPower*6);
+        costume.position = ccpAdd(ccp(position.x + CCRANDOM_MINUS1_1()*[Defs instance].bonusAccelerationPower*6, position.y + CCRANDOM_MINUS1_1()*[Defs instance].bonusAccelerationPower*6), ccp(dt,dt));
         
         if (emitterBonusSpeedFire) {
             if (emitterEngineFire) {

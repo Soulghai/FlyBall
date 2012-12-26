@@ -25,7 +25,7 @@
         
         costume.position = _location;
         magnetDistance = SCREEN_WIDTH_HALF;
-        magnetPower = 0.2f;
+        magnetPower = 0.4f;
         currSpriteFrame = 0;
         isWorking = NO;
         
@@ -84,7 +84,7 @@
     return CGPointZero;
 }
 
-- (void) update {
+- (void) update:(ccTime)dt {
     if (!isActive) return;
     
     [costume setRotation:costume.rotation + rotationSpeed];
@@ -101,7 +101,7 @@
         }
     } else [self setSpriteFrame:0];
     
-    [super update];
+    [super update:dt];
 }
 
 - (void) addVelocity:(CGPoint)_value {

@@ -63,7 +63,7 @@
 - (void) retartGameProcess;
 
 - (id) init;
-- (void) update;
+- (void) update:(ccTime)dt;
 - (void) setPause:(BOOL)_flag;
 - (void) levelStart;
 - (void) levelRestart;

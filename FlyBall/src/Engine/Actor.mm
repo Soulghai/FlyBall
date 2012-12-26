@@ -58,7 +58,7 @@
 	isWaitRemove = YES;
 }
 
-- (void) update {
+- (void) update:(ccTime)dt {
 	if (isWaitRemove) return;
 }
 

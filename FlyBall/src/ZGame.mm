@@ -27,6 +27,7 @@
 #import "ActorCircleBonus.h"
 #import "CellsBackground.h"
 #import "SpeedWall.h"
+#import "CCScheduler.h"
 
 @implementation ZGame
 
@@ -249,7 +250,7 @@
         _labelTTFDef.alignement = kCCTextAlignmentCenter;
         _labelTTFDef.textColor = ccc3(255, 255, 255);
         _labelTTFDef.text = NSLocalizedString(@"HINT:Tap to Bomb","");
-        [[MainScene instance].gui addItem:(id)_labelTTFDef _pos:ccp(SCREEN_WIDTH_HALF, 100)];
+        [[MainScene instance].gui addItem:(id)_labelTTFDef _pos:ccp(SCREEN_WIDTH_HALF, 150)];
         
         //cells = [[CellsBackground alloc] init];
         //[cells retain];
@@ -273,6 +274,8 @@
         
         speedWall = [[SpeedWall alloc] init:[Defs instance].spriteSheetCells];
         [speedWall retain];
+        
+        timerDelayAddBall = 0.48f;
         
         delaySlowMotion = 3;
         delaySlowMotionPause =  TIME_STEP*2;
@@ -390,7 +393,8 @@
     [self deactivateAllActors];
     
     [player activate];
-    [player addVelocity:ccp(0,4)];
+    //[player addVelocity:ccp(0,4)];
+    //player.position = ccp(-100,100);
     [self setCenterOfTheScreen:player.position];
     
     firstBomb = (ActorCircleBomb*)[self addBall:[ActorCircleBomb class] _point:ccp(player.position.x, player.position.y - 90) _velocity:ccp(0,0) _active:YES];
@@ -398,7 +402,6 @@
     
     
     timerAddBall = -0.3f;
-    timerDelayAddBall = 0.45f;
     
     [self labelScoreBarUpdate];
     //[cells restartParameters];
@@ -408,6 +411,7 @@
     timeSlowMotion = 0;
     timeSlowMotionPause = 0;
     isSlowMotion = NO;
+    [[[CCDirector sharedDirector] scheduler] setTimeScale:1.0f];
     
     [self labelScoreBarUpdate];
     
@@ -422,8 +426,9 @@
     GAME_IS_PLAYING = YES;
     state = GAME_STATE_GAME;
     [[MainScene instance].gui show:state];
+    [player addVelocity:ccp(0,4)];
     
-    [self addBall:[ActorCircleBomb class] _point:ccp(player.position.x, player.position.y - screenPlayerPositionY) _velocity:ccp(0,13) _active:YES];
+    [self addBall:[ActorCircleBomb class] _point:ccp(player.position.x, player.position.y - screenPlayerPositionY) _velocity:ccp(0,14) _active:YES];
 }
 
 - (void) levelRestart {
@@ -533,9 +538,9 @@
     float _distance = [[Utils instance] distance:screenPlayerPositionX _y1:screenPlayerPositionY _x2:_tempActorX _y2:_tempActorY];
     if (_distance < elementSize) _distance = elementSize;
     
-    if (_distance > screenPlayerPositionY) return;
+    if (_distance > 200) return;
     
-    float _power = (1 - _distance/screenPlayerPositionY)*7.0f;
+    float _power = (1 - _distance/200)*12.0f;
     
     float _angle = CC_DEGREES_TO_RADIANS([Utils GetAngleBetweenPt1:ccp(screenPlayerPositionX, screenPlayerPositionY) andPt2:ccp(_tempActorX,_tempActorY)]);
     
@@ -584,6 +589,7 @@
         case BONUS_SLOWMOTION:
             // Включаем замедление времени
             isSlowMotion = YES;
+            [[[CCDirector sharedDirector] scheduler] setTimeScale:0.5f];
             break;
             
         case BONUS_ACCELERATION:
@@ -611,7 +617,10 @@
     return NO;
 }
 
-- (void) update {
+- (void) update:(ccTime)dt {
+    
+    double delta = dt*FRAME_RATE;
+    
     if (state != GAME_STATE_LEVELFINISH) {
         // Пока делаем затемнение или наоборот, ф-цию update не выполняем
     if (([Defs instance].closeAnimationPanel) && ([Defs instance].isOpenScreenAnimation)) {
@@ -636,22 +645,22 @@
 	
 	if ((GAME_IS_PLAYING)&&((state & (GAME_STATE_GAMEPAUSE)) == 0)) {
 		
-		levelTime += TIME_STEP;
-        
+		levelTime += dt;
         
         if (isSlowMotion) {
             
-            timeSlowMotionPause += TIME_STEP;
+            /*timeSlowMotionPause += TIME_STEP;
             if (timeSlowMotionPause >= delaySlowMotionPause) {
                 timeSlowMotionPause = 0;
             } else {
                 return;
-            }
+            }*/
             
             timeSlowMotion += TIME_STEP;
             if (timeSlowMotion >= delaySlowMotion) {
                 isSlowMotion = NO;
                 timeSlowMotion = 0;
+                [[[CCDirector sharedDirector] scheduler] setTimeScale:1.0f];
             }
             
         }
@@ -730,8 +739,8 @@
         
         [self labelScoreBarUpdate];
         
-        timerAddBall += TIME_STEP;
-        if (timerAddBall >= timerDelayAddBall - (player.position.y/4000000)) {
+        timerAddBall += dt;
+        if (timerAddBall >= timerDelayAddBall - (levelTime/1000)) {
             float _playerVelocityX = player.velocity.x;
             float _playerVelocityY = player.velocity.y;
             
@@ -742,9 +751,9 @@
             if (_playerVelocityY < 0) _playerVelocityY = 0;
             
             float _velocityXCoeff = 1.2f;
-            float _velocityYCoeff = 2 + levelTime/60 + CCRANDOM_0_1()*(levelTime/300);
-            if (_velocityYCoeff < 4.6f) {
-                _velocityYCoeff = 4.6f;
+            float _velocityYCoeff = 2 + levelTime/24 + CCRANDOM_0_1()*(levelTime/100);
+            if (_velocityYCoeff < 4.8f) {
+                _velocityYCoeff = 4.8f;
             }
 
             int _ballCount = 1 + round(CCRANDOM_0_1());
@@ -759,7 +768,7 @@
                     
                     _bombPosition += CCRANDOM_MINUS1_1()*20;
                     
-                    [self addBall:_newBombType _point:ccp(player.position.x + _bombPosition, player.position.y - screenPlayerPositionY - elementRadius) _velocity:ccp(_playerVelocityX, _playerVelocityY + 4 + CCRANDOM_0_1()*2) _active:YES];
+                    [self addBall:_newBombType _point:ccp(player.position.x + _bombPosition, player.position.y - screenPlayerPositionY - elementRadius) _velocity:ccp(_playerVelocityX, _playerVelocityY + 6 + CCRANDOM_0_1()) _active:YES];
                 } else
                 if ((player.position.y >= 100000)&&(_ran > 5)) {
                     _newBombType = [ActorCircleTimeBomb class];
@@ -768,9 +777,9 @@
                     if (CCRANDOM_MINUS1_1() < 0) _bombPosition = -SCREEN_WIDTH*0.25f;
                     _bombPosition += CCRANDOM_MINUS1_1()*20;
                     
-                    [self addBall:_newBombType _point:ccp(player.position.x + _bombPosition, player.position.y - screenPlayerPositionY - elementRadius) _velocity:ccp(_playerVelocityX, _playerVelocityY + 4 + CCRANDOM_0_1()*2) _active:YES];
+                    [self addBall:_newBombType _point:ccp(player.position.x + _bombPosition, player.position.y - screenPlayerPositionY - elementRadius) _velocity:ccp(_playerVelocityX, _playerVelocityY + 6 + CCRANDOM_0_1()) _active:YES];
                 } else {
-                    [self addBall:_newBombType _point:ccp(player.position.x + (screenPlayerPositionX - elementRadius)*CCRANDOM_MINUS1_1(), player.position.y - screenPlayerPositionY - elementRadius) _velocity:ccp(_playerVelocityX + CCRANDOM_MINUS1_1()*_velocityXCoeff, _playerVelocityY + _velocityYCoeff) _active:YES];
+                    [self addBall:_newBombType _point:ccp(player.position.x + (screenPlayerPositionX - elementSize)*CCRANDOM_MINUS1_1(), player.position.y - screenPlayerPositionY - elementRadius) _velocity:ccp(_playerVelocityX + CCRANDOM_MINUS1_1()*_velocityXCoeff, _playerVelocityY + _velocityYCoeff) _active:YES];
                 }
             }
             
@@ -794,7 +803,7 @@
         
         
         
-        [[Defs instance].actorManager update];
+        [[Defs instance].actorManager update:delta];
         [self setCenterOfTheScreen:player.position];
         
         // делаем апдейт относительно текущей позиции игрока
@@ -806,7 +815,7 @@
     } else
         if (state == GAME_STATE_GAMEPREPARE) {
             if (firstBomb.isActive) {
-                [firstBomb update];
+                [firstBomb update:delta];
                 firstBomb.costume.position = ccp(screenPlayerPositionX + CCRANDOM_MINUS1_1()*2, (screenPlayerPositionY - 90) + CCRANDOM_MINUS1_1()*2);
                 firstBomb.costume.rotation = 0;
                 firstBomb.velocity = CGPointZero;

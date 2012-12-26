@@ -259,6 +259,8 @@
 		28733FEF166B9BB8003EEB86 /* square_bomb_1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 28733FE0166B9BB8003EEB86 /* square_bomb_1.wav */; };
 		28733FF0166B9BB8003EEB86 /* square_bomb_2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 28733FE1166B9BB8003EEB86 /* square_bomb_2.wav */; };
 		28733FF1166B9BB8003EEB86 /* square_bomb_3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 28733FE2166B9BB8003EEB86 /* square_bomb_3.wav */; };
+		287605191686DDDA0061A31A /* back_4-hd.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 287605171686DDDA0061A31A /* back_4-hd.jpg */; };
+		2876051A1686DDDA0061A31A /* back_4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 287605181686DDDA0061A31A /* back_4.jpg */; };
 		2886673C1658728E0089DEB1 /* CellsBackground.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2886673B1658728E0089DEB1 /* CellsBackground.mm */; };
 		288CA356166E12180078E31C /* gfx_paralax_2-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 288CA352166E12180078E31C /* gfx_paralax_2-hd.plist */; };
 		288CA357166E12180078E31C /* gfx_paralax_2-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 288CA353166E12180078E31C /* gfx_paralax_2-hd.pvr.ccz */; };
@@ -289,6 +291,10 @@
 		2898FE3C166D5AEB006B22F4 /* back_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2898FE3B166D5AEB006B22F4 /* back_1.jpg */; };
 		28A311D41669637500F32DFB /* bonus_coin_get.plist in Resources */ = {isa = PBXBuildFile; fileRef = 28A311D31669637500F32DFB /* bonus_coin_get.plist */; };
 		28BA4BAA1659C0EF00D2A2FA /* SpeedWall.mm in Sources */ = {isa = PBXBuildFile; fileRef = 28BA4BA91659C0EF00D2A2FA /* SpeedWall.mm */; };
+		28D56C2E168A768C007AE826 /* back_5-hd.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 28D56C2C168A768C007AE826 /* back_5-hd.jpg */; };
+		28D56C2F168A768C007AE826 /* back_5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 28D56C2D168A768C007AE826 /* back_5.jpg */; };
+		28D56C33168A780F007AE826 /* back_player-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 28D56C31168A780F007AE826 /* back_player-hd.png */; };
+		28D56C34168A780F007AE826 /* back_player.png in Resources */ = {isa = PBXBuildFile; fileRef = 28D56C32168A780F007AE826 /* back_player.png */; };
 		28F0CF1C165D62860066349E /* blackScreen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 28F0CF12165D62860066349E /* blackScreen.jpg */; };
 		28F0CF1D165D62860066349E /* credits_iPhone5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 28F0CF13165D62860066349E /* credits_iPhone5.jpg */; };
 		28F0CF1E165D62860066349E /* credits-hd.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 28F0CF14165D62860066349E /* credits-hd.jpg */; };
@@ -750,6 +756,8 @@
 		28733FE0166B9BB8003EEB86 /* square_bomb_1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = square_bomb_1.wav; sourceTree = "<group>"; };
 		28733FE1166B9BB8003EEB86 /* square_bomb_2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = square_bomb_2.wav; sourceTree = "<group>"; };
 		28733FE2166B9BB8003EEB86 /* square_bomb_3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = square_bomb_3.wav; sourceTree = "<group>"; };
+		287605171686DDDA0061A31A /* back_4-hd.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "back_4-hd.jpg"; sourceTree = "<group>"; };
+		287605181686DDDA0061A31A /* back_4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = back_4.jpg; sourceTree = "<group>"; };
 		2886673A1658728E0089DEB1 /* CellsBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellsBackground.h; sourceTree = "<group>"; };
 		2886673B1658728E0089DEB1 /* CellsBackground.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CellsBackground.mm; sourceTree = "<group>"; };
 		288CA352166E12180078E31C /* gfx_paralax_2-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "gfx_paralax_2-hd.plist"; sourceTree = "<group>"; };
@@ -784,6 +792,10 @@
 		28A311D31669637500F32DFB /* bonus_coin_get.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = bonus_coin_get.plist; sourceTree = "<group>"; };
 		28BA4BA81659C0EF00D2A2FA /* SpeedWall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeedWall.h; sourceTree = "<group>"; };
 		28BA4BA91659C0EF00D2A2FA /* SpeedWall.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SpeedWall.mm; sourceTree = "<group>"; };
+		28D56C2C168A768C007AE826 /* back_5-hd.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "back_5-hd.jpg"; sourceTree = "<group>"; };
+		28D56C2D168A768C007AE826 /* back_5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = back_5.jpg; sourceTree = "<group>"; };
+		28D56C31168A780F007AE826 /* back_player-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "back_player-hd.png"; path = "FlyBall/Resources/gfx/Screens/back_player-hd.png"; sourceTree = SOURCE_ROOT; };
+		28D56C32168A780F007AE826 /* back_player.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = back_player.png; path = FlyBall/Resources/gfx/Screens/back_player.png; sourceTree = SOURCE_ROOT; };
 		28F0CF12165D62860066349E /* blackScreen.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = blackScreen.jpg; path = FlyBall/Resources/gfx/Screens/blackScreen.jpg; sourceTree = SOURCE_ROOT; };
 		28F0CF13165D62860066349E /* credits_iPhone5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = credits_iPhone5.jpg; path = FlyBall/Resources/gfx/Screens/credits_iPhone5.jpg; sourceTree = SOURCE_ROOT; };
 		28F0CF14165D62860066349E /* credits-hd.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "credits-hd.jpg"; path = "FlyBall/Resources/gfx/Screens/credits-hd.jpg"; sourceTree = SOURCE_ROOT; };
@@ -1275,6 +1287,8 @@
 				28F0CF16165D62860066349E /* menu_back_iPhone5.jpg */,
 				28F0CF17165D62860066349E /* menu_back-hd.jpg */,
 				28F0CF18165D62860066349E /* menu_back.jpg */,
+				28D56C31168A780F007AE826 /* back_player-hd.png */,
+				28D56C32168A780F007AE826 /* back_player.png */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -1705,6 +1719,10 @@
 				288CA372166ED02F0078E31C /* back_2.jpg */,
 				28522F9B16700716005FC6BE /* back_3-hd.jpg */,
 				28522F9C16700716005FC6BE /* back_3.jpg */,
+				287605171686DDDA0061A31A /* back_4-hd.jpg */,
+				287605181686DDDA0061A31A /* back_4.jpg */,
+				28D56C2C168A768C007AE826 /* back_5-hd.jpg */,
+				28D56C2D168A768C007AE826 /* back_5.jpg */,
 			);
 			name = ParalaxBackground;
 			path = FlyBall/Resources/gfx/ParalaxBackground;
@@ -1913,6 +1931,12 @@
 				28522F9E16700716005FC6BE /* back_3.jpg in Resources */,
 				28522FA616701DAA005FC6BE /* gfx_cells-hd.pvr.ccz in Resources */,
 				28522FA716701DAA005FC6BE /* gfx_cells.pvr.ccz in Resources */,
+				287605191686DDDA0061A31A /* back_4-hd.jpg in Resources */,
+				2876051A1686DDDA0061A31A /* back_4.jpg in Resources */,
+				28D56C2E168A768C007AE826 /* back_5-hd.jpg in Resources */,
+				28D56C2F168A768C007AE826 /* back_5.jpg in Resources */,
+				28D56C33168A780F007AE826 /* back_player-hd.png in Resources */,
+				28D56C34168A780F007AE826 /* back_player.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

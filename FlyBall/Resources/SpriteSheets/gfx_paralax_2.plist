@@ -40,7 +40,7 @@
                 <key>x</key>
                 <integer>260</integer>
                 <key>y</key>
-                <integer>414</integer>
+                <integer>582</integer>
             </dict>
             <key>layer_2_3.png</key>
             <dict>
@@ -97,7 +97,7 @@
                 <key>x</key>
                 <integer>260</integer>
                 <key>y</key>
-                <integer>234</integer>
+                <integer>402</integer>
             </dict>
             <key>layer_2_6.png</key>
             <dict>
@@ -116,6 +116,25 @@
                 <key>x</key>
                 <integer>260</integer>
                 <key>y</key>
+                <integer>170</integer>
+            </dict>
+            <key>layer_2_7.png</key>
+            <dict>
+                <key>height</key>
+                <integer>166</integer>
+                <key>offsetX</key>
+                <real>0</real>
+                <key>offsetY</key>
+                <real>6</real>
+                <key>originalHeight</key>
+                <integer>256</integer>
+                <key>originalWidth</key>
+                <integer>256</integer>
+                <key>width</key>
+                <integer>246</integer>
+                <key>x</key>
+                <integer>260</integer>
+                <key>y</key>
                 <integer>2</integer>
             </dict>
         </dict>
@@ -128,7 +147,7 @@
             <key>size</key>
             <string>{512,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:f30788ff3241f14724ba3e21905fcb2a$</string>
+            <string>$TexturePacker:SmartUpdate:9c18a17d60c0f467700e811d095a50ff$</string>
             <key>textureFileName</key>
             <string>gfx_paralax_2.pvr.ccz</string>
         </dict>

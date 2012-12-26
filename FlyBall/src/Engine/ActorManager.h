@@ -27,7 +27,7 @@
 - (void) removeMarked;
 - (void) removeAll:(id)_type
 	   _exceptType:(NSString *)_exceptType;
-- (void) update;
+- (void) update:(ccTime)dt;
 - (void) deleteOutOfAreaActors;
 - (void) show:(BOOL)_flag;
 

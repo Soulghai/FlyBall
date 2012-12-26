@@ -31,7 +31,7 @@
 	return self;
 }
 
-- (void) update {
+- (void) update:(ccTime)dt {
     if (!isActive) return;
     
     [costume setRotation:costume.rotation + rotationSpeed];
@@ -46,7 +46,7 @@
     }
     
     
-    [super update];
+    [super update:dt];
 }
 
 - (void) loadCostume {

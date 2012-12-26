@@ -63,7 +63,7 @@
     [costume setDisplayFrame:frame];
 }
 
-- (void) update {
+- (void) update:(ccTime)dt {
     if (!isActive) return;
     
     [costume setRotation:costume.rotation + rotationSpeed];
@@ -77,7 +77,7 @@
     }
     [self setSpriteFrame:(int)timeBomb];
     
-    [super update];
+    [super update:dt];
 }
 
 - (void) addVelocity:(CGPoint)_value {

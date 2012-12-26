@@ -205,7 +205,7 @@ static void MainScene_remover() {
 	[gui update];
 	
 	if ((game.state	& (GAME_STATE_GAME|GAME_STATE_GAMEPREPARE)) != 0){
-		[game update];
+		[game update:dt];
 	}
     
     if ((game.state & (GAME_STATE_GAMEPAUSE))!= 0) {

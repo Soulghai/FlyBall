@@ -35,8 +35,11 @@
 	float slideRightTarget;
 	GUICheckBox *checkBoxOnline;
 	
+    BOOL isButtonPlayDown;
+    
+    GUIPanel *panelPlayerFlame;
 	GUIPanel *panelRestartGameProgress;
-	//GUIPanel *panelLogo;
+	GUIPanel *panelLogo;
 	GUIButton *btnReset;
     GUIButton *btnScore;
     GUIButton *btnAward;

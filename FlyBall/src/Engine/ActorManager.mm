@@ -111,12 +111,12 @@
 	}
 }
 
-- (void) update {
+- (void) update:(ccTime)dt {
 	Actor* actor;
 	//int _count = [actorsAll count];
 	for (actor in actorsAll) {
 		//actor = [actorsAll objectAtIndex:i];
-		[actor update];
+		[actor update:dt];
 	}
 	//for (eR:Spring in elasticRopes) eR.update();
 	//if (m_mouseJoint != nil) m_mouseJoint->SetTarget(b2Vec2(CInputMouse.cameraScrX * PhysVals.ratio, CInputMouse.cameraScrY * PhysVals.ratio));

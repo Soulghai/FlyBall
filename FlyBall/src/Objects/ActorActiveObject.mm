@@ -116,15 +116,15 @@
     //velocity = ccp(MAX(velocity.x, _value.x), MAX(velocity.y, _value.y));
 }
 
-- (void) update {
+- (void) update:(ccTime)dt {
     if (!isActive) return;
     
-    costume.position = ccp(costume.position.x+velocity.x, costume.position.y+velocity.y);
+    costume.position = ccp(costume.position.x+velocity.x*dt, costume.position.y+velocity.y*dt);
     
     //Действуем на шарик гравитацией
-    velocity.y -= gravitation;
+    velocity.y -= gravitation*dt;
 	
-	[super update];
+	[super update:dt];
 }
 
 - (void) removeCostume {

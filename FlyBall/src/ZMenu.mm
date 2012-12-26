@@ -91,6 +91,10 @@
     [[GameStandartFunctions instance] playCloseScreenAnimation:0];
 }
 
+- (void) buttonPlayTouch {
+    isButtonPlayDown = YES;
+}
+
 - (void) buttonPlayAction {    
 	[self settingSliderFastHide];
     
@@ -262,10 +266,18 @@
         
         panelDef.group = GAME_STATE_MENU;
         
-        /*panelDef.parentFrame = [MainScene instance].gui;
-        panelDef.sprName = @"logo.png";
+        panelDef.parentFrame = [MainScene instance].gui;
         panelDef.enabled = NO;
-		panelLogo = [[MainScene instance].gui addItem:(id)panelDef _pos:ccp(SCREEN_WIDTH_HALF,350)];*/
+		panelDef.sprName = @"back_player_flayer.png";
+        panelDef.zIndex = 10;
+		panelPlayerFlame = [[MainScene instance].gui addItem:(id)panelDef _pos:ccp(SCREEN_WIDTH_HALF,240)];
+        
+        panelDef.parentFrame = self;
+        panelDef.sprName = nil;
+        panelDef.sprFileName = @"back_player.png";
+        panelDef.enabled = NO;
+		panelLogo = [[MainScene instance].gui addItem:(id)panelDef _pos:ccp(SCREEN_WIDTH_HALF,630)];
+        [panelLogo.spr setAnchorPoint:ccp(0.5f,1)];
         
         panelDef.group = GAME_STATE_NONE;
         panelDef.sprName = nil;
@@ -301,10 +313,10 @@
 		btnPlayDef.sprDownName = @"btnPlayDown.png";
 		btnPlayDef.group = GAME_STATE_MENU;
 		btnPlayDef.objCreator = self;
-		btnPlayDef.func = @selector(buttonPlayClick);
+		btnPlayDef.func = @selector(buttonPlayTouch);
         btnPlayDef.sound = @"play_on.wav";
 		
-		btnPlay = [[MainScene instance].gui addItem:(id)btnPlayDef _pos:ccp(SCREEN_WIDTH_HALF,200)];
+		btnPlay = [[MainScene instance].gui addItem:(id)btnPlayDef _pos:ccp(173,170)];
         
         btnPlayDef.group = GAME_STATE_MENU;
         btnPlayDef.sprName = @"btnShop.png";
@@ -496,6 +508,18 @@
         }
     }
     
+    [btnPlay setPosition:ccp(173 + CCRANDOM_MINUS1_1()*1, 170 + CCRANDOM_MINUS1_1()*1)];
+    
+    [panelPlayerFlame.spr setOpacity:200 + int(CCRANDOM_0_1()*55)];
+    
+    if (isButtonPlayDown) {
+        [panelLogo setPosition:ccpAdd(panelLogo.spr.position, ccp(0,8))];
+        [panelPlayerFlame setPosition:ccpAdd(panelPlayerFlame.spr.position, ccp(0,8))];
+        if (panelLogo.spr.position.y > 1400) [self buttonPlayClick];
+    } else {
+        [panelPlayerFlame setPosition:ccp(SCREEN_WIDTH_HALF + CCRANDOM_MINUS1_1()*1, 240 + CCRANDOM_MINUS1_1()*1)];
+    }
+    
 	if (isSlideLeftAction) {		
 		[leftMenuSlider setPosition:ccp(leftMenuSlider.spr.position.x,
 									   [[Utils instance] aspire:leftMenuSlider.spr.position.y _aim:slideLeftTarget
@@ -552,7 +576,10 @@
         [checkBoxSettings.spr setRotation:0];
         
         [self checkAvailableUpdates];
-
+        
+        isButtonPlayDown = NO;
+        [panelLogo setPosition:ccp(SCREEN_WIDTH_HALF,630)];
+        [panelPlayerFlame setPosition:ccp(SCREEN_WIDTH_HALF,240)];
 	} else { 
 		if (backSpr.parent != nil) [backSpr removeFromParentAndCleanup:YES];
 	}

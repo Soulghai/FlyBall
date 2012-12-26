@@ -42,14 +42,14 @@
                 <key>y</key>
                 <integer>2</integer>
             </dict>
-            <key>startPlatform-hd.png</key>
+            <key>startPlatform.png</key>
             <dict>
                 <key>height</key>
-                <integer>1022</integer>
+                <integer>760</integer>
                 <key>offsetX</key>
                 <real>0</real>
                 <key>offsetY</key>
-                <real>-1</real>
+                <real>-132</real>
                 <key>originalHeight</key>
                 <integer>1024</integer>
                 <key>originalWidth</key>
@@ -61,25 +61,6 @@
                 <key>y</key>
                 <integer>2</integer>
             </dict>
-            <key>startPlatform.png</key>
-            <dict>
-                <key>height</key>
-                <integer>512</integer>
-                <key>offsetX</key>
-                <real>0</real>
-                <key>offsetY</key>
-                <real>0</real>
-                <key>originalHeight</key>
-                <integer>512</integer>
-                <key>originalWidth</key>
-                <integer>768</integer>
-                <key>width</key>
-                <integer>768</integer>
-                <key>x</key>
-                <integer>2</integer>
-                <key>y</key>
-                <integer>1026</integer>
-            </dict>
         </dict>
         <key>metadata</key>
         <dict>
@@ -88,16 +69,16 @@
             <key>realTextureFileName</key>
             <string>gfx_cells-hd.pvr.ccz</string>
             <key>size</key>
-            <string>{2048,2048}</string>
+            <string>{2048,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:bb0cae9d4ef834ab3d0d3923289be0fd$</string>
+            <string>$TexturePacker:SmartUpdate:ea502a741e47e130310710fbf088da62$</string>
             <key>textureFileName</key>
             <string>gfx_cells-hd.pvr.ccz</string>
         </dict>
         <key>texture</key>
         <dict>
             <key>height</key>
-            <integer>2048</integer>
+            <integer>1024</integer>
             <key>width</key>
             <integer>2048</integer>
         </dict>

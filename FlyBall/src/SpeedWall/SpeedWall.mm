@@ -25,7 +25,7 @@
         
         delayWarning = 3;
         timeWaiting = 0;
-        delayWaitingDefault = 20;
+        delayWaitingDefault = 30;
         delayWaiting = delayWaitingDefault + CCRANDOM_0_1()*10;
         timeShowing = 0;
         delayShowing = [Defs instance].speedWallDelayShowingCoeff;
@@ -38,7 +38,7 @@
         
         halfWidth = costume.contentSize.width*0.5f*costume.scaleX;
         
-        showingSpeed = -30;
+        showingSpeed = -35;
         addSpeedCoeff = [Defs instance].speedWallAccelerationCoeff;
         addSpeedCoeffOld = -1;
         
@@ -128,7 +128,7 @@
                     costume.position = ccp(costume.position.x, -[Defs instance].objectFrontLayer.position.y + SCREEN_HEIGHT_HALF);
                     positionChangeCoeff = ccp(positionChangeCoeff.x, -SCREEN_HEIGHT);
                     isHiding = NO;
-                    [self deactivate];
+                    [self stopCurrentWall];
                 }
         } else {
             positionChangeCoeff = ccpAdd(positionChangeCoeff, ccp(-[MainScene instance].game.player.velocity.x, 0));
@@ -152,6 +152,7 @@
         timeWaiting += TIME_STEP;
         if ((timeWaiting >= delayWaiting - delayWarning)&&((emitterWarningAcc.parent == nil)&&(emitterWarningDecc.parent == nil))) {
             isTrigger = !isTrigger;
+            
             if (isTrigger) {
                 addSpeedCoeff = [Defs instance].speedWallAccelerationCoeff;
                 [emitterWarningAcc scheduleUpdate];
@@ -231,6 +232,12 @@
     [self hideEmitterWarning];
     [self show:NO];
     isTrigger = NO;
+}
+
+- (void) stopCurrentWall {
+    BOOL _tmpIsTrigger = isTrigger;
+    [self deactivate];
+    isTrigger = _tmpIsTrigger;
 }
 
 - (void) outOfArea {
