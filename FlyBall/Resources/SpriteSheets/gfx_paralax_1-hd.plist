@@ -38,7 +38,7 @@
                 <key>width</key>
                 <integer>130</integer>
                 <key>x</key>
-                <integer>516</integer>
+                <integer>694</integer>
                 <key>y</key>
                 <integer>312</integer>
             </dict>
@@ -95,7 +95,45 @@
                 <key>width</key>
                 <integer>102</integer>
                 <key>x</key>
-                <integer>648</integer>
+                <integer>826</integer>
+                <key>y</key>
+                <integer>312</integer>
+            </dict>
+            <key>layer_1_6.png</key>
+            <dict>
+                <key>height</key>
+                <integer>390</integer>
+                <key>offsetX</key>
+                <real>0</real>
+                <key>offsetY</key>
+                <real>0</real>
+                <key>originalHeight</key>
+                <integer>512</integer>
+                <key>originalWidth</key>
+                <integer>512</integer>
+                <key>width</key>
+                <integer>512</integer>
+                <key>x</key>
+                <integer>2</integer>
+                <key>y</key>
+                <integer>946</integer>
+            </dict>
+            <key>layer_1_7.png</key>
+            <dict>
+                <key>height</key>
+                <integer>208</integer>
+                <key>offsetX</key>
+                <real>0</real>
+                <key>offsetY</key>
+                <real>2</real>
+                <key>originalHeight</key>
+                <integer>256</integer>
+                <key>originalWidth</key>
+                <integer>256</integer>
+                <key>width</key>
+                <integer>176</integer>
+                <key>x</key>
+                <integer>516</integer>
                 <key>y</key>
                 <integer>312</integer>
             </dict>
@@ -107,16 +145,16 @@
             <key>realTextureFileName</key>
             <string>gfx_paralax_1-hd.pvr.ccz</string>
             <key>size</key>
-            <string>{1024,1024}</string>
+            <string>{1024,2048}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:22f59e35b651b5f41c734c78529d7125$</string>
+            <string>$TexturePacker:SmartUpdate:a0b7f5e5d828c6daf687074e45369643$</string>
             <key>textureFileName</key>
             <string>gfx_paralax_1-hd.pvr.ccz</string>
         </dict>
         <key>texture</key>
         <dict>
             <key>height</key>
-            <integer>1024</integer>
+            <integer>2048</integer>
             <key>width</key>
             <integer>1024</integer>
         </dict>

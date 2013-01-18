@@ -22,8 +22,6 @@
 		[actorsAll retain];
 		actorsToRemove = [NSMutableArray arrayWithCapacity:50];
 		[actorsToRemove retain];
-		elasticRopes = [NSMutableArray arrayWithCapacity:10];
-		[elasticRopes retain];
 		idCounter = 0;
 	}
 	return self;
@@ -118,8 +116,6 @@
 		//actor = [actorsAll objectAtIndex:i];
 		[actor update:dt];
 	}
-	//for (eR:Spring in elasticRopes) eR.update();
-	//if (m_mouseJoint != nil) m_mouseJoint->SetTarget(b2Vec2(CInputMouse.cameraScrX * PhysVals.ratio, CInputMouse.cameraScrY * PhysVals.ratio));
 	[self removeMarked];
 }
 

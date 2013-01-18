@@ -68,6 +68,9 @@
          &&([Defs instance].coinsCount >= [[[Defs instance].prices objectAtIndex:[Defs instance].speedWallDeccelerationCoeffLevel] intValue])) ++_counter;
     if (([Defs instance].playerArmorLevel < UPGRADE_LEVEL_COUNT)
         &&([Defs instance].coinsCount >= [[[Defs instance].prices objectAtIndex:[Defs instance].playerArmorLevel] intValue])) ++_counter;
+    if (([Defs instance].launchBombLevel < UPGRADE_LEVEL_COUNT)
+        &&([Defs instance].coinsCount >= [[[Defs instance].prices objectAtIndex:[Defs instance].launchBombLevel] intValue])) ++_counter;
+    
     return _counter;
 }
 
@@ -75,7 +78,6 @@
     [btnBonusAccelerationDelay setEnabled:_flag];
     [btnBonusAccelerationPower setEnabled:_flag];
     [btnBonusGetChance setEnabled:_flag];
-    [btnCoinsGetChance setEnabled:_flag];
     [btnBonusGodModeTime setEnabled:_flag];
     [btnPlayerSpeedLimit setEnabled:_flag];
     [btnSpeedWallAccelerationCoeff setEnabled:_flag];
@@ -84,7 +86,10 @@
     [btnPlayerMagnetDistance setEnabled:_flag];
     [btnPlayerBombSlow setEnabled:_flag];
     [btnPlayerGodModeAfterCrashTime setEnabled:_flag];
+    [btnCoinsGetChance setEnabled:_flag];
     [btnPlayerArmor setEnabled:_flag];
+    [btnLaunchBomb setEnabled:_flag];
+    
 }
 
 - (void) buyCoinsPanelShow {
@@ -194,7 +199,10 @@
     [self setCorrectIconFrame:btnPlayerMagnetPower _level:[Defs instance].playerMagnetPowerLevel];
     [self setCorrectIconFrame:btnPlayerBombSlow _level:[Defs instance].playerBombSlowLevel];
     [self setCorrectIconFrame:btnPlayerGodModeAfterCrashTime _level:[Defs instance].playerGodModeAfterCrashTimeLevel];
+    [self setCorrectIconFrame:btnCoinsGetChance _level:[Defs instance].coinsGetChanceLevel];
     [self setCorrectIconFrame:btnPlayerArmor _level:[Defs instance].playerArmorLevel];
+    [self setCorrectIconFrame:btnLaunchBomb _level:[Defs instance].launchBombLevel];
+    
 }
 
 //---------------------------------------------------
@@ -433,8 +441,8 @@
 - (void) buttonBuySpeedWallAccelerationCoeffClick {
     if ([Defs instance].speedWallAccelerationCoeffLevel < UPGRADE_LEVEL_COUNT) {
         [self showPanelBuyInformation:NSLocalizedString(@"buttonBuySpeedWallAccelerationCoeffCaption","")
-                       _currValueText:[NSString stringWithFormat:@"%@ = %1.1f", NSLocalizedString(@"buttonBuyCurrValue",""), [Defs instance].speedWallAccelerationCoeff]
-                       _nextValueText:[NSString stringWithFormat:@"%@ = %1.1f", NSLocalizedString(@"buttonBuyNextValue",""), [Defs instance].speedWallAccelerationCoeff + SPEEDWALL_ACCELERATION_ADD_COEFF]
+                       _currValueText:[NSString stringWithFormat:@"%@ = %1.1f sec", NSLocalizedString(@"buttonBuyCurrValue",""), [Defs instance].speedWallAccelerationCoeff]
+                       _nextValueText:[NSString stringWithFormat:@"%@ = %1.1f sec", NSLocalizedString(@"buttonBuyNextValue",""), [Defs instance].speedWallAccelerationCoeff + SPEEDWALL_ACCELERATION_ADD_COEFF]
                              _sprName:[NSString stringWithFormat:@"%@%i.jpg", [self getSpriteName:btnSpeedWallAccelerationCoeff.sprName], [Defs instance].speedWallAccelerationCoeffLevel]
                                _price:[NSString stringWithFormat:@"%i", [[[Defs instance].prices objectAtIndex:[Defs instance].speedWallAccelerationCoeffLevel] intValue]]
                                 _func:@selector(buttonBuySpeedWallAccelerationCoeffAction)];
@@ -467,8 +475,8 @@
 - (void) buttonBuySpeedWallDeccelerationCoeffClick {
     if ([Defs instance].speedWallDeccelerationCoeffLevel < UPGRADE_LEVEL_COUNT) {
         [self showPanelBuyInformation:NSLocalizedString(@"buttonBuySpeedWallDeccelerationCoeffCaption","")
-                       _currValueText:[NSString stringWithFormat:@"%@ = %i", NSLocalizedString(@"buttonBuyCurrValue",""), int(100*[Defs instance].speedWallDeccelerationCoeff)]
-                       _nextValueText:[NSString stringWithFormat:@"%@ = %i", NSLocalizedString(@"buttonBuyNextValue",""), int(100*([Defs instance].speedWallDeccelerationCoeff + SPEEDWALL_DECCELERARION_ADD_COEFF))]
+                       _currValueText:[NSString stringWithFormat:@"%@ = %i sec", NSLocalizedString(@"buttonBuyCurrValue",""), int(100*[Defs instance].speedWallDeccelerationCoeff)]
+                       _nextValueText:[NSString stringWithFormat:@"%@ = %i sec", NSLocalizedString(@"buttonBuyNextValue",""), int(100*([Defs instance].speedWallDeccelerationCoeff + SPEEDWALL_DECCELERARION_ADD_COEFF))]
                              _sprName:[NSString stringWithFormat:@"%@%i.jpg", [self getSpriteName:btnSpeedWallDeccelerationCoeff.sprName], [Defs instance].speedWallDeccelerationCoeffLevel]
                                _price:[NSString stringWithFormat:@"%i", [[[Defs instance].prices objectAtIndex:[Defs instance].speedWallDeccelerationCoeffLevel] intValue]]
                                 _func:@selector(buttonBuySpeedWallDeccelerationCoeffAction)];
@@ -642,6 +650,40 @@
                              _sprName:[NSString stringWithFormat:@"%@%i.jpg", [self getSpriteName:btnPlayerArmor.sprName], [Defs instance].playerArmorLevel]
                                _price:[NSString stringWithFormat:@"%i", [[[Defs instance].prices objectAtIndex:[Defs instance].playerArmorLevel] intValue]]
                                 _func:@selector(buttonBuyPlayerArmorAction)];
+    }
+}
+
+- (void) buttonBuyLaunchBombLevelAction {
+    [self panelBuyInformationHide];
+    
+    int _price = [[[Defs instance].prices objectAtIndex:[Defs instance].launchBombLevel] intValue];
+    
+    if ([Defs instance].coinsCount > _price) {
+        ++[Defs instance].launchBombLevel;
+        [MyData setStoreValue:@"launchBombLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].launchBombLevel]];
+        [Defs instance].coinsCount -= _price;
+        [MyData setStoreValue:@"coinsCount" value:[NSString stringWithFormat:@"%i",[Defs instance].coinsCount]];
+        [MyData encodeDict:[MyData getDictForSaveData]];
+        
+        [self setCorrectIconFrame:btnLaunchBomb _level:[Defs instance].launchBombLevel];
+        [labelCoinsCount setText:[NSString stringWithFormat:@"%i", [Defs instance].coinsCount]];
+        [panelCoinTotal setPosition:ccp(labelCoinsCount.spr.position.x - labelCoinsCount.text.length*9, labelCoinsCount.spr.position.y+3)];
+    } else {
+        CCLOG(@"Maybe buy some coins??? :)");
+        
+        [self buyCoinsPanelShow];
+        
+    }
+}
+
+- (void) buttonBuyLaunchBombLevelClick {
+    if ([Defs instance].launchBombLevel < UPGRADE_LEVEL_COUNT) {
+        [self showPanelBuyInformation:NSLocalizedString(@"buttonBuyLaunchBombLevelCaption","")
+                       _currValueText:[NSString stringWithFormat:@"%@ = %i", NSLocalizedString(@"buttonBuyCurrValue",""), [Defs instance].launchBombLevel]
+                       _nextValueText:[NSString stringWithFormat:@"%@ = %i", NSLocalizedString(@"buttonBuyNextValue",""), [Defs instance].launchBombLevel + 1]
+                             _sprName:[NSString stringWithFormat:@"%@%i.jpg", [self getSpriteName:btnLaunchBomb.sprName], [Defs instance].launchBombLevel]
+                               _price:[NSString stringWithFormat:@"%i", [[[Defs instance].prices objectAtIndex:[Defs instance].launchBombLevel] intValue]]
+                                _func:@selector(buttonBuyLaunchBombLevelAction)];
     }
 }
 
@@ -833,6 +875,9 @@
         btnDef.func = @selector(buttonBuyPlayerArmorClick);
         btnPlayerArmor = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(43, 156)];
         
+        btnDef.func = @selector(buttonBuyLaunchBombLevelClick);
+        btnLaunchBomb = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(121, 156)];
+        
         
        /* for (int i = 0; i < 6; i++) {
             btnDef.sprName = [NSString stringWithFormat:@"icon_upgrade_%i.jpg",i];
@@ -885,6 +930,8 @@
         
         [labelCoinsCount setText:[NSString stringWithFormat:@"%i", [Defs instance].coinsCount]];
         [panelCoinTotal setPosition:ccp(labelCoinsCount.spr.position.x - labelCoinsCount.text.length*9, labelCoinsCount.spr.position.y+3)];
+        
+        [self allUpgradeIconsSetEnabled:YES];
 	} else { 
 		if (backSpr.parent != nil) [backSpr removeFromParentAndCleanup:YES];
 	}

@@ -13,7 +13,6 @@
 @interface ActorManager : CCNode {
 	NSMutableArray *actorsToRemove;
 	int idCounter;
-	NSMutableArray *elasticRopes;
 }
 
 @property (nonatomic, assign) NSMutableArray *actorsAll;

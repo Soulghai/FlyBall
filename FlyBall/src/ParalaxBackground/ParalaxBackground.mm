@@ -58,12 +58,15 @@
             [_spr setAnchorPoint:ccp(1, 0)];
         }
         
-        paralax_2 = [NSArray arrayWithObjects://[CCSprite spriteWithSpriteFrameName:@"layer_2_1.png"],
-                       [CCSprite spriteWithSpriteFrameName:@"layer_2_2.png"],
+        paralax_2 = [NSArray arrayWithObjects:
+                     [CCSprite spriteWithSpriteFrameName:@"layer_2_1.png"],
+                     [CCSprite spriteWithSpriteFrameName:@"layer_2_2.png"],
+                     [CCSprite spriteWithSpriteFrameName:@"layer_2_3.png"],
                      [CCSprite spriteWithSpriteFrameName:@"layer_2_4.png"],
                      [CCSprite spriteWithSpriteFrameName:@"layer_2_5.png"],
                      [CCSprite spriteWithSpriteFrameName:@"layer_2_6.png"],
                      [CCSprite spriteWithSpriteFrameName:@"layer_2_7.png"],
+                     [CCSprite spriteWithSpriteFrameName:@"layer_2_8.png"],
                        nil];
         [paralax_2 retain];
         
@@ -79,11 +82,14 @@
         paralax_2_distanceToNextObject = SCREEN_HEIGHT_HALF*2;
         
         //Паралакс слой под ногами
-        paralax_1 = [NSArray arrayWithObjects:[CCSprite spriteWithSpriteFrameName:@"layer_1_1.png"],
+        paralax_1 = [NSArray arrayWithObjects:
+                     [CCSprite spriteWithSpriteFrameName:@"layer_1_1.png"],
                      [CCSprite spriteWithSpriteFrameName:@"layer_1_2.png"],
                      [CCSprite spriteWithSpriteFrameName:@"layer_1_3.png"],
                      [CCSprite spriteWithSpriteFrameName:@"layer_1_4.png"],
                      [CCSprite spriteWithSpriteFrameName:@"layer_1_5.png"],
+                     [CCSprite spriteWithSpriteFrameName:@"layer_1_6.png"],
+                     [CCSprite spriteWithSpriteFrameName:@"layer_1_7.png"],
                      nil];
         [paralax_1 retain];
         
@@ -144,10 +150,15 @@
 }
 
 - (void) addParalax2Object:(float)_posY {
-    int _ranID = int(round(CCRANDOM_0_1()*(paralax_2.count-1)));
+    
+    int _yCoeff = int([MainScene instance].game.player.position.y / 30000);
+    
+    int _ranID = _yCoeff*4 + int(round(CCRANDOM_0_1()*3));
+    if (_ranID > paralax_2.count-1) _ranID = paralax_2.count-1;
     CCSprite* _spr = [paralax_2 objectAtIndex:_ranID];
     // Если объект не на экране, то добавляем его
     // Если на экране, то просто пропускаем эту итерацию
+    
     if (!_spr.parent) {
         if (CCRANDOM_0_1() > 0.5f) [_spr setFlipX:YES];
         [[Defs instance].spriteSheetParalax_2 addChild:_spr];
@@ -158,7 +169,10 @@
 }
 
 - (void) addParalax1Object:(float)_posY {
-    int _ranID = int(round(CCRANDOM_0_1()*(paralax_1.count-1)));
+    int _yCoeff = int([MainScene instance].game.player.position.y / 30000);
+    
+    int _ranID = _yCoeff*4 + int(round(CCRANDOM_0_1()*3));
+    if (_ranID > paralax_1.count-1) _ranID = paralax_1.count-1;
     CCSprite* _spr = [paralax_1 objectAtIndex:_ranID];
     // Если объект не на экране, то добавляем его
     // Если на экране, то просто пропускаем эту итерацию

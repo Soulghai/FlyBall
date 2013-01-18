@@ -14,7 +14,7 @@
 #import "SpeedWall.h"
 #import "ActorActiveBombObject.h"
 #import "ParalaxBackground.h"
-#import "ActorCircleBomb.h"
+#import "ActorCircleLaunchBomb.h"
 
 @interface ZGame : CCNode {	
 	BOOL isVisible;
@@ -42,7 +42,7 @@
     
     CCSprite *startPlatform;
     
-    ActorCircleBomb* firstBomb;
+    ActorCircleLaunchBomb* firstBomb;
     
     int collectedCoins;
     

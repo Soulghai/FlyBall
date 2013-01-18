@@ -76,10 +76,10 @@ static void GameStandartFunctions_remover() {
 - (void) playCurrentBackgroundMusicTrack{
     if (![Defs instance].isMusicMute) {
         if ([Defs instance].currentMusicTheme == 0) {
-            [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"expand_it_bomb.mp3 "];
+            [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"theme_menu.mp3"];
         } else
         if ([Defs instance].currentMusicTheme == 1) {
-            [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"expand_it_the_island_v2.mp3"];
+            [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"theme_game_1.mp3"];
         } else
             if ([Defs instance].currentMusicTheme == 2) {
                 [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"expand_it_volcano_v2.mp3"];
@@ -91,7 +91,7 @@ static void GameStandartFunctions_remover() {
                         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"expand_it_caves_v2.mp3"];
                     }else
                         if ([Defs instance].currentMusicTheme == 5) {
-                            [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"expand_it_bomb.mp3"];
+                            [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"theme_menu.mp3"];
                         }
     }
 }

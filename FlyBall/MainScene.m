@@ -153,7 +153,7 @@ static void MainScene_remover() {
 	
     [Defs instance].currentMusicTheme = 0;
     
-    [Defs instance].isMusicMute = YES;
+    //[Defs instance].isMusicMute = YES;
     
 	[[GameStandartFunctions instance] playCurrentBackgroundMusicTrack];
 	

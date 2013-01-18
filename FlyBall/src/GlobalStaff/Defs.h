@@ -126,6 +126,8 @@
 
 @property (nonatomic, readwrite) int playerArmorLevel;
 
+@property (nonatomic, readwrite) int launchBombLevel;
+
 +(Defs*) instance;
 
 - (void)dealloc;

@@ -93,6 +93,10 @@
 
 - (void) buttonPlayTouch {
     isButtonPlayDown = YES;
+    [btnPlay show:NO];
+    [self settingSliderFastHide];
+    [checkBoxSettings show:NO];
+    [btnShop show:NO];
 }
 
 - (void) buttonPlayAction {    
@@ -104,9 +108,12 @@
         [Defs instance].isPlayGameBefore = YES;   
         //[[Defs instance].userSettings setBool:YES forKey:@"isPlayGameBefore"];
         [MyData setStoreValue:@"isPlayGameBefore" value:@"YES"];
-        [Defs instance].currentMusicTheme = 1;
-        [[GameStandartFunctions instance] playCurrentBackgroundMusicTrack];
+        //[Defs instance].currentMusicTheme = 1;
+        //[[GameStandartFunctions instance] playCurrentBackgroundMusicTrack];
     }
+    
+    [Defs instance].currentMusicTheme = 1;
+    [[GameStandartFunctions instance] playCurrentBackgroundMusicTrack];
     
     [[MainScene instance].game levelStart];
     
@@ -476,6 +483,12 @@
         panelDef.parentFrame = btnShop.spr;
         panelDef.sprName = @"exclamation_mark.png";
         panelExclamationMark = [[MainScene instance].gui addItem:(id)panelDef _pos:ccp(35, 35)];
+        
+        panelDef.group = GAME_STATE_MENU;
+        panelDef.parentFrame = panelLogo.spr;
+        panelDef.sprName = @"star_menu.png";
+        logoGlassesShine = [[MainScene instance].gui addItem:(id)panelDef _pos:ccp(115, 1050)];
+        isLogoGlassesShineExpand = YES;
 		}
 	return self;
 }
@@ -513,12 +526,31 @@
     [panelPlayerFlame.spr setOpacity:200 + int(CCRANDOM_0_1()*55)];
     
     if (isButtonPlayDown) {
-        [panelLogo setPosition:ccpAdd(panelLogo.spr.position, ccp(0,8))];
-        [panelPlayerFlame setPosition:ccpAdd(panelPlayerFlame.spr.position, ccp(0,8))];
-        if (panelLogo.spr.position.y > 1400) [self buttonPlayClick];
+        [panelLogo setPosition:ccpAdd(panelLogo.spr.position, ccp(0,10))];
+        [panelPlayerFlame setPosition:ccpAdd(panelPlayerFlame.spr.position, ccp(0,10))];
+        if (panelLogo.spr.position.y > 1500) [self buttonPlayClick];
     } else {
         [panelPlayerFlame setPosition:ccp(SCREEN_WIDTH_HALF + CCRANDOM_MINUS1_1()*1, 240 + CCRANDOM_MINUS1_1()*1)];
+        if (isLogoGoingLeft) {
+            if (panelLogo.spr.position.x < SCREEN_WIDTH_HALF - 3) isLogoGoingLeft = NO;
+            else [panelLogo setPosition:ccpAdd(panelLogo.spr.position, ccp(-0.07,0))];
+        } else {
+            if (panelLogo.spr.position.x > SCREEN_WIDTH_HALF + 3) isLogoGoingLeft = YES;
+            else [panelLogo setPosition:ccpAdd(panelLogo.spr.position, ccp(0.07,0))];
+        }
     }
+    
+    logoGlassesShine.spr.rotation += 1;
+    if (logoGlassesShine.spr.rotation >= 360) logoGlassesShine.spr.rotation -= 360;
+    
+    if (isLogoGlassesShineExpand) {
+        logoGlassesShine.spr.scale += 0.005f;
+        if (logoGlassesShine.spr.scale >= 1.1f) isLogoGlassesShineExpand = NO;
+    } else {
+        logoGlassesShine.spr.scale -= 0.005f;
+        if (logoGlassesShine.spr.scale <= 0.9f) isLogoGlassesShineExpand = YES;
+    }
+    
     
 	if (isSlideLeftAction) {		
 		[leftMenuSlider setPosition:ccp(leftMenuSlider.spr.position.x,

@@ -83,6 +83,25 @@
             <key>layer_2_5.png</key>
             <dict>
                 <key>height</key>
+                <integer>330</integer>
+                <key>offsetX</key>
+                <real>-1</real>
+                <key>offsetY</key>
+                <real>11</real>
+                <key>originalHeight</key>
+                <integer>512</integer>
+                <key>originalWidth</key>
+                <integer>512</integer>
+                <key>width</key>
+                <integer>492</integer>
+                <key>x</key>
+                <integer>516</integer>
+                <key>y</key>
+                <integer>2</integer>
+            </dict>
+            <key>layer_2_6.png</key>
+            <dict>
+                <key>height</key>
                 <integer>360</integer>
                 <key>offsetX</key>
                 <real>11</real>
@@ -99,7 +118,7 @@
                 <key>y</key>
                 <integer>804</integer>
             </dict>
-            <key>layer_2_6.png</key>
+            <key>layer_2_7.png</key>
             <dict>
                 <key>height</key>
                 <integer>468</integer>
@@ -118,24 +137,24 @@
                 <key>y</key>
                 <integer>334</integer>
             </dict>
-            <key>layer_2_7.png</key>
+            <key>layer_2_8.png</key>
             <dict>
                 <key>height</key>
-                <integer>330</integer>
+                <integer>338</integer>
                 <key>offsetX</key>
-                <real>-1</real>
+                <real>-2</real>
                 <key>offsetY</key>
-                <real>11</real>
+                <real>-7</real>
                 <key>originalHeight</key>
                 <integer>512</integer>
                 <key>originalWidth</key>
                 <integer>512</integer>
                 <key>width</key>
-                <integer>492</integer>
+                <integer>508</integer>
                 <key>x</key>
-                <integer>516</integer>
-                <key>y</key>
                 <integer>2</integer>
+                <key>y</key>
+                <integer>1634</integer>
             </dict>
         </dict>
         <key>metadata</key>
@@ -147,7 +166,7 @@
             <key>size</key>
             <string>{1024,2048}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:1b5db7e1ba361d0b514038e717d021cd$</string>
+            <string>$TexturePacker:SmartUpdate:3bf61968570f7107e5fe7acfe087e329$</string>
             <key>textureFileName</key>
             <string>gfx_paralax_2-hd.pvr.ccz</string>
         </dict>

@@ -33,7 +33,7 @@
             <key>btnBack.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{162,754},{51,51}}</string>
+                <string>{{52,779},{51,51}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -46,7 +46,7 @@
             <key>btnBackDown.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{0,774},{51,51}}</string>
+                <string>{{109,772},{51,51}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -163,7 +163,7 @@
             <key>btnLike_down.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{57,670},{52,52}}</string>
+                <string>{{122,719},{52,52}}</string>
                 <key>offset</key>
                 <string>{1,-2}</string>
                 <key>rotated</key>
@@ -189,7 +189,7 @@
             <key>btnMenu.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{0,610},{56,56}}</string>
+                <string>{{65,670},{56,56}}</string>
                 <key>offset</key>
                 <string>{0,-1}</string>
                 <key>rotated</key>
@@ -215,7 +215,7 @@
             <key>btnMenuCheckedDown.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{320,742},{50,50}}</string>
+                <string>{{227,777},{50,50}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -228,7 +228,7 @@
             <key>btnMenuDown.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{385,710},{50,50}}</string>
+                <string>{{436,710},{50,50}}</string>
                 <key>offset</key>
                 <string>{0,-1}</string>
                 <key>rotated</key>
@@ -358,7 +358,7 @@
             <key>btnNoDown.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{52,775},{50,50}}</string>
+                <string>{{320,742},{50,50}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -371,7 +371,7 @@
             <key>btnOk.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{0,667},{56,54}}</string>
+                <string>{{0,673},{56,54}}</string>
                 <key>offset</key>
                 <string>{1,-2}</string>
                 <key>rotated</key>
@@ -384,7 +384,7 @@
             <key>btnOkDown.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{104,771},{50,50}}</string>
+                <string>{{385,710},{50,50}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -501,7 +501,7 @@
             <key>btnRestart.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{52,723},{51,51}}</string>
+                <string>{{175,754},{51,51}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -514,7 +514,7 @@
             <key>btnRestartDown.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{110,719},{51,51}}</string>
+                <string>{{268,725},{51,51}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -527,7 +527,7 @@
             <key>btnSetting.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{268,725},{51,51}}</string>
+                <string>{{333,690},{51,51}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -553,7 +553,7 @@
             <key>btnSettingCheckedDown.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{214,754},{50,50}}</string>
+                <string>{{0,780},{50,50}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -566,7 +566,7 @@
             <key>btnSettingDown.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{333,690},{51,51}}</string>
+                <string>{{0,728},{51,51}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -618,7 +618,7 @@
             <key>btnSoundDown.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{0,722},{51,51}}</string>
+                <string>{{57,727},{51,51}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -927,6 +927,19 @@
                 <key>sourceSize</key>
                 <string>{45,192}</string>
             </dict>
+            <key>star_menu.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{0,610},{62,64}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{1,0},{62,64}}</string>
+                <key>sourceSize</key>
+                <string>{64,64}</string>
+            </dict>
             <key>window_reset.png</key>
             <dict>
                 <key>frame</key>
@@ -950,7 +963,7 @@
             <key>size</key>
             <string>{512,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:9a595c1bd55073d6880e0e8096e4931c$</string>
+            <string>$TexturePacker:SmartUpdate:2a9519edb4f218e8740dfbc1b2752e93$</string>
             <key>textureFileName</key>
             <string>gfx_gui.png</string>
         </dict>

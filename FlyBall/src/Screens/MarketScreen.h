@@ -48,6 +48,8 @@
     GUIButton* btnPlayerGodModeAfterCrashTime;
     GUIButton* btnPlayerBombSlow;
     GUIButton* btnPlayerArmor;
+    GUIButton* btnLaunchBomb;
+    
 }
 
 - (int) calcAvailableUpdatesCount;

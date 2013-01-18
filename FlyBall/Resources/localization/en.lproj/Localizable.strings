@@ -84,6 +84,7 @@ In App Purchase Dialog
 "buttonBuyPlayerBombSlowCaption" = "Bomb Acceleration";
 "buttonBuyPlayerGodModeAfterCrashTimeCaption" = "God Mode After Crash Time";
 "buttonBuyPlayerArmorLevelCaption" = "Player Armor";
+"buttonBuyLaunchBombLevelCaption" = "Launch Bomb Level";
 
 
 

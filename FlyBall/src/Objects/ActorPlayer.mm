@@ -418,6 +418,12 @@
             [self showBonusCell:NO];
             [self setCurrentBodySprite];
         }
+    } else {
+        if (![Defs instance].isSoundMute) {
+            int _ranID = (int)round(CCRANDOM_0_1()*3);
+            [[SimpleAudioEngine sharedEngine] playEffect:[NSString stringWithFormat:@"player_say_%i.wav",_ranID]];
+            [self setCrazyFace];
+        }
     }
 }
 

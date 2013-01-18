@@ -37,9 +37,13 @@
 	
     BOOL isButtonPlayDown;
     
+    BOOL isLogoGoingLeft;
+    
     GUIPanel *panelPlayerFlame;
 	GUIPanel *panelRestartGameProgress;
 	GUIPanel *panelLogo;
+    GUIPanel *logoGlassesShine;
+    BOOL isLogoGlassesShineExpand;
 	GUIButton *btnReset;
     GUIButton *btnScore;
     GUIButton *btnAward;

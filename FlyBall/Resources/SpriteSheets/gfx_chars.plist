@@ -422,7 +422,102 @@
                 <key>y</key>
                 <integer>68</integer>
             </dict>
-            <key>mega_bomb.png</key>
+            <key>launchBomb_0.png</key>
+            <dict>
+                <key>height</key>
+                <integer>90</integer>
+                <key>offsetX</key>
+                <real>1</real>
+                <key>offsetY</key>
+                <real>0</real>
+                <key>originalHeight</key>
+                <integer>90</integer>
+                <key>originalWidth</key>
+                <integer>90</integer>
+                <key>width</key>
+                <integer>82</integer>
+                <key>x</key>
+                <integer>2</integer>
+                <key>y</key>
+                <integer>2</integer>
+            </dict>
+            <key>launchBomb_1.png</key>
+            <dict>
+                <key>height</key>
+                <integer>90</integer>
+                <key>offsetX</key>
+                <real>1</real>
+                <key>offsetY</key>
+                <real>0</real>
+                <key>originalHeight</key>
+                <integer>90</integer>
+                <key>originalWidth</key>
+                <integer>90</integer>
+                <key>width</key>
+                <integer>82</integer>
+                <key>x</key>
+                <integer>2</integer>
+                <key>y</key>
+                <integer>2</integer>
+            </dict>
+            <key>launchBomb_2.png</key>
+            <dict>
+                <key>height</key>
+                <integer>90</integer>
+                <key>offsetX</key>
+                <real>1</real>
+                <key>offsetY</key>
+                <real>0</real>
+                <key>originalHeight</key>
+                <integer>90</integer>
+                <key>originalWidth</key>
+                <integer>90</integer>
+                <key>width</key>
+                <integer>82</integer>
+                <key>x</key>
+                <integer>2</integer>
+                <key>y</key>
+                <integer>2</integer>
+            </dict>
+            <key>launchBomb_3.png</key>
+            <dict>
+                <key>height</key>
+                <integer>90</integer>
+                <key>offsetX</key>
+                <real>1</real>
+                <key>offsetY</key>
+                <real>0</real>
+                <key>originalHeight</key>
+                <integer>90</integer>
+                <key>originalWidth</key>
+                <integer>90</integer>
+                <key>width</key>
+                <integer>82</integer>
+                <key>x</key>
+                <integer>2</integer>
+                <key>y</key>
+                <integer>2</integer>
+            </dict>
+            <key>launchBomb_4.png</key>
+            <dict>
+                <key>height</key>
+                <integer>90</integer>
+                <key>offsetX</key>
+                <real>1</real>
+                <key>offsetY</key>
+                <real>0</real>
+                <key>originalHeight</key>
+                <integer>90</integer>
+                <key>originalWidth</key>
+                <integer>90</integer>
+                <key>width</key>
+                <integer>82</integer>
+                <key>x</key>
+                <integer>2</integer>
+                <key>y</key>
+                <integer>2</integer>
+            </dict>
+            <key>launchBomb_5.png</key>
             <dict>
                 <key>height</key>
                 <integer>90</integer>
@@ -641,7 +736,7 @@
             <key>size</key>
             <string>{256,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:8e1af914dac7add1c7cd6fed823ced4b$</string>
+            <string>$TexturePacker:SmartUpdate:8693f1b2e2f405b6ef7ae07f5746b2cd$</string>
             <key>textureFileName</key>
             <string>gfx_chars.pvr.ccz</string>
         </dict>

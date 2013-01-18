@@ -27,7 +27,7 @@
 #import "ActorCircleBonus.h"
 #import "CellsBackground.h"
 #import "SpeedWall.h"
-#import "CCScheduler.h"
+#import "ActorCircleLaunchBomb.h"
 
 @implementation ZGame
 
@@ -87,6 +87,8 @@
     [Defs instance].playerGodModeAfterCrashTime = GODMODE_AFTERCRASH_TIME_DEFAULT;
     [Defs instance].playerGodModeAfterCrashTimeLevel = 0;
     [Defs instance].playerArmorLevel = 0;
+    [Defs instance].launchBombLevel = 0;
+    
     
     [MyData setStoreValue:@"coinsCount" value:@"0"];
     [MyData setStoreValue:@"bestScore" value:@"0"];
@@ -120,6 +122,7 @@
     [MyData setStoreValue:@"playerGodModeAfterCrashTime" value:[NSString stringWithFormat:@"%f",[Defs instance].playerGodModeAfterCrashTime]];
     [MyData setStoreValue:@"playerGodModeAfterCrashTimeLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].playerGodModeAfterCrashTimeLevel]];
     [MyData setStoreValue:@"playerArmorLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].playerArmorLevel]];
+    [MyData setStoreValue:@"launchBombLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].launchBombLevel]];
     
     [MyData encodeDict:[MyData getDictForSaveData]];
     
@@ -188,6 +191,8 @@
             [Defs instance].playerGodModeAfterCrashTime = [[MyData getStoreValue:@"playerGodModeAfterCrashTime"] floatValue];
             [Defs instance].playerGodModeAfterCrashTimeLevel  = [[MyData getStoreValue:@"playerGodModeAfterCrashTimeLevel"] intValue];
             [Defs instance].playerArmorLevel  = [[MyData getStoreValue:@"playerArmorLevel"] intValue];
+            [Defs instance].launchBombLevel  = [[MyData getStoreValue:@"launchBombLevel"] intValue];
+            
         }
         
         [Defs instance].coinsCount = 1000;
@@ -228,12 +233,8 @@
         
         GUILabelTTFDef *_labelTTFDef = [GUILabelTTFDef node];
         _labelTTFDef.group = GAME_STATE_GAME|GAME_STATE_GAMEPREPARE|GAME_STATE_GAMEPAUSE;
-        /*_labelTTFDef.text = @"0";
-        scoreStrPos = ccp(SCREEN_WIDTH_HALF, SCREEN_HEIGHT - 20);
-        _labelTTFDef.textColor = ccc3(255, 255, 255);
-        scoreStr =[[MainScene instance].gui addItem:(id)_labelTTFDef _pos:scoreStrPos];*/
         
-        _labelTTFDef.alignement = kCCTextAlignmentLeft;
+        /*_labelTTFDef.alignement = kCCTextAlignmentLeft;
         _labelTTFDef.textColor = ccc3(255, 150, 0);
         _labelTTFDef.text = @"";
         labelScoreStr1 =[[MainScene instance].gui addItem:(id)_labelTTFDef _pos:ccp(1, screenPlayerPositionY - screenPlayerPositionY/1.5f)];
@@ -242,7 +243,7 @@
         labelScoreStr2 =[[MainScene instance].gui addItem:(id)_labelTTFDef _pos:ccp(1, screenPlayerPositionY)];
         
         _labelTTFDef.text = @"160";
-        labelScoreStr3 =[[MainScene instance].gui addItem:(id)_labelTTFDef _pos:ccp(1,screenPlayerPositionY + screenPlayerPositionY/1.5f)];
+        labelScoreStr3 =[[MainScene instance].gui addItem:(id)_labelTTFDef _pos:ccp(1,screenPlayerPositionY + screenPlayerPositionY/1.5f)];*/
         
         // hint for start game
         _labelTTFDef.group = GAME_STATE_GAMEPREPARE;
@@ -285,6 +286,8 @@
         [startPlatform setPosition:ccp(SCREEN_WIDTH_HALF,0)];
         //[startPlatform setScale:2];
         [startPlatform retain];
+        
+        firstBomb = [[ActorCircleLaunchBomb alloc] init:[Defs instance].spriteSheetChars _location:ccp(screenPlayerPositionX, screenPlayerPositionY - 90)];
 	}
 	return (self);
 }
@@ -394,16 +397,13 @@
     
     [player activate];
     //[player addVelocity:ccp(0,4)];
-    //player.position = ccp(-100,100);
     [self setCenterOfTheScreen:player.position];
     
-    firstBomb = (ActorCircleBomb*)[self addBall:[ActorCircleBomb class] _point:ccp(player.position.x, player.position.y - 90) _velocity:ccp(0,0) _active:YES];
-    firstBomb.costume.rotation = 0;
-    
-    
+    [firstBomb activate];
+
     timerAddBall = -0.3f;
     
-    [self labelScoreBarUpdate];
+    //[self labelScoreBarUpdate];
     //[cells restartParameters];
     [paralaxBackground restartParameters];
     [speedWall deactivate];
@@ -412,8 +412,6 @@
     timeSlowMotionPause = 0;
     isSlowMotion = NO;
     [[[CCDirector sharedDirector] scheduler] setTimeScale:1.0f];
-    
-    [self labelScoreBarUpdate];
     
     [self show:YES];
     
@@ -426,9 +424,11 @@
     GAME_IS_PLAYING = YES;
     state = GAME_STATE_GAME;
     [[MainScene instance].gui show:state];
-    [player addVelocity:ccp(0,4)];
+    [player addVelocity:firstBomb.velocity];
     
-    [self addBall:[ActorCircleBomb class] _point:ccp(player.position.x, player.position.y - screenPlayerPositionY) _velocity:ccp(0,14) _active:YES];
+    [self addBall:[ActorCircleBomb class] _point:ccp(player.position.x, player.position.y - screenPlayerPositionY) _velocity:ccp(0, 5 + firstBomb.velocity.y) _active:YES];
+    
+    [firstBomb touch];
 }
 
 - (void) levelRestart {
@@ -484,7 +484,7 @@
     [MyData encodeDict:[MyData getDictForSaveData]];
 }
 
-- (void) labelScoreBarUpdate {
+/*- (void) labelScoreBarUpdate {
     [labelScoreStr1 setPosition:ccp(1, SCREEN_HEIGHT-(int)(player.position.y - SCREEN_HEIGHT_HALF/1.5f) % SCREEN_HEIGHT)];
     [labelScoreStr2 setPosition:ccp(1, SCREEN_HEIGHT-(int)(player.position.y) % SCREEN_HEIGHT)];
     [labelScoreStr3 setPosition:ccp(1, SCREEN_HEIGHT-(int)(player.position.y + SCREEN_HEIGHT_HALF/1.5f) % SCREEN_HEIGHT)];
@@ -529,7 +529,7 @@
             }
     }
     [labelScoreStr3 setText:_strScoreValue];
-}
+}*/
 
 - (void) bombExplosion:(ActorActiveBombObject*)_tempActor {
     float _tempActorX = _tempActor.costume.position.x + [Defs instance].objectFrontLayer.position.x;
@@ -540,7 +540,7 @@
     
     if (_distance > 200) return;
     
-    float _power = (1 - _distance/200)*12.0f;
+    float _power = (1 - _distance/200)*13.0f;
     
     float _angle = CC_DEGREES_TO_RADIANS([Utils GetAngleBetweenPt1:ccp(screenPlayerPositionX, screenPlayerPositionY) andPt2:ccp(_tempActorX,_tempActorY)]);
     
@@ -737,7 +737,7 @@
             }
         }
         
-        [self labelScoreBarUpdate];
+        //[self labelScoreBarUpdate];
         
         timerAddBall += dt;
         if (timerAddBall >= timerDelayAddBall - (levelTime/1000)) {
@@ -745,13 +745,13 @@
             float _playerVelocityY = player.velocity.y;
             
             if (player.isBonusSpeed) {
-                _playerVelocityY -= [Defs instance].bonusAccelerationPower*2;
+                _playerVelocityY -= [Defs instance].bonusAccelerationPower;
             }
             
             if (_playerVelocityY < 0) _playerVelocityY = 0;
             
             float _velocityXCoeff = 1.2f;
-            float _velocityYCoeff = 2 + levelTime/24 + CCRANDOM_0_1()*(levelTime/100);
+            float _velocityYCoeff = 2 + levelTime/23 + CCRANDOM_0_1()*(levelTime/100);
             if (_velocityYCoeff < 4.8f) {
                 _velocityYCoeff = 4.8f;
             }
@@ -814,12 +814,8 @@
         [player addVelocity:([speedWall checkToCollide:player.position])];
     } else
         if (state == GAME_STATE_GAMEPREPARE) {
-            if (firstBomb.isActive) {
-                [firstBomb update:delta];
-                firstBomb.costume.position = ccp(screenPlayerPositionX + CCRANDOM_MINUS1_1()*2, (screenPlayerPositionY - 90) + CCRANDOM_MINUS1_1()*2);
-                firstBomb.costume.rotation = 0;
-                firstBomb.velocity = CGPointZero;
-            }
+            [firstBomb update:delta];
+            firstBomb.costume.position = ccp(screenPlayerPositionX + CCRANDOM_MINUS1_1()*2, (screenPlayerPositionY - 90) + CCRANDOM_MINUS1_1()*2);
         }
 
 }
@@ -894,15 +890,12 @@
 			} else
             
             if (state == GAME_STATE_GAMEPREPARE) {
-                if (firstBomb.isActive) {
-                    firstBomb.costume.position = ccp(screenPlayerPositionX, screenPlayerPositionY - 90);
-                    float _distanceToActor = [[Utils instance] distance:firstBomb.costume.position.x + [Defs instance].objectFrontLayer.position.x _y1:firstBomb.costume.position.y + [Defs instance].objectFrontLayer.position.y _x2:_touchPos.x _y2:_touchPos.y];
-                        if (_distanceToActor <= bombTouchSize) {
-                            [firstBomb touch];
-                            [self startGameSession];
-                        }
-                    return YES;
-                }  
+                firstBomb.costume.position = ccp(screenPlayerPositionX, screenPlayerPositionY - 90);
+                float _distanceToActor = [[Utils instance] distance:firstBomb.costume.position.x + [Defs instance].objectFrontLayer.position.x _y1:firstBomb.costume.position.y + [Defs instance].objectFrontLayer.position.y _x2:_touchPos.x _y2:_touchPos.y];
+                    if (_distanceToActor <= bombTouchSize) {
+                        [self startGameSession];
+                    }
+                return YES;
 			}
 
 		}

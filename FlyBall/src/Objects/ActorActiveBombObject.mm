@@ -13,6 +13,7 @@
 #import "Utils.h"
 #import "MainScene.h"
 #import "GameCenter.h"
+#import "BoomManager.h"
 
 @implementation ActorActiveBombObject
 
@@ -93,6 +94,8 @@
         emitterBoom.position = ccpAdd(costume.position, [Defs instance].objectFrontLayer.position);
         if ((emitterBoom)&&(emitterBoom.parent == nil))
             [[MainScene instance].game addChild:emitterBoom];
+        
+        [BombManager addObject:costume.position];
         
         [self deactivate];
 	}	
