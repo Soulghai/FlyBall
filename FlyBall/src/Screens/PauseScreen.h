@@ -34,6 +34,7 @@
     
     //float marketGoSpeed;
     BOOL isShadowAnimationClose;
+    BOOL isPauseHeroRotateRight;
 }
 
 //@property (nonatomic, retain) GUIButton *buttonPassLevel;

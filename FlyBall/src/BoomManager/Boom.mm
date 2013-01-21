@@ -8,37 +8,58 @@
 #import "Boom.h"
 #import "globalParam.h"
 #import "Defs.h"
+#import "MainScene.h"
 
 @implementation Boom
 
-@synthesize itemID;
 @synthesize isActive;
 @synthesize costume;
 
 - (id) init{
 	if ((self = [super init])) {		
-		[[Defs instance].actorManager add:self];
 		costume = nil;
-		parentFrame = nil;
+		parentFrame = [Defs instance].spriteSheetChars;
 		
 		isVisible = NO;
         
         isActive = NO;
+        
+        delayShowing = 0.3f;
+        
+        [self load];
 	}
 	return self;
 }
 
 - (void) load{
-    costume = [CCSprite spriteWithSpriteFrameName:@"btnPlay.png"];
+    costume = [CCSprite spriteWithSpriteFrameName:@"boomShine.png"];
+    [costume setScale:3.125f];
 	[costume retain];
 }
 
+- (void) setPosition:(CGPoint)_pos
+                  _z:(int)_z{
+    [costume setPosition:_pos];
+    
+    zCoord = _z;
+    
+    positionCoeff = ccp(_pos.x - [MainScene instance].game.player.position.x, _pos.y - [MainScene instance].game.player.position.y);
+}
+
 - (void) update:(ccTime)dt {
-	
+	timeShowing += dt;
+    if (timeShowing >= delayShowing) {
+        [self deactivate];
+        [self show:NO];
+    } else {
+        [costume setPosition:ccpAdd([MainScene instance].game.player.position, positionCoeff)];
+    }
 }
 
 - (void) activate {
     isActive = YES;
+    
+    timeShowing = 0;
 }
 
 - (void) deactivate {
@@ -46,7 +67,6 @@
 }
 
 - (void) outOfArea {
-
 
 }
 
@@ -63,7 +83,7 @@
 	
 	if (_flag) {
 		if ((isActive) && (!costume.parent)) {
-            [parentFrame addChild:costume];
+            [parentFrame addChild:costume z:zCoord];
         } else return;
 	}
 	else

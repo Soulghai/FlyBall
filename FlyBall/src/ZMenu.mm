@@ -482,11 +482,11 @@
 		panelDef.group = GAME_STATE_NONE;
         panelDef.parentFrame = btnShop.spr;
         panelDef.sprName = @"exclamation_mark.png";
-        panelExclamationMark = [[MainScene instance].gui addItem:(id)panelDef _pos:ccp(35, 35)];
+        panelExclamationMark = [[MainScene instance].gui addItem:(id)panelDef _pos:ccp(43, 43)];
         
         panelDef.group = GAME_STATE_MENU;
         panelDef.parentFrame = panelLogo.spr;
-        panelDef.sprName = @"star_menu.png";
+        panelDef.sprName = @"lens_flare.png";
         logoGlassesShine = [[MainScene instance].gui addItem:(id)panelDef _pos:ccp(115, 1050)];
         isLogoGlassesShineExpand = YES;
 		}

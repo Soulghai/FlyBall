@@ -30,8 +30,8 @@
         CCSprite *_spr;
         for (int i = 0; i < [cellsHighMap count]; i++) {
             _spr = [cellsHighMap objectAtIndex:i];
-            [_spr setAnchorPoint:CGPointZero];
-            [_spr setPosition:ccp(0, i*(cellHeight*cellScaleCoeff))];
+            [_spr setAnchorPoint:CGPointZero];    
+            [_spr setPosition:ccp(0,i*(cellHeight*cellScaleCoeff))];
             [_spr setScale:cellScaleCoeff];
         }
         
@@ -67,6 +67,8 @@
                      [CCSprite spriteWithSpriteFrameName:@"layer_2_6.png"],
                      [CCSprite spriteWithSpriteFrameName:@"layer_2_7.png"],
                      [CCSprite spriteWithSpriteFrameName:@"layer_2_8.png"],
+                     [CCSprite spriteWithSpriteFrameName:@"layer_2_9.png"],
+                     [CCSprite spriteWithSpriteFrameName:@"layer_2_10.png"],
                        nil];
         [paralax_2 retain];
         
@@ -90,6 +92,8 @@
                      [CCSprite spriteWithSpriteFrameName:@"layer_1_5.png"],
                      [CCSprite spriteWithSpriteFrameName:@"layer_1_6.png"],
                      [CCSprite spriteWithSpriteFrameName:@"layer_1_7.png"],
+                     [CCSprite spriteWithSpriteFrameName:@"layer_1_8.png"],
+                     [CCSprite spriteWithSpriteFrameName:@"layer_1_9.png"],
                      nil];
         [paralax_1 retain];
         

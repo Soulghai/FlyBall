@@ -14,9 +14,11 @@
 
 @property (nonatomic, assign) NSMutableArray *actorsAll;
 
++ (BoomManager*) instance;
 - (id) init;
-- (void) add:(CGPoint*)_pos;
-- (void) removeActors;
+- (void) add:(CGPoint)_pos
+          _z:(int)_z;
+- (void) removeAll;
 - (void) update:(ccTime)dt;
 - (void) show:(BOOL)_flag;
 

@@ -77,13 +77,13 @@
     
     panelDef.parentFrame = [MainScene instance].gui;
     panelDef.group = GAME_STATE_GAMEPAUSE;
-    panelDef.sprName = @"Dino_zzzz.png";
+    panelDef.sprName = @"sleep_pause.png";
     
     pauseHeroZZZ = [[MainScene instance].gui addItem:panelDef _pos:ccp(SCREEN_WIDTH_HALF,SCREEN_HEIGHT_HALF)];
     
     panelDef.sprName = @"pause_zzz_1.png";
     
-    pauseZZZSpr = [[MainScene instance].gui addItem:panelDef _pos:ccp(SCREEN_WIDTH_HALF - 60, SCREEN_HEIGHT_HALF+70)];
+    pauseZZZSpr = [[MainScene instance].gui addItem:panelDef _pos:ccp(SCREEN_WIDTH_HALF - 70, SCREEN_HEIGHT_HALF+140)];
     
     NSArray *animArr = [NSArray arrayWithObjects:
                         [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"pause_zzz_1.png"],
@@ -124,6 +124,8 @@
     checkBoxSoundDef.checked = [Defs instance].isSoundMute;
     
     btnSound = [[MainScene instance].gui addItem:(id)checkBoxSoundDef _pos:ccp(SCREEN_WIDTH - 30, 210)];
+    
+    isPauseHeroRotateRight = YES;
 }
 
 - (void) show:(BOOL)_flag {
@@ -171,6 +173,14 @@
         if (btnSound.spr.opacity < 250) btnSound.spr.opacity+= 25; else btnSound.spr.opacity = 255;
         if (pauseHeroZZZ.spr.opacity < 250) pauseHeroZZZ.spr.opacity+= 25; else pauseHeroZZZ.spr.opacity = 255;
         if (pauseZZZSpr.spr.opacity < 250) pauseZZZSpr.spr.opacity+= 25; else pauseZZZSpr.spr.opacity = 255;
+    }
+    
+    if (isPauseHeroRotateRight) {
+        [pauseHeroZZZ.spr setRotation:pauseHeroZZZ.spr.rotation + 0.1f];
+        if (pauseHeroZZZ.spr.rotation >= 4) isPauseHeroRotateRight = NO;
+    } else {
+        [pauseHeroZZZ.spr setRotation:pauseHeroZZZ.spr.rotation - 0.1f];
+        if (pauseHeroZZZ.spr.rotation <= -4) isPauseHeroRotateRight = YES;
     }
     
     /*CGPoint pos = btnCredits.spr.position;

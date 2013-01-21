@@ -54,7 +54,7 @@
         [emitterBonusSpeedFire retain];
         [emitterBonusSpeedFire unscheduleUpdate];
         
-        friction = 0.015f;
+        friction = 0.02f;
         
         isMayBlink = YES;
         blinkDelay = 1;

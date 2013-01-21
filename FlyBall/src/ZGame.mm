@@ -28,6 +28,7 @@
 #import "CellsBackground.h"
 #import "SpeedWall.h"
 #import "ActorCircleLaunchBomb.h"
+#import "BoomManager.h"
 
 @implementation ZGame
 
@@ -288,7 +289,10 @@
         [startPlatform retain];
         
         firstBomb = [[ActorCircleLaunchBomb alloc] init:[Defs instance].spriteSheetChars _location:ccp(screenPlayerPositionX, screenPlayerPositionY - 90)];
-	}
+        
+        [[BoomManager alloc] init];
+    
+    }
 	return (self);
 }
 
@@ -544,7 +548,7 @@
     
     float _angle = CC_DEGREES_TO_RADIANS([Utils GetAngleBetweenPt1:ccp(screenPlayerPositionX, screenPlayerPositionY) andPt2:ccp(_tempActorX,_tempActorY)]);
     
-    [player addVelocity:ccp(_power*0.5f*cos(_angle),_power*sin(_angle))];
+    [player addVelocity:ccp(_power*0.4f*cos(_angle),_power*sin(_angle))];
 }
 
 - (void) doBonusEffect:(int)_bonusID {
@@ -801,7 +805,7 @@
             [scoreStr setString:[NSString stringWithFormat:@"%i",scoreLevel]];
         }
         
-        
+        [[BoomManager instance] update:dt];
         
         [[Defs instance].actorManager update:delta];
         [self setCenterOfTheScreen:player.position];

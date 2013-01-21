@@ -16,31 +16,67 @@
 
 @synthesize actorsAll;
 
-- (id) init{
-	if ((self = [super init])) {		
-		actorsAll = [NSMutableArray arrayWithCapacity:15];
-		[actorsAll retain];
-        
-        for (int i = 0; i < 15; i++) {
-            <#statements#>
-        }
+static BoomManager *instance_;
+
+static void instance_remover() {
+	[instance_ release];
+}
+
++ (BoomManager*)instance {
+	@synchronized(self) {
+		if( instance_ == nil ) {
+			[[self alloc] init];
+		}
 	}
+	
+	return instance_;
+}
+
+- (id) init{
+	self = [super init];
+	instance_ = self;
+	
+	atexit(instance_remover);
+    
+    actorsAll = [NSMutableArray arrayWithCapacity:15];
+    [actorsAll retain];
+    
+    for (int i = 0; i < 15; i++) {
+        [actorsAll addObject:[[Boom alloc] init]];
+    }
+    
 	return self;
 }
 
-- (void) add:(CGPoint*)_pos {
-	[actorsAll addObject:_a];
-	CCLOG(@"[ADD] actorCnt:%d",[actorsAll count]);
+- (Boom*) findInActive {
+    Boom *_b = nil;
+    
+    int _count = [actorsAll count];
+	for (int i = 0; i < _count; i++) {
+		_b = [actorsAll objectAtIndex:i];
+		if (!_b.isActive) return _b;
+    }
+    
+    return _b;
+}
+
+- (void) add:(CGPoint)_pos
+          _z:(int)_z{
+	Boom *_b = [self findInActive];
+    if (_b) {
+        [_b activate];
+        [_b setPosition:_pos _z:_z];
+        [_b show:YES];
+    }
 }
 
 - (void) removeAll {
-	Boom* actor;
+	Boom* _actor;
 	int _count = [actorsAll count];
 	for (int i = 0; i < _count; i++) {
-		actor = [actorsAll objectAtIndex:i];
-		if (((_exceptType == nil) || (!([actor isKindOfClass:NSClassFromString(_exceptType)])))
-			&& ((_type == nil) || ([actor isKindOfClass:[_type class]]))) {
-			[self markRemoveActor:actor];
+		_actor = [actorsAll objectAtIndex:i];
+		if (_actor.isActive) {
+			[_actor removeCostume];
 		}
 	}
 }

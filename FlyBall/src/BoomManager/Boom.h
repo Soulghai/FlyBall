@@ -9,21 +9,27 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
-@interface Boon : NSObject {
-	int itemID;
+@interface Boom : NSObject {
 	CCSprite *costume;
 	CCNode *parentFrame;
 	
     BOOL isActive;
 	BOOL isVisible;
+    
+    float delayShowing;
+    float timeShowing;
+    
+    CGPoint positionCoeff;
+    int zCoord;
 }
 
-@property (nonatomic, assign) int itemID;
 @property (nonatomic, assign) BOOL isActive;
 @property (nonatomic, assign) CCSprite *costume;
 
 - (id) init;
 - (void) load;
+- (void) setPosition:(CGPoint)_pos
+                  _z:(int)_z;
 - (void) update:(ccTime)dt;
 - (void) activate;
 - (void) deactivate;

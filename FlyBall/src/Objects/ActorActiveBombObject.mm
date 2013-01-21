@@ -93,9 +93,9 @@
         
         emitterBoom.position = ccpAdd(costume.position, [Defs instance].objectFrontLayer.position);
         if ((emitterBoom)&&(emitterBoom.parent == nil))
-            [[MainScene instance].game addChild:emitterBoom];
+            [[MainScene instance].game addChild:emitterBoom z:150];
         
-        [BombManager addObject:costume.position];
+        [[BoomManager instance] add:costume.position _z:costume.zOrder];
         
         [self deactivate];
 	}	

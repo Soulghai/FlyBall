@@ -105,7 +105,7 @@
         panelDef.group = GAME_STATE_NONE;
         panelDef.parentFrame = _btnShop.spr;
         panelDef.sprName = @"exclamation_mark.png";
-        panelExclamationMark = [[MainScene instance].gui addItem:(id)panelDef _pos:ccp(35, 35)];
+        panelExclamationMark = [[MainScene instance].gui addItem:(id)panelDef _pos:ccp(43, 43)];
         
         panelDef.parentFrame = [MainScene instance].gui;
         //panelDef.parentFrame = [Defs];
