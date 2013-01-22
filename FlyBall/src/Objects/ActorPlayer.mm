@@ -61,6 +61,7 @@
         blinkTime = 0;
         isEyeOpen = YES;
         
+        isGoodFace = NO;
         isCrazyFace = NO;
         
         currShoesID = 0;
@@ -95,6 +96,10 @@
     CCSpriteFrame* frame = nil;
     if (bonusCell.parent) return;
     
+    if (isGoodFace) {
+        frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"player_speed.png"];
+    } else
+        
     if (isCrazyFace) {
         frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"player_speed.png"];
     } else
@@ -213,6 +218,13 @@
     [self setCurrentBodySprite];
 }
 
+- (void) setGoodFace {
+    isGoodFace = YES;
+    timeGoodFace = 0;
+    
+    [self setCurrentBodySprite];
+}
+
 - (void) hideBonusSpeedFire {
     if (emitterBonusSpeedFire) {
         [emitterBonusSpeedFire unscheduleUpdate];
@@ -265,7 +277,9 @@
     
     isGodMode = NO;
     isCrazyFace = NO;
+    isGoodFace = NO;
     timeCrazyFace = 0;
+    timeGoodFace = 0;
     
     isMayBlink = YES;
     blinkDelay = 1;
@@ -307,7 +321,8 @@
     
     if (velocity.y > [Defs instance].playerSpeedLimit) velocity.y = [Defs instance].playerSpeedLimit;
     
-    if (_value.y > 3) [self setCrazyFace];
+    if (_value.y ) [self setCrazyFace]; else
+        if (_value.y > 0) [self setGoodFace];
 }
 
 - (void) update:(ccTime)dt {
@@ -383,6 +398,13 @@
         }
     }
     
+    if (isGoodFace) {
+        timeGoodFace += TIME_STEP;
+        if (timeGoodFace >= 0.4f) {
+            isGoodFace = NO;
+            [self setCurrentBodySprite];
+        }
+    } else
     if (isCrazyFace) {
         timeCrazyFace += TIME_STEP;
         if (timeCrazyFace >= 0.4f) {

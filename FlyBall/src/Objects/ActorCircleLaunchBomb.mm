@@ -134,7 +134,7 @@
     
     [self getCurrentSprite];
 
-    velocity = ccp(0, 4 + level*4);
+    velocity = ccp(0, 7 + level*7);
     
     [self show:YES];
 }

@@ -33,7 +33,7 @@
     [[GameStandartFunctions instance] playCloseScreenAnimation:1];
 }*/
 
-- (void) buttonLevelsAction {
+- (void) buttonShowMenuAction {
 	[[MainScene instance].game prepareToHideGameScreen];
     [[MainScene instance] showMenu];
     [FlurryAnalytics logEvent:ANALYTICS_PAUSE_SCREEN_BUTTON_LEVELS_CLICKED];
@@ -98,7 +98,7 @@
     btnDef.sprDownName = @"btnBackDown.png";
     btnDef.group = GAME_STATE_GAMEPAUSE;
     btnDef.objCreator = self;
-    btnDef.func = @selector(buttonLevelsAction);
+    btnDef.func = @selector(buttonShowMenuAction);
     btnDef.sound = @"button_click.wav";
     
     btnLevels = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(SCREEN_WIDTH_HALF - 40, 40)];

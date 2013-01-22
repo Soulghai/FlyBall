@@ -18,6 +18,7 @@
 - (id) init;
 - (void) add:(CGPoint)_pos
           _z:(int)_z;
+- (void) inactiveAll;
 - (void) removeAll;
 - (void) update:(ccTime)dt;
 - (void) show:(BOOL)_flag;

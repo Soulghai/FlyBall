@@ -320,6 +320,7 @@
 - (void) prepareToHideGameScreen {
     [self setCenterOfTheScreen:ccp(SCREEN_WIDTH_HALF, 0)];
 	[self show:NO];
+    [[BoomManager instance] inactiveAll];
 	GAME_IS_PLAYING = NO;
 }
 
@@ -416,6 +417,8 @@
     timeSlowMotionPause = 0;
     isSlowMotion = NO;
     [[[CCDirector sharedDirector] scheduler] setTimeScale:1.0f];
+    
+    [[BoomManager instance] inactiveAll];
     
     [self show:YES];
     
@@ -544,7 +547,7 @@
     
     if (_distance > 200) return;
     
-    float _power = (1 - _distance/200)*13.0f;
+    float _power = (1 - _distance/200)*15.0f;
     
     float _angle = CC_DEGREES_TO_RADIANS([Utils GetAngleBetweenPt1:ccp(screenPlayerPositionX, screenPlayerPositionY) andPt2:ccp(_tempActorX,_tempActorY)]);
     
@@ -653,13 +656,6 @@
         
         if (isSlowMotion) {
             
-            /*timeSlowMotionPause += TIME_STEP;
-            if (timeSlowMotionPause >= delaySlowMotionPause) {
-                timeSlowMotionPause = 0;
-            } else {
-                return;
-            }*/
-            
             timeSlowMotion += TIME_STEP;
             if (timeSlowMotion >= delaySlowMotion) {
                 isSlowMotion = NO;
@@ -756,8 +752,8 @@
             
             float _velocityXCoeff = 1.2f;
             float _velocityYCoeff = 2 + levelTime/23 + CCRANDOM_0_1()*(levelTime/100);
-            if (_velocityYCoeff < 4.8f) {
-                _velocityYCoeff = 4.8f;
+            if (_velocityYCoeff < 5.0f) {
+                _velocityYCoeff = 5.0f;
             }
 
             int _ballCount = 1 + round(CCRANDOM_0_1());

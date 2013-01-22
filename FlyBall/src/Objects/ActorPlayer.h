@@ -29,6 +29,8 @@
     float blinkDelay;
     BOOL isEyeOpen;
     
+    BOOL isGoodFace;
+    float timeGoodFace;
     BOOL isCrazyFace;
     float timeCrazyFace;
     

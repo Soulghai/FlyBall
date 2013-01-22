@@ -70,6 +70,18 @@ static void instance_remover() {
     }
 }
 
+- (void) inactiveAll {
+	Boom* _actor;
+	int _count = [actorsAll count];
+	for (int i = 0; i < _count; i++) {
+		_actor = [actorsAll objectAtIndex:i];
+		if (_actor.isActive) {
+			[_actor deactivate];
+            [_actor show:NO];
+        }
+	}
+}
+
 - (void) removeAll {
 	Boom* _actor;
 	int _count = [actorsAll count];
