@@ -22,6 +22,7 @@
 @property (nonatomic, retain) CCSpriteBatchNode *spriteSheetParalax_2;
 @property (nonatomic, retain) CCSpriteBatchNode *spriteSheetChars;
 @property (nonatomic, retain) CCSpriteBatchNode *spriteSheetCells;
+@property (nonatomic, retain) CCSpriteBatchNode *spriteSheetHeightLabels;
 @property (nonatomic, retain) CCNode *objectBackLayer;
 @property (nonatomic, retain) CCNode *objectFrontLayer;
 @property (nonatomic, readwrite) BOOL isSoundMute;

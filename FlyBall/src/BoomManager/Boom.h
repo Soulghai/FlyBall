@@ -21,6 +21,8 @@
     
     CGPoint positionCoeff;
     int zCoord;
+    
+    int hideSpeed;
 }
 
 @property (nonatomic, assign) BOOL isActive;

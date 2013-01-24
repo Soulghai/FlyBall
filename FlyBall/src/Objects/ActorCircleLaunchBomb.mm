@@ -121,7 +121,7 @@
     if (level != [Defs instance].launchBombLevel) {
         level = [Defs instance].launchBombLevel;
         CCSpriteFrame* frame = nil;
-        frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"launchBomb_0.png"];
+        frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"launchBomb_%i.png",level]];
         if (frame != nil) [costume setDisplayFrame:frame];
     }
 }

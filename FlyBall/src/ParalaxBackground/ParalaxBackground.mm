@@ -69,6 +69,8 @@
                      [CCSprite spriteWithSpriteFrameName:@"layer_2_8.png"],
                      [CCSprite spriteWithSpriteFrameName:@"layer_2_9.png"],
                      [CCSprite spriteWithSpriteFrameName:@"layer_2_10.png"],
+                     [CCSprite spriteWithSpriteFrameName:@"layer_2_11.png"],
+                     [CCSprite spriteWithSpriteFrameName:@"layer_2_12.png"],
                        nil];
         [paralax_2 retain];
         
@@ -76,7 +78,6 @@
             _spr = [paralax_2 objectAtIndex:i];
             [_spr setScale:cellScaleCoeff];
             if (CCRANDOM_0_1() > 0.5f) [_spr setFlipX:YES];
-            CCLOG(@"size = %f",_spr.contentSize.width);
         }
         
         paralax_2_distanceToNextObjectDefault = SCREEN_HEIGHT_HALF;
@@ -93,7 +94,7 @@
                      [CCSprite spriteWithSpriteFrameName:@"layer_1_6.png"],
                      [CCSprite spriteWithSpriteFrameName:@"layer_1_7.png"],
                      [CCSprite spriteWithSpriteFrameName:@"layer_1_8.png"],
-                     [CCSprite spriteWithSpriteFrameName:@"layer_1_9.png"],
+                     //[CCSprite spriteWithSpriteFrameName:@"layer_1_9.png"],
                      nil];
         [paralax_1 retain];
         
@@ -148,7 +149,7 @@
             _spr.position = ccp(_spr.position.x, _spr.position.y + 5*128);
         } else
             if (_spr.position.y + [Defs instance].objectFrontLayer.position.y > 5*128 - 128) {
-                _spr.position = ccp(_spr.position.x, _spr.position.y - + 5*128);
+                _spr.position = ccp(_spr.position.x, _spr.position.y - 5*128);
             }
     }
 }
@@ -175,7 +176,7 @@
 - (void) addParalax1Object:(float)_posY {
     int _yCoeff = int([MainScene instance].game.player.position.y / 30000);
     
-    int _ranID = _yCoeff*4 + int(round(CCRANDOM_0_1()*3));
+    int _ranID = _yCoeff*5 + int(round(CCRANDOM_0_1()*4));
     if (_ranID > paralax_1.count-1) _ranID = paralax_1.count-1;
     CCSprite* _spr = [paralax_1 objectAtIndex:_ranID];
     // Если объект не на экране, то добавляем его
@@ -237,7 +238,6 @@
             [_spr removeFromParent];
         }
     }
-    
 }
 
 - (void) show:(BOOL)_flag{

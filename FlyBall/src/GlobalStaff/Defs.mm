@@ -8,6 +8,7 @@
 @synthesize spriteSheetParalax_2;
 @synthesize spriteSheetChars;
 @synthesize spriteSheetCells;
+@synthesize spriteSheetHeightLabels;
 @synthesize objectBackLayer;
 @synthesize objectFrontLayer;
 @synthesize isSoundMute;

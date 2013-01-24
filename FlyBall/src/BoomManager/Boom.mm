@@ -25,6 +25,7 @@
         isActive = NO;
         
         delayShowing = 0.3f;
+        hideSpeed = int(255 / (FRAME_RATE*delayShowing));
         
         [self load];
 	}
@@ -47,12 +48,15 @@
 }
 
 - (void) update:(ccTime)dt {
+    if (!isActive) return;
+    
 	timeShowing += dt;
     if (timeShowing >= delayShowing) {
         [self deactivate];
         [self show:NO];
     } else {
         [costume setPosition:ccpAdd([MainScene instance].game.player.position, positionCoeff)];
+        if (costume.opacity >= hideSpeed) [costume setOpacity:costume.opacity - hideSpeed];
     }
 }
 
@@ -60,10 +64,13 @@
     isActive = YES;
     
     timeShowing = 0;
+    [costume setOpacity:255];
+    [self show:YES];
 }
 
 - (void) deactivate {
     isActive = NO;
+    [self show:NO];
 }
 
 - (void) outOfArea {
@@ -82,9 +89,7 @@
 	if ((isVisible == _flag)||(costume == nil)) return;
 	
 	if (_flag) {
-		if ((isActive) && (!costume.parent)) {
-            [parentFrame addChild:costume z:zCoord];
-        } else return;
+		if (!costume.parent) [parentFrame addChild:costume z:zCoord];
 	}
 	else
 		if (costume.parent) [costume removeFromParentAndCleanup:YES];

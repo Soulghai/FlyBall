@@ -215,6 +215,11 @@
     isCrazyFace = YES;
     timeCrazyFace = 0;
     
+    if (![Defs instance].isSoundMute) {
+        int _ranID = (int)round(CCRANDOM_0_1()*3);
+        [[SimpleAudioEngine sharedEngine] playEffect:[NSString stringWithFormat:@"player_say_%i.wav",_ranID]];
+    }
+    
     [self setCurrentBodySprite];
 }
 
@@ -321,7 +326,7 @@
     
     if (velocity.y > [Defs instance].playerSpeedLimit) velocity.y = [Defs instance].playerSpeedLimit;
     
-    if (_value.y ) [self setCrazyFace]; else
+    if (_value.y > 4) [self setCrazyFace]; else
         if (_value.y > 0) [self setGoodFace];
 }
 
@@ -444,6 +449,7 @@
         if (![Defs instance].isSoundMute) {
             int _ranID = (int)round(CCRANDOM_0_1()*3);
             [[SimpleAudioEngine sharedEngine] playEffect:[NSString stringWithFormat:@"player_say_%i.wav",_ranID]];
+            
             [self setCrazyFace];
         }
     }

@@ -63,11 +63,13 @@ static void instance_remover() {
 - (void) add:(CGPoint)_pos
           _z:(int)_z{
 	Boom *_b = [self findInActive];
-    if (_b) {
-        [_b activate];
-        [_b setPosition:_pos _z:_z];
-        [_b show:YES];
+    if (!_b) {
+        _b = [[Boom alloc] init];
+        [actorsAll addObject:_b];
     }
+    
+    [_b activate];
+    [_b setPosition:_pos _z:_z];
 }
 
 - (void) inactiveAll {
@@ -77,7 +79,6 @@ static void instance_remover() {
 		_actor = [actorsAll objectAtIndex:i];
 		if (_actor.isActive) {
 			[_actor deactivate];
-            [_actor show:NO];
         }
 	}
 }

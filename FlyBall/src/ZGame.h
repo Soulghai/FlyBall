@@ -14,6 +14,7 @@
 #import "SpeedWall.h"
 #import "ActorActiveBombObject.h"
 #import "ParalaxBackground.h"
+#import "HeightLabels.h"
 #import "ActorCircleLaunchBomb.h"
 
 @interface ZGame : CCNode {	
@@ -36,8 +37,9 @@
     GUILabelTTF *labelScoreStr2;
     GUILabelTTF *labelScoreStr3;
     
-    CellsBackground *cells;
+    //CellsBackground *cells;
     ParalaxBackground* paralaxBackground;
+    HeightLabels* heightLabels;
     SpeedWall *speedWall;
     
     CCSprite *startPlatform;
@@ -50,7 +52,6 @@
     float timeSlowMotion;
     float delaySlowMotion;
     float timeSlowMotionPause;
-    float delaySlowMotionPause;
 }
 
 @property (nonatomic, assign) int state;
@@ -69,6 +70,8 @@
 - (void) levelRestart;
 - (void) prepareToHideGameScreen;
 - (void) bombExplosion:(ActorActiveBombObject*)_tempActor;
+- (void) bonusSlowMotionActivate:(float)_time
+                      _timeScale:(float)_timeScale;
 - (void) doBonusEffect:(int)_bonusID;
 - (void) bonusTouchReaction:(int)_bonusID;
 - (BOOL) ccTouchBegan:(CGPoint)_touchPos;

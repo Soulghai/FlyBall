@@ -260,6 +260,9 @@
         paralaxBackground = [[ParalaxBackground alloc] init];
         [paralaxBackground retain];
         
+        heightLabels = [[HeightLabels alloc] init];
+        [heightLabels retain];
+        
         player = [[ActorPlayer alloc] init:[Defs instance].spriteSheetChars _location:ccp(screenPlayerPositionX, screenPlayerPositionY)];
         
         for (int i = 0; i < 10; i++)
@@ -277,10 +280,7 @@
         speedWall = [[SpeedWall alloc] init:[Defs instance].spriteSheetCells];
         [speedWall retain];
         
-        timerDelayAddBall = 0.48f;
-        
-        delaySlowMotion = 3;
-        delaySlowMotionPause =  TIME_STEP*2;
+        timerDelayAddBall = 0.50f;
         
         startPlatform = [CCSprite spriteWithSpriteFrameName:@"startPlatform.png"];
         [startPlatform setAnchorPoint:ccp(0.5f,0)];
@@ -313,6 +313,7 @@
     y = MIN(y, INTMAX_MAX);
     
     [Defs instance].objectFrontLayer.position = ccpSub(ccp(SCREEN_WIDTH_HALF, screenPlayerPositionY), ccp(x,y));
+    //[Defs instance].spriteSheetHeightLabels.position = ccp(0,[Defs instance].objectFrontLayer.position.y);
     [Defs instance].spriteSheetParalax_2.position = ccp([Defs instance].objectFrontLayer.position.x/8, [Defs instance].objectFrontLayer.position.y/8);
     [Defs instance].objectBackLayer.position = ccp(0, [Defs instance].objectFrontLayer.position.y/13);
 }
@@ -411,6 +412,7 @@
     //[self labelScoreBarUpdate];
     //[cells restartParameters];
     [paralaxBackground restartParameters];
+    [heightLabels restartParameters];
     [speedWall deactivate];
     
     timeSlowMotion = 0;
@@ -586,6 +588,14 @@
     }
 }
 
+- (void) bonusSlowMotionActivate:(float)_time
+                      _timeScale:(float)_timeScale {
+    isSlowMotion = YES;
+    timeSlowMotion = 0;
+    delaySlowMotion = _time;
+    [[[CCDirector sharedDirector] scheduler] setTimeScale:_timeScale];
+}
+
 - (void) bonusTouchReaction:(int)_bonusID {
     switch (_bonusID) {
         case BONUS_COINS:
@@ -595,8 +605,7 @@
             
         case BONUS_SLOWMOTION:
             // Включаем замедление времени
-            isSlowMotion = YES;
-            [[[CCDirector sharedDirector] scheduler] setTimeScale:0.5f];
+            [self bonusSlowMotionActivate:[Defs instance].playerBombSlow _timeScale:0.5f];
             break;
             
         case BONUS_ACCELERATION:
@@ -655,11 +664,9 @@
 		levelTime += dt;
         
         if (isSlowMotion) {
-            
             timeSlowMotion += TIME_STEP;
             if (timeSlowMotion >= delaySlowMotion) {
                 isSlowMotion = NO;
-                timeSlowMotion = 0;
                 [[[CCDirector sharedDirector] scheduler] setTimeScale:1.0f];
             }
             
@@ -740,7 +747,7 @@
         //[self labelScoreBarUpdate];
         
         timerAddBall += dt;
-        if (timerAddBall >= timerDelayAddBall - (levelTime/1000)) {
+        if (timerAddBall >= timerDelayAddBall - (levelTime/900)) {
             float _playerVelocityX = player.velocity.x;
             float _playerVelocityY = player.velocity.y;
             
@@ -809,6 +816,7 @@
         // делаем апдейт относительно текущей позиции игрока
         //[cells update];
         [paralaxBackground update];
+        [heightLabels update];
         // стена скорости, которая действует на персонажа
         [speedWall update];
         [player addVelocity:([speedWall checkToCollide:player.position])];
@@ -838,6 +846,7 @@
 	//}
     //[cells show:_flag];
     [paralaxBackground show:_flag];
+    [heightLabels show:_flag];
     [[Defs instance].actorManager show:_flag];
 }
 
