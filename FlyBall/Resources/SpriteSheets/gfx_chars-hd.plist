@@ -19,9 +19,9 @@
                 <key>width</key>
                 <integer>114</integer>
                 <key>x</key>
-                <integer>402</integer>
+                <integer>230</integer>
                 <key>y</key>
-                <integer>800</integer>
+                <integer>258</integer>
             </dict>
             <key>bombfire.png</key>
             <dict>
@@ -38,9 +38,9 @@
                 <key>width</key>
                 <integer>112</integer>
                 <key>x</key>
-                <integer>230</integer>
+                <integer>450</integer>
                 <key>y</key>
-                <integer>378</integer>
+                <integer>482</integer>
             </dict>
             <key>bombmagnet_1.png</key>
             <dict>
@@ -57,9 +57,9 @@
                 <key>width</key>
                 <integer>124</integer>
                 <key>x</key>
-                <integer>300</integer>
+                <integer>346</integer>
                 <key>y</key>
-                <integer>488</integer>
+                <integer>256</integer>
             </dict>
             <key>bombmagnet_2.png</key>
             <dict>
@@ -76,9 +76,9 @@
                 <key>width</key>
                 <integer>124</integer>
                 <key>x</key>
-                <integer>230</integer>
+                <integer>324</integer>
                 <key>y</key>
-                <integer>258</integer>
+                <integer>482</integer>
             </dict>
             <key>bombtime_1.png</key>
             <dict>
@@ -95,9 +95,9 @@
                 <key>width</key>
                 <integer>120</integer>
                 <key>x</key>
-                <integer>300</integer>
+                <integer>316</integer>
                 <key>y</key>
-                <integer>670</integer>
+                <integer>684</integer>
             </dict>
             <key>bombtime_2.png</key>
             <dict>
@@ -114,7 +114,7 @@
                 <key>width</key>
                 <integer>126</integer>
                 <key>x</key>
-                <integer>172</integer>
+                <integer>196</integer>
                 <key>y</key>
                 <integer>488</integer>
             </dict>
@@ -133,9 +133,9 @@
                 <key>width</key>
                 <integer>126</integer>
                 <key>x</key>
-                <integer>274</integer>
+                <integer>260</integer>
                 <key>y</key>
-                <integer>844</integer>
+                <integer>846</integer>
             </dict>
             <key>bonus_apocalypse.png</key>
             <dict>
@@ -152,9 +152,9 @@
                 <key>width</key>
                 <integer>64</integer>
                 <key>x</key>
-                <integer>598</integer>
+                <integer>506</integer>
                 <key>y</key>
-                <integer>646</integer>
+                <integer>870</integer>
             </dict>
             <key>bonus_godmode.png</key>
             <dict>
@@ -171,9 +171,9 @@
                 <key>width</key>
                 <integer>64</integer>
                 <key>x</key>
-                <integer>532</integer>
+                <integer>524</integer>
                 <key>y</key>
-                <integer>646</integer>
+                <integer>592</integer>
             </dict>
             <key>bonus_slowmotion.png</key>
             <dict>
@@ -190,9 +190,9 @@
                 <key>width</key>
                 <integer>64</integer>
                 <key>x</key>
-                <integer>626</integer>
+                <integer>458</integer>
                 <key>y</key>
-                <integer>902</integer>
+                <integer>592</integer>
             </dict>
             <key>bonus_speed.png</key>
             <dict>
@@ -209,9 +209,9 @@
                 <key>width</key>
                 <integer>64</integer>
                 <key>x</key>
-                <integer>584</integer>
+                <integer>392</integer>
                 <key>y</key>
-                <integer>836</integer>
+                <integer>602</integer>
             </dict>
             <key>boomShine.png</key>
             <dict>
@@ -247,9 +247,9 @@
                 <key>width</key>
                 <integer>98</integer>
                 <key>x</key>
-                <integer>270</integer>
+                <integer>360</integer>
                 <key>y</key>
-                <integer>806</integer>
+                <integer>976</integer>
             </dict>
             <key>boots_2.png</key>
             <dict>
@@ -266,9 +266,9 @@
                 <key>width</key>
                 <integer>98</integer>
                 <key>x</key>
-                <integer>170</integer>
+                <integer>260</integer>
                 <key>y</key>
-                <integer>806</integer>
+                <integer>976</integer>
             </dict>
             <key>boots_3.png</key>
             <dict>
@@ -285,9 +285,9 @@
                 <key>width</key>
                 <integer>110</integer>
                 <key>x</key>
-                <integer>320</integer>
+                <integer>572</integer>
                 <key>y</key>
-                <integer>202</integer>
+                <integer>870</integer>
             </dict>
             <key>boots_4.png</key>
             <dict>
@@ -304,9 +304,9 @@
                 <key>width</key>
                 <integer>112</integer>
                 <key>x</key>
-                <integer>292</integer>
+                <integer>558</integer>
                 <key>y</key>
-                <integer>618</integer>
+                <integer>936</integer>
             </dict>
             <key>boots_5.png</key>
             <dict>
@@ -323,9 +323,9 @@
                 <key>width</key>
                 <integer>118</integer>
                 <key>x</key>
-                <integer>172</integer>
+                <integer>320</integer>
                 <key>y</key>
-                <integer>618</integer>
+                <integer>202</integer>
             </dict>
             <key>coin.png</key>
             <dict>
@@ -342,9 +342,9 @@
                 <key>width</key>
                 <integer>64</integer>
                 <key>x</key>
-                <integer>518</integer>
+                <integer>326</integer>
                 <key>y</key>
-                <integer>836</integer>
+                <integer>602</integer>
             </dict>
             <key>helmet_1.png</key>
             <dict>
@@ -399,9 +399,9 @@
                 <key>width</key>
                 <integer>92</integer>
                 <key>x</key>
-                <integer>406</integer>
+                <integer>590</integer>
                 <key>y</key>
-                <integer>608</integer>
+                <integer>578</integer>
             </dict>
             <key>helmet_4.png</key>
             <dict>
@@ -418,9 +418,9 @@
                 <key>width</key>
                 <integer>96</integer>
                 <key>x</key>
-                <integer>518</integer>
+                <integer>460</integer>
                 <key>y</key>
-                <integer>770</integer>
+                <integer>938</integer>
             </dict>
             <key>helmet_5.png</key>
             <dict>
@@ -437,28 +437,28 @@
                 <key>width</key>
                 <integer>128</integer>
                 <key>x</key>
-                <integer>500</integer>
+                <integer>196</integer>
                 <key>y</key>
-                <integer>580</integer>
+                <integer>618</integer>
             </dict>
             <key>launchBomb_0.png</key>
             <dict>
                 <key>height</key>
-                <integer>176</integer>
+                <integer>122</integer>
                 <key>offsetX</key>
-                <real>3</real>
+                <real>5</real>
                 <key>offsetY</key>
-                <real>1</real>
+                <real>4</real>
                 <key>originalHeight</key>
-                <integer>180</integer>
+                <integer>198</integer>
                 <key>originalWidth</key>
-                <integer>180</integer>
+                <integer>198</integer>
                 <key>width</key>
-                <integer>166</integer>
+                <integer>116</integer>
                 <key>x</key>
-                <integer>2</integer>
+                <integer>388</integer>
                 <key>y</key>
-                <integer>676</integer>
+                <integer>814</integer>
             </dict>
             <key>launchBomb_1.png</key>
             <dict>
@@ -475,9 +475,9 @@
                 <key>width</key>
                 <integer>126</integer>
                 <key>x</key>
-                <integer>146</integer>
+                <integer>2</integer>
                 <key>y</key>
-                <integer>854</integer>
+                <integer>876</integer>
             </dict>
             <key>launchBomb_2.png</key>
             <dict>
@@ -494,9 +494,9 @@
                 <key>width</key>
                 <integer>142</integer>
                 <key>x</key>
-                <integer>2</integer>
+                <integer>172</integer>
                 <key>y</key>
-                <integer>854</integer>
+                <integer>688</integer>
             </dict>
             <key>launchBomb_3.png</key>
             <dict>
@@ -515,7 +515,7 @@
                 <key>x</key>
                 <integer>2</integer>
                 <key>y</key>
-                <integer>488</integer>
+                <integer>688</integer>
             </dict>
             <key>launchBomb_4.png</key>
             <dict>
@@ -532,28 +532,28 @@
                 <key>width</key>
                 <integer>192</integer>
                 <key>x</key>
-                <integer>132</integer>
-                <key>y</key>
                 <integer>2</integer>
+                <key>y</key>
+                <integer>488</integer>
             </dict>
             <key>launchBomb_5.png</key>
             <dict>
                 <key>height</key>
-                <integer>176</integer>
+                <integer>198</integer>
                 <key>offsetX</key>
-                <real>3</real>
+                <real>0</real>
                 <key>offsetY</key>
-                <real>1</real>
+                <real>0</real>
                 <key>originalHeight</key>
-                <integer>180</integer>
+                <integer>198</integer>
                 <key>originalWidth</key>
-                <integer>180</integer>
+                <integer>198</integer>
                 <key>width</key>
-                <integer>166</integer>
+                <integer>198</integer>
                 <key>x</key>
-                <integer>2</integer>
+                <integer>132</integer>
                 <key>y</key>
-                <integer>676</integer>
+                <integer>2</integer>
             </dict>
             <key>player.png</key>
             <dict>
@@ -570,9 +570,9 @@
                 <key>width</key>
                 <integer>110</integer>
                 <key>x</key>
-                <integer>356</integer>
+                <integer>438</integer>
                 <key>y</key>
-                <integer>254</integer>
+                <integer>668</integer>
             </dict>
             <key>player_1.png</key>
             <dict>
@@ -589,9 +589,9 @@
                 <key>width</key>
                 <integer>108</integer>
                 <key>x</key>
-                <integer>536</integer>
+                <integer>672</integer>
                 <key>y</key>
-                <integer>456</integer>
+                <integer>922</integer>
             </dict>
             <key>player_2.png</key>
             <dict>
@@ -608,9 +608,9 @@
                 <key>width</key>
                 <integer>108</integer>
                 <key>x</key>
-                <integer>422</integer>
+                <integer>550</integer>
                 <key>y</key>
-                <integer>670</integer>
+                <integer>658</integer>
             </dict>
             <key>player_3.png</key>
             <dict>
@@ -627,9 +627,9 @@
                 <key>width</key>
                 <integer>108</integer>
                 <key>x</key>
-                <integer>456</integer>
+                <integer>506</integer>
                 <key>y</key>
-                <integer>356</integer>
+                <integer>770</integer>
             </dict>
             <key>player_bonus_apocalipsys.png</key>
             <dict>
@@ -646,9 +646,9 @@
                 <key>width</key>
                 <integer>110</integer>
                 <key>x</key>
-                <integer>344</integer>
+                <integer>454</integer>
                 <key>y</key>
-                <integer>378</integer>
+                <integer>376</integer>
             </dict>
             <key>player_sleep.png</key>
             <dict>
@@ -665,9 +665,9 @@
                 <key>width</key>
                 <integer>110</integer>
                 <key>x</key>
-                <integer>514</integer>
+                <integer>342</integer>
                 <key>y</key>
-                <integer>922</integer>
+                <integer>380</integer>
             </dict>
             <key>player_sleep_1.png</key>
             <dict>
@@ -684,9 +684,9 @@
                 <key>width</key>
                 <integer>108</integer>
                 <key>x</key>
-                <integer>426</integer>
+                <integer>564</integer>
                 <key>y</key>
-                <integer>480</integer>
+                <integer>478</integer>
             </dict>
             <key>player_speed.png</key>
             <dict>
@@ -703,9 +703,9 @@
                 <key>width</key>
                 <integer>110</integer>
                 <key>x</key>
-                <integer>402</integer>
+                <integer>230</integer>
                 <key>y</key>
-                <integer>922</integer>
+                <integer>380</integer>
             </dict>
             <key>playerglow.png</key>
             <dict>
@@ -722,9 +722,9 @@
                 <key>width</key>
                 <integer>128</integer>
                 <key>x</key>
-                <integer>170</integer>
+                <integer>130</integer>
                 <key>y</key>
-                <integer>676</integer>
+                <integer>876</integer>
             </dict>
             <key>wall.png</key>
             <dict>
@@ -755,7 +755,7 @@
             <key>size</key>
             <string>{1024,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:2023e9a9a47c562ee90cbd3c25547292$</string>
+            <string>$TexturePacker:SmartUpdate:4c10d6da0326f12f9c9b0c6cc81c6cc8$</string>
             <key>textureFileName</key>
             <string>gfx_chars-hd.pvr.ccz</string>
         </dict>

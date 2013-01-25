@@ -13,6 +13,7 @@
 #import "globalParam.h"
 #import "MainScene.h"
 #import "SimpleAudioEngine.h"
+#import "BoomManager.h"
 
 @implementation ActorCircleLaunchBomb
 
@@ -36,21 +37,20 @@
 - (void) update:(ccTime)dt {
     if (!isActive) return;
     
-    timerFire += TIME_STEP;
+    /*timerFire += TIME_STEP;
     if (timerFire >= delayFire) {
         [fireSpr setOpacity:100 + int(CCRANDOM_0_1()*155)];
-        //[fireSpr setVisible:!fireSpr.visible];
         timerFire = 0;
-    }
+    }*/
 }
 
 - (void) loadCostume {
 	costume = [CCSprite spriteWithSpriteFrameName:@"launchBomb_0.png"];
 	[costume retain];
     
-    fireSpr = [CCSprite spriteWithSpriteFrameName:@"bombfire.png"];
+    /*fireSpr = [CCSprite spriteWithSpriteFrameName:@"bombfire.png"];
     [fireSpr setPosition:ccp(70, 79)];
-    [costume addChild:fireSpr];
+    [costume addChild:fireSpr];*/
 }
 
 - (void) eraserCollide {
@@ -74,44 +74,7 @@
             }
         }
         
-        int _ran = round(CCRANDOM_0_1()*7);
-        switch (_ran) {
-            case 0:
-                emitterBoom = [CCParticleSystemQuad particleWithFile:@"bomb_explosion.plist"];
-                break;
-                
-            case 1:
-                emitterBoom = [CCParticleSystemQuad particleWithFile:@"bomb_explosion_115.plist"];
-                break;
-                
-            case 2:
-                emitterBoom = [CCParticleSystemQuad particleWithFile:@"bomb_explosion_155.plist"];
-                break;
-                
-            case 3:
-                emitterBoom = [CCParticleSystemQuad particleWithFile:@"bomb_explosion_yellow.plist"];
-                break;
-                
-            case 4:
-                emitterBoom = [CCParticleSystemQuad particleWithFile:@"bomb_explosion_055.plist"];
-                break;
-                
-            case 5:
-                emitterBoom = [CCParticleSystemQuad particleWithFile:@"bomb_explosion_005.plist"];
-                break;
-                
-            case 6:
-                emitterBoom = [CCParticleSystemQuad particleWithFile:@"bomb_explosion_010.plist"];
-                break;
-                
-            default:
-                emitterBoom = [CCParticleSystemQuad particleWithFile:@"bomb_explosion_purple.plist"];
-                break;
-        }
-        
-        emitterBoom.position = ccpAdd(costume.position, [Defs instance].objectFrontLayer.position);
-        if ((emitterBoom)&&(emitterBoom.parent == nil))
-            [[MainScene instance].game addChild:emitterBoom];
+        [[BoomManager instance] add:costume.position _z:costume.zOrder];
         
         [self deactivate];
 	}
@@ -134,7 +97,7 @@
     
     [self getCurrentSprite];
 
-    velocity = ccp(0, 7 + level*7);
+    velocity = ccp(0, 7 + level*5);
     
     [self show:YES];
 }

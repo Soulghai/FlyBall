@@ -80,7 +80,7 @@
                     [[SimpleAudioEngine sharedEngine] playEffect:@"star.wav"];
                     break;
                 case BONUS_ACCELERATION:
-                    [[SimpleAudioEngine sharedEngine] playEffect:@"star.wav"];
+                    [[SimpleAudioEngine sharedEngine] playEffect:@"speed_activate.wav"];
                     break;
                     
                 case BONUS_APOCALYPSE:

@@ -172,10 +172,10 @@
         xPosition = MIN(xPosition, 384);
         
         if (emitterWarningAcc.parent)
-            emitterWarningAcc.position = ccp(xPosition, [MainScene instance].game.player.position.y +SCREEN_HEIGHT_HALF);
+            emitterWarningAcc.position = ccp(xPosition, [MainScene instance].game.player.position.y + SCREEN_HEIGHT - screenPlayerPositionY);
         else
             if (emitterWarningDecc.parent)
-                emitterWarningDecc.position = ccp(xPosition, [MainScene instance].game.player.position.y +SCREEN_HEIGHT_HALF);
+                emitterWarningDecc.position = ccp(xPosition, [MainScene instance].game.player.position.y +SCREEN_HEIGHT - screenPlayerPositionY);
         
         timeWaiting += TIME_STEP;
         if (timeWaiting >= delayWaiting) {
@@ -185,7 +185,7 @@
             [self hideEmitter];
 
             positionChangeCoeff = ccp(0, SCREEN_HEIGHT);
-            costume.position = ccp(costume.position.x, [MainScene instance].game.player.position.y-SCREEN_HEIGHT);
+            costume.position = ccp(costume.position.x, [MainScene instance].game.player.position.y-screenPlayerPositionY);
             
             if (addSpeedCoeff > 0) {
                 if (addSpeedCoeff != addSpeedCoeffOld) {

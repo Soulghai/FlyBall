@@ -68,7 +68,7 @@
     panelDef.parentFrame = self;
     panelDef.group = GAME_STATE_GAMEPAUSE;
     panelDef.sprName = nil;
-    panelDef.sprFileName = @"blackScreen.jpg";
+    panelDef.sprFileName = @"pauseScreen.jpg";
     panelDef.zIndex = 160;
     
     backgroundSpr = [[MainScene instance].gui addItem:panelDef _pos:ccp(0,0)];
@@ -79,11 +79,30 @@
     panelDef.group = GAME_STATE_GAMEPAUSE;
     panelDef.sprName = @"sleep_pause.png";
     
-    pauseHeroZZZ = [[MainScene instance].gui addItem:panelDef _pos:ccp(SCREEN_WIDTH_HALF,SCREEN_HEIGHT_HALF)];
+    pauseHeroZZZ = [[MainScene instance].gui addItem:panelDef _pos:ccp(SCREEN_WIDTH_HALF,280)];
     
     panelDef.sprName = @"pause_zzz_1.png";
     
     pauseZZZSpr = [[MainScene instance].gui addItem:panelDef _pos:ccp(SCREEN_WIDTH_HALF - 70, SCREEN_HEIGHT_HALF+140)];
+    
+    panelDef.sprName = @"satelliteBomb.png";
+    panelDef.zIndex = 1;
+    panelBombDistance = 120;
+    panelBombAngle = 70;
+    panelBomb = [[MainScene instance].gui addItem:panelDef _pos:ccp(-100,-100)];
+    [panelBomb.spr setOpacity:200];
+    
+    panelBombMagnetDistance = 160;
+    panelBombMagnetAngle = 140;
+    panelDef.sprName = @"satelliteBombmagnet.png";
+    panelBombMagnet = [[MainScene instance].gui addItem:panelDef _pos:ccp(-100,-100)];
+    [panelBombMagnet.spr setOpacity:200];
+    
+    panelBombTimeDistance = 250;
+    panelBombTimeAngle = 270;
+    panelDef.sprName = @"satelliteBombtime.png";
+    panelBombTime = [[MainScene instance].gui addItem:panelDef _pos:ccp(-100,-100)];
+    [panelBombTime.spr setOpacity:200];
     
     NSArray *animArr = [NSArray arrayWithObjects:
                         [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"pause_zzz_1.png"],
@@ -104,6 +123,7 @@
     btnLevels = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(SCREEN_WIDTH_HALF - 40, 40)];
     
     GUICheckBoxDef *checkBoxSoundDef = [GUICheckBoxDef node];
+    checkBoxSoundDef.zIndex = 5;
     checkBoxSoundDef.sprName = @"btnMusicOn.png";
     checkBoxSoundDef.sprOneDownName = @"btnMusicOnDown.png";
     checkBoxSoundDef.sprTwoName = @"btnMusicOff.png";
@@ -182,6 +202,18 @@
         [pauseHeroZZZ.spr setRotation:pauseHeroZZZ.spr.rotation - 0.1f];
         if (pauseHeroZZZ.spr.rotation <= -4) isPauseHeroRotateRight = YES;
     }
+    
+    panelBombAngle += 0.8f;
+    if (panelBombAngle >= 360) panelBombAngle -= 360;
+    [panelBomb setPosition:ccp(SCREEN_WIDTH_HALF + panelBombDistance*cos(CC_DEGREES_TO_RADIANS(panelBombAngle)), 250 + panelBombDistance*sin(CC_DEGREES_TO_RADIANS(panelBombAngle)))];
+    
+    panelBombMagnetAngle += 0.6f;
+    if (panelBombMagnetAngle >= 360) panelBombMagnetAngle -= 360;
+    [panelBombMagnet setPosition:ccp(SCREEN_WIDTH_HALF - 50 + panelBombMagnetDistance*cos(CC_DEGREES_TO_RADIANS(panelBombMagnetAngle)), 270 + panelBombMagnetDistance*sin(CC_DEGREES_TO_RADIANS(panelBombMagnetAngle)))];
+    
+    panelBombTimeAngle += 0.4f;
+    if (panelBombTimeAngle >= 360) panelBombTimeAngle -= 360;
+    [panelBombTime setPosition:ccp(SCREEN_WIDTH_HALF + 100 + panelBombTimeDistance*cos(CC_DEGREES_TO_RADIANS(panelBombTimeAngle)), 320 + panelBombTimeDistance*sin(CC_DEGREES_TO_RADIANS(panelBombTimeAngle)))];
     
     /*CGPoint pos = btnCredits.spr.position;
 	float _marketGoSpeedAcc = 0.01f;

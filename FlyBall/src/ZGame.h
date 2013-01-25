@@ -33,9 +33,14 @@
     float timerAddBall;
     float timerDelayAddBall;
     
-    GUILabelTTF *labelScoreStr1;
+    /*GUILabelTTF *labelScoreStr1;
     GUILabelTTF *labelScoreStr2;
-    GUILabelTTF *labelScoreStr3;
+    GUILabelTTF *labelScoreStr3;*/
+    
+    GUIPanel* panelSlowMotionLeft;
+    GUIPanel* panelSlowMotionRight;
+    GUIPanel* panelSlowMotionTop;
+    GUIPanel* panelSlowMotionBottom;
     
     //CellsBackground *cells;
     ParalaxBackground* paralaxBackground;
@@ -52,6 +57,8 @@
     float timeSlowMotion;
     float delaySlowMotion;
     float timeSlowMotionPause;
+    
+    int panelBonusFadeSpeed;
 }
 
 @property (nonatomic, assign) int state;

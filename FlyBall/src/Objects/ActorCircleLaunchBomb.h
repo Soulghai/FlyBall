@@ -11,7 +11,6 @@
 #import "ActorActiveObject.h"
 
 @interface ActorCircleLaunchBomb : ActorActiveObject {
-    CCSprite *fireSpr;
     float timerFire;
     float delayFire;
     int level;

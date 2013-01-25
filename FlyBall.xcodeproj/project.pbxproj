@@ -263,6 +263,8 @@
 		287605191686DDDA0061A31A /* back_4-hd.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 287605171686DDDA0061A31A /* back_4-hd.jpg */; };
 		2876051A1686DDDA0061A31A /* back_4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 287605181686DDDA0061A31A /* back_4.jpg */; };
 		2886673C1658728E0089DEB1 /* CellsBackground.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2886673B1658728E0089DEB1 /* CellsBackground.mm */; };
+		28893E4716B27F3600451F7B /* speed_activate.wav in Resources */ = {isa = PBXBuildFile; fileRef = 28893E4616B27F3600451F7B /* speed_activate.wav */; };
+		28893E4A16B27F4700451F7B /* buy_upgrade.wav in Resources */ = {isa = PBXBuildFile; fileRef = 28893E4916B27F4700451F7B /* buy_upgrade.wav */; };
 		288CA356166E12180078E31C /* gfx_paralax_2-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 288CA352166E12180078E31C /* gfx_paralax_2-hd.plist */; };
 		288CA357166E12180078E31C /* gfx_paralax_2-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 288CA353166E12180078E31C /* gfx_paralax_2-hd.pvr.ccz */; };
 		288CA358166E12180078E31C /* gfx_paralax_2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 288CA354166E12180078E31C /* gfx_paralax_2.plist */; };
@@ -293,6 +295,7 @@
 		288E5A0C166A0ADF00E8E07C /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288E5A09166A0ABA00E8E07C /* MessageUI.framework */; };
 		2890F6811655C2C000B4031B /* gfx_cells-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2890F67D1655C2BF00B4031B /* gfx_cells-hd.plist */; };
 		2890F6831655C2C000B4031B /* gfx_cells.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2890F67F1655C2C000B4031B /* gfx_cells.plist */; };
+		2891D16716B2071B00436B4B /* pauseScreen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2891D16616B2071B00436B4B /* pauseScreen.jpg */; };
 		2893799C168E3C9A0038222D /* player_say_0.wav in Resources */ = {isa = PBXBuildFile; fileRef = 28937998168E3C9A0038222D /* player_say_0.wav */; };
 		2893799D168E3C9A0038222D /* player_say_1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 28937999168E3C9A0038222D /* player_say_1.wav */; };
 		2893799E168E3C9A0038222D /* player_say_2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2893799A168E3C9A0038222D /* player_say_2.wav */; };
@@ -775,6 +778,8 @@
 		287605181686DDDA0061A31A /* back_4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = back_4.jpg; sourceTree = "<group>"; };
 		2886673A1658728E0089DEB1 /* CellsBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellsBackground.h; sourceTree = "<group>"; };
 		2886673B1658728E0089DEB1 /* CellsBackground.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CellsBackground.mm; sourceTree = "<group>"; };
+		28893E4616B27F3600451F7B /* speed_activate.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = speed_activate.wav; sourceTree = "<group>"; };
+		28893E4916B27F4700451F7B /* buy_upgrade.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = buy_upgrade.wav; sourceTree = "<group>"; };
 		288CA352166E12180078E31C /* gfx_paralax_2-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "gfx_paralax_2-hd.plist"; sourceTree = "<group>"; };
 		288CA353166E12180078E31C /* gfx_paralax_2-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = "gfx_paralax_2-hd.pvr.ccz"; sourceTree = "<group>"; };
 		288CA354166E12180078E31C /* gfx_paralax_2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = gfx_paralax_2.plist; sourceTree = "<group>"; };
@@ -807,6 +812,7 @@
 		288E5A09166A0ABA00E8E07C /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		2890F67D1655C2BF00B4031B /* gfx_cells-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "gfx_cells-hd.plist"; sourceTree = "<group>"; };
 		2890F67F1655C2C000B4031B /* gfx_cells.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = gfx_cells.plist; sourceTree = "<group>"; };
+		2891D16616B2071B00436B4B /* pauseScreen.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = pauseScreen.jpg; path = FlyBall/Resources/gfx/Screens/pauseScreen.jpg; sourceTree = SOURCE_ROOT; };
 		28937998168E3C9A0038222D /* player_say_0.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = player_say_0.wav; sourceTree = "<group>"; };
 		28937999168E3C9A0038222D /* player_say_1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = player_say_1.wav; sourceTree = "<group>"; };
 		2893799A168E3C9A0038222D /* player_say_2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = player_say_2.wav; sourceTree = "<group>"; };
@@ -1312,6 +1318,7 @@
 			children = (
 				28F0CF26165D63E60066349E /* Shop */,
 				28F0CF12165D62860066349E /* blackScreen.jpg */,
+				2891D16616B2071B00436B4B /* pauseScreen.jpg */,
 				28F0CF13165D62860066349E /* credits_iPhone5.jpg */,
 				28F0CF14165D62860066349E /* credits-hd.jpg */,
 				28F0CF15165D62860066349E /* credits.jpg */,
@@ -1706,6 +1713,7 @@
 		28733FCE166B9908003EEB86 /* GUI */ = {
 			isa = PBXGroup;
 			children = (
+				28893E4916B27F4700451F7B /* buy_upgrade.wav */,
 				28733FCF166B9908003EEB86 /* button_click.wav */,
 				28733FD0166B9908003EEB86 /* play_on.wav */,
 			);
@@ -1715,6 +1723,7 @@
 		28733FD3166B990E003EEB86 /* bonus */ = {
 			isa = PBXGroup;
 			children = (
+				28893E4616B27F3600451F7B /* speed_activate.wav */,
 				28733FD4166B990E003EEB86 /* god_mode.wav */,
 			);
 			path = bonus;
@@ -2018,6 +2027,9 @@
 				288CD22D16AFFDC900FC6F55 /* gfx_heightLabels-hd.pvr.ccz in Resources */,
 				288CD22E16AFFDC900FC6F55 /* gfx_heightLabels.plist in Resources */,
 				288CD22F16AFFDC900FC6F55 /* gfx_heightLabels.pvr.ccz in Resources */,
+				2891D16716B2071B00436B4B /* pauseScreen.jpg in Resources */,
+				28893E4716B27F3600451F7B /* speed_activate.wav in Resources */,
+				28893E4A16B27F4700451F7B /* buy_upgrade.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

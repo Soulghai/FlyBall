@@ -743,6 +743,7 @@
 		btnDef.sprName = @"btnOk.png";
 		btnDef.sprDownName = @"btnOkDown.png";
 		btnDef.func = @selector(panelBuyInformationHide);
+        btnDef.sound = @"buy_upgrade.wav";
 		
 		btnPanelBuyInfoYES = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(_panelWidth*0.5f+50, _panelHeight*0.25f)];
         
@@ -751,6 +752,7 @@
         btnDef.sprName = @"btnNo.png";
 		btnDef.sprDownName = @"btnNoDown.png";
 		btnDef.func = @selector(buyCoinsPanelHide);
+        btnDef.sound = @"click.wav";
 		
 		btnPanelBuyCoinsNO = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(_panelWidth-15, _panelHeight - 15)];
         [btnPanelBuyCoinsNO.spr setScale:0.5f];

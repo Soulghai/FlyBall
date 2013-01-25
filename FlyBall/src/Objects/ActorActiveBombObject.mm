@@ -56,7 +56,7 @@
             }
         }
         
-        int _ran = round(CCRANDOM_0_1()*7);
+        /*int _ran = round(CCRANDOM_0_1()*7);
         switch (_ran) {
             case 0:
                 emitterBoom = [CCParticleSystemQuad particleWithFile:@"bomb_explosion.plist"];
@@ -93,7 +93,7 @@
         
         emitterBoom.position = ccpAdd(costume.position, [Defs instance].objectFrontLayer.position);
         if ((emitterBoom)&&(emitterBoom.parent == nil))
-            [[MainScene instance].game addChild:emitterBoom z:150];
+            [[MainScene instance].game addChild:emitterBoom z:150];*/
         
         [[BoomManager instance] add:costume.position _z:costume.zOrder];
         

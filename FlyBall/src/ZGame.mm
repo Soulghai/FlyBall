@@ -211,6 +211,7 @@
 		btnDef.objCreator = self;
 		btnDef.func = @selector(buttonPauseAction);
 		btnDef.sound = @"button_click.wav";
+        btnDef.zIndex = 5;
 		if ([Defs instance].iPhone5) {
             GUIButton *_btn = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(SCREEN_WIDTH - 40, SCREEN_HEIGHT - 30)];
             [_btn.spr setScale:1.3f];
@@ -253,6 +254,38 @@
         _labelTTFDef.textColor = ccc3(255, 255, 255);
         _labelTTFDef.text = NSLocalizedString(@"HINT:Tap to Bomb","");
         [[MainScene instance].gui addItem:(id)_labelTTFDef _pos:ccp(SCREEN_WIDTH_HALF, 150)];
+        
+        GUIPanelDef *panelDef = [GUIPanelDef node];
+        panelDef.parentFrame = [Defs instance].objectFrontLayer;
+        panelDef.enabled = NO;
+        panelDef.group = GAME_STATE_NONE;
+        panelDef.zIndex = 0;
+        panelDef.sprFileName = @"pauseScreen.jpg";
+        panelDef.zIndex = 250;
+        
+        panelSlowMotionLeft = [[MainScene instance].gui addItem:panelDef _pos:ccp(0,0)];
+        [panelSlowMotionLeft.spr setAnchorPoint:ccp(0, 0)];
+        if ([Defs instance].screenHD) [panelSlowMotionLeft.spr setScale:2];
+        
+		/*panelDef.sprName = @"frame_time_vert.png";
+		panelSlowMotionLeft = [[MainScene instance].gui addItem:(id)panelDef _pos:ccp(0, 0)];
+        [panelSlowMotionLeft.spr setAnchorPoint:ccp(0,0)];
+        [panelSlowMotionLeft.spr setFlipX:YES];
+        
+        panelDef.sprName = @"frame_time_vert.png";
+		panelSlowMotionRight = [[MainScene instance].gui addItem:(id)panelDef _pos:ccp(320, 0)];
+        [panelSlowMotionRight.spr setAnchorPoint:ccp(1,0)];
+        
+        panelDef.sprName = @"frame_time_horizont.png";
+		panelSlowMotionBottom = [[MainScene instance].gui addItem:(id)panelDef _pos:ccp(0, 0)];
+        [panelSlowMotionBottom.spr setAnchorPoint:ccp(0,0)];
+        [panelSlowMotionBottom.spr setFlipY:YES];
+        
+        panelDef.sprName = @"frame_time_horizont.png";
+		panelSlowMotionTop = [[MainScene instance].gui addItem:(id)panelDef _pos:ccp(0, 480)];
+        [panelSlowMotionTop.spr setAnchorPoint:ccp(0,1)];*/
+        
+        
         
         //cells = [[CellsBackground alloc] init];
         //[cells retain];
@@ -556,10 +589,18 @@
     [player addVelocity:ccp(_power*0.4f*cos(_angle),_power*sin(_angle))];
 }
 
+- (void) bonusSlowMotionAddFrame:(float)_time {
+    [panelSlowMotionLeft show:YES];
+    [panelSlowMotionLeft.spr setOpacity:200];
+    [panelSlowMotionLeft.spr setPosition:ccp(-[Defs instance].objectFrontLayer.position.x, -[Defs instance].objectFrontLayer.position.y)];
+    
+    panelBonusFadeSpeed = int(255 / (FRAME_RATE*_time));
+}
+
 - (void) doBonusEffect:(int)_bonusID {
     switch (_bonusID) {
         case BONUS_SLOWMOTION:
-
+            
             break;
             
         case BONUS_ACCELERATION:
@@ -567,6 +608,7 @@
             break;
             
         case BONUS_APOCALYPSE: {
+            [self bonusSlowMotionAddFrame:0.3f];
             Actor* _tempActor;
             int _count = [[Defs instance].actorManager.actorsAll count];
             for (int i = 0; i < _count; i++) {
@@ -583,7 +625,7 @@
             break;
             
         case BONUS_GODMODE:
-
+   
             break;
     }
 }
@@ -606,11 +648,13 @@
         case BONUS_SLOWMOTION:
             // Включаем замедление времени
             [self bonusSlowMotionActivate:[Defs instance].playerBombSlow _timeScale:0.5f];
+            [self bonusSlowMotionAddFrame:[Defs instance].playerBombSlow];
             break;
             
         case BONUS_ACCELERATION:
             // Ускорение
             [player setSpeedBonus:[Defs instance].bonusAccelerationDelay];
+            [self bonusSlowMotionAddFrame:[Defs instance].bonusAccelerationDelay];
             break;
             
         case BONUS_APOCALYPSE:
@@ -621,6 +665,7 @@
         case BONUS_GODMODE:
             // устанавливаем режим бога
             [player setGodMode:[Defs instance].bonusGodModeTime];
+            [self bonusSlowMotionAddFrame:[Defs instance].bonusGodModeTime];
             break;
     }
 }
@@ -820,6 +865,14 @@
         // стена скорости, которая действует на персонажа
         [speedWall update];
         [player addVelocity:([speedWall checkToCollide:player.position])];
+        
+        if (panelSlowMotionLeft.spr.opacity >= panelBonusFadeSpeed) {
+            [panelSlowMotionLeft.spr setOpacity:panelSlowMotionLeft.spr.opacity - panelBonusFadeSpeed];
+            [panelSlowMotionLeft.spr setPosition:ccp(-[Defs instance].objectFrontLayer.position.x, -[Defs instance].objectFrontLayer.position.y)];
+        }
+        else {
+           [panelSlowMotionLeft show:NO]; 
+        }
     } else
         if (state == GAME_STATE_GAMEPREPARE) {
             [firstBomb update:delta];

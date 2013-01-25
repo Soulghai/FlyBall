@@ -18,6 +18,15 @@
 	GUIPanel *backgroundSpr;
 	
 	GUIPanel *pauseZZZSpr;
+    GUIPanel* panelBomb;
+    float panelBombAngle;
+    float panelBombDistance;
+    GUIPanel* panelBombMagnet;
+    float panelBombMagnetAngle;
+    float panelBombMagnetDistance;
+    GUIPanel* panelBombTime;
+    float panelBombTimeAngle;
+    float panelBombTimeDistance;
 	id pauseAction;
 	GUICheckBox *btnSound;
     GUICheckBox *btnMusic;
