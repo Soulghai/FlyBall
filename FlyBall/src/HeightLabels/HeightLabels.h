@@ -8,12 +8,21 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "GUILabelTTFOutlined.h"
 
 @interface HeightLabels : NSObject {
-    NSArray* heightLabelsNames;
-    NSArray* heightLabels;
+    CCSprite* heightLabel;
     NSArray* heightLabelsPosition;
     NSMutableArray* heightLabelsActive;
+    
+    CCSprite *flasher;
+    CGPoint pointFlasherOne;
+    CGPoint pointFlasherTwo;
+    float timeFlasher;
+    float delayFlasher;
+    BOOL isPointOneActive;
+    
+    GUILabelTTFOutlined* labelHeight;
 }
 
 - (void) update;

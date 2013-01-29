@@ -56,6 +56,13 @@
     [Defs instance].gameSessionCounter = 0;
     [Defs instance].coinsCount = 0;
     
+    [Defs instance].gameSessionCounter = 0;
+    [Defs instance].rateMeWindowShowValue = 0;
+    [Defs instance].totalTouchBloxCounter = 0;
+    [Defs instance].totalDeadBloxCounter = 0;
+    [Defs instance].totalBombCounter = 0;
+    [Defs instance].hintCounter = 3;
+    
     //--------------------------------------
     // То, что можно прокачать
     //--------------------------------------
@@ -93,6 +100,7 @@
     
     [MyData setStoreValue:@"coinsCount" value:@"0"];
     [MyData setStoreValue:@"bestScore" value:@"0"];
+    [MyData setStoreValue:@"hintCounter" value:@"3"];
     
     [MyData setStoreValue:@"bonusAccelerationPower" value:[NSString stringWithFormat:@"%f",[Defs instance].bonusAccelerationPower]];
     [MyData setStoreValue:@"bonusAccelerationPowerLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].bonusAccelerationPowerLevel]];
@@ -147,12 +155,6 @@
         //[Defs instance].startGameNotFirstTime = NO;
         
         if (![Defs instance].startGameNotFirstTime) {
-            [Defs instance].gameSessionCounter = 0;
-            [Defs instance].rateMeWindowShowValue = 0;
-            [Defs instance].totalTouchBloxCounter = 0;
-            [Defs instance].totalDeadBloxCounter = 0;
-            [Defs instance].totalBombCounter = 0;
-            
             [self retartGameProcess];
         } else {
             [Defs instance].gameSessionCounter = [[MyData getStoreValue:@"gameSessionCounter"] intValue];
@@ -162,6 +164,7 @@
             [Defs instance].totalTouchBloxCounter = [[MyData getStoreValue:@"totalTouchBloxCounter"] intValue];
             [Defs instance].totalDeadBloxCounter = [[MyData getStoreValue:@"totalDeadBloxCounter"] intValue];
             [Defs instance].totalBombCounter = [[MyData getStoreValue:@"totalDeadBloxCounter"] intValue];
+            [Defs instance].hintCounter = [[MyData getStoreValue:@"hintCounter"] intValue];
             
             [Defs instance].bonusAccelerationPower = [[MyData getStoreValue:@"bonusAccelerationPower"] floatValue];
             [Defs instance].bonusAccelerationPowerLevel  = [[MyData getStoreValue:@"bonusAccelerationPowerLevel"] intValue];
@@ -213,11 +216,10 @@
 		btnDef.sound = @"button_click.wav";
         btnDef.zIndex = 5;
 		if ([Defs instance].iPhone5) {
-            GUIButton *_btn = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(SCREEN_WIDTH - 40, SCREEN_HEIGHT - 30)];
-            [_btn.spr setScale:1.3f];
-            _btn = nil;
+            btnPause = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(SCREEN_WIDTH - 40, SCREEN_HEIGHT - 30)];
+            [btnPause.spr setScale:1.3f];
         } else
-            [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(SCREEN_WIDTH - 20,SCREEN_HEIGHT-20)];    
+            btnPause = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(SCREEN_WIDTH - 20,SCREEN_HEIGHT-20)];
 		
 		btnDef.sprName = @"btnRestart.png";
 		btnDef.sprDownName = @"btnRestartDown.png";
@@ -234,9 +236,9 @@
         
         
         GUILabelTTFDef *_labelTTFDef = [GUILabelTTFDef node];
-        _labelTTFDef.group = GAME_STATE_GAME|GAME_STATE_GAMEPREPARE|GAME_STATE_GAMEPAUSE;
+        _labelTTFDef.group = GAME_STATE_GAME|GAME_STATE_GAMEPREPARE;
         
-        /*_labelTTFDef.alignement = kCCTextAlignmentLeft;
+        _labelTTFDef.alignement = kCCTextAlignmentLeft;
         _labelTTFDef.textColor = ccc3(255, 150, 0);
         _labelTTFDef.text = @"";
         labelScoreStr1 =[[MainScene instance].gui addItem:(id)_labelTTFDef _pos:ccp(1, screenPlayerPositionY - screenPlayerPositionY/1.5f)];
@@ -245,7 +247,7 @@
         labelScoreStr2 =[[MainScene instance].gui addItem:(id)_labelTTFDef _pos:ccp(1, screenPlayerPositionY)];
         
         _labelTTFDef.text = @"160";
-        labelScoreStr3 =[[MainScene instance].gui addItem:(id)_labelTTFDef _pos:ccp(1,screenPlayerPositionY + screenPlayerPositionY/1.5f)];*/
+        labelScoreStr3 =[[MainScene instance].gui addItem:(id)_labelTTFDef _pos:ccp(1,screenPlayerPositionY + screenPlayerPositionY/1.5f)];
         
         // hint for start game
         _labelTTFDef.group = GAME_STATE_GAMEPREPARE;
@@ -255,17 +257,21 @@
         _labelTTFDef.text = NSLocalizedString(@"HINT:Tap to Bomb","");
         [[MainScene instance].gui addItem:(id)_labelTTFDef _pos:ccp(SCREEN_WIDTH_HALF, 150)];
         
+        _labelTTFDef.group = GAME_STATE_NONE;
+        _labelTTFDef.text = NSLocalizedString(@"HINT:Explode all bomb","");
+        labelTouchAllBomb = [[MainScene instance].gui addItem:(id)_labelTTFDef _pos:ccp(SCREEN_WIDTH_HALF, 140)];
+        
         GUIPanelDef *panelDef = [GUIPanelDef node];
-        panelDef.parentFrame = [Defs instance].objectFrontLayer;
+        panelDef.parentFrame = [Defs instance].spriteSheetChars;
         panelDef.enabled = NO;
         panelDef.group = GAME_STATE_NONE;
-        panelDef.zIndex = 0;
-        panelDef.sprFileName = @"pauseScreen.jpg";
+        panelDef.sprName = @"time_screen1.png";
         panelDef.zIndex = 250;
+        
         
         panelSlowMotionLeft = [[MainScene instance].gui addItem:panelDef _pos:ccp(0,0)];
         [panelSlowMotionLeft.spr setAnchorPoint:ccp(0, 0)];
-        if ([Defs instance].screenHD) [panelSlowMotionLeft.spr setScale:2];
+        [panelSlowMotionLeft.spr setScale:2];
         
 		/*panelDef.sprName = @"frame_time_vert.png";
 		panelSlowMotionLeft = [[MainScene instance].gui addItem:(id)panelDef _pos:ccp(0, 0)];
@@ -285,7 +291,13 @@
 		panelSlowMotionTop = [[MainScene instance].gui addItem:(id)panelDef _pos:ccp(0, 480)];
         [panelSlowMotionTop.spr setAnchorPoint:ccp(0,1)];*/
         
+        panelDef.group = GAME_STATE_NONE;
+        panelDef.parentFrame = [MainScene instance].gui;
+        panelDef.sprName = @"finger_1.png";
+        panelDef.enabled = NO;
+        panelHelpFinger = [[MainScene instance].gui addItem:(id)panelDef _pos:ccp(190,240)];
         
+        helpFingerAnimationDelay = 0.8f;
         
         //cells = [[CellsBackground alloc] init];
         //[cells retain];
@@ -442,11 +454,17 @@
 
     timerAddBall = -0.3f;
     
-    //[self labelScoreBarUpdate];
+    [self labelScoreBarUpdate];
     //[cells restartParameters];
     [paralaxBackground restartParameters];
     [heightLabels restartParameters];
     [speedWall deactivate];
+    
+    if ([Defs instance].hintCounter > 0) {
+        helpFingerAnimationTime = 0;
+        [panelHelpFinger setPosition:ccp(195,250)];
+        [panelHelpFinger show:YES];
+    }
     
     timeSlowMotion = 0;
     timeSlowMotionPause = 0;
@@ -466,9 +484,10 @@
     GAME_IS_PLAYING = YES;
     state = GAME_STATE_GAME;
     [[MainScene instance].gui show:state];
+    
     [player addVelocity:firstBomb.velocity];
     
-    [self addBall:[ActorCircleBomb class] _point:ccp(player.position.x, player.position.y - screenPlayerPositionY) _velocity:ccp(0, 5 + firstBomb.velocity.y) _active:YES];
+    secondBomb = [self addBall:[ActorCircleBomb class] _point:ccp(player.position.x, player.position.y - screenPlayerPositionY) _velocity:ccp(0, 5 + firstBomb.velocity.y) _active:YES];
     
     [firstBomb touch];
 }
@@ -526,7 +545,7 @@
     [MyData encodeDict:[MyData getDictForSaveData]];
 }
 
-/*- (void) labelScoreBarUpdate {
+- (void) labelScoreBarUpdate {
     [labelScoreStr1 setPosition:ccp(1, SCREEN_HEIGHT-(int)(player.position.y - SCREEN_HEIGHT_HALF/1.5f) % SCREEN_HEIGHT)];
     [labelScoreStr2 setPosition:ccp(1, SCREEN_HEIGHT-(int)(player.position.y) % SCREEN_HEIGHT)];
     [labelScoreStr3 setPosition:ccp(1, SCREEN_HEIGHT-(int)(player.position.y + SCREEN_HEIGHT_HALF/1.5f) % SCREEN_HEIGHT)];
@@ -571,7 +590,7 @@
             }
     }
     [labelScoreStr3 setText:_strScoreValue];
-}*/
+}
 
 - (void) bombExplosion:(ActorActiveBombObject*)_tempActor {
     float _tempActorX = _tempActor.costume.position.x + [Defs instance].objectFrontLayer.position.x;
@@ -589,12 +608,38 @@
     [player addVelocity:ccp(_power*0.4f*cos(_angle),_power*sin(_angle))];
 }
 
-- (void) bonusSlowMotionAddFrame:(float)_time {
+- (void) bonusSlowMotionAddFrame:(float)_time
+                        _bonusID:(int)_bonusID{
     [panelSlowMotionLeft show:YES];
     [panelSlowMotionLeft.spr setOpacity:200];
     [panelSlowMotionLeft.spr setPosition:ccp(-[Defs instance].objectFrontLayer.position.x, -[Defs instance].objectFrontLayer.position.y)];
     
     panelBonusFadeSpeed = int(255 / (FRAME_RATE*_time));
+    
+    switch (_bonusID) {
+        case BONUS_SLOWMOTION: {
+            CCSpriteFrame* frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"time_screen1.png"];
+            [panelSlowMotionLeft.spr setDisplayFrame:frame];
+        }
+            break;
+        case BONUS_ACCELERATION: {
+            CCSpriteFrame* frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"time_screen1.png"];
+            [panelSlowMotionLeft.spr setDisplayFrame:frame];
+        }
+            break;
+        case BONUS_GODMODE: {
+            CCSpriteFrame* frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"time_screen1.png"];
+            [panelSlowMotionLeft.spr setDisplayFrame:frame];
+        }
+            break;
+            
+        case BONUS_APOCALYPSE: {
+            CCSpriteFrame* frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"time_screen2.png"];
+            [panelSlowMotionLeft.spr setDisplayFrame:frame];
+        }
+            break;
+            
+    }
 }
 
 - (void) doBonusEffect:(int)_bonusID {
@@ -608,7 +653,7 @@
             break;
             
         case BONUS_APOCALYPSE: {
-            [self bonusSlowMotionAddFrame:0.3f];
+            [self bonusSlowMotionAddFrame:0.3f _bonusID:_bonusID];
             Actor* _tempActor;
             int _count = [[Defs instance].actorManager.actorsAll count];
             for (int i = 0; i < _count; i++) {
@@ -648,13 +693,13 @@
         case BONUS_SLOWMOTION:
             // Включаем замедление времени
             [self bonusSlowMotionActivate:[Defs instance].playerBombSlow _timeScale:0.5f];
-            [self bonusSlowMotionAddFrame:[Defs instance].playerBombSlow];
+            [self bonusSlowMotionAddFrame:[Defs instance].playerBombSlow _bonusID:_bonusID];
             break;
             
         case BONUS_ACCELERATION:
             // Ускорение
             [player setSpeedBonus:[Defs instance].bonusAccelerationDelay];
-            [self bonusSlowMotionAddFrame:[Defs instance].bonusAccelerationDelay];
+            [self bonusSlowMotionAddFrame:[Defs instance].bonusAccelerationDelay _bonusID:_bonusID];
             break;
             
         case BONUS_APOCALYPSE:
@@ -665,7 +710,7 @@
         case BONUS_GODMODE:
             // устанавливаем режим бога
             [player setGodMode:[Defs instance].bonusGodModeTime];
-            [self bonusSlowMotionAddFrame:[Defs instance].bonusGodModeTime];
+            [self bonusSlowMotionAddFrame:[Defs instance].bonusGodModeTime _bonusID:_bonusID];
             break;
     }
 }
@@ -676,6 +721,30 @@
         ||(_tempActor.costume.position.y + [Defs instance].objectFrontLayer.position.y <= -elementRadius)
         ||(_tempActor.costume.position.y + [Defs instance].objectFrontLayer.position.y >= SCREEN_HEIGHT+elementRadius)) return YES;
     return NO;
+}
+
+- (void) fingerAnimation {
+    helpFingerAnimationTime += TIME_STEP;
+    
+    if (helpFingerAnimationState == 1) {
+        if (helpFingerAnimationTime >= helpFingerAnimationDelay) {
+            CCSpriteFrame *_frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"finger_1.png"];
+            [panelHelpFinger.spr setDisplayFrame:_frame];
+            helpFingerAnimationState = 2;
+            helpFingerAnimationTime = 0;
+        }
+    } else
+        if (helpFingerAnimationState == 2) {
+            
+            if (helpFingerAnimationTime >= helpFingerAnimationDelay) {
+                
+                CCSpriteFrame *_frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"finger_2.png"];
+                [panelHelpFinger.spr setDisplayFrame:_frame];
+                
+                helpFingerAnimationState = 1;
+                helpFingerAnimationTime = 0;
+            }
+        }
 }
 
 - (void) update:(ccTime)dt {
@@ -707,6 +776,23 @@
 	if ((GAME_IS_PLAYING)&&((state & (GAME_STATE_GAMEPAUSE)) == 0)) {
 		
 		levelTime += dt;
+        
+        if ((secondBomb)&&([Defs instance].hintCounter > 0)) {
+            if (!labelTouchAllBomb.spr.parent) {
+                if (secondBomb.costume.position.y >= 430) {
+                    [labelTouchAllBomb show:YES];
+                    [panelHelpFinger show:YES];
+                    [panelHelpFinger setPosition:ccp(190,240)];
+                    [btnPause show:NO];
+                    [[[CCDirector sharedDirector] scheduler] setTimeScale:0.0f];
+                }
+                
+            } else {
+                [self fingerAnimation];
+                
+                return;
+            }
+        }
         
         if (isSlowMotion) {
             timeSlowMotion += TIME_STEP;
@@ -789,7 +875,7 @@
             }
         }
         
-        //[self labelScoreBarUpdate];
+        [self labelScoreBarUpdate];
         
         timerAddBall += dt;
         if (timerAddBall >= timerDelayAddBall - (levelTime/900)) {
@@ -875,6 +961,7 @@
         }
     } else
         if (state == GAME_STATE_GAMEPREPARE) {
+            if ([Defs instance].hintCounter > 0) [self fingerAnimation];
             [firstBomb update:delta];
             firstBomb.costume.position = ccp(screenPlayerPositionX + CCRANDOM_MINUS1_1()*2, (screenPlayerPositionY - 90) + CCRANDOM_MINUS1_1()*2);
         }
@@ -888,6 +975,9 @@
 	
 		if (isVisible){
             [[GameStandartFunctions instance] playOpenScreenAnimation];
+            
+            helpFingerAnimationTime = 0;
+            helpFingerAnimationState = 2;
             
             if (!startPlatform.parent) [[Defs instance].objectFrontLayer addChild:startPlatform z:0];
             if (!scoreStr.parent) [[MainScene instance] addChild:scoreStr];
@@ -908,6 +998,19 @@
 			
 		if (state != GAME_STATE_LEVELFINISH) {
 			if (GAME_IS_PLAYING) {
+                
+                if (labelTouchAllBomb.spr.parent) {
+                    float _distanceToActor = [[Utils instance] distance:secondBomb.costume.position.x + [Defs instance].objectFrontLayer.position.x _y1:secondBomb.costume.position.y + [Defs instance].objectFrontLayer.position.y _x2:_touchPos.x _y2:_touchPos.y];
+                    if (_distanceToActor <= bombTouchSize) {
+                        [labelTouchAllBomb show:NO];
+                        [panelHelpFinger show:NO];
+                        [btnPause show:YES];
+                        [[[CCDirector sharedDirector] scheduler] setTimeScale:1.0f];
+                        secondBomb = nil;
+                        --[Defs instance].hintCounter;
+                        [MyData setStoreValue:@"hintCounter" value:[NSString stringWithFormat:@"%i",[Defs instance].hintCounter]];
+                    }
+                }
                 
                 Actor* _tempActor;
                 float _distanceToActor = 0;
@@ -944,21 +1047,25 @@
                                 [self addBonus:1 _point:_tempActor.costume.position _velocity:player.velocity _active:YES];
                     }
                     
+                    if (_tempActor == secondBomb) secondBomb = nil;
+                    
                     _tempActor = nil;
                     
                     return YES;
                 }
                 
-			} else
+			} else {
             
-            if (state == GAME_STATE_GAMEPREPARE) {
-                firstBomb.costume.position = ccp(screenPlayerPositionX, screenPlayerPositionY - 90);
-                float _distanceToActor = [[Utils instance] distance:firstBomb.costume.position.x + [Defs instance].objectFrontLayer.position.x _y1:firstBomb.costume.position.y + [Defs instance].objectFrontLayer.position.y _x2:_touchPos.x _y2:_touchPos.y];
-                    if (_distanceToActor <= bombTouchSize) {
-                        [self startGameSession];
-                    }
-                return YES;
-			}
+                if (state == GAME_STATE_GAMEPREPARE) {
+                    firstBomb.costume.position = ccp(screenPlayerPositionX, screenPlayerPositionY - 90);
+                    float _distanceToActor = [[Utils instance] distance:firstBomb.costume.position.x + [Defs instance].objectFrontLayer.position.x _y1:firstBomb.costume.position.y + [Defs instance].objectFrontLayer.position.y _x2:_touchPos.x _y2:_touchPos.y];
+                        if (_distanceToActor <= bombTouchSize) {
+                            [self startGameSession];
+                        }
+                    return YES;
+                }
+                
+            }
 
 		}
 	}

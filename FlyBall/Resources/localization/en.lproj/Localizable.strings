@@ -59,6 +59,10 @@ In App Purchase Dialog
 /* label Hint Level Start */
 "HINT:Tap to Bomb" = "Explode the BOMB";
 
+/* label Hint Level Start */
+"HINT:Explode all bomb" = "detonate BOMBS\nthat close";
+
+
 /* Restart Progress dialog box */
 "Restart Progress?" = "Reset game?";
 

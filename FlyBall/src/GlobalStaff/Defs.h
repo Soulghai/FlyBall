@@ -129,6 +129,8 @@
 
 @property (nonatomic, readwrite) int launchBombLevel;
 
+@property (nonatomic, readwrite) int hintCounter;
+
 +(Defs*) instance;
 
 - (void)dealloc;

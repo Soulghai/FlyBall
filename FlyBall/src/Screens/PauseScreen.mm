@@ -88,7 +88,7 @@
     panelDef.sprName = @"satelliteBomb.png";
     panelDef.zIndex = 1;
     panelBombDistance = 120;
-    panelBombAngle = 70;
+    panelBombAngle = 0;
     panelBomb = [[MainScene instance].gui addItem:panelDef _pos:ccp(-100,-100)];
     [panelBomb.spr setOpacity:200];
     
@@ -99,7 +99,7 @@
     [panelBombMagnet.spr setOpacity:200];
     
     panelBombTimeDistance = 250;
-    panelBombTimeAngle = 270;
+    panelBombTimeAngle = 310;
     panelDef.sprName = @"satelliteBombtime.png";
     panelBombTime = [[MainScene instance].gui addItem:panelDef _pos:ccp(-100,-100)];
     [panelBombTime.spr setOpacity:200];

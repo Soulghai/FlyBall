@@ -109,6 +109,8 @@
 @synthesize playerArmorLevel;
 @synthesize launchBombLevel;
 
+@synthesize hintCounter;
+
 
 static Defs *instance_;
 

@@ -119,12 +119,12 @@ static void MainScene_remover() {
 	[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];
     
     [CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA4444];
-    [Defs instance].spriteSheetCells = [CCSpriteBatchNode batchNodeWithFile: @"gfx_cells.pvr.ccz" capacity: 100];
+    [Defs instance].spriteSheetCells = [CCSpriteBatchNode batchNodeWithFile: @"gfx_cells.png" capacity: 10];
 	[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"gfx_cells.plist" texture:[Defs instance].spriteSheetCells.texture];
 	[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];
     
     [CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA4444];
-    [Defs instance].spriteSheetHeightLabels = [CCSpriteBatchNode batchNodeWithFile: @"gfx_heightLabels.pvr.ccz" capacity: 100];
+    [Defs instance].spriteSheetHeightLabels = [CCSpriteBatchNode batchNodeWithFile: @"gfx_heightLabels.pvr.ccz" capacity: 10];
 	[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"gfx_heightLabels.plist" texture:[Defs instance].spriteSheetHeightLabels.texture];
 	[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];
     

@@ -4,41 +4,60 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>height_1000.png</key>
+            <key>flasher.png</key>
             <dict>
                 <key>height</key>
-                <integer>66</integer>
+                <integer>312</integer>
                 <key>offsetX</key>
-                <real>0</real>
+                <real>10</real>
                 <key>offsetY</key>
-                <real>0</real>
+                <real>-6</real>
                 <key>originalHeight</key>
-                <integer>70</integer>
+                <integer>512</integer>
                 <key>originalWidth</key>
-                <integer>960</integer>
+                <integer>512</integer>
                 <key>width</key>
-                <integer>960</integer>
+                <integer>318</integer>
                 <key>x</key>
                 <integer>2</integer>
                 <key>y</key>
-                <integer>72</integer>
+                <integer>2</integer>
+            </dict>
+            <key>height_1000.png</key>
+            <dict>
+                <key>height</key>
+                <integer>182</integer>
+                <key>offsetX</key>
+                <real>2</real>
+                <key>offsetY</key>
+                <real>21</real>
+                <key>originalHeight</key>
+                <integer>512</integer>
+                <key>originalWidth</key>
+                <integer>640</integer>
+                <key>width</key>
+                <integer>630</integer>
+                <key>x</key>
+                <integer>2</integer>
+                <key>y</key>
+                <integer>316</integer>
             </dict>
             <key>height_1000_active.png</key>
             <dict>
                 <key>height</key>
-                <integer>68</integer>
+                <integer>244</integer>
                 <key>offsetX</key>
-                <real>0</real>
+                <real>2</real>
                 <key>offsetY</key>
-                <real>-1</real>
+                <real>-11</real>
                 <key>originalHeight</key>
-                <integer>70</integer>
+                <integer>512</integer>
                 <key>originalWidth</key>
-                <integer>960</integer>
+                <integer>640</integer>
                 <key>width</key>
-                <integer>960</integer>
+                <integer>630</integer>
                 <key>x</key>
-                <integer>2</integer>
+                <integer>322</integer>
                 <key>y</key>
                 <integer>2</integer>
             </dict>
@@ -50,16 +69,16 @@
             <key>realTextureFileName</key>
             <string>gfx_heightLabels-hd.pvr.ccz</string>
             <key>size</key>
-            <string>{1024,256}</string>
+            <string>{1024,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:e5e79b033a9040c5571f9535456d5ce8$</string>
+            <string>$TexturePacker:SmartUpdate:4d4d693360d9dc9c7ec115f2c5de7ac4$</string>
             <key>textureFileName</key>
             <string>gfx_heightLabels-hd.pvr.ccz</string>
         </dict>
         <key>texture</key>
         <dict>
             <key>height</key>
-            <integer>256</integer>
+            <integer>512</integer>
             <key>width</key>
             <integer>1024</integer>
         </dict>

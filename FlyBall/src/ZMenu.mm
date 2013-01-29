@@ -523,7 +523,7 @@
     
     [btnPlay setPosition:ccp(173 + CCRANDOM_MINUS1_1()*1, 170 + CCRANDOM_MINUS1_1()*1)];
     
-    [panelPlayerFlame.spr setOpacity:200 + int(CCRANDOM_0_1()*55)];
+    [panelPlayerFlame.spr setOpacity:80 + int(CCRANDOM_0_1()*50)];
     
     if (isButtonPlayDown) {
         [panelLogo setPosition:ccpAdd(panelLogo.spr.position, ccp(0,10))];

@@ -159,6 +159,8 @@
         <array>
             <filename>FlyBall/Resources/gfx/Bonuses</filename>
             <filename>FlyBall/Resources/gfx/Objects</filename>
+            <filename>FlyBall/Resources/gfx/Screens/time_screen1.png</filename>
+            <filename>FlyBall/Resources/gfx/Screens/time_screen2.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

@@ -155,6 +155,14 @@
 		panelBushLeft = [[MainScene instance].gui addItem:(id)panelDef _pos:ccp(0,-10)];
         [panelBushLeft.spr setAnchorPoint:CGPointMake(0.1f,0.0f)];
         isBushLeftGoUp = NO;*/
+        
+        panelDef.group = GAME_STATE_LEVELFINISH;
+        panelDef.parentFrame = self; 
+        panelDef.sprName = nil;
+        panelDef.zIndex = 160;
+        panelDef.sprFileName = @"score_screen.jpg";
+        GUIPanel* backgroundSpr = [[MainScene instance].gui addItem:panelDef _pos:ccp(0,0)];
+        [backgroundSpr.spr setAnchorPoint:ccp(0, 0)];
             
         soundScoreDelay = 0.5f;
         timeCoinsAdd = 0;

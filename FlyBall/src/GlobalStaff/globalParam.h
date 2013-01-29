@@ -95,7 +95,7 @@ extern BOOL GAME_EASTER;
 #define SPEEDWALL_DELAYSHOWINGCOEFF_MAX 12
 #define SPEEDWALL_DELAYSHOWINGCOEFF_ADD_COEFF 1
 
-#define PLAYER_MAGNET_DISTANDE_DEFAULT 50  //прибавляется по 88 за апдейт. Всего три апдейта
+#define PLAYER_MAGNET_DISTANDE_DEFAULT 50  
 #define PLAYER_MAGNET_DISTANDE_MAX 264
 #define PLAYER_MAGNET_DISTANDE_ADD_COEFF 40
 
@@ -131,13 +131,6 @@ extern BOOL GAME_EASTER;
 #define Z_GUI 5000
 
 //static public var ropeStartDistance:Number = 1;
-
-//LevelPacks
-#define LEVELPACK_ISLAND 1
-#define LEVELPACK_VOLCANO 2
-#define LEVELPACK_ICE 3
-#define LEVELPACK_CAVE 4
-#define LEVELPACK_BOMB 5
 
 // Rate me popup:
 #define NOTIFICATION_RATEME_FONT_SIZE_IPAD 15

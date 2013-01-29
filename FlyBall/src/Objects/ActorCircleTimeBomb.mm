@@ -45,22 +45,22 @@
     if ((currSpriteFrame == _spriteFrame)||(currSpriteFrame == int(delayBomb))) return;
     currSpriteFrame = _spriteFrame;
     
-    CCSpriteFrame* frame;
+    CCSpriteFrame* _frame = nil;
     switch (currSpriteFrame) {
         case 0:
-            frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"bombtime_1.png"];
+            _frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"bombtime_1.png"];
             break;
         case 1:
-            frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"bombtime_2.png"];
+            _frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"bombtime_2.png"];
             break;
         case 2:
-            frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"bombtime_3.png"];
+            _frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"bombtime_3.png"];
             break;
             
         default:
             break;
     }
-    [costume setDisplayFrame:frame];
+    if (_frame) [costume setDisplayFrame:_frame];
 }
 
 - (void) update:(ccTime)dt {

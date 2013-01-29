@@ -30,7 +30,7 @@
         timeShowing = 0;
         delayShowing = [Defs instance].speedWallDelayShowingCoeff;
         
-        costume = [CCSprite spriteWithSpriteFrameName:@"speedWallBackground_1.jpg"];
+        costume = [CCSprite spriteWithSpriteFrameName:@"speedWallBackground_1.png"];
         [costume retain];
         [costume setScaleY:2.f];
         [costume setScaleX:2.0f];
@@ -109,10 +109,14 @@
             }
         }
         
-        int xPosition = MAX([MainScene instance].game.player.position.x, -64);
-        xPosition = MIN(xPosition, 384);
+        //int xPosition = MAX([MainScene instance].game.player.position.x, -64);
+        //xPosition = MIN(xPosition, 384);
         
-        costume.position = ccpAdd(ccp(xPosition, -[Defs instance].objectFrontLayer.position.y + SCREEN_HEIGHT_HALF), positionChangeCoeff);
+        
+        float _posX = [MainScene instance].game.player.position.x;
+        if (_posX < -64) _posX = -64; else
+            if (_posX > 384) _posX = 384;
+        costume.position = ccpAdd(ccp(_posX, -[Defs instance].objectFrontLayer.position.y + SCREEN_HEIGHT_HALF), positionChangeCoeff);
         
         if (isShowing||isHiding) {
             positionChangeCoeff = ccpAdd(positionChangeCoeff, ccp(0, showingSpeed));
@@ -131,7 +135,7 @@
                     [self stopCurrentWall];
                 }
         } else {
-            positionChangeCoeff = ccpAdd(positionChangeCoeff, ccp(-[MainScene instance].game.player.velocity.x, 0));
+            //positionChangeCoeff = ccpAdd(positionChangeCoeff, ccp(-[MainScene instance].game.player.velocity.x, 0));
             //costume.position = ccpAdd(ccp(xPosition, -[Defs instance].objectFrontLayer.position.y + SCREEN_HEIGHT_HALF), positionChangeCoeff);
         }
         
@@ -143,10 +147,10 @@
         
         if (emitterWarningAcc.parent)
             
-            emitterWarningAcc.position = ccpAdd(ccp(xPosition, costume.position.y), ccp(0, -SCREEN_HEIGHT_HALF));
+            emitterWarningAcc.position = ccpAdd(ccp(_posX, costume.position.y), ccp(0, -SCREEN_HEIGHT_HALF));
         else
             if (emitterWarningDecc.parent)
-                emitterWarningDecc.position = ccpAdd(ccp(xPosition, costume.position.y), ccp(0, -SCREEN_HEIGHT_HALF));
+                emitterWarningDecc.position = ccpAdd(ccp(_posX, costume.position.y), ccp(0, -SCREEN_HEIGHT_HALF));
         
     } else {
         timeWaiting += TIME_STEP;
@@ -168,14 +172,18 @@
             }
         }
         
-        int xPosition = MAX([MainScene instance].game.player.position.x, -64);
-        xPosition = MIN(xPosition, 384);
+        float _posX = [MainScene instance].game.player.position.x;
+        if (_posX < -64) _posX = -64; else
+            if (_posX > 384) _posX = 384;
+        
+        //int xPosition = MAX([MainScene instance].game.player.position.x, -64);
+        //xPosition = MIN(xPosition, 384);
         
         if (emitterWarningAcc.parent)
-            emitterWarningAcc.position = ccp(xPosition, [MainScene instance].game.player.position.y + SCREEN_HEIGHT - screenPlayerPositionY);
+            emitterWarningAcc.position = ccp(_posX, [MainScene instance].game.player.position.y + SCREEN_HEIGHT - screenPlayerPositionY);
         else
             if (emitterWarningDecc.parent)
-                emitterWarningDecc.position = ccp(xPosition, [MainScene instance].game.player.position.y +SCREEN_HEIGHT - screenPlayerPositionY);
+                emitterWarningDecc.position = ccp(_posX, [MainScene instance].game.player.position.y +SCREEN_HEIGHT - screenPlayerPositionY);
         
         timeWaiting += TIME_STEP;
         if (timeWaiting >= delayWaiting) {
@@ -190,14 +198,14 @@
             if (addSpeedCoeff > 0) {
                 if (addSpeedCoeff != addSpeedCoeffOld) {
                     CCSpriteFrame* frame;
-                    frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"speedWallBackground_1.jpg"];
+                    frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"speedWallBackground_1.png"];
                     [costume setDisplayFrame:frame];
                     //[costume setColor:ccc3(0, 255, 0)];
                 }
             } else {
                 if (addSpeedCoeff != addSpeedCoeffOld) {
                     CCSpriteFrame* frame;
-                    frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"speedWallBackground_2.jpg"];
+                    frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"speedWallBackground_2.png"];
                     [costume setDisplayFrame:frame];
                     //[costume setColor:ccc3(255, 0, 0)];
                 }

@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>speedWallBackground_1.jpg</key>
+            <key>speedWallBackground_1.png</key>
             <dict>
                 <key>height</key>
                 <integer>240</integer>
@@ -23,7 +23,7 @@
                 <key>y</key>
                 <integer>244</integer>
             </dict>
-            <key>speedWallBackground_2.jpg</key>
+            <key>speedWallBackground_2.png</key>
             <dict>
                 <key>height</key>
                 <integer>240</integer>
@@ -67,13 +67,13 @@
             <key>format</key>
             <integer>0</integer>
             <key>realTextureFileName</key>
-            <string>gfx_cells.pvr.ccz</string>
+            <string>gfx_cells.png</string>
             <key>size</key>
             <string>{1024,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:8a57dbacb906983ec54ba27bc0a4f73b$</string>
+            <string>$TexturePacker:SmartUpdate:bed39dd7a25b597df97efde0ce73abdc$</string>
             <key>textureFileName</key>
-            <string>gfx_cells.pvr.ccz</string>
+            <string>gfx_cells.png</string>
         </dict>
         <key>texture</key>
         <dict>

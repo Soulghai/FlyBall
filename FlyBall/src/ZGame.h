@@ -16,6 +16,8 @@
 #import "ParalaxBackground.h"
 #import "HeightLabels.h"
 #import "ActorCircleLaunchBomb.h"
+#import "ActorCircleBomb.h"
+#import "GUILabelTTFOutlinedDef.h"
 
 @interface ZGame : CCNode {	
 	BOOL isVisible;
@@ -30,12 +32,20 @@
     CGPoint scoreStrPos;
     BOOL isNewScoreSound;
     
+    GUIButton* btnPause;
+    GUIPanel* panelHelpFinger;
+    float helpFingerAnimationTime;
+    float helpFingerAnimationDelay;
+    int helpFingerAnimationState;
+    
     float timerAddBall;
     float timerDelayAddBall;
     
-    /*GUILabelTTF *labelScoreStr1;
+    GUILabelTTFOutlined *labelTouchAllBomb;
+    
+    GUILabelTTF *labelScoreStr1;
     GUILabelTTF *labelScoreStr2;
-    GUILabelTTF *labelScoreStr3;*/
+    GUILabelTTF *labelScoreStr3;
     
     GUIPanel* panelSlowMotionLeft;
     GUIPanel* panelSlowMotionRight;
@@ -50,6 +60,7 @@
     CCSprite *startPlatform;
     
     ActorCircleLaunchBomb* firstBomb;
+    ActorActiveBombObject* secondBomb;
     
     int collectedCoins;
     
