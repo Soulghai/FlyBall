@@ -59,6 +59,7 @@
     //GUILabelTTFOutlined *labelMarketUpdateAvailableCounter;
     GUIButton *btnShop;
     GUIPanel *panelExclamationMark;
+    BOOL isPanelExclamationMarkRotateRight;
     
     float marketGoSpeed;
 }

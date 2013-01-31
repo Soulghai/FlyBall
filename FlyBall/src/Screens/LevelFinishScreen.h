@@ -51,6 +51,7 @@
     GUIPanel *panelPalmLeft;
     
     GUIPanel *panelExclamationMark;
+    BOOL isPanelExclamationMarkRotateRight;
     
     BOOL isBushGoUp;
     BOOL isBushLeftGoUp;
@@ -59,6 +60,7 @@
 }
 
 - (id) init;
+- (void) checkAvailableUpdates;
 - (void) setCollectedCoins:(int) _value;
 - (void) setScore:(int) _value;
 - (void) showPanelImproved:(BOOL)_flag;

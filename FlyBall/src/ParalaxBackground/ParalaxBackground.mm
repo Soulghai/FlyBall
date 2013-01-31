@@ -20,12 +20,14 @@
         cellHeight = 2048;
         cellScaleCoeff = 1.25f;
         
+        [CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGB565];
         cellsHighMap = [NSArray arrayWithObjects:[CCSprite spriteWithFile:@"back_1.jpg"],
                         [CCSprite spriteWithFile:@"back_2.jpg"],
                         [CCSprite spriteWithFile:@"back_3.jpg"],
                         [CCSprite spriteWithFile:@"back_4.jpg"],
                         [CCSprite spriteWithFile:@"back_5.jpg"],nil];
         [cellsHighMap retain];
+        [CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];
         
         CCSprite *_spr;
         for (int i = 0; i < [cellsHighMap count]; i++) {
@@ -71,6 +73,9 @@
                      [CCSprite spriteWithSpriteFrameName:@"layer_2_10.png"],
                      [CCSprite spriteWithSpriteFrameName:@"layer_2_11.png"],
                      [CCSprite spriteWithSpriteFrameName:@"layer_2_12.png"],
+                     [CCSprite spriteWithSpriteFrameName:@"layer_2_13.png"],
+                     [CCSprite spriteWithSpriteFrameName:@"layer_2_14.png"],
+                     [CCSprite spriteWithSpriteFrameName:@"layer_2_15.png"],
                        nil];
         [paralax_2 retain];
         
@@ -94,7 +99,13 @@
                      [CCSprite spriteWithSpriteFrameName:@"layer_1_6.png"],
                      [CCSprite spriteWithSpriteFrameName:@"layer_1_7.png"],
                      [CCSprite spriteWithSpriteFrameName:@"layer_1_8.png"],
-                     //[CCSprite spriteWithSpriteFrameName:@"layer_1_9.png"],
+                     [CCSprite spriteWithSpriteFrameName:@"layer_1_9.png"],
+                     [CCSprite spriteWithSpriteFrameName:@"layer_1_10.png"],
+                     [CCSprite spriteWithSpriteFrameName:@"layer_1_11.png"],
+                     [CCSprite spriteWithSpriteFrameName:@"layer_1_12.png"],
+                     [CCSprite spriteWithSpriteFrameName:@"layer_1_13.png"],
+                     [CCSprite spriteWithSpriteFrameName:@"layer_1_14.png"],
+                     [CCSprite spriteWithSpriteFrameName:@"layer_1_15.png"],
                      nil];
         [paralax_1 retain];
         
@@ -158,8 +169,10 @@
     
     int _yCoeff = int([MainScene instance].game.player.position.y / 30000);
     
-    int _ranID = _yCoeff*4 + int(round(CCRANDOM_0_1()*3));
-    if (_ranID > paralax_2.count-1) _ranID = paralax_2.count-1;
+    if (_yCoeff > cellsHighMap.count-1) _yCoeff = cellsHighMap.count-1;
+    
+    int _ranID = _yCoeff*3 + int(round(CCRANDOM_0_1()*2));
+    //if (_ranID > paralax_2.count-1) _ranID = paralax_2.count-1;
     CCSprite* _spr = [paralax_2 objectAtIndex:_ranID];
     // Если объект не на экране, то добавляем его
     // Если на экране, то просто пропускаем эту итерацию
@@ -176,8 +189,10 @@
 - (void) addParalax1Object:(float)_posY {
     int _yCoeff = int([MainScene instance].game.player.position.y / 30000);
     
-    int _ranID = _yCoeff*5 + int(round(CCRANDOM_0_1()*4));
-    if (_ranID > paralax_1.count-1) _ranID = paralax_1.count-1;
+    if (_yCoeff > cellsHighMap.count-1) _yCoeff = cellsHighMap.count-1;
+    
+    int _ranID = _yCoeff*3 + int(round(CCRANDOM_0_1()*2));
+    //if (_ranID > paralax_1.count-1) _ranID = paralax_1.count-1;
     CCSprite* _spr = [paralax_1 objectAtIndex:_ranID];
     // Если объект не на экране, то добавляем его
     // Если на экране, то просто пропускаем эту итерацию

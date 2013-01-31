@@ -67,32 +67,33 @@ static void GameStandartFunctions_remover() {
     [MyData setStoreValue:@"isMusicMute" value:[NSString stringWithFormat:@"%i",[Defs instance].isMusicMute]];
 	
 	if (![Defs instance].isMusicMute)
-		[self playCurrentBackgroundMusicTrack];
+		[self playCurrentBackgroundMusicTrack:-1];
     else
         [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
     [FlurryAnalytics logEvent:ANALYTICS_BUTTON_SOUND_ON_OFF_CLICKED];
 }
 
-- (void) playCurrentBackgroundMusicTrack{
+- (void) playCurrentBackgroundMusicTrack:(int)_oldMusicTheme{
     if (![Defs instance].isMusicMute) {
         if ([Defs instance].currentMusicTheme == 0) {
             [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"theme_menu.mp3"];
         } else
         if ([Defs instance].currentMusicTheme == 1) {
-            [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"theme_game_1.mp3"];
-        } else
-            if ([Defs instance].currentMusicTheme == 2) {
-                [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"expand_it_volcano_v2.mp3"];
-            } else
-                if ([Defs instance].currentMusicTheme == 3) {
-                    [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"expand_it_ice_age_v2.mp3"];
-                }else
-                    if ([Defs instance].currentMusicTheme == 4) {
-                        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"expand_it_caves_v2.mp3"];
-                    }else
-                        if ([Defs instance].currentMusicTheme == 5) {
-                            [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"theme_menu.mp3"];
-                        }
+            if ((_oldMusicTheme != [Defs instance].currentMusicTheme)||(![[SimpleAudioEngine sharedEngine] isBackgroundMusicPlaying])) {
+                if ([MainScene instance].game.player.position.y < 10000)
+                    [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"fly_theme2_1.mp3" loop:NO];
+                else
+                    if ([MainScene instance].game.player.position.y < 50000)
+                        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"fly_theme2_2.mp3" loop:NO];
+                else
+                    if ([MainScene instance].game.player.position.y < 100000)
+                        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"fly_theme2_3.mp3" loop:NO];
+                    else {
+                        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"fly_theme2_3.mp3" loop:NO];
+                    }
+            }
+            
+        }
     }
 }
 

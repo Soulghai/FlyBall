@@ -101,7 +101,7 @@
     } else
         
     if (isCrazyFace) {
-        frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"player_speed.png"];
+        frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"player_OMG.png"];
     } else
     
     if (isEyeOpen)
@@ -326,7 +326,7 @@
     
     if (velocity.y > [Defs instance].playerSpeedLimit) velocity.y = [Defs instance].playerSpeedLimit;
     
-    if (_value.y > 4) [self setCrazyFace]; else
+    if (_value.y > 7) [self setCrazyFace]; else
         if (_value.y > 0) [self setGoodFace];
 }
 

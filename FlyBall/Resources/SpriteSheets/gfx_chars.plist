@@ -827,13 +827,13 @@
             <key>format</key>
             <integer>0</integer>
             <key>realTextureFileName</key>
-            <string>gfx_chars.pvr.ccz</string>
+            <string>gfx_chars.png</string>
             <key>size</key>
             <string>{512,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:8ca8053f17f49a45bda392986e60fef6$</string>
+            <string>$TexturePacker:SmartUpdate:ee6338451cc26297bfa817cc98039982$</string>
             <key>textureFileName</key>
-            <string>gfx_chars.pvr.ccz</string>
+            <string>gfx_chars.png</string>
         </dict>
         <key>texture</key>
         <dict>

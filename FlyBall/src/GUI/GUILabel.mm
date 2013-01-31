@@ -21,10 +21,13 @@
 		GUILabelDef *_tmpDef = (GUILabelDef*)_def;
         
         fontName = _tmpDef.fontName;
+        textColor = _tmpDef.textColor;
         
         spr = [CCLabelBMFont labelWithString:_tmpDef.text fntFile:fontName];
         [spr setAnchorPoint:ccp(0.5f,0.5f)];
 		[spr retain];
+        
+        [spr setColor:textColor];
         
 		parentFrame = _tmpDef.parentFrame;
 		group = _tmpDef.group;

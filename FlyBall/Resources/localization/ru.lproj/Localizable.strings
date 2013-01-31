@@ -68,7 +68,7 @@
 "HINT:Tap to Bomb" = "Взорвите БОМБУ!";
 
 /* label Hint Level Start */
-"HINT:Explode all bomb" = "Взорвите\nприближающиеся бомбы!";
+"HINT:Explode all bomb" = "Взрывайте\nприближающиеся бомбы!";
 
 /* button "menu" on the level. */
 "Restart Progress?" = "Стереть прогресс?";

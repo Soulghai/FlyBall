@@ -38,7 +38,7 @@
         <key>dataFormat</key>
         <string>cocos2d-original</string>
         <key>textureFileName</key>
-        <filename>FlyBall/Resources/SpriteSheets/gfx_chars-hd.pvr.ccz</filename>
+        <filename>FlyBall/Resources/SpriteSheets/gfx_chars-hd.png</filename>
         <key>flipPVR</key>
         <false/>
         <key>ditherType</key>
@@ -64,7 +64,7 @@
         <key>textureSubPath</key>
         <string></string>
         <key>textureFormat</key>
-        <enum type="SettingsBase::TextureFormat">pvr2ccz</enum>
+        <enum type="SettingsBase::TextureFormat">png</enum>
         <key>borderPadding</key>
         <uint>2</uint>
         <key>maxTextureSize</key>
@@ -133,7 +133,7 @@
         <key>forceIdenticalLayout</key>
         <false/>
         <key>outputFormat</key>
-        <enum type="SettingsBase::OutputFormat">RGBA4444</enum>
+        <enum type="SettingsBase::OutputFormat">RGBA8888</enum>
         <key>autoAliasEnabled</key>
         <true/>
         <key>trimSpriteNames</key>

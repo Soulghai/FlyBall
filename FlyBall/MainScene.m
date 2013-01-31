@@ -113,15 +113,15 @@ static void MainScene_remover() {
 	[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"gfx_paralax_2.plist" texture:[Defs instance].spriteSheetParalax_2.texture];
 	[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];
     
-    [CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA4444];
-    [Defs instance].spriteSheetChars = [CCSpriteBatchNode batchNodeWithFile: @"gfx_chars.pvr.ccz" capacity: 100];
+    //[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA4444];
+    [Defs instance].spriteSheetChars = [CCSpriteBatchNode batchNodeWithFile: @"gfx_chars.png" capacity: 100];
 	[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"gfx_chars.plist" texture:[Defs instance].spriteSheetChars.texture];
-	[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];
+	//[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];
     
-    [CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA4444];
+    //[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA4444];
     [Defs instance].spriteSheetCells = [CCSpriteBatchNode batchNodeWithFile: @"gfx_cells.png" capacity: 10];
 	[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"gfx_cells.plist" texture:[Defs instance].spriteSheetCells.texture];
-	[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];
+	//[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];
     
     [CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA4444];
     [Defs instance].spriteSheetHeightLabels = [CCSpriteBatchNode batchNodeWithFile: @"gfx_heightLabels.pvr.ccz" capacity: 10];
@@ -160,7 +160,7 @@ static void MainScene_remover() {
     
     //[Defs instance].isMusicMute = YES;
     
-	[[GameStandartFunctions instance] playCurrentBackgroundMusicTrack];
+	[[GameStandartFunctions instance] playCurrentBackgroundMusicTrack:-1];
 	
     // Init area
 	[Defs instance].actorManager = [[ActorManager alloc] init];
@@ -264,7 +264,7 @@ static void MainScene_remover() {
     
     if ([Defs instance].currentMusicTheme != 0) {
         [Defs instance].currentMusicTheme = 0;
-        [[GameStandartFunctions instance] playCurrentBackgroundMusicTrack];
+        [[GameStandartFunctions instance] playCurrentBackgroundMusicTrack:-1];
     }
     
     [FlurryAnalytics logEvent:ANALYTICS_MAIN_MENU_SCREEN_OPENED];
@@ -303,6 +303,7 @@ static void MainScene_remover() {
 - (void) fromMarketToLevelFinishScreen {
     game.state = GAME_STATE_LEVELFINISH;
     [gui show:game.state];
+    [levelFinishScreen checkAvailableUpdates];
 }
 
 - (void) accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration {

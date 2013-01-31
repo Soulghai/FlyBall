@@ -62,22 +62,22 @@
 	if ((self = [super init])) {
 		isVisible = NO;
         
-        GUILabelTTFOutlinedDef *_labelTTFOutlinedDef = [GUILabelTTFOutlinedDef node];
-        _labelTTFOutlinedDef.group = GAME_STATE_LEVELFINISH;
-        _labelTTFOutlinedDef.text = [NSString stringWithFormat:@"%i", [Defs instance].coinsCount];
-        _labelTTFOutlinedDef.textColor = ccc3(255, 255, 0);
+        GUILabelDef *_labelDef = [GUILabelDef node];
+        _labelDef.group = GAME_STATE_LEVELFINISH;
+        _labelDef.text = [NSString stringWithFormat:@"%i", [Defs instance].coinsCount];
+        _labelDef.textColor = ccc3(255, 255, 0);
         scoreTotalStrPos = ccp(SCREEN_WIDTH_HALF, 300);
-        levelNumber =[[MainScene instance].gui addItem:(id)_labelTTFOutlinedDef _pos:scoreTotalStrPos];
+        levelNumber =[[MainScene instance].gui addItem:(id)_labelDef _pos:scoreTotalStrPos];
         
-        scoreStrPos = ccp(SCREEN_WIDTH_HALF, 240);
-        _labelTTFOutlinedDef.text = @"";
-        _labelTTFOutlinedDef.textColor = ccc3(255, 255, 255);
-        scoreStr =[[MainScene instance].gui addItem:(id)_labelTTFOutlinedDef _pos:scoreStrPos];
+        scoreStrPos = ccp(SCREEN_WIDTH_HALF, 188);
+        _labelDef.text = @"";
+        _labelDef.textColor = ccc3(255, 255, 255);
+        scoreStr =[[MainScene instance].gui addItem:(id)_labelDef _pos:scoreStrPos];
         
-        collectedCoinsStrPos = ccp(SCREEN_WIDTH_HALF, 188);
-        _labelTTFOutlinedDef.text = @"";
-        _labelTTFOutlinedDef.textColor = ccc3(255, 255, 0);
-        collectedCoinsStr =[[MainScene instance].gui addItem:(id)_labelTTFOutlinedDef _pos:collectedCoinsStrPos];
+        collectedCoinsStrPos = ccp(SCREEN_WIDTH_HALF, 240);
+        _labelDef.text = @"";
+        _labelDef.textColor = ccc3(255, 255, 0);
+        collectedCoinsStr =[[MainScene instance].gui addItem:(id)_labelDef _pos:collectedCoinsStrPos];
 		
 		GUIButtonDef *btnDef = [GUIButtonDef node];
 		btnDef.sprName = @"btnBack.png";
@@ -273,32 +273,13 @@
                 }
             }
         
-        //if (panelHighlight.spr.rotation < 360) panelHighlight.spr.rotation += 1; else panelHighlight.spr.rotation = 1;
-        
-        
-        /*if (isBushGoUp) {
-            if (panelBushRight.spr.rotation < 7) panelBushRight.spr.rotation += 0.2f; else isBushGoUp = NO;
+        if (isPanelExclamationMarkRotateRight) {
+            [panelExclamationMark.spr setRotation:panelExclamationMark.spr.rotation + 1.0f];
+            if (panelExclamationMark.spr.rotation >= 10) isPanelExclamationMarkRotateRight = NO;
         } else {
-            if (panelBushRight.spr.rotation > -10) panelBushRight.spr.rotation -= 0.2f; else isBushGoUp = YES;
+            [panelExclamationMark.spr setRotation:panelExclamationMark.spr.rotation - 1.0f];
+            if (panelExclamationMark.spr.rotation <= -10) isPanelExclamationMarkRotateRight = YES;
         }
-        
-        if (isBushLeftGoUp) {
-            if (panelBushLeft.spr.rotation < 2) panelBushLeft.spr.rotation += 0.25f; else isBushLeftGoUp = NO;
-        } else {
-            if (panelBushLeft.spr.rotation > -3) panelBushLeft.spr.rotation -= 0.25f; else isBushLeftGoUp = YES;
-        }
-        
-        if (isPalmGoUp) {
-            if (panelPalmRight.spr.rotation < 3) panelPalmRight.spr.rotation += 0.05f; else isPalmGoUp = NO;
-        } else {
-            if (panelPalmRight.spr.rotation > -6) panelPalmRight.spr.rotation -= 0.05f; else isPalmGoUp = YES;
-        }
-        
-        if (isPalmLeftGoUp) {
-            if (panelPalmLeft.spr.rotation < 4) panelPalmLeft.spr.rotation += 0.04f; else isPalmLeftGoUp = NO;
-        } else {
-            if (panelPalmLeft.spr.rotation > -1) panelPalmLeft.spr.rotation -= 0.03f; else isPalmLeftGoUp = YES;
-        }*/
         
         if (collectedCoinsCurrValue < collectedCoinsValue) {
             timeCollectedCoinsAdd += TIME_STEP;

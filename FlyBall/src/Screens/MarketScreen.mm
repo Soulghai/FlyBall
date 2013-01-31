@@ -900,11 +900,11 @@
             [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(206 + ((i % 2)*64) + (i % 2)*8, 400 - int(i / 2)*72)];
         }*/
         
-        btnDef.sprName = @"btnGiftUp.png";
+        /*btnDef.sprName = @"btnGiftUp.png";
 		btnDef.sprDownName = @"btnGiftDown.png";
 		btnDef.func = @selector(buttonBuyAppAsGift);
 		
-		[[MainScene instance].gui addItem:(id)btnDef _pos:ccp(275,30)];
+		[[MainScene instance].gui addItem:(id)btnDef _pos:ccp(275,30)];*/
 		
 	}
 	return self;

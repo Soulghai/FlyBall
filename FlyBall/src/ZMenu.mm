@@ -109,11 +109,10 @@
         //[[Defs instance].userSettings setBool:YES forKey:@"isPlayGameBefore"];
         [MyData setStoreValue:@"isPlayGameBefore" value:@"YES"];
         //[Defs instance].currentMusicTheme = 1;
-        //[[GameStandartFunctions instance] playCurrentBackgroundMusicTrack];
     }
     
     [Defs instance].currentMusicTheme = 1;
-    [[GameStandartFunctions instance] playCurrentBackgroundMusicTrack];
+    [[GameStandartFunctions instance] playCurrentBackgroundMusicTrack:-1];
     
     [[MainScene instance].game levelStart];
     
@@ -591,8 +590,16 @@
 			}
 		
 	}
+    
+    if (isPanelExclamationMarkRotateRight) {
+        [panelExclamationMark.spr setRotation:panelExclamationMark.spr.rotation + 1.0f];
+        if (panelExclamationMark.spr.rotation >= 10) isPanelExclamationMarkRotateRight = NO;
+    } else {
+        [panelExclamationMark.spr setRotation:panelExclamationMark.spr.rotation - 1.0f];
+        if (panelExclamationMark.spr.rotation <= -10) isPanelExclamationMarkRotateRight = YES;
+    }
 }
-	
+
 - (void) show:(BOOL)_flag{
 	if (isVisible == _flag) return;
 	

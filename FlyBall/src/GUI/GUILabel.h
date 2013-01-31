@@ -14,6 +14,7 @@
 	CCLabelTTF *spr;
     NSString * text;
     NSString* fontName;
+    ccColor3B textColor;
 }
 
 @property (nonatomic, retain) CCLabelTTF *spr;

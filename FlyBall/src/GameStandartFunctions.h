@@ -22,7 +22,7 @@
 - (void) goToUrl:(NSString*)_url;
 - (NSString*) pasteDot:(NSString*)_string;
 - (void) showRateAlert;
-- (void) playCurrentBackgroundMusicTrack;
+- (void) playCurrentBackgroundMusicTrack:(int)_oldMusicTheme;
 - (void) playCloseScreenAnimation:(unsigned int)_nextScreenType;
 - (void) playOpenScreenAnimation;
 - (void) hideScreenAnimation;

@@ -13,10 +13,12 @@
 @interface GUILabelDef : GUIItemDef {
     NSString* text;
     NSString* fontName;
+    ccColor3B textColor;
 }
 
 @property (nonatomic,assign) NSString* text;
 @property (nonatomic,assign) NSString* fontName;
+@property (nonatomic,readwrite) ccColor3B textColor;
 
 - (id) init;
 

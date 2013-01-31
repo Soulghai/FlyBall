@@ -350,9 +350,9 @@
     }
 }
 
-- (void) setCenterOfTheScreen:(CGPoint)_position {
-    int x = MAX(_position.x, -64);
-    int y = MAX(_position.y, screenPlayerPositionY);
+- (void) setCenterOfTheScreen:(CGPoint)_pos {
+    int x = MAX(_pos.x, -64);
+    int y = MAX(_pos.y, screenPlayerPositionY);
     
     x = MIN(x, 384);
     y = MIN(y, INTMAX_MAX);
@@ -750,6 +750,8 @@
 - (void) update:(ccTime)dt {
     
     double delta = dt*FRAME_RATE;
+    
+    [[GameStandartFunctions instance] playCurrentBackgroundMusicTrack:1];
     
     if (state != GAME_STATE_LEVELFINISH) {
         // Пока делаем затемнение или наоборот, ф-цию update не выполняем

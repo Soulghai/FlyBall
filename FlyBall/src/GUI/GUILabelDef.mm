@@ -13,12 +13,14 @@
 
 @synthesize text;
 @synthesize fontName;
+@synthesize textColor;
 
 - (id) init{
 	if ((self = [super init])) {		
 		text = @"";
         fontName = @"gameFont.fnt";
         parentFrame = [MainScene instance];
+        textColor = ccc3(0, 0, 0);
 	}
 	return self;
 }
