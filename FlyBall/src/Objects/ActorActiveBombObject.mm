@@ -42,19 +42,25 @@
 		// play sound
         
         if (![Defs instance].isSoundMute) {
-            switch ((int)round(CCRANDOM_0_1()*3)) {
+            switch ((int)round(CCRANDOM_0_1()*2)) {
                 case 0:
-                    [[SimpleAudioEngine sharedEngine] playEffect:@"explosion_new14.wav"];
+                    [[SimpleAudioEngine sharedEngine] playEffect:@"explosion_new32.wav"];
                     break;
                 case 1:
-                    [[SimpleAudioEngine sharedEngine] playEffect:@"explosion_new15.wav"];
+                    [[SimpleAudioEngine sharedEngine] playEffect:@"explosion_new33.wav"];
                     break;
-                case 2:
-                    [[SimpleAudioEngine sharedEngine] playEffect:@"explosion_new16.wav"];
+                /*case 2:
+                    [[SimpleAudioEngine sharedEngine] playEffect:@"explosion_new23.wav"];
                     break;
+                case 3:
+                    [[SimpleAudioEngine sharedEngine] playEffect:@"explosion_new24.wav"];
+                    break;
+                case 4:
+                    [[SimpleAudioEngine sharedEngine] playEffect:@"explosion_new25.wav"];
+                    break;*/
                     
                 default:
-                    [[SimpleAudioEngine sharedEngine] playEffect:@"explosion_new17.wav"];
+                    [[SimpleAudioEngine sharedEngine] playEffect:@"explosion_new34.wav"];
                     break;
             }
         }

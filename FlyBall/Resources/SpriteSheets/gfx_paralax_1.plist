@@ -19,9 +19,9 @@
                 <key>width</key>
                 <integer>76</integer>
                 <key>x</key>
-                <integer>432</integer>
+                <integer>178</integer>
                 <key>y</key>
-                <integer>594</integer>
+                <integer>236</integer>
             </dict>
             <key>layer_1_10.png</key>
             <dict>
@@ -40,7 +40,7 @@
                 <key>x</key>
                 <integer>2</integer>
                 <key>y</key>
-                <integer>774</integer>
+                <integer>416</integer>
             </dict>
             <key>layer_1_11.png</key>
             <dict>
@@ -59,7 +59,7 @@
                 <key>x</key>
                 <integer>260</integer>
                 <key>y</key>
-                <integer>380</integer>
+                <integer>232</integer>
             </dict>
             <key>layer_1_12.png</key>
             <dict>
@@ -76,9 +76,9 @@
                 <key>width</key>
                 <integer>104</integer>
                 <key>x</key>
-                <integer>380</integer>
+                <integer>164</integer>
                 <key>y</key>
-                <integer>824</integer>
+                <integer>866</integer>
             </dict>
             <key>layer_1_13.png</key>
             <dict>
@@ -95,9 +95,9 @@
                 <key>width</key>
                 <integer>88</integer>
                 <key>x</key>
-                <integer>160</integer>
+                <integer>112</integer>
                 <key>y</key>
-                <integer>636</integer>
+                <integer>760</integer>
             </dict>
             <key>layer_1_14.png</key>
             <dict>
@@ -114,9 +114,9 @@
                 <key>width</key>
                 <integer>108</integer>
                 <key>x</key>
-                <integer>270</integer>
+                <integer>2</integer>
                 <key>y</key>
-                <integer>774</integer>
+                <integer>654</integer>
             </dict>
             <key>layer_1_15.png</key>
             <dict>
@@ -133,9 +133,66 @@
                 <key>width</key>
                 <integer>174</integer>
                 <key>x</key>
-                <integer>256</integer>
+                <integer>2</integer>
                 <key>y</key>
-                <integer>594</integer>
+                <integer>236</integer>
+            </dict>
+            <key>layer_1_16.png</key>
+            <dict>
+                <key>height</key>
+                <integer>120</integer>
+                <key>offsetX</key>
+                <real>1</real>
+                <key>offsetY</key>
+                <real>1</real>
+                <key>originalHeight</key>
+                <integer>128</integer>
+                <key>originalWidth</key>
+                <integer>128</integer>
+                <key>width</key>
+                <integer>118</integer>
+                <key>x</key>
+                <integer>758</integer>
+                <key>y</key>
+                <integer>224</integer>
+            </dict>
+            <key>layer_1_17.png</key>
+            <dict>
+                <key>height</key>
+                <integer>106</integer>
+                <key>offsetX</key>
+                <real>1</real>
+                <key>offsetY</key>
+                <real>1</real>
+                <key>originalHeight</key>
+                <integer>128</integer>
+                <key>originalWidth</key>
+                <integer>128</integer>
+                <key>width</key>
+                <integer>104</integer>
+                <key>x</key>
+                <integer>58</integer>
+                <key>y</key>
+                <integer>876</integer>
+            </dict>
+            <key>layer_1_18.png</key>
+            <dict>
+                <key>height</key>
+                <integer>104</integer>
+                <key>offsetX</key>
+                <real>2</real>
+                <key>offsetY</key>
+                <real>-2</real>
+                <key>originalHeight</key>
+                <integer>128</integer>
+                <key>originalWidth</key>
+                <integer>128</integer>
+                <key>width</key>
+                <integer>102</integer>
+                <key>x</key>
+                <integer>112</integer>
+                <key>y</key>
+                <integer>654</integer>
             </dict>
             <key>layer_1_2.png</key>
             <dict>
@@ -152,9 +209,9 @@
                 <key>width</key>
                 <integer>238</integer>
                 <key>x</key>
-                <integer>260</integer>
+                <integer>518</integer>
                 <key>y</key>
-                <integer>224</integer>
+                <integer>172</integer>
             </dict>
             <key>layer_1_3.png</key>
             <dict>
@@ -171,9 +228,9 @@
                 <key>width</key>
                 <integer>64</integer>
                 <key>x</key>
-                <integer>432</integer>
+                <integer>178</integer>
                 <key>y</key>
-                <integer>710</integer>
+                <integer>352</integer>
             </dict>
             <key>layer_1_4.png</key>
             <dict>
@@ -211,7 +268,7 @@
                 <key>x</key>
                 <integer>2</integer>
                 <key>y</key>
-                <integer>636</integer>
+                <integer>876</integer>
             </dict>
             <key>layer_1_6.png</key>
             <dict>
@@ -228,9 +285,9 @@
                 <key>width</key>
                 <integer>256</integer>
                 <key>x</key>
-                <integer>2</integer>
+                <integer>260</integer>
                 <key>y</key>
-                <integer>236</integer>
+                <integer>2</integer>
             </dict>
             <key>layer_1_7.png</key>
             <dict>
@@ -247,7 +304,7 @@
                 <key>width</key>
                 <integer>244</integer>
                 <key>x</key>
-                <integer>260</integer>
+                <integer>772</integer>
                 <key>y</key>
                 <integer>2</integer>
             </dict>
@@ -266,9 +323,9 @@
                 <key>width</key>
                 <integer>252</integer>
                 <key>x</key>
-                <integer>2</integer>
+                <integer>518</integer>
                 <key>y</key>
-                <integer>466</integer>
+                <integer>2</integer>
             </dict>
             <key>layer_1_9.png</key>
             <dict>
@@ -285,9 +342,9 @@
                 <key>width</key>
                 <integer>108</integer>
                 <key>x</key>
-                <integer>160</integer>
+                <integer>878</integer>
                 <key>y</key>
-                <integer>774</integer>
+                <integer>224</integer>
             </dict>
         </dict>
         <key>metadata</key>
@@ -297,9 +354,9 @@
             <key>realTextureFileName</key>
             <string>gfx_paralax_1.pvr.ccz</string>
             <key>size</key>
-            <string>{512,1024}</string>
+            <string>{1024,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:a10d93770367f4a5f808edd104d48055$</string>
+            <string>$TexturePacker:SmartUpdate:afe3a04eafed0146e078e6e843399664$</string>
             <key>textureFileName</key>
             <string>gfx_paralax_1.pvr.ccz</string>
         </dict>
@@ -308,7 +365,7 @@
             <key>height</key>
             <integer>1024</integer>
             <key>width</key>
-            <integer>512</integer>
+            <integer>1024</integer>
         </dict>
     </dict>
 </plist>

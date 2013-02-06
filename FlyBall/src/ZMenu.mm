@@ -598,6 +598,13 @@
         [panelExclamationMark.spr setRotation:panelExclamationMark.spr.rotation - 1.0f];
         if (panelExclamationMark.spr.rotation <= -10) isPanelExclamationMarkRotateRight = YES;
     }
+    
+    if (isPanelExclamationMarkHigh) {
+        if (panelExclamationMark.spr.scale > 1.f) [panelExclamationMark.spr setScale:panelExclamationMark.spr.scale - 0.08f];
+    } else {
+        if (panelExclamationMark.spr.scale < 1.56f) [panelExclamationMark.spr setScale:panelExclamationMark.spr.scale + 0.08f];
+        else isPanelExclamationMarkHigh = YES;
+    }
 }
 
 - (void) show:(BOOL)_flag{
@@ -619,6 +626,9 @@
         isButtonPlayDown = NO;
         [panelLogo setPosition:ccp(SCREEN_WIDTH_HALF,630)];
         [panelPlayerFlame setPosition:ccp(SCREEN_WIDTH_HALF,240)];
+        
+        isPanelExclamationMarkHigh = NO;
+        [panelExclamationMark.spr setScale:0.1f];
 	} else { 
 		if (backSpr.parent != nil) [backSpr removeFromParentAndCleanup:YES];
 	}

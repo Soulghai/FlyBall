@@ -121,14 +121,18 @@
 		[[MainScene instance].gui addItem:(id)panelDef _pos:ccp(SCREEN_WIDTH_HALF,235)];
         
         panelDef.group = GAME_STATE_NONE;
-        panelDef.zIndex = 12;
+        panelDef.zIndex = 13;
         panelDef.sprName = @"improved_score.png";
         if ([Defs instance].iPhone5)
-            panelImproved = [[MainScene instance].gui addItem:(id)panelDef _pos:ccp(170, 400)];
+            panelImproved = [[MainScene instance].gui addItem:(id)panelDef _pos:ccp(160, 400)];
         else
-            panelImproved = [[MainScene instance].gui addItem:(id)panelDef _pos:ccp(150, 400)];
+            panelImproved = [[MainScene instance].gui addItem:(id)panelDef _pos:ccp(160, 400)];
 		
         panelImprovedGrowSpeedAcc = 0.01f;
+        
+        panelDef.zIndex = 12;
+        panelDef.sprName = @"improved_score_shine.png";
+        panelImprovedShine = [[MainScene instance].gui addItem:(id)panelDef _pos:ccp(160, 400)];
         
         panelDef.group = GAME_STATE_LEVELFINISH;
         
@@ -200,7 +204,7 @@
         [Defs instance].bestScore = _value;
         [MyData setStoreValue:@"bestScore" value:[NSString stringWithFormat:@"%i",[Defs instance].bestScore]];
         //[[GameCenter instance] reportScore:[Defs instance].bestScore forCategory:@"ExpandIt_TotalLeaderboard"];
-        [self showPanelImproved:YES];
+        if ([Defs instance].gameSessionCounter != 1) [self showPanelImproved:YES];
     }
 
     /*int _newCoinsCount = int(scoreValue/10000);
@@ -221,6 +225,7 @@
     
     [panelImproved.spr setScale:0.1f];
     [panelImproved show:_flag];
+    [panelImprovedShine show:_flag];
     
     if (![Defs instance].isSoundMute) [[SimpleAudioEngine sharedEngine] playEffect:@"record_achieved.wav"];
 }
@@ -238,6 +243,9 @@
         [collectedCoinsStr setText:@"0"];
         [scoreStr setText:@"0"];
         [levelNumber setText:[NSString stringWithFormat:@"%i",scoreTotalCurrValue]];
+        
+        isPanelExclamationMarkHigh = NO;
+        [panelExclamationMark.spr setScale:0.1f];
         
         [self checkAvailableUpdates];
 	} else { 
@@ -279,6 +287,13 @@
         } else {
             [panelExclamationMark.spr setRotation:panelExclamationMark.spr.rotation - 1.0f];
             if (panelExclamationMark.spr.rotation <= -10) isPanelExclamationMarkRotateRight = YES;
+        }
+        
+        if (isPanelExclamationMarkHigh) {
+            if (panelExclamationMark.spr.scale > 1.f) [panelExclamationMark.spr setScale:panelExclamationMark.spr.scale - 0.08f];
+        } else {
+            if (panelExclamationMark.spr.scale < 1.56f) [panelExclamationMark.spr setScale:panelExclamationMark.spr.scale + 0.08f];
+            else isPanelExclamationMarkHigh = YES;
         }
         
         if (collectedCoinsCurrValue < collectedCoinsValue) {
@@ -334,6 +349,11 @@
                 [panelImproved.spr setScale:panelImproved.spr.scale + panelImprovedGrowSpeed];
                 panelImprovedGrowSpeed += panelImprovedGrowSpeedAcc;
             }
+        }
+        
+        if (panelImprovedShine.isVisible) {
+            if (panelImprovedShine.spr.rotation < 360) [panelImprovedShine.spr setRotation:panelImprovedShine.spr.rotation+1];
+            else [panelImprovedShine.spr setRotation:panelImprovedShine.spr.rotation-359];
         }
     }
 }

@@ -76,6 +76,9 @@
                      [CCSprite spriteWithSpriteFrameName:@"layer_2_13.png"],
                      [CCSprite spriteWithSpriteFrameName:@"layer_2_14.png"],
                      [CCSprite spriteWithSpriteFrameName:@"layer_2_15.png"],
+                     [CCSprite spriteWithSpriteFrameName:@"layer_2_16.png"],
+                     [CCSprite spriteWithSpriteFrameName:@"layer_2_17.png"],
+                     [CCSprite spriteWithSpriteFrameName:@"layer_2_18.png"],
                        nil];
         [paralax_2 retain];
         
@@ -106,6 +109,9 @@
                      [CCSprite spriteWithSpriteFrameName:@"layer_1_13.png"],
                      [CCSprite spriteWithSpriteFrameName:@"layer_1_14.png"],
                      [CCSprite spriteWithSpriteFrameName:@"layer_1_15.png"],
+                     [CCSprite spriteWithSpriteFrameName:@"layer_1_16.png"],
+                     [CCSprite spriteWithSpriteFrameName:@"layer_1_17.png"],
+                     [CCSprite spriteWithSpriteFrameName:@"layer_1_18.png"],
                      nil];
         [paralax_1 retain];
         
@@ -169,7 +175,7 @@
     
     int _yCoeff = int([MainScene instance].game.player.position.y / 30000);
     
-    if (_yCoeff > cellsHighMap.count-1) _yCoeff = cellsHighMap.count-1;
+    if (_yCoeff > cellsHighMap.count) _yCoeff = cellsHighMap.count;
     
     int _ranID = _yCoeff*3 + int(round(CCRANDOM_0_1()*2));
     //if (_ranID > paralax_2.count-1) _ranID = paralax_2.count-1;
@@ -189,7 +195,7 @@
 - (void) addParalax1Object:(float)_posY {
     int _yCoeff = int([MainScene instance].game.player.position.y / 30000);
     
-    if (_yCoeff > cellsHighMap.count-1) _yCoeff = cellsHighMap.count-1;
+    if (_yCoeff > cellsHighMap.count) _yCoeff = cellsHighMap.count;
     
     int _ranID = _yCoeff*3 + int(round(CCRANDOM_0_1()*2));
     //if (_ranID > paralax_1.count-1) _ranID = paralax_1.count-1;

@@ -315,7 +315,11 @@
         --armored;
         [self setArmorSprite];
         [self setGodMode:[Defs instance].playerGodModeAfterCrashTime];
-        return; 
+        
+        if (![Defs instance].isSoundMute) {
+            [[SimpleAudioEngine sharedEngine] playEffect:@"hit_to_hero.wav"];
+        }
+        return;
     }
     
     [super eraserCollide];

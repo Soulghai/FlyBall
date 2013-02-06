@@ -9,6 +9,7 @@
 #import "globalParam.h"
 #import "Defs.h"
 #import "MainScene.h"
+#import "SimpleAudioEngine.h"
 
 @implementation SpeedWall
 
@@ -163,12 +164,18 @@
                 emitterWarningAcc.position = ccpAdd(costume.position, ccp(0, SCREEN_HEIGHT_HALF));
                 if ((emitterWarningAcc)&&(emitterWarningAcc.parent == nil))
                     [[Defs instance].objectFrontLayer addChild:emitterWarningAcc z:60];
+                if (![Defs instance].isSoundMute) {
+                    [[SimpleAudioEngine sharedEngine] playEffect:@"good_object_new.wav"];
+                }
             } else {
                 addSpeedCoeff = [Defs instance].speedWallDeccelerationCoeff;
                 [emitterWarningDecc scheduleUpdate];
                 emitterWarningDecc.position = ccpAdd(costume.position, ccp(0, SCREEN_HEIGHT_HALF));
                 if ((emitterWarningDecc)&&(emitterWarningDecc.parent == nil))
                     [[Defs instance].objectFrontLayer addChild:emitterWarningDecc z:60];
+                if (![Defs instance].isSoundMute) {
+                    [[SimpleAudioEngine sharedEngine] playEffect:@"bad_object_on_off.wav"];
+                }
             }
         }
         

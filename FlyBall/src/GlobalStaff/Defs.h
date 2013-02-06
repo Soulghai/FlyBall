@@ -119,7 +119,7 @@
 @property (nonatomic, readwrite) float playerSpeedLimit;
 @property (nonatomic, readwrite) int playerSpeedLimitLevel;
 
-@property (nonatomic, readwrite) int playerBombSlow;
+@property (nonatomic, readwrite) float playerBombSlow;
 @property (nonatomic, readwrite) int playerBombSlowLevel;
 
 @property (nonatomic, readwrite) float playerGodModeAfterCrashTime;

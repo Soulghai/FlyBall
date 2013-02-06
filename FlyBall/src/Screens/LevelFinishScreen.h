@@ -40,6 +40,7 @@
     int scoreTotalCurrValue;
     
     GUIPanel *panelImproved;
+    GUIPanel *panelImprovedShine;
     BOOL isPanelImprovedShowing;
     float panelImprovedGrowSpeed;
     float panelImprovedGrowSpeedAcc;
@@ -52,6 +53,7 @@
     
     GUIPanel *panelExclamationMark;
     BOOL isPanelExclamationMarkRotateRight;
+    BOOL isPanelExclamationMarkHigh;
     
     BOOL isBushGoUp;
     BOOL isBushLeftGoUp;

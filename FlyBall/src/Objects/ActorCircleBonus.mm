@@ -84,7 +84,7 @@
                     break;
                     
                 case BONUS_APOCALYPSE:
-                    [[SimpleAudioEngine sharedEngine] playEffect:@"star.wav"];
+                    [[SimpleAudioEngine sharedEngine] playEffect:@"bonus_apocalypse_get.wav"];
                     break;
                     
                 case BONUS_GODMODE:

@@ -60,6 +60,7 @@
     GUIButton *btnShop;
     GUIPanel *panelExclamationMark;
     BOOL isPanelExclamationMarkRotateRight;
+    BOOL isPanelExclamationMarkHigh;
     
     float marketGoSpeed;
 }

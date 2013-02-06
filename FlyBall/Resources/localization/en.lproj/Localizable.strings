@@ -85,7 +85,7 @@ In App Purchase Dialog
 "buttonBuySpeedWallDeccelerationCoeffCaption" = "Speed Wall Decceleration";
 "buttonBuyPlayerMagnetDistanceCaption" = "Magnet Distance";
 "buttonBuyPlayerMagnetPowerCaption" = "Magnet Power";
-"buttonBuyPlayerBombSlowCaption" = "Bomb Acceleration";
+"buttonBuyPlayerBombSlowCaption" = "Slow Motion Time";
 "buttonBuyPlayerGodModeAfterCrashTimeCaption" = "God Mode After Crash Time";
 "buttonBuyPlayerArmorLevelCaption" = "Player Armor";
 "buttonBuyLaunchBombLevelCaption" = "Launch Bomb Level";

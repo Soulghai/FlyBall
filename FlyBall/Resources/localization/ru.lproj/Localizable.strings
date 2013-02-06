@@ -93,7 +93,7 @@
 "buttonBuySpeedWallDeccelerationCoeffCaption" = "Замедляющий тунель";
 "buttonBuyPlayerMagnetDistanceCaption" = "Дистанция действия магнита";
 "buttonBuyPlayerMagnetPowerCaption" = "Сила действия магнита";
-"buttonBuyPlayerBombSlowCaption" = "Скорость разгона бомб";
+"buttonBuyPlayerBombSlowCaption" = "Замедление времени";
 "buttonBuyPlayerGodModeAfterCrashTimeCaption" = "Режима бога после столкновения";
 "buttonBuyPlayerArmorLevelCaption" = "Броня";
 "buttonBuyLaunchBombLevelCaption" = "Запускающая бомба";

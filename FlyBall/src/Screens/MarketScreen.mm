@@ -113,23 +113,23 @@
 }
 
 - (void) buyCoinsAtOneDollar {
-    [Defs instance].coinsCount += 50;
+    [Defs instance].coinsCount += 100;
     [labelCoinsCount setText:[NSString stringWithFormat:@"%i", [Defs instance].coinsCount]];
-    [panelCoinTotal setPosition:ccp(labelCoinsCount.spr.position.x - labelCoinsCount.text.length*9, labelCoinsCount.spr.position.y+3)];
+    [panelCoinTotal setPosition:ccp(labelCoinsCount.spr.position.x - labelCoinsCount.text.length*6 - panelCoinTotal.spr.contentSize.width*0.5f, labelCoinsCount.spr.position.y+3)];
     [self buyCoinsPanelHide];
 }
 
 - (void) buyCoinsAtThreeDollars {
-    [Defs instance].coinsCount += 170;
+    [Defs instance].coinsCount += 250;
     [labelCoinsCount setText:[NSString stringWithFormat:@"%i", [Defs instance].coinsCount]];
-    [panelCoinTotal setPosition:ccp(labelCoinsCount.spr.position.x - labelCoinsCount.text.length*9, labelCoinsCount.spr.position.y+3)];
+    [panelCoinTotal setPosition:ccp(labelCoinsCount.spr.position.x - labelCoinsCount.text.length*6 - panelCoinTotal.spr.contentSize.width*0.5f, labelCoinsCount.spr.position.y+3)];;
     [self buyCoinsPanelHide];
 }
 
 - (void) buyCoinsAtFiveDollars {
-    [Defs instance].coinsCount += 350;
+    [Defs instance].coinsCount += 400;
     [labelCoinsCount setText:[NSString stringWithFormat:@"%i", [Defs instance].coinsCount]];
-    [panelCoinTotal setPosition:ccp(labelCoinsCount.spr.position.x - labelCoinsCount.text.length*9, labelCoinsCount.spr.position.y+3)];
+    [panelCoinTotal setPosition:ccp(labelCoinsCount.spr.position.x - labelCoinsCount.text.length*6 - panelCoinTotal.spr.contentSize.width*0.5f, labelCoinsCount.spr.position.y+3)];
     [self buyCoinsPanelHide];
 }
 
@@ -183,7 +183,7 @@
 - (void) setCorrectIconFrame:(GUIButton*)_btn
                       _level:(int)_level{
     CCSpriteFrame *_frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
-                             [NSString stringWithFormat:@"%@%i.jpg", [self getSpriteName:_btn.sprName], _level]];
+                             [NSString stringWithFormat:@"%@%i.png", [self getSpriteName:_btn.sprName], _level+1]];
     [_btn.spr setDisplayFrame:_frame];
 }
 
@@ -225,7 +225,7 @@
         
         [self setCorrectIconFrame:btnBonusAccelerationPower _level:[Defs instance].bonusAccelerationPowerLevel];
         [labelCoinsCount setText:[NSString stringWithFormat:@"%i", [Defs instance].coinsCount]];
-        [panelCoinTotal setPosition:ccp(labelCoinsCount.spr.position.x - labelCoinsCount.text.length*9, labelCoinsCount.spr.position.y+3)];
+        [panelCoinTotal setPosition:ccp(labelCoinsCount.spr.position.x - labelCoinsCount.text.length*6 - panelCoinTotal.spr.contentSize.width*0.5f, labelCoinsCount.spr.position.y+3)];
     } else {
         CCLOG(@"Maybe buy some coins??? :)");
         
@@ -239,7 +239,7 @@
         [self showPanelBuyInformation:NSLocalizedString(@"buttonBuyBonusAccelerationPowerCaption","")
                      _currValueText:[NSString stringWithFormat:@"%@ = %1.1f", NSLocalizedString(@"buttonBuyCurrValue",""), [Defs instance].bonusAccelerationPower]
                      _nextValueText:[NSString stringWithFormat:@"%@ = %1.1f", NSLocalizedString(@"buttonBuyNextValue",""), [Defs instance].bonusAccelerationPower + BONUS_ACCELERATION_POWER_ADD_COEFF]
-                             _sprName:[NSString stringWithFormat:@"%@%i.jpg", [self getSpriteName:btnBonusAccelerationPower.sprName], [Defs instance].bonusAccelerationPowerLevel]
+                             _sprName:[NSString stringWithFormat:@"%@%i.png", [self getSpriteName:btnBonusAccelerationPower.sprName], [Defs instance].bonusAccelerationPowerLevel+1]
                                _price:[NSString stringWithFormat:@"%i", [[[Defs instance].prices objectAtIndex:[Defs instance].bonusAccelerationPowerLevel] intValue]]
                                 _func:@selector(buttonBuyBonusAccelerationPowerAction)];
     }
@@ -261,7 +261,7 @@
         
         [self setCorrectIconFrame:btnBonusAccelerationDelay _level:[Defs instance].bonusAccelerationDelayLevel];
         [labelCoinsCount setText:[NSString stringWithFormat:@"%i", [Defs instance].coinsCount]];
-        [panelCoinTotal setPosition:ccp(labelCoinsCount.spr.position.x - labelCoinsCount.text.length*9, labelCoinsCount.spr.position.y+3)];
+        [panelCoinTotal setPosition:ccp(labelCoinsCount.spr.position.x - labelCoinsCount.text.length*6 - panelCoinTotal.spr.contentSize.width*0.5f, labelCoinsCount.spr.position.y+3)];
     } else {
         CCLOG(@"Maybe buy soom coins??? :)");
         [self buyCoinsPanelShow];
@@ -273,7 +273,7 @@
         [self showPanelBuyInformation:NSLocalizedString(@"buttonBuyBonusAccelerationDelayCaption","")
                        _currValueText:[NSString stringWithFormat:@"%@ = %1.1f sec", NSLocalizedString(@"buttonBuyCurrValue",""), [Defs instance].bonusAccelerationDelay]
                        _nextValueText:[NSString stringWithFormat:@"%@ = %1.1f sec", NSLocalizedString(@"buttonBuyNextValue",""), [Defs instance].bonusAccelerationDelay + BONUS_ACCELERATION_DELAY_ADD_COEFF]
-                             _sprName:[NSString stringWithFormat:@"%@%i.jpg", [self getSpriteName:btnBonusAccelerationDelay.sprName], [Defs instance].bonusAccelerationDelayLevel]
+                             _sprName:[NSString stringWithFormat:@"%@%i.png", [self getSpriteName:btnBonusAccelerationDelay.sprName], [Defs instance].bonusAccelerationDelayLevel+1]
                                _price:[NSString stringWithFormat:@"%i", [[[Defs instance].prices objectAtIndex:[Defs instance].bonusAccelerationDelayLevel] intValue]]
                                 _func:@selector(buttonBuyBonusAccelerationDelayAction)];
     }
@@ -295,7 +295,7 @@
         
         [self setCorrectIconFrame:btnBonusGetChance _level:[Defs instance].bonusGetChanceLevel];
         [labelCoinsCount setText:[NSString stringWithFormat:@"%i", [Defs instance].coinsCount]];
-        [panelCoinTotal setPosition:ccp(labelCoinsCount.spr.position.x - labelCoinsCount.text.length*9, labelCoinsCount.spr.position.y+3)];
+        [panelCoinTotal setPosition:ccp(labelCoinsCount.spr.position.x - labelCoinsCount.text.length*6 - panelCoinTotal.spr.contentSize.width*0.5f, labelCoinsCount.spr.position.y+3)];
     } else {
         CCLOG(@"Maybe buy soom coins??? :)");
         [self buyCoinsPanelShow];
@@ -307,7 +307,7 @@
         [self showPanelBuyInformation:NSLocalizedString(@"buttonBuyBonusGetChanceCaption","")
                        _currValueText:[NSString stringWithFormat:@"%@ = %i%%", NSLocalizedString(@"buttonBuyCurrValue",""), int(100*[Defs instance].bonusGetChance)]
                        _nextValueText:[NSString stringWithFormat:@"%@ = %i%%", NSLocalizedString(@"buttonBuyNextValue",""), int(100*([Defs instance].bonusGetChance + BONUS_GET_CHANCE_ADD_COEFF))]
-                             _sprName:[NSString stringWithFormat:@"%@%i.jpg", [self getSpriteName:btnBonusGetChance.sprName], [Defs instance].bonusGetChanceLevel]
+                             _sprName:[NSString stringWithFormat:@"%@%i.png", [self getSpriteName:btnBonusGetChance.sprName], [Defs instance].bonusGetChanceLevel+1]
                                _price:[NSString stringWithFormat:@"%i", [[[Defs instance].prices objectAtIndex:[Defs instance].bonusGetChanceLevel] intValue]]
                                 _func:@selector(buttonBuyBonusGetChanceAction)];
     }
@@ -329,7 +329,7 @@
         
         [self setCorrectIconFrame:btnCoinsGetChance _level:[Defs instance].coinsGetChanceLevel];
         [labelCoinsCount setText:[NSString stringWithFormat:@"%i", [Defs instance].coinsCount]];
-        [panelCoinTotal setPosition:ccp(labelCoinsCount.spr.position.x - labelCoinsCount.text.length*9, labelCoinsCount.spr.position.y+3)];
+        [panelCoinTotal setPosition:ccp(labelCoinsCount.spr.position.x - labelCoinsCount.text.length*6 - panelCoinTotal.spr.contentSize.width*0.5f, labelCoinsCount.spr.position.y+3)];
     } else {
         CCLOG(@"Maybe buy soom coins??? :)");
         [self buyCoinsPanelShow];
@@ -341,7 +341,7 @@
         [self showPanelBuyInformation:NSLocalizedString(@"buttonBuyCoinsGetChanceCaption","")
                        _currValueText:[NSString stringWithFormat:@"%@ = %i%%", NSLocalizedString(@"buttonBuyCurrValue",""), int(100*[Defs instance].coinsGetChance)]
                        _nextValueText:[NSString stringWithFormat:@"%@ = %i%%", NSLocalizedString(@"buttonBuyNextValue",""), int(100*([Defs instance].coinsGetChance + COINS_GET_CHANCE_ADD_COEFF))]
-                             _sprName:[NSString stringWithFormat:@"%@%i.jpg", [self getSpriteName:btnCoinsGetChance.sprName], [Defs instance].coinsGetChanceLevel]
+                             _sprName:[NSString stringWithFormat:@"%@%i.png", [self getSpriteName:btnCoinsGetChance.sprName], [Defs instance].coinsGetChanceLevel+1]
                                _price:[NSString stringWithFormat:@"%i", [[[Defs instance].prices objectAtIndex:[Defs instance].coinsGetChanceLevel] intValue]]
                                 _func:@selector(buttonBuyCoinsGetChanceAction)];
     }
@@ -363,7 +363,7 @@
         
         [self setCorrectIconFrame:btnBonusGodModeTime _level:[Defs instance].bonusGodModeTimeLevel];
         [labelCoinsCount setText:[NSString stringWithFormat:@"%i", [Defs instance].coinsCount]];
-        [panelCoinTotal setPosition:ccp(labelCoinsCount.spr.position.x - labelCoinsCount.text.length*9, labelCoinsCount.spr.position.y+3)];
+        [panelCoinTotal setPosition:ccp(labelCoinsCount.spr.position.x - labelCoinsCount.text.length*6 - panelCoinTotal.spr.contentSize.width*0.5f, labelCoinsCount.spr.position.y+3)];
     } else {
         CCLOG(@"Maybe buy soom coins??? :)");
         [self buyCoinsPanelShow];
@@ -375,7 +375,7 @@
         [self showPanelBuyInformation:NSLocalizedString(@"buttonBuyGodModeTimeCaption","")
                        _currValueText:[NSString stringWithFormat:@"%@ = %1.1f sec", NSLocalizedString(@"buttonBuyCurrValue",""), [Defs instance].bonusGodModeTime]
                        _nextValueText:[NSString stringWithFormat:@"%@ = %1.1f sec", NSLocalizedString(@"buttonBuyNextValue",""), [Defs instance].bonusGodModeTime + BONUS_GODMODE_TIME_ADD_COEFF]
-                             _sprName:[NSString stringWithFormat:@"%@%i.jpg", [self getSpriteName:btnBonusGodModeTime.sprName], [Defs instance].bonusGodModeTimeLevel]
+                             _sprName:[NSString stringWithFormat:@"%@%i.png", [self getSpriteName:btnBonusGodModeTime.sprName], [Defs instance].bonusGodModeTimeLevel+1]
                                _price:[NSString stringWithFormat:@"%i", [[[Defs instance].prices objectAtIndex:[Defs instance].bonusGodModeTimeLevel] intValue]]
                                 _func:@selector(buttonBuyBonusGodModeTimeAction)];
     }
@@ -397,7 +397,7 @@
         
         [self setCorrectIconFrame:btnPlayerSpeedLimit _level:[Defs instance].playerSpeedLimitLevel];
         [labelCoinsCount setText:[NSString stringWithFormat:@"%i", [Defs instance].coinsCount]];
-        [panelCoinTotal setPosition:ccp(labelCoinsCount.spr.position.x - labelCoinsCount.text.length*9, labelCoinsCount.spr.position.y+3)];
+        [panelCoinTotal setPosition:ccp(labelCoinsCount.spr.position.x - labelCoinsCount.text.length*6 - panelCoinTotal.spr.contentSize.width*0.5f, labelCoinsCount.spr.position.y+3)];
     } else {
         CCLOG(@"Maybe buy soom coins??? :)");
         [self buyCoinsPanelShow];
@@ -409,7 +409,7 @@
         [self showPanelBuyInformation:NSLocalizedString(@"buttonBuyPlayerSpeedLimitCaption","")
                        _currValueText:[NSString stringWithFormat:@"%@ = %i", NSLocalizedString(@"buttonBuyCurrValue",""), int([Defs instance].playerSpeedLimit)]
                        _nextValueText:[NSString stringWithFormat:@"%@ = %i", NSLocalizedString(@"buttonBuyNextValue",""), int(([Defs instance].playerSpeedLimit + PLAYER_SPEED_LIMIT_ADD_COEFF))]
-                             _sprName:[NSString stringWithFormat:@"%@%i.jpg", [self getSpriteName:btnPlayerSpeedLimit.sprName], [Defs instance].playerSpeedLimitLevel]
+                             _sprName:[NSString stringWithFormat:@"%@%i.png", [self getSpriteName:btnPlayerSpeedLimit.sprName], [Defs instance].playerSpeedLimitLevel+1]
                                _price:[NSString stringWithFormat:@"%i", [[[Defs instance].prices objectAtIndex:[Defs instance].playerSpeedLimitLevel] intValue]]
                                 _func:@selector(buttonBuyPlayerSpeedLimitAction)];
     }
@@ -431,7 +431,7 @@
         
         [self setCorrectIconFrame:btnSpeedWallAccelerationCoeff _level:[Defs instance].speedWallAccelerationCoeffLevel];
         [labelCoinsCount setText:[NSString stringWithFormat:@"%i", [Defs instance].coinsCount]];
-        [panelCoinTotal setPosition:ccp(labelCoinsCount.spr.position.x - labelCoinsCount.text.length*9, labelCoinsCount.spr.position.y+3)];
+        [panelCoinTotal setPosition:ccp(labelCoinsCount.spr.position.x - labelCoinsCount.text.length*6 - panelCoinTotal.spr.contentSize.width*0.5f, labelCoinsCount.spr.position.y+3)];
     } else {
         CCLOG(@"Maybe buy soom coins??? :)");
         [self buyCoinsPanelShow];
@@ -441,9 +441,9 @@
 - (void) buttonBuySpeedWallAccelerationCoeffClick {
     if ([Defs instance].speedWallAccelerationCoeffLevel < UPGRADE_LEVEL_COUNT) {
         [self showPanelBuyInformation:NSLocalizedString(@"buttonBuySpeedWallAccelerationCoeffCaption","")
-                       _currValueText:[NSString stringWithFormat:@"%@ = %1.1f sec", NSLocalizedString(@"buttonBuyCurrValue",""), [Defs instance].speedWallAccelerationCoeff]
-                       _nextValueText:[NSString stringWithFormat:@"%@ = %1.1f sec", NSLocalizedString(@"buttonBuyNextValue",""), [Defs instance].speedWallAccelerationCoeff + SPEEDWALL_ACCELERATION_ADD_COEFF]
-                             _sprName:[NSString stringWithFormat:@"%@%i.jpg", [self getSpriteName:btnSpeedWallAccelerationCoeff.sprName], [Defs instance].speedWallAccelerationCoeffLevel]
+                       _currValueText:[NSString stringWithFormat:@"%@ = %1.2f sec", NSLocalizedString(@"buttonBuyCurrValue",""), [Defs instance].speedWallAccelerationCoeff]
+                       _nextValueText:[NSString stringWithFormat:@"%@ = %1.2f sec", NSLocalizedString(@"buttonBuyNextValue",""), [Defs instance].speedWallAccelerationCoeff + SPEEDWALL_ACCELERATION_ADD_COEFF]
+                             _sprName:[NSString stringWithFormat:@"%@%i.png", [self getSpriteName:btnSpeedWallAccelerationCoeff.sprName], [Defs instance].speedWallAccelerationCoeffLevel+1]
                                _price:[NSString stringWithFormat:@"%i", [[[Defs instance].prices objectAtIndex:[Defs instance].speedWallAccelerationCoeffLevel] intValue]]
                                 _func:@selector(buttonBuySpeedWallAccelerationCoeffAction)];
     }
@@ -465,7 +465,7 @@
         
         [self setCorrectIconFrame:btnSpeedWallDeccelerationCoeff _level:[Defs instance].speedWallDeccelerationCoeffLevel];
         [labelCoinsCount setText:[NSString stringWithFormat:@"%i", [Defs instance].coinsCount]];
-        [panelCoinTotal setPosition:ccp(labelCoinsCount.spr.position.x - labelCoinsCount.text.length*9, labelCoinsCount.spr.position.y+3)];
+        [panelCoinTotal setPosition:ccp(labelCoinsCount.spr.position.x - labelCoinsCount.text.length*6 - panelCoinTotal.spr.contentSize.width*0.5f, labelCoinsCount.spr.position.y+3)];
     } else {
         CCLOG(@"Maybe buy soom coins??? :)");
         [self buyCoinsPanelShow];
@@ -477,7 +477,7 @@
         [self showPanelBuyInformation:NSLocalizedString(@"buttonBuySpeedWallDeccelerationCoeffCaption","")
                        _currValueText:[NSString stringWithFormat:@"%@ = %i sec", NSLocalizedString(@"buttonBuyCurrValue",""), int(100*[Defs instance].speedWallDeccelerationCoeff)]
                        _nextValueText:[NSString stringWithFormat:@"%@ = %i sec", NSLocalizedString(@"buttonBuyNextValue",""), int(100*([Defs instance].speedWallDeccelerationCoeff + SPEEDWALL_DECCELERARION_ADD_COEFF))]
-                             _sprName:[NSString stringWithFormat:@"%@%i.jpg", [self getSpriteName:btnSpeedWallDeccelerationCoeff.sprName], [Defs instance].speedWallDeccelerationCoeffLevel]
+                             _sprName:[NSString stringWithFormat:@"%@%i.png", [self getSpriteName:btnSpeedWallDeccelerationCoeff.sprName], [Defs instance].speedWallDeccelerationCoeffLevel+1]
                                _price:[NSString stringWithFormat:@"%i", [[[Defs instance].prices objectAtIndex:[Defs instance].speedWallDeccelerationCoeffLevel] intValue]]
                                 _func:@selector(buttonBuySpeedWallDeccelerationCoeffAction)];
     }
@@ -499,7 +499,7 @@
         
         [self setCorrectIconFrame:btnPlayerMagnetDistance _level:[Defs instance].playerMagnetDistanceLevel];
         [labelCoinsCount setText:[NSString stringWithFormat:@"%i", [Defs instance].coinsCount]];
-        [panelCoinTotal setPosition:ccp(labelCoinsCount.spr.position.x - labelCoinsCount.text.length*9, labelCoinsCount.spr.position.y+3)];
+        [panelCoinTotal setPosition:ccp(labelCoinsCount.spr.position.x - labelCoinsCount.text.length*6 - panelCoinTotal.spr.contentSize.width*0.5f, labelCoinsCount.spr.position.y+3)];
     } else {
         CCLOG(@"Maybe buy soom coins??? :)");
         [self buyCoinsPanelShow];
@@ -511,7 +511,7 @@
         [self showPanelBuyInformation:NSLocalizedString(@"buttonBuyPlayerMagnetDistanceCaption","")
                        _currValueText:[NSString stringWithFormat:@"%@ = %i%%", NSLocalizedString(@"buttonBuyCurrValue",""), int(100*([Defs instance].playerMagnetDistance/PLAYER_MAGNET_DISTANDE_ADD_COEFF))]
                        _nextValueText:[NSString stringWithFormat:@"%@ = %i%%", NSLocalizedString(@"buttonBuyNextValue",""), int(100*(([Defs instance].playerMagnetDistance+PLAYER_MAGNET_DISTANDE_ADD_COEFF)/PLAYER_MAGNET_DISTANDE_ADD_COEFF))]
-                             _sprName:[NSString stringWithFormat:@"%@%i.jpg", [self getSpriteName:btnPlayerMagnetDistance.sprName], [Defs instance].playerMagnetDistanceLevel]
+                             _sprName:[NSString stringWithFormat:@"%@%i.png", [self getSpriteName:btnPlayerMagnetDistance.sprName], [Defs instance].playerMagnetDistanceLevel+1]
                                _price:[NSString stringWithFormat:@"%i", [[[Defs instance].prices objectAtIndex:[Defs instance].playerMagnetDistanceLevel] intValue]]
                                 _func:@selector(buttonBuyPlayerMagnetDistanceAction)];
     }
@@ -533,7 +533,7 @@
         
         [self setCorrectIconFrame:btnPlayerMagnetPower _level:[Defs instance].playerMagnetPowerLevel];
         [labelCoinsCount setText:[NSString stringWithFormat:@"%i", [Defs instance].coinsCount]];
-        [panelCoinTotal setPosition:ccp(labelCoinsCount.spr.position.x - labelCoinsCount.text.length*9, labelCoinsCount.spr.position.y+3)];
+        [panelCoinTotal setPosition:ccp(labelCoinsCount.spr.position.x - labelCoinsCount.text.length*6 - panelCoinTotal.spr.contentSize.width*0.5f, labelCoinsCount.spr.position.y+3)];
     } else {
         CCLOG(@"Maybe buy soom coins??? :)");
         [self buyCoinsPanelShow];
@@ -545,7 +545,7 @@
         [self showPanelBuyInformation:NSLocalizedString(@"buttonBuyPlayerMagnetPowerCaption","")
                        _currValueText:[NSString stringWithFormat:@"%@ = %i", NSLocalizedString(@"buttonBuyCurrValue",""), int([Defs instance].playerMagnetPower)]
                        _nextValueText:[NSString stringWithFormat:@"%@ = %i", NSLocalizedString(@"buttonBuyNextValue",""), int([Defs instance].playerMagnetPower + PLAYER_MAGNET_POWER_ADD_COEFF)]
-                             _sprName:[NSString stringWithFormat:@"%@%i.jpg", [self getSpriteName:btnPlayerMagnetPower.sprName], [Defs instance].playerMagnetPowerLevel]
+                             _sprName:[NSString stringWithFormat:@"%@%i.png", [self getSpriteName:btnPlayerMagnetPower.sprName], [Defs instance].playerMagnetPowerLevel+1]
                                _price:[NSString stringWithFormat:@"%i", [[[Defs instance].prices objectAtIndex:[Defs instance].playerMagnetPowerLevel] intValue]]
                                 _func:@selector(buttonBuyPlayerMagnetPowerAction)];
     }
@@ -560,14 +560,14 @@
         ++[Defs instance].playerBombSlowLevel;
         [MyData setStoreValue:@"playerBombSlowLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].playerBombSlowLevel]];
         [Defs instance].playerBombSlow += PLAYER_BOMB_SLOW_ADD_COEFF;
-        [MyData setStoreValue:@"playerBombSlow" value:[NSString stringWithFormat:@"%i",[Defs instance].playerBombSlow]];
+        [MyData setStoreValue:@"playerBombSlow" value:[NSString stringWithFormat:@"%f",[Defs instance].playerBombSlow]];
         [Defs instance].coinsCount -= _price;
         [MyData setStoreValue:@"coinsCount" value:[NSString stringWithFormat:@"%i",[Defs instance].coinsCount]];
         [MyData encodeDict:[MyData getDictForSaveData]];
         
         [self setCorrectIconFrame:btnPlayerBombSlow _level:[Defs instance].playerBombSlowLevel];
         [labelCoinsCount setText:[NSString stringWithFormat:@"%i", [Defs instance].coinsCount]];
-        [panelCoinTotal setPosition:ccp(labelCoinsCount.spr.position.x - labelCoinsCount.text.length*9, labelCoinsCount.spr.position.y+3)];
+        [panelCoinTotal setPosition:ccp(labelCoinsCount.spr.position.x - labelCoinsCount.text.length*6 - panelCoinTotal.spr.contentSize.width*0.5f, labelCoinsCount.spr.position.y+3)];
     } else {
         CCLOG(@"Maybe buy soom coins??? :)");
         [self buyCoinsPanelShow];
@@ -577,9 +577,9 @@
 - (void) buttonBuyPlayerBombSlowClick {
     if ([Defs instance].playerBombSlowLevel < UPGRADE_LEVEL_COUNT) {
         [self showPanelBuyInformation:NSLocalizedString(@"buttonBuyPlayerBombSlowCaption","")
-                       _currValueText:[NSString stringWithFormat:@"%@ = %i", NSLocalizedString(@"buttonBuyCurrValue",""), int([Defs instance].playerBombSlow)]
-                       _nextValueText:[NSString stringWithFormat:@"%@ = %i", NSLocalizedString(@"buttonBuyNextValue",""), int([Defs instance].playerBombSlow + PLAYER_BOMB_SLOW_ADD_COEFF)]
-                             _sprName:[NSString stringWithFormat:@"%@%i.jpg", [self getSpriteName:btnPlayerBombSlow.sprName], [Defs instance].playerBombSlowLevel]
+                       _currValueText:[NSString stringWithFormat:@"%@ = %1.1f sec", NSLocalizedString(@"buttonBuyCurrValue",""), [Defs instance].playerBombSlow]
+                       _nextValueText:[NSString stringWithFormat:@"%@ = %1.1f sec", NSLocalizedString(@"buttonBuyNextValue",""), [Defs instance].playerBombSlow + PLAYER_BOMB_SLOW_ADD_COEFF]
+                             _sprName:[NSString stringWithFormat:@"%@%i.png", [self getSpriteName:btnPlayerBombSlow.sprName], [Defs instance].playerBombSlowLevel+1]
                                _price:[NSString stringWithFormat:@"%i", [[[Defs instance].prices objectAtIndex:[Defs instance].playerBombSlowLevel] intValue]]
                                 _func:@selector(buttonBuyPlayerBombSlowAction)];
     }
@@ -601,7 +601,7 @@
         
         [self setCorrectIconFrame:btnPlayerGodModeAfterCrashTime _level:[Defs instance].playerGodModeAfterCrashTimeLevel];
         [labelCoinsCount setText:[NSString stringWithFormat:@"%i", [Defs instance].coinsCount]];
-        [panelCoinTotal setPosition:ccp(labelCoinsCount.spr.position.x - labelCoinsCount.text.length*9, labelCoinsCount.spr.position.y+3)];
+        [panelCoinTotal setPosition:ccp(labelCoinsCount.spr.position.x - labelCoinsCount.text.length*6 - panelCoinTotal.spr.contentSize.width*0.5f, labelCoinsCount.spr.position.y+3)];
     } else {
         CCLOG(@"Maybe buy soom coins??? :)");
         [self buyCoinsPanelShow];
@@ -613,7 +613,7 @@
         [self showPanelBuyInformation:NSLocalizedString(@"buttonBuyPlayerGodModeAfterCrashTimeCaption","")
                        _currValueText:[NSString stringWithFormat:@"%@ = %1.1f sec", NSLocalizedString(@"buttonBuyCurrValue",""), ([Defs instance].playerGodModeAfterCrashTime)]
                        _nextValueText:[NSString stringWithFormat:@"%@ = %1.1f sec", NSLocalizedString(@"buttonBuyNextValue",""), ([Defs instance].playerGodModeAfterCrashTime + GODMODE_AFTERCRASH_TIME_ADD_COEFF)]
-                             _sprName:[NSString stringWithFormat:@"%@%i.jpg", [self getSpriteName:btnPlayerGodModeAfterCrashTime.sprName], [Defs instance].playerGodModeAfterCrashTimeLevel]
+                             _sprName:[NSString stringWithFormat:@"%@%i.png", [self getSpriteName:btnPlayerGodModeAfterCrashTime.sprName], [Defs instance].playerGodModeAfterCrashTimeLevel+1]
                                _price:[NSString stringWithFormat:@"%i", [[[Defs instance].prices objectAtIndex:[Defs instance].playerGodModeAfterCrashTimeLevel] intValue]]
                                 _func:@selector(buttonBuyPlayerGodModeAfterCrashTimeAction)];
     }
@@ -633,7 +633,7 @@
         
         [self setCorrectIconFrame:btnPlayerArmor _level:[Defs instance].playerArmorLevel];
         [labelCoinsCount setText:[NSString stringWithFormat:@"%i", [Defs instance].coinsCount]];
-        [panelCoinTotal setPosition:ccp(labelCoinsCount.spr.position.x - labelCoinsCount.text.length*9, labelCoinsCount.spr.position.y+3)];
+        [panelCoinTotal setPosition:ccp(labelCoinsCount.spr.position.x - labelCoinsCount.text.length*6 - panelCoinTotal.spr.contentSize.width*0.5f, labelCoinsCount.spr.position.y+3)];
     } else {
         CCLOG(@"Maybe buy some coins??? :)");
         
@@ -647,7 +647,7 @@
         [self showPanelBuyInformation:NSLocalizedString(@"buttonBuyPlayerArmorLevelCaption","")
                        _currValueText:[NSString stringWithFormat:@"%@ = %i", NSLocalizedString(@"buttonBuyCurrValue",""), [Defs instance].playerArmorLevel]
                        _nextValueText:[NSString stringWithFormat:@"%@ = %i", NSLocalizedString(@"buttonBuyNextValue",""), [Defs instance].playerArmorLevel + 1]
-                             _sprName:[NSString stringWithFormat:@"%@%i.jpg", [self getSpriteName:btnPlayerArmor.sprName], [Defs instance].playerArmorLevel]
+                             _sprName:[NSString stringWithFormat:@"%@%i.png", [self getSpriteName:btnPlayerArmor.sprName], [Defs instance].playerArmorLevel+1]
                                _price:[NSString stringWithFormat:@"%i", [[[Defs instance].prices objectAtIndex:[Defs instance].playerArmorLevel] intValue]]
                                 _func:@selector(buttonBuyPlayerArmorAction)];
     }
@@ -667,7 +667,7 @@
         
         [self setCorrectIconFrame:btnLaunchBomb _level:[Defs instance].launchBombLevel];
         [labelCoinsCount setText:[NSString stringWithFormat:@"%i", [Defs instance].coinsCount]];
-        [panelCoinTotal setPosition:ccp(labelCoinsCount.spr.position.x - labelCoinsCount.text.length*9, labelCoinsCount.spr.position.y+3)];
+        [panelCoinTotal setPosition:ccp(labelCoinsCount.spr.position.x - labelCoinsCount.text.length*6 - panelCoinTotal.spr.contentSize.width*0.5f, labelCoinsCount.spr.position.y+3)];
     } else {
         CCLOG(@"Maybe buy some coins??? :)");
         
@@ -681,7 +681,7 @@
         [self showPanelBuyInformation:NSLocalizedString(@"buttonBuyLaunchBombLevelCaption","")
                        _currValueText:[NSString stringWithFormat:@"%@ = %i", NSLocalizedString(@"buttonBuyCurrValue",""), [Defs instance].launchBombLevel]
                        _nextValueText:[NSString stringWithFormat:@"%@ = %i", NSLocalizedString(@"buttonBuyNextValue",""), [Defs instance].launchBombLevel + 1]
-                             _sprName:[NSString stringWithFormat:@"%@%i.jpg", [self getSpriteName:btnLaunchBomb.sprName], [Defs instance].launchBombLevel]
+                             _sprName:[NSString stringWithFormat:@"%@%i.png", [self getSpriteName:btnLaunchBomb.sprName], [Defs instance].launchBombLevel+1]
                                _price:[NSString stringWithFormat:@"%i", [[[Defs instance].prices objectAtIndex:[Defs instance].launchBombLevel] intValue]]
                                 _func:@selector(buttonBuyLaunchBombLevelAction)];
     }
@@ -715,11 +715,11 @@
         _panelDef.group = GAME_STATE_NONE;
         _panelDef.parentFrame = [MainScene instance];
         _panelDef.zOrder = 100;
-        _panelDef.sprName = @"window_reset.png";
+        _panelDef.sprName = @"window_upgrade.png";
         
         panelBuyInformation = [[MainScene instance].gui addItem:(id)_panelDef _pos:ccp(_panelX, _panelY)];
         
-        _panelDef.sprName = @"window_reset.png";
+        _panelDef.sprName = @"window_get_money.png";
         panelBuyCoins = [[MainScene instance].gui addItem:(id)_panelDef _pos:ccp(_panelX, _panelY)];
         
         float _panelWidth = panelBuyInformation.spr.contentSize.width;
@@ -727,8 +727,8 @@
         
         _panelDef.parentFrame = panelBuyInformation.spr;
         _panelDef.zOrder = 0;
-        _panelDef.sprName = @"icon_upgrade_0.jpg";
-        panelBuyInfoPicture = [[MainScene instance].gui addItem:(id)_panelDef _pos:ccp(37, _panelHeight - 57)];
+        _panelDef.sprName = @"Upgrade_1_1.png";
+        panelBuyInfoPicture = [[MainScene instance].gui addItem:(id)_panelDef _pos:ccp(37, _panelHeight - 65)];
         
         
         btnDef.group = GAME_STATE_NONE;
@@ -757,36 +757,38 @@
 		btnPanelBuyCoinsNO = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(_panelWidth-15, _panelHeight - 15)];
         [btnPanelBuyCoinsNO.spr setScale:0.5f];
 		
-		btnDef.sprName = @"btnBuy5Up.png";
-		btnDef.sprDownName = @"btnBuy5Down.png";
+		btnDef.sprName = @"btnBuy100.png";
+		btnDef.sprDownName = @"btnBuy100Down.png";
 		btnDef.func = @selector(buyCoinsAtOneDollar);
 		
-		btnPanelBuyCoinsYES_1 = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(_panelWidth*0.5f - 50, _panelHeight*0.57f)];
+		btnPanelBuyCoinsYES_1 = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(_panelWidth*0.5f - 90, _panelHeight*0.4f)];
         
-        btnDef.sprName = @"btnBuy15Up.png";
-		btnDef.sprDownName = @"btnBuy15Down.png";
+        btnDef.sprName = @"btnBuy250.png";
+		btnDef.sprDownName = @"btnBuy250Down.png";
 		btnDef.func = @selector(buyCoinsAtThreeDollars);
 		
-		btnPanelBuyCoinsYES_3 = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(_panelWidth*0.5f + 50, _panelHeight*0.57f)];
+		btnPanelBuyCoinsYES_3 = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(_panelWidth*0.5f, _panelHeight*0.4f)];
         
-        btnDef.sprName = @"btnBuyInfinityUp.png";
-		btnDef.sprDownName = @"btnBuyInfinityDown.png";
+        btnDef.sprName = @"btnBuy400.png";
+		btnDef.sprDownName = @"btnBuy400Down.png";
 		btnDef.func = @selector(buyCoinsAtFiveDollars);
 		
-		btnPanelBuyCoinsYES_5 = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(_panelWidth*0.5f, _panelHeight*0.22f)];
+		btnPanelBuyCoinsYES_5 = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(_panelWidth*0.5f + 90, _panelHeight*0.4f)];
         
         
         
         GUILabelTTFOutlinedDef *_labelTTFOutlinedDef = [GUILabelTTFOutlinedDef node];
         _labelTTFOutlinedDef.group = GAME_STATE_NONE;
         _labelTTFOutlinedDef.text = @"";
-        labelPanelBuyInfoCaption = [[MainScene instance].gui addItem:(id)_labelTTFOutlinedDef _pos:ccp(_panelX, _panelY + 60)];
+        _labelTTFOutlinedDef.fontSize = 16;
+        labelPanelBuyInfoCaption = [[MainScene instance].gui addItem:(id)_labelTTFOutlinedDef _pos:ccp(_panelX, _panelY + 63)];
         
+        _labelTTFOutlinedDef.fontSize = 20;
         _labelTTFOutlinedDef.alignement = kCCTextAlignmentRight;
-        labelPanelBuyInfoCurrValue = [[MainScene instance].gui addItem:(id)_labelTTFOutlinedDef _pos:ccp(_panelX + _panelWidth*0.5f - 10, _panelY + 20)];
+        labelPanelBuyInfoCurrValue = [[MainScene instance].gui addItem:(id)_labelTTFOutlinedDef _pos:ccp(_panelX + _panelWidth*0.5f - 10, _panelY + 33)];
         
         _labelTTFOutlinedDef.textColor = ccc3(0, 255, 0);
-        labelPanelBuyInfoNextValue = [[MainScene instance].gui addItem:(id)_labelTTFOutlinedDef _pos:ccp(_panelX + _panelWidth*0.5f - 10, _panelY + 0)];
+        labelPanelBuyInfoNextValue = [[MainScene instance].gui addItem:(id)_labelTTFOutlinedDef _pos:ccp(_panelX + _panelWidth*0.5f - 10, _panelY + 8)];
 
         _labelTTFOutlinedDef.textColor = ccc3(255, 255, 255);
         _labelTTFOutlinedDef.alignement = kCCTextAlignmentLeft;
@@ -803,7 +805,7 @@
         // buyCoinsPanel
         _labelTTFOutlinedDef.alignement = kCCTextAlignmentCenter;
         _labelTTFOutlinedDef.text = NSLocalizedString(@"panelBuyCoinsCaption","");
-        labelPanelBuyCoinsCaption = [[MainScene instance].gui addItem:(id)_labelTTFOutlinedDef _pos:ccp(_panelX, _panelY + _panelHeight*0.5 - 12)];
+        labelPanelBuyCoinsCaption = [[MainScene instance].gui addItem:(id)_labelTTFOutlinedDef _pos:ccp(_panelX, _panelY + 48)];
         
         //-------------------------------------
         //   Надписи на экране
@@ -835,76 +837,63 @@
         btnDef.isManyTouches = YES;
         
         // Корабль
+        btnDef.sprName = @"Upgrade_1_1.png";
+        btnDef.sprDownName = nil;
+        btnDef.func = @selector(buttonBuyPlayerArmorClick);
+        btnPlayerArmor = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(43, 390)];
         
-        btnDef.sprName = @"icon_upgrade_0.jpg";
+        btnDef.sprName = @"Upgrade_2_1.png";
+        btnDef.func = @selector(buttonBuyPlayerSpeedLimitClick);
+        btnPlayerSpeedLimit = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(121, 390)];
+        
+        btnDef.sprName = @"Upgrade_3_1.png";
+        btnDef.func = @selector(buttonBuyBonusAccelerationDelayClick);
+        btnBonusAccelerationDelay = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(199, 390)];
+        
+        btnDef.sprName = @"Upgrade_4_1.png";
         btnDef.sprDownName = nil;
         btnDef.func = @selector(buttonBuyBonusAccelerationPowerClick);
-        btnBonusAccelerationPower = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(43, 390)];
+        btnBonusAccelerationPower = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(277, 390)];
         
-        btnDef.func = @selector(buttonBuyBonusAccelerationDelayClick);
-        btnBonusAccelerationDelay = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(121, 390)];
-        
+        btnDef.sprName = @"Upgrade_14_1.png";
         btnDef.func = @selector(buttonBuyBonusGetChanceClick);
-        btnBonusGetChance = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(199, 390)];
+        btnBonusGetChance = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(43, 156)];
         
+        btnDef.sprName = @"Upgrade_6_1.png";
         btnDef.func = @selector(buttonBuyBonusGodModeTimeClick);
-        btnBonusGodModeTime = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(277, 390)];
+        btnBonusGodModeTime = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(199, 312)];
         
-        btnDef.func = @selector(buttonBuyPlayerSpeedLimitClick);
-        btnPlayerSpeedLimit = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(43, 312)];
-        
+        btnDef.sprName = @"Upgrade_7_1.png";
         btnDef.func = @selector(buttonBuySpeedWallAccelerationCoeffClick);
-        btnSpeedWallAccelerationCoeff = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(121, 312)];
+        btnSpeedWallAccelerationCoeff = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(43, 312)];
         
+        btnDef.sprName = @"Upgrade_8_1.png";
         btnDef.func = @selector(buttonBuySpeedWallDeccelerationCoeffClick);
-        btnSpeedWallDeccelerationCoeff = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(199, 312)];
+        btnSpeedWallDeccelerationCoeff = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(121, 312)];
         
+        btnDef.sprName = @"Upgrade_9_1.png";
         btnDef.func = @selector(buttonBuyPlayerMagnetDistanceClick);
-        btnPlayerMagnetDistance = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(277, 312)];
+        btnPlayerMagnetDistance = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(121, 234)];
         
+        btnDef.sprName = @"Upgrade_10_1.png";
         btnDef.func = @selector(buttonBuyPlayerMagnetPowerClick);
         btnPlayerMagnetPower = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(43, 234)];
         
+        btnDef.sprName = @"Upgrade_11_1.png";
         btnDef.func = @selector(buttonBuyPlayerGodModeAfterCrashTimeClick);
-        btnPlayerGodModeAfterCrashTime = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(121, 234)];
+        btnPlayerGodModeAfterCrashTime = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(277, 312)];
         
+        btnDef.sprName = @"Upgrade_12_1.png";
         btnDef.func = @selector(buttonBuyPlayerBombSlowClick);
         btnPlayerBombSlow = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(199, 234)];
         
+        btnDef.sprName = @"Upgrade_13_1.png";
         btnDef.func = @selector(buttonBuyCoinsGetChanceClick);
         btnCoinsGetChance = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(277, 234)];
         
-        btnDef.func = @selector(buttonBuyPlayerArmorClick);
-        btnPlayerArmor = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(43, 156)];
-        
+        btnDef.sprName = @"Upgrade_5_1.png";
         btnDef.func = @selector(buttonBuyLaunchBombLevelClick);
         btnLaunchBomb = [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(121, 156)];
-        
-        
-       /* for (int i = 0; i < 6; i++) {
-            btnDef.sprName = [NSString stringWithFormat:@"icon_upgrade_%i.jpg",i];
-            btnDef.sprDownName = nil;
-            btnDef.func = @selector(buttonBuyItem1Action);
-            
-            
-            [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(43 + ((i % 2)*64) + (i % 2)*8, 400 - int(i / 2)*72)];
-        }
-        
-        // Бонусы
-        for (int i = 0; i < 6; i++) {
-            btnDef.sprName = [NSString stringWithFormat:@"icon_upgrade_%i.jpg",5-i];
-            btnDef.sprDownName = nil;
-            btnDef.func = @selector(buttonBuyItem1Action);
-            btnDef.isManyTouches = YES;
-            
-            [[MainScene instance].gui addItem:(id)btnDef _pos:ccp(206 + ((i % 2)*64) + (i % 2)*8, 400 - int(i / 2)*72)];
-        }*/
-        
-        /*btnDef.sprName = @"btnGiftUp.png";
-		btnDef.sprDownName = @"btnGiftDown.png";
-		btnDef.func = @selector(buttonBuyAppAsGift);
-		
-		[[MainScene instance].gui addItem:(id)btnDef _pos:ccp(275,30)];*/
 		
 	}
 	return self;
@@ -931,7 +920,7 @@
         [self setCorrectIconFrames];
         
         [labelCoinsCount setText:[NSString stringWithFormat:@"%i", [Defs instance].coinsCount]];
-        [panelCoinTotal setPosition:ccp(labelCoinsCount.spr.position.x - labelCoinsCount.text.length*9, labelCoinsCount.spr.position.y+3)];
+        [panelCoinTotal setPosition:ccp(labelCoinsCount.spr.position.x - labelCoinsCount.text.length*6 - panelCoinTotal.spr.contentSize.width*0.5f, labelCoinsCount.spr.position.y+3)];
         
         [self allUpgradeIconsSetEnabled:YES];
 	} else { 

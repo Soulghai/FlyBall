@@ -158,7 +158,7 @@
         <key>fileList</key>
         <array>
             <filename>FlyBall/Resources/gfx/GUI</filename>
-            <filename>FlyBall/Resources/gfx/Screens/Shop/shop_icons</filename>
+            <filename>FlyBall/Resources/gfx/updateScreen</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

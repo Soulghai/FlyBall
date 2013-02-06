@@ -126,7 +126,7 @@
     [MyData setStoreValue:@"playerMagnetPowerLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].playerMagnetPowerLevel]];
     [MyData setStoreValue:@"playerSpeedLimit" value:[NSString stringWithFormat:@"%f",[Defs instance].playerSpeedLimit]];
     [MyData setStoreValue:@"playerSpeedLimitLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].playerSpeedLimitLevel]];
-    [MyData setStoreValue:@"playerBombSlow" value:[NSString stringWithFormat:@"%i",[Defs instance].playerBombSlow]];
+    [MyData setStoreValue:@"playerBombSlow" value:[NSString stringWithFormat:@"%f",[Defs instance].playerBombSlow]];
     [MyData setStoreValue:@"playerBombSlowLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].playerBombSlowLevel]];
     [MyData setStoreValue:@"playerGodModeAfterCrashTime" value:[NSString stringWithFormat:@"%f",[Defs instance].playerGodModeAfterCrashTime]];
     [MyData setStoreValue:@"playerGodModeAfterCrashTimeLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].playerGodModeAfterCrashTimeLevel]];
@@ -134,8 +134,6 @@
     [MyData setStoreValue:@"launchBombLevel" value:[NSString stringWithFormat:@"%i",[Defs instance].launchBombLevel]];
     
     [MyData encodeDict:[MyData getDictForSaveData]];
-    
-    [Defs instance].coinsCount = 1000;
 }
 
 - (id) init{
@@ -190,7 +188,7 @@
             [Defs instance].playerMagnetPowerLevel  = [[MyData getStoreValue:@"playerMagnetPowerLevel"] intValue];
             [Defs instance].playerSpeedLimit = [[MyData getStoreValue:@"playerSpeedLimit"] floatValue];
             [Defs instance].playerSpeedLimitLevel  = [[MyData getStoreValue:@"playerSpeedLimitLevel"] intValue];
-            [Defs instance].playerBombSlow = [[MyData getStoreValue:@"playerBombSlow"] intValue];
+            [Defs instance].playerBombSlow = [[MyData getStoreValue:@"playerBombSlow"] floatValue];
             [Defs instance].playerBombSlowLevel  = [[MyData getStoreValue:@"playerBombSlowLevel"] intValue];
             [Defs instance].playerGodModeAfterCrashTime = [[MyData getStoreValue:@"playerGodModeAfterCrashTime"] floatValue];
             [Defs instance].playerGodModeAfterCrashTimeLevel  = [[MyData getStoreValue:@"playerGodModeAfterCrashTimeLevel"] intValue];
@@ -198,8 +196,6 @@
             [Defs instance].launchBombLevel  = [[MyData getStoreValue:@"launchBombLevel"] intValue];
             
         }
-        
-        [Defs instance].coinsCount = 1000;
 		
         if (![Defs instance].isSoundMute) {
             [[SimpleAudioEngine sharedEngine] preloadEffect:@"level_win.wav"]; 
@@ -653,6 +649,9 @@
             break;
             
         case BONUS_APOCALYPSE: {
+            if (![Defs instance].isSoundMute) {
+                [[SimpleAudioEngine sharedEngine] playEffect:@"activate_bonus_apocalypse_new.wav"];
+            }
             [self bonusSlowMotionAddFrame:0.3f _bonusID:_bonusID];
             Actor* _tempActor;
             int _count = [[Defs instance].actorManager.actorsAll count];
@@ -934,7 +933,7 @@
                 [scoreStr setColor:ccc3(100, 255, 100)];
                 //[scoreStr setString:[NSString stringWithFormat:@"Wooow %im!!!",scoreLevel]];
                 if (!isNewScoreSound) {
-                    if (![Defs instance].isSoundMute) [[SimpleAudioEngine sharedEngine] playEffect:@"new_record.wav"];
+                    if (![Defs instance].isSoundMute) [[SimpleAudioEngine sharedEngine] playEffect:@"new_record_new.wav"];
                     isNewScoreSound = YES;
                 }
             }

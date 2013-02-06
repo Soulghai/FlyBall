@@ -88,9 +88,12 @@ static void GameStandartFunctions_remover() {
                 else
                     if ([MainScene instance].game.player.position.y < 100000)
                         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"fly_theme2_3.mp3" loop:NO];
+                else
+                    if ([MainScene instance].game.player.position.y < 200000)
+                        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"fly_theme2_4.mp3" loop:NO];
                     else {
-                        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"fly_theme2_3.mp3" loop:NO];
-                    }
+                            [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"fly_theme2_5.mp3" loop:NO];
+                        }
             }
             
         }

@@ -74,6 +74,7 @@
     if (timeBomb >= delayBomb) {
         [self touch];
         timeBomb = 0;
+        return;
     }
     [self setSpriteFrame:(int)timeBomb];
     
