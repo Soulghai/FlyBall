@@ -198,7 +198,7 @@
         }
 		
         if (![Defs instance].isSoundMute) {
-            [[SimpleAudioEngine sharedEngine] preloadEffect:@"level_win.wav"]; 
+            [[SimpleAudioEngine sharedEngine] preloadEffect:@"game_complete_new.wav"]; 
             [[SimpleAudioEngine sharedEngine] preloadEffect:@"button_click.wav"]; 
             [[SimpleAudioEngine sharedEngine] preloadEffect:@"star.wav"]; 
         }
@@ -528,7 +528,7 @@
 	
 	GAME_IS_PLAYING = NO;
     
-	if (![Defs instance].isSoundMute) [[SimpleAudioEngine sharedEngine] playEffect:@"level_win.wav"]; 	
+	if (![Defs instance].isSoundMute) [[SimpleAudioEngine sharedEngine] playEffect:@"game_complete_new.wav"]; 	
     
 	[self prepareToHideGameScreen];
 	

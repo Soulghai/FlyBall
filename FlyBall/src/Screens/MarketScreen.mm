@@ -16,6 +16,7 @@
 #import "AnalyticsData.h"
 #import "FlurryAnalytics.h"
 #import "MyData.h"
+#import "SimpleAudioEngine.h"
 
 @implementation MarketScreen
 
@@ -117,6 +118,9 @@
     [labelCoinsCount setText:[NSString stringWithFormat:@"%i", [Defs instance].coinsCount]];
     [panelCoinTotal setPosition:ccp(labelCoinsCount.spr.position.x - labelCoinsCount.text.length*6 - panelCoinTotal.spr.contentSize.width*0.5f, labelCoinsCount.spr.position.y+3)];
     [self buyCoinsPanelHide];
+    if (![Defs instance].isSoundMute) {
+        [[SimpleAudioEngine sharedEngine] playEffect:@"buy_coins.wav"];
+    }
 }
 
 - (void) buyCoinsAtThreeDollars {
@@ -124,6 +128,9 @@
     [labelCoinsCount setText:[NSString stringWithFormat:@"%i", [Defs instance].coinsCount]];
     [panelCoinTotal setPosition:ccp(labelCoinsCount.spr.position.x - labelCoinsCount.text.length*6 - panelCoinTotal.spr.contentSize.width*0.5f, labelCoinsCount.spr.position.y+3)];;
     [self buyCoinsPanelHide];
+    if (![Defs instance].isSoundMute) {
+        [[SimpleAudioEngine sharedEngine] playEffect:@"buy_coins.wav"];
+    }
 }
 
 - (void) buyCoinsAtFiveDollars {
@@ -131,6 +138,9 @@
     [labelCoinsCount setText:[NSString stringWithFormat:@"%i", [Defs instance].coinsCount]];
     [panelCoinTotal setPosition:ccp(labelCoinsCount.spr.position.x - labelCoinsCount.text.length*6 - panelCoinTotal.spr.contentSize.width*0.5f, labelCoinsCount.spr.position.y+3)];
     [self buyCoinsPanelHide];
+    if (![Defs instance].isSoundMute) {
+        [[SimpleAudioEngine sharedEngine] playEffect:@"buy_coins.wav"];
+    }
 }
 
 - (void) showPanelBuyInformation:(NSString*)_captionText

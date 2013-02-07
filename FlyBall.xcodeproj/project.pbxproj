@@ -330,6 +330,9 @@
 		28A9DBA816B95C09002EDC22 /* LICENSE_cocos2d.txt in Resources */ = {isa = PBXBuildFile; fileRef = 28A9DB3716B95C09002EDC22 /* LICENSE_cocos2d.txt */; };
 		28A9DBA916B95C09002EDC22 /* LICENSE_CocosDenshion.txt in Resources */ = {isa = PBXBuildFile; fileRef = 28A9DB3816B95C09002EDC22 /* LICENSE_CocosDenshion.txt */; };
 		28A9DBAA16B95C09002EDC22 /* LICENSE_Kazmath.txt in Resources */ = {isa = PBXBuildFile; fileRef = 28A9DB3916B95C09002EDC22 /* LICENSE_Kazmath.txt */; };
+		28B13A1216C2FFAC00E079C7 /* time_slowdown.wav in Resources */ = {isa = PBXBuildFile; fileRef = 28B13A1116C2FFAC00E079C7 /* time_slowdown.wav */; };
+		28B13A1416C2FFD600E079C7 /* buy_coins.wav in Resources */ = {isa = PBXBuildFile; fileRef = 28B13A1316C2FFD600E079C7 /* buy_coins.wav */; };
+		28B13A1616C3004500E079C7 /* game_complete_new.wav in Resources */ = {isa = PBXBuildFile; fileRef = 28B13A1516C3004500E079C7 /* game_complete_new.wav */; };
 		28BA4BAA1659C0EF00D2A2FA /* SpeedWall.mm in Sources */ = {isa = PBXBuildFile; fileRef = 28BA4BA91659C0EF00D2A2FA /* SpeedWall.mm */; };
 		28D56C2E168A768C007AE826 /* back_5-hd.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 28D56C2C168A768C007AE826 /* back_5-hd.jpg */; };
 		28D56C2F168A768C007AE826 /* back_5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 28D56C2D168A768C007AE826 /* back_5.jpg */; };
@@ -874,6 +877,9 @@
 		28A9DB3716B95C09002EDC22 /* LICENSE_cocos2d.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE_cocos2d.txt; path = libs/LICENSE_cocos2d.txt; sourceTree = "<group>"; };
 		28A9DB3816B95C09002EDC22 /* LICENSE_CocosDenshion.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE_CocosDenshion.txt; path = libs/LICENSE_CocosDenshion.txt; sourceTree = "<group>"; };
 		28A9DB3916B95C09002EDC22 /* LICENSE_Kazmath.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE_Kazmath.txt; path = libs/LICENSE_Kazmath.txt; sourceTree = "<group>"; };
+		28B13A1116C2FFAC00E079C7 /* time_slowdown.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = time_slowdown.wav; sourceTree = "<group>"; };
+		28B13A1316C2FFD600E079C7 /* buy_coins.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = buy_coins.wav; sourceTree = "<group>"; };
+		28B13A1516C3004500E079C7 /* game_complete_new.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = game_complete_new.wav; sourceTree = "<group>"; };
 		28BA4BA81659C0EF00D2A2FA /* SpeedWall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeedWall.h; sourceTree = "<group>"; };
 		28BA4BA91659C0EF00D2A2FA /* SpeedWall.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SpeedWall.mm; sourceTree = "<group>"; };
 		28D56C2C168A768C007AE826 /* back_5-hd.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "back_5-hd.jpg"; sourceTree = "<group>"; };
@@ -1160,6 +1166,7 @@
 		284FBAB216530AD8003C16BE /* sfx */ = {
 			isa = PBXGroup;
 			children = (
+				28B13A1516C3004500E079C7 /* game_complete_new.wav */,
 				288ED0FD16C063D100288D86 /* explosion_new32.wav */,
 				288ED0FE16C063D100288D86 /* explosion_new33.wav */,
 				288ED0FF16C063D100288D86 /* explosion_new34.wav */,
@@ -1452,6 +1459,7 @@
 		28733FCE166B9908003EEB86 /* GUI */ = {
 			isa = PBXGroup;
 			children = (
+				28B13A1316C2FFD600E079C7 /* buy_coins.wav */,
 				28893E4916B27F4700451F7B /* buy_upgrade.wav */,
 				28733FCF166B9908003EEB86 /* button_click.wav */,
 				28733FD0166B9908003EEB86 /* play_on.wav */,
@@ -1462,6 +1470,7 @@
 		28733FD3166B990E003EEB86 /* bonus */ = {
 			isa = PBXGroup;
 			children = (
+				28B13A1116C2FFAC00E079C7 /* time_slowdown.wav */,
 				288ED0F916C04C6F00288D86 /* bonus_apocalypse_get.wav */,
 				28893E4616B27F3600451F7B /* speed_activate.wav */,
 				28733FD4166B990E003EEB86 /* god_mode.wav */,
@@ -2134,6 +2143,9 @@
 				288ED10016C063D100288D86 /* explosion_new32.wav in Resources */,
 				288ED10116C063D100288D86 /* explosion_new33.wav in Resources */,
 				288ED10216C063D100288D86 /* explosion_new34.wav in Resources */,
+				28B13A1216C2FFAC00E079C7 /* time_slowdown.wav in Resources */,
+				28B13A1416C2FFD600E079C7 /* buy_coins.wav in Resources */,
+				28B13A1616C3004500E079C7 /* game_complete_new.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -77,7 +77,7 @@
                     [[SimpleAudioEngine sharedEngine] playEffect:@"star.wav"];
                     break;
                 case BONUS_SLOWMOTION:
-                    [[SimpleAudioEngine sharedEngine] playEffect:@"star.wav"];
+                    [[SimpleAudioEngine sharedEngine] playEffect:@"time_slowdown.wav"];
                     break;
                 case BONUS_ACCELERATION:
                     [[SimpleAudioEngine sharedEngine] playEffect:@"speed_activate.wav"];
