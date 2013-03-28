@@ -68,6 +68,7 @@
     float timeSlowMotion;
     float delaySlowMotion;
     float timeSlowMotionPause;
+    float slowMotionAddTime;
     
     int panelBonusFadeSpeed;
 }

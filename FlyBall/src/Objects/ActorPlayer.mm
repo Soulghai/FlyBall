@@ -387,7 +387,7 @@
     }
     
     if (isBonusSpeed) {
-        costume.position = ccpAdd(ccp(position.x + CCRANDOM_MINUS1_1()*[Defs instance].bonusAccelerationPower*6, position.y + CCRANDOM_MINUS1_1()*[Defs instance].bonusAccelerationPower*6), ccp(dt,dt));
+        costume.position = ccpAdd(ccp(position.x + CCRANDOM_MINUS1_1()*[Defs instance].bonusAccelerationPower*3, position.y + CCRANDOM_MINUS1_1()*[Defs instance].bonusAccelerationPower*3), ccp(dt,dt));
         
         if (emitterBonusSpeedFire) {
             if (emitterEngineFire) {

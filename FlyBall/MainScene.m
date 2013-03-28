@@ -279,6 +279,10 @@ static void MainScene_remover() {
     [pauseScreen show:NO];
 	[marketScreen show:YES];
 	self.accelerometerEnabled = NO;
+    if ([Defs instance].currentMusicTheme != 0) {
+        [Defs instance].currentMusicTheme = 0;
+        [[GameStandartFunctions instance] playCurrentBackgroundMusicTrack:-1];
+    }
     [FlurryAnalytics logEvent:ANALYTICS_MARKET_SCREEN_OPENED];
 }
 

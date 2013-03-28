@@ -216,6 +216,25 @@
             <key>layer_1_3.png</key>
             <dict>
                 <key>height</key>
+                <integer>154</integer>
+                <key>offsetX</key>
+                <real>0</real>
+                <key>offsetY</key>
+                <real>2</real>
+                <key>originalHeight</key>
+                <integer>256</integer>
+                <key>originalWidth</key>
+                <integer>256</integer>
+                <key>width</key>
+                <integer>238</integer>
+                <key>x</key>
+                <integer>518</integer>
+                <key>y</key>
+                <integer>172</integer>
+            </dict>
+            <key>layer_1_33.png</key>
+            <dict>
+                <key>height</key>
                 <integer>112</integer>
                 <key>offsetX</key>
                 <real>8</real>
@@ -356,7 +375,7 @@
             <key>size</key>
             <string>{1024,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:86a198d5b14df410117d2f3ca76f0109$</string>
+            <string>$TexturePacker:SmartUpdate:3288312df4b6074d0e3d82e387770027$</string>
             <key>textureFileName</key>
             <string>gfx_paralax_1.pvr.ccz</string>
         </dict>

@@ -76,10 +76,12 @@ static void GameStandartFunctions_remover() {
 - (void) playCurrentBackgroundMusicTrack:(int)_oldMusicTheme{
     if (![Defs instance].isMusicMute) {
         if ([Defs instance].currentMusicTheme == 0) {
+            [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
             [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"theme_menu.mp3"];
         } else
         if ([Defs instance].currentMusicTheme == 1) {
             if ((_oldMusicTheme != [Defs instance].currentMusicTheme)||(![[SimpleAudioEngine sharedEngine] isBackgroundMusicPlaying])) {
+                [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
                 if ([MainScene instance].game.player.position.y < 10000)
                     [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"fly_theme2_1.mp3" loop:NO];
                 else

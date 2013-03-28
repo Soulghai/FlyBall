@@ -25,7 +25,7 @@
         
         costume.position = _location;
         magnetDistance = SCREEN_WIDTH_HALF;
-        magnetPower = 0.7f;
+        magnetPower = 0.8f;
         currSpriteFrame = 0;
         isWorking = NO;
         
