@@ -1947,6 +1947,11 @@
 			attributes = {
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Zakhar Gadzhiev";
+				TargetAttributes = {
+					283E034616530A5700D8A53B = {
+						DevelopmentTeam = Q6BYVV2UE3;
+					};
+				};
 			};
 			buildConfigurationList = 283E034116530A5700D8A53B /* Build configuration list for PBXProject "FlyBall" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -2349,7 +2354,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Zakhar Gadzhiev (XHGP8935N5)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Zakhar Gadzhiev (4Y7W7Y33N7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Zakhar Gadzhiev (XHGP8935N5)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -2363,7 +2368,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PROVISIONING_PROFILE = "3FF663D4-67B4-4785-A0F6-1C0D13B79A3F";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0872B7CE-2619-46B5-B1DE-170521F2F650";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3FF663D4-67B4-4785-A0F6-1C0D13B79A3F";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -2378,7 +2383,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Zakhar Gadzhiev (XHGP8935N5)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Zakhar Gadzhiev (4Y7W7Y33N7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Zakhar Gadzhiev (XHGP8935N5)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					NDEBUG,
@@ -2390,7 +2395,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PROVISIONING_PROFILE = "3FF663D4-67B4-4785-A0F6-1C0D13B79A3F";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0872B7CE-2619-46B5-B1DE-170521F2F650";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3FF663D4-67B4-4785-A0F6-1C0D13B79A3F";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -2400,6 +2405,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2420,6 +2427,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "Crazy Jump";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2428,6 +2436,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2447,6 +2457,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "Crazy Jump";
+				PROVISIONING_PROFILE = "";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
